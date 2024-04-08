@@ -1,0 +1,83 @@
+
+storymode_knight.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+00
+  rotate: false
+  xy: 96, 51
+  size: 89, 93
+  orig: 89, 93
+  offset: 0, 0
+  index: -1
+Layer 40 copy
+  rotate: false
+  xy: 434, 469
+  size: 38, 12
+  orig: 38, 12
+  offset: 0, 0
+  index: -1
+Layer 41
+  rotate: false
+  xy: 2, 2
+  size: 21, 7
+  orig: 21, 7
+  offset: 0, 0
+  index: -1
+Layer 42
+  rotate: false
+  xy: 187, 137
+  size: 10, 7
+  orig: 10, 7
+  offset: 0, 0
+  index: -1
+Layer 43
+  rotate: false
+  xy: 96, 42
+  size: 17, 7
+  orig: 17, 7
+  offset: 0, 0
+  index: -1
+Layer 44
+  rotate: false
+  xy: 296, 297
+  size: 38, 12
+  orig: 38, 12
+  offset: 0, 0
+  index: -1
+_body
+  rotate: false
+  xy: 296, 311
+  size: 136, 170
+  orig: 136, 170
+  offset: 0, 0
+  index: -1
+_handR
+  rotate: false
+  xy: 2, 11
+  size: 92, 133
+  orig: 92, 133
+  offset: 0, 0
+  index: -1
+_weapon
+  rotate: false
+  xy: 2, 146
+  size: 237, 121
+  orig: 237, 121
+  offset: 0, 0
+  index: -1
+_weapon02
+  rotate: true
+  xy: 241, 197
+  size: 70, 51
+  orig: 70, 51
+  offset: 0, 0
+  index: -1
+horses
+  rotate: false
+  xy: 2, 269
+  size: 292, 212
+  orig: 292, 212
+  offset: 0, 0
+  index: -1

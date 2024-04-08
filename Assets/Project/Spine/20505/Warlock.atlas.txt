@@ -1,0 +1,286 @@
+
+Warlock.png
+size: 2048,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+02/U_woroc_2_hair_03
+  rotate: false
+  xy: 1340, 118
+  size: 31, 15
+  orig: 31, 15
+  offset: 0, 0
+  index: -1
+02/U_woroc_2_handR_03
+  rotate: true
+  xy: 2, 3
+  size: 29, 52
+  orig: 29, 52
+  offset: 0, 0
+  index: -1
+U_woroc_1_handR_03
+  rotate: true
+  xy: 2, 3
+  size: 29, 52
+  orig: 29, 52
+  offset: 0, 0
+  index: -1
+02/U_woroc_2_head
+  rotate: false
+  xy: 1517, 152
+  size: 86, 102
+  orig: 86, 102
+  offset: 0, 0
+  index: -1
+03/U_woroc_3_Back hair
+  rotate: true
+  xy: 507, 116
+  size: 138, 139
+  orig: 138, 139
+  offset: 0, 0
+  index: -1
+03/U_woroc_3_body_04
+  rotate: false
+  xy: 134, 2
+  size: 100, 77
+  orig: 100, 77
+  offset: 0, 0
+  index: -1
+03/U_woroc_3_face_02
+  rotate: false
+  xy: 578, 47
+  size: 54, 67
+  orig: 54, 67
+  offset: 0, 0
+  index: -1
+U_woroc_1_face_02
+  rotate: false
+  xy: 578, 47
+  size: 54, 67
+  orig: 54, 67
+  offset: 0, 0
+  index: -1
+03/U_woroc_3_hair_01
+  rotate: true
+  xy: 1883, 213
+  size: 41, 121
+  orig: 41, 121
+  offset: 0, 0
+  index: -1
+03/U_woroc_3_hair_02
+  rotate: true
+  xy: 931, 123
+  size: 131, 139
+  orig: 131, 139
+  offset: 0, 0
+  index: -1
+03/U_woroc_3_hair_04
+  rotate: false
+  xy: 429, 39
+  size: 65, 78
+  orig: 65, 78
+  offset: 0, 0
+  index: -1
+03/U_woroc_3_head
+  rotate: false
+  xy: 1605, 152
+  size: 86, 102
+  orig: 86, 102
+  offset: 0, 0
+  index: -1
+03/U_woroc_3_weapon
+  rotate: false
+  xy: 2, 34
+  size: 130, 220
+  orig: 130, 220
+  offset: 0, 0
+  index: -1
+U_woroc_1_Back hair
+  rotate: true
+  xy: 648, 116
+  size: 138, 139
+  orig: 138, 139
+  offset: 0, 0
+  index: -1
+U_woroc_1_body_01
+  rotate: false
+  xy: 694, 75
+  size: 55, 39
+  orig: 55, 39
+  offset: 0, 0
+  index: -1
+U_woroc_1_body_02
+  rotate: false
+  xy: 1213, 113
+  size: 125, 80
+  orig: 125, 80
+  offset: 0, 0
+  index: -1
+U_woroc_1_body_03
+  rotate: false
+  xy: 236, 11
+  size: 66, 68
+  orig: 66, 68
+  offset: 0, 0
+  index: -1
+U_woroc_1_body_04
+  rotate: false
+  xy: 1781, 177
+  size: 100, 77
+  orig: 100, 77
+  offset: 0, 0
+  index: -1
+U_woroc_1_face_01
+  rotate: false
+  xy: 634, 58
+  size: 58, 56
+  orig: 58, 56
+  offset: 0, 0
+  index: -1
+U_woroc_1_hair_01
+  rotate: true
+  xy: 1883, 170
+  size: 41, 121
+  orig: 41, 121
+  offset: 0, 0
+  index: -1
+U_woroc_1_hair_02
+  rotate: true
+  xy: 1072, 123
+  size: 131, 139
+  orig: 131, 139
+  offset: 0, 0
+  index: -1
+U_woroc_1_handL_01
+  rotate: false
+  xy: 56, 8
+  size: 45, 24
+  orig: 45, 24
+  offset: 0, 0
+  index: -1
+U_woroc_1_handL_02
+  rotate: true
+  xy: 1781, 151
+  size: 24, 25
+  orig: 24, 25
+  offset: 0, 0
+  index: -1
+U_woroc_1_handL_03
+  rotate: true
+  xy: 429, 2
+  size: 32, 45
+  orig: 32, 45
+  offset: 0, 0
+  index: -1
+U_woroc_1_handR00
+  rotate: false
+  xy: 1808, 157
+  size: 20, 18
+  orig: 20, 18
+  offset: 0, 0
+  index: -1
+U_woroc_1_handR01
+  rotate: true
+  xy: 694, 60
+  size: 13, 20
+  orig: 13, 20
+  offset: 0, 0
+  index: -1
+U_woroc_1_handR02
+  rotate: false
+  xy: 476, 10
+  size: 18, 27
+  orig: 18, 27
+  offset: 0, 0
+  index: -1
+U_woroc_1_handR03
+  rotate: false
+  xy: 103, 8
+  size: 29, 24
+  orig: 29, 24
+  offset: 0, 0
+  index: -1
+U_woroc_1_handR_01
+  rotate: true
+  xy: 2006, 155
+  size: 42, 40
+  orig: 42, 40
+  offset: 0, 0
+  index: -1
+U_woroc_1_head
+  rotate: false
+  xy: 1693, 152
+  size: 86, 102
+  orig: 86, 102
+  offset: 0, 0
+  index: -1
+U_woroc_1_neck
+  rotate: false
+  xy: 2006, 199
+  size: 40, 55
+  orig: 40, 55
+  offset: 0, 0
+  index: -1
+U_woroc_1_weapon
+  rotate: true
+  xy: 312, 119
+  size: 135, 193
+  orig: 135, 193
+  offset: 0, 0
+  index: -1
+ef01
+  rotate: false
+  xy: 312, 2
+  size: 115, 115
+  orig: 115, 115
+  offset: 0, 0
+  index: -1
+ef02
+  rotate: false
+  xy: 1400, 139
+  size: 115, 115
+  orig: 115, 115
+  offset: 0, 0
+  index: -1
+ef04
+  rotate: false
+  xy: 1213, 195
+  size: 185, 59
+  orig: 185, 59
+  offset: 0, 0
+  index: -1
+ef05
+  rotate: false
+  xy: 1340, 135
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+ef_03_01
+  rotate: false
+  xy: 751, 72
+  size: 41, 42
+  orig: 41, 42
+  offset: 0, 0
+  index: -1
+ef_03_02
+  rotate: false
+  xy: 496, 36
+  size: 80, 78
+  orig: 80, 78
+  offset: 0, 0
+  index: -1
+ef_03_03
+  rotate: false
+  xy: 789, 122
+  size: 140, 132
+  orig: 140, 132
+  offset: 0, 0
+  index: -1
+ef_03_04
+  rotate: false
+  xy: 134, 81
+  size: 176, 173
+  orig: 176, 173
+  offset: 0, 0
+  index: -1

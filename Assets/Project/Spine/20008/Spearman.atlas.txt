@@ -1,0 +1,230 @@
+
+Spearman.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+_H_spm_01_body_01
+  rotate: false
+  xy: 266, 119
+  size: 83, 59
+  orig: 83, 59
+  offset: 0, 0
+  index: -1
+_H_spm_01_body_02
+  rotate: false
+  xy: 256, 78
+  size: 74, 39
+  orig: 74, 39
+  offset: 0, 0
+  index: -1
+_H_spm_01_body_03
+  rotate: true
+  xy: 148, 4
+  size: 82, 94
+  orig: 82, 94
+  offset: 0, 0
+  index: -1
+_H_spm_01_footL_01
+  rotate: false
+  xy: 499, 77
+  size: 35, 38
+  orig: 35, 38
+  offset: 0, 0
+  index: -1
+_H_spm_01_footL_02
+  rotate: true
+  xy: 413, 2
+  size: 22, 27
+  orig: 22, 27
+  offset: 0, 0
+  index: -1
+_H_spm_01_footR_01
+  rotate: false
+  xy: 536, 83
+  size: 35, 41
+  orig: 35, 41
+  offset: 0, 0
+  index: -1
+_H_spm_01_footR_02
+  rotate: true
+  xy: 43, 2
+  size: 24, 27
+  orig: 24, 27
+  offset: 0, 0
+  index: -1
+_H_spm_01_handL_01
+  rotate: false
+  xy: 501, 117
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+_H_spm_01_handL_02
+  rotate: false
+  xy: 611, 89
+  size: 32, 35
+  orig: 32, 35
+  offset: 0, 0
+  index: -1
+_H_spm_01_handL_03
+  rotate: true
+  xy: 362, 23
+  size: 41, 49
+  orig: 41, 49
+  offset: 0, 0
+  index: -1
+_H_spm_01_handL_04
+  rotate: false
+  xy: 413, 26
+  size: 41, 38
+  orig: 41, 38
+  offset: 0, 0
+  index: -1
+_H_spm_01_handR_01
+  rotate: false
+  xy: 362, 66
+  size: 50, 43
+  orig: 50, 43
+  offset: 0, 0
+  index: -1
+_H_spm_01_handR_02
+  rotate: false
+  xy: 72, 3
+  size: 26, 23
+  orig: 26, 23
+  offset: 0, 0
+  index: -1
+_H_spm_01_handR_03
+  rotate: false
+  xy: 573, 84
+  size: 36, 40
+  orig: 36, 40
+  offset: 0, 0
+  index: -1
+_H_spm_01_handR_04
+  rotate: false
+  xy: 309, 23
+  size: 51, 53
+  orig: 51, 53
+  offset: 0, 0
+  index: -1
+_H_spm_01_head_01
+  rotate: true
+  xy: 901, 154
+  size: 100, 119
+  orig: 100, 119
+  offset: 0, 0
+  index: -1
+_H_spm_01_head_02
+  rotate: false
+  xy: 244, 16
+  size: 63, 60
+  orig: 63, 60
+  offset: 0, 0
+  index: -1
+_H_spm_01_weapon
+  rotate: false
+  xy: 2, 88
+  size: 252, 74
+  orig: 252, 74
+  offset: 0, 0
+  index: -1
+_H_spm_02_handL_01
+  rotate: true
+  xy: 332, 82
+  size: 27, 28
+  orig: 27, 28
+  offset: 0, 0
+  index: -1
+_H_spm_02_handL_02
+  rotate: false
+  xy: 458, 78
+  size: 39, 38
+  orig: 39, 38
+  offset: 0, 0
+  index: -1
+_H_spm_02_handR_02
+  rotate: true
+  xy: 501, 145
+  size: 33, 26
+  orig: 33, 26
+  offset: 0, 0
+  index: -1
+_H_spm_02_handR_03
+  rotate: true
+  xy: 414, 66
+  size: 43, 42
+  orig: 43, 42
+  offset: 0, 0
+  index: -1
+_H_spm_02_head_03
+  rotate: true
+  xy: 901, 49
+  size: 103, 104
+  orig: 103, 104
+  offset: 0, 0
+  index: -1
+_H_spm_03_handR_01
+  rotate: false
+  xy: 432, 118
+  size: 67, 60
+  orig: 67, 60
+  offset: 0, 0
+  index: -1
+_H_spm_03_head_03
+  rotate: true
+  xy: 2, 2
+  size: 24, 39
+  orig: 24, 39
+  offset: 0, 0
+  index: -1
+_H_spm_03_head_03 copy
+  rotate: false
+  xy: 788, 136
+  size: 111, 118
+  orig: 111, 118
+  offset: 0, 0
+  index: -1
+_H_spm_03_head_03 copy 2
+  rotate: true
+  xy: 351, 111
+  size: 67, 79
+  orig: 67, 79
+  offset: 0, 0
+  index: -1
+_H_spm_03_weapon
+  rotate: false
+  xy: 2, 164
+  size: 262, 90
+  orig: 262, 90
+  offset: 0, 0
+  index: -1
+ef001
+  rotate: false
+  xy: 266, 180
+  size: 264, 74
+  orig: 264, 74
+  offset: 0, 0
+  index: -1
+ef004
+  rotate: false
+  xy: 532, 126
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ef009png
+  rotate: false
+  xy: 662, 130
+  size: 124, 124
+  orig: 124, 124
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 2, 28
+  size: 144, 58
+  orig: 144, 58
+  offset: 0, 0
+  index: -1

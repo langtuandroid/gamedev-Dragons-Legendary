@@ -1,0 +1,97 @@
+
+Dark Bats.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bat01_body
+  rotate: true
+  xy: 253, 56
+  size: 65, 108
+  orig: 65, 108
+  offset: 0, 0
+  index: -1
+bat01_eye
+  rotate: false
+  xy: 861, 108
+  size: 29, 13
+  orig: 29, 13
+  offset: 0, 0
+  index: -1
+bat02_eye
+  rotate: false
+  xy: 861, 108
+  size: 29, 13
+  orig: 29, 13
+  offset: 0, 0
+  index: -1
+bat01_wingL
+  rotate: false
+  xy: 633, 53
+  size: 74, 68
+  orig: 74, 68
+  offset: 0, 0
+  index: -1
+bat01_wingR
+  rotate: false
+  xy: 363, 55
+  size: 88, 66
+  orig: 88, 66
+  offset: 0, 0
+  index: -1
+bat02_body
+  rotate: true
+  xy: 2, 2
+  size: 65, 117
+  orig: 65, 117
+  offset: 0, 0
+  index: -1
+bat02_wingL
+  rotate: false
+  xy: 709, 54
+  size: 74, 67
+  orig: 74, 67
+  offset: 0, 0
+  index: -1
+bat02_wingR
+  rotate: false
+  xy: 453, 55
+  size: 88, 66
+  orig: 88, 66
+  offset: 0, 0
+  index: -1
+bat03_body
+  rotate: true
+  xy: 134, 56
+  size: 65, 117
+  orig: 65, 117
+  offset: 0, 0
+  index: -1
+bat03_eye
+  rotate: false
+  xy: 861, 93
+  size: 29, 13
+  orig: 29, 13
+  offset: 0, 0
+  index: -1
+bat03_wingL
+  rotate: false
+  xy: 785, 54
+  size: 74, 67
+  orig: 74, 67
+  offset: 0, 0
+  index: -1
+bat03_wingR
+  rotate: false
+  xy: 543, 55
+  size: 88, 66
+  orig: 88, 66
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 2, 69
+  size: 130, 52
+  orig: 130, 52
+  offset: 0, 0
+  index: -1

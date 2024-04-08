@@ -1,0 +1,69 @@
+
+Merlin.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 264 copy
+  rotate: false
+  xy: 293, 377
+  size: 71, 28
+  orig: 71, 28
+  offset: 0, 0
+  index: -1
+Layer 268 copy
+  rotate: false
+  xy: 75, 36
+  size: 49, 25
+  orig: 49, 25
+  offset: 0, 0
+  index: -1
+Layer 274
+  rotate: false
+  xy: 126, 39
+  size: 19, 22
+  orig: 19, 22
+  offset: 0, 0
+  index: -1
+Layer 287
+  rotate: false
+  xy: 2, 19
+  size: 65, 11
+  orig: 65, 11
+  offset: 0, 0
+  index: -1
+Layer 302
+  rotate: false
+  xy: 2, 63
+  size: 289, 342
+  orig: 289, 342
+  offset: 0, 0
+  index: -1
+Layer 324
+  rotate: false
+  xy: 2, 32
+  size: 71, 29
+  orig: 71, 29
+  offset: 0, 0
+  index: -1
+Layer 325
+  rotate: false
+  xy: 366, 390
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Layer 326
+  rotate: false
+  xy: 293, 358
+  size: 32, 17
+  orig: 32, 17
+  offset: 0, 0
+  index: -1
+Layer 327 copy
+  rotate: false
+  xy: 2, 2
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1

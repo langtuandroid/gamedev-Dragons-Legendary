@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: e483bf6707a544c8ba3bae07e63b6cec
+timeCreated: 1573567685
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: "SquadaOne-Regular"
+  fontNames:
+  - Squada One
+  fallbackFontReferences: []
+  customCharacters:
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData:
+  assetBundleName: 
+  assetBundleVariant: 

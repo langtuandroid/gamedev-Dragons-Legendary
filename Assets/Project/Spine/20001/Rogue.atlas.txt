@@ -1,0 +1,230 @@
+
+Rogue.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ArmLLv2_01
+  rotate: true
+  xy: 209, 116
+  size: 64, 94
+  orig: 64, 94
+  offset: 0, 0
+  index: -1
+ArmLLv3_01
+  rotate: true
+  xy: 202, 52
+  size: 62, 93
+  orig: 62, 93
+  offset: 0, 0
+  index: -1
+ArmLLv3_02
+  rotate: true
+  xy: 319, 246
+  size: 60, 57
+  orig: 60, 57
+  offset: 0, 0
+  index: -1
+ArmRLv3_02
+  rotate: false
+  xy: 319, 163
+  size: 47, 81
+  orig: 47, 81
+  offset: 0, 0
+  index: -1
+Face_mask_Lv2
+  rotate: true
+  xy: 485, 158
+  size: 104, 94
+  orig: 104, 94
+  offset: 0, 0
+  index: -1
+HearLv2_01
+  rotate: false
+  xy: 758, 406
+  size: 179, 104
+  orig: 179, 104
+  offset: 0, 0
+  index: -1
+HearLv2_02
+  rotate: false
+  xy: 41, 165
+  size: 166, 130
+  orig: 166, 130
+  offset: 0, 0
+  index: -1
+Hear_Lv3
+  rotate: false
+  xy: 401, 381
+  size: 177, 102
+  orig: 177, 102
+  offset: 0, 0
+  index: -1
+Hip_v3
+  rotate: true
+  xy: 509, 266
+  size: 67, 41
+  orig: 67, 41
+  offset: 0, 0
+  index: -1
+Shadow
+  rotate: false
+  xy: 305, 129
+  size: 64, 32
+  orig: 64, 32
+  offset: 0, 0
+  index: -1
+Sword
+  rotate: false
+  xy: 378, 335
+  size: 163, 44
+  orig: 163, 44
+  offset: 0, 0
+  index: -1
+_H_thf_01_armR_02
+  rotate: false
+  xy: 378, 160
+  size: 105, 102
+  orig: 105, 102
+  offset: 0, 0
+  index: -1
+_H_thf_02_armR_02
+  rotate: true
+  xy: 580, 375
+  size: 108, 113
+  orig: 108, 113
+  offset: 0, 0
+  index: -1
+_H_thf_03_armR_02
+  rotate: false
+  xy: 209, 182
+  size: 108, 113
+  orig: 108, 113
+  offset: 0, 0
+  index: -1
+_H_thf_03_belt
+  rotate: false
+  xy: 2, 3
+  size: 73, 149
+  orig: 73, 149
+  offset: 0, 0
+  index: -1
+_H_thf_03_hair
+  rotate: false
+  xy: 41, 297
+  size: 192, 133
+  orig: 192, 133
+  offset: 0, 0
+  index: -1
+badyLv1_01
+  rotate: true
+  xy: 695, 395
+  size: 88, 44
+  orig: 88, 44
+  offset: 0, 0
+  index: -1
+badyLv1_02
+  rotate: false
+  xy: 939, 381
+  size: 69, 129
+  orig: 69, 129
+  offset: 0, 0
+  index: -1
+badyLv1_03
+  rotate: true
+  xy: 235, 308
+  size: 122, 141
+  orig: 122, 141
+  offset: 0, 0
+  index: -1
+badyLv2_02
+  rotate: true
+  xy: 378, 264
+  size: 69, 129
+  orig: 69, 129
+  offset: 0, 0
+  index: -1
+effect_01
+  rotate: true
+  xy: 41, 432
+  size: 42, 349
+  orig: 42, 349
+  offset: 0, 0
+  index: -1
+effect_02
+  rotate: true
+  xy: 41, 476
+  size: 34, 358
+  orig: 34, 358
+  offset: 0, 0
+  index: -1
+effect_03
+  rotate: false
+  xy: 2, 154
+  size: 37, 356
+  orig: 37, 356
+  offset: 0, 0
+  index: -1
+effect_04
+  rotate: true
+  xy: 401, 485
+  size: 25, 355
+  orig: 25, 355
+  offset: 0, 0
+  index: -1
+face copy
+  rotate: false
+  xy: 741, 464
+  size: 15, 19
+  orig: 15, 19
+  offset: 0, 0
+  index: -1
+face copy 2
+  rotate: false
+  xy: 371, 131
+  size: 58, 27
+  orig: 58, 27
+  offset: 0, 0
+  index: -1
+face_Lv3
+  rotate: false
+  xy: 77, 27
+  size: 123, 136
+  orig: 123, 136
+  offset: 0, 0
+  index: -1
+fase_02
+  rotate: false
+  xy: 77, 3
+  size: 70, 22
+  orig: 70, 22
+  offset: 0, 0
+  index: -1
+footL_Lv3_01
+  rotate: false
+  xy: 244, 8
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+footL_Lv3_02
+  rotate: false
+  xy: 202, 2
+  size: 40, 48
+  orig: 40, 48
+  offset: 0, 0
+  index: -1
+footR_Lv3_01
+  rotate: false
+  xy: 543, 342
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+footR_Lv3_02
+  rotate: true
+  xy: 577, 335
+  size: 38, 40
+  orig: 38, 40
+  offset: 0, 0
+  index: -1

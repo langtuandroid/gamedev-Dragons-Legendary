@@ -1,0 +1,69 @@
+
+storymode_friest.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+H_friest_1_head
+  rotate: true
+  xy: 2, 80
+  size: 166, 288
+  orig: 166, 288
+  offset: 0, 0
+  index: -1
+H_friest_1_look_01
+  rotate: false
+  xy: 292, 192
+  size: 88, 54
+  orig: 88, 54
+  offset: 0, 0
+  index: -1
+H_friest_1_look_02
+  rotate: false
+  xy: 292, 136
+  size: 88, 54
+  orig: 88, 54
+  offset: 0, 0
+  index: -1
+H_friest_1_look_03
+  rotate: false
+  xy: 382, 195
+  size: 86, 51
+  orig: 86, 51
+  offset: 0, 0
+  index: -1
+H_friest_1_weapon
+  rotate: true
+  xy: 2, 2
+  size: 76, 291
+  orig: 76, 291
+  offset: 0, 0
+  index: -1
+H_friest_2_handL01
+  rotate: true
+  xy: 382, 133
+  size: 60, 67
+  orig: 60, 67
+  offset: 0, 0
+  index: -1
+Layer 1
+  rotate: false
+  xy: 451, 181
+  size: 16, 12
+  orig: 16, 12
+  offset: 0, 0
+  index: -1
+Layer 2
+  rotate: false
+  xy: 292, 122
+  size: 26, 12
+  orig: 26, 12
+  offset: 0, 0
+  index: -1
+Layer 4
+  rotate: false
+  xy: 470, 229
+  size: 24, 17
+  orig: 24, 17
+  offset: 0, 0
+  index: -1

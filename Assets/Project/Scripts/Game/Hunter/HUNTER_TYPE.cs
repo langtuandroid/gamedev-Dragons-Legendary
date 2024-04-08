@@ -1,0 +1,9 @@
+public enum HUNTER_TYPE
+{
+	BLUE,
+	GREEN,
+	PURPLE,
+	RED,
+	YELLOW,
+	HEAL
+}

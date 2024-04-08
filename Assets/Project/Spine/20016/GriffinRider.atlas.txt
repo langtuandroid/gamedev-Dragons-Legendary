@@ -1,0 +1,335 @@
+
+GriffinRider.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+H_grff01_Dwf_body
+  rotate: false
+  xy: 726, 194
+  size: 72, 60
+  orig: 72, 60
+  offset: 0, 0
+  index: -1
+H_grff01_Dwf_foot01
+  rotate: false
+  xy: 392, 107
+  size: 28, 39
+  orig: 28, 39
+  offset: 0, 0
+  index: -1
+H_grff01_Dwf_foot_02
+  rotate: true
+  xy: 400, 75
+  size: 30, 22
+  orig: 30, 22
+  offset: 0, 0
+  index: -1
+H_grff01_Dwf_handL_01
+  rotate: false
+  xy: 323, 71
+  size: 33, 25
+  orig: 33, 25
+  offset: 0, 0
+  index: -1
+H_grff01_Dwf_handL_02
+  rotate: true
+  xy: 696, 158
+  size: 40, 28
+  orig: 40, 28
+  offset: 0, 0
+  index: -1
+H_grff01_Dwf_handL_03
+  rotate: false
+  xy: 371, 34
+  size: 33, 37
+  orig: 33, 37
+  offset: 0, 0
+  index: -1
+H_grff01_Dwf_handR_01
+  rotate: true
+  xy: 339, 28
+  size: 41, 30
+  orig: 41, 30
+  offset: 0, 0
+  index: -1
+H_grff01_Dwf_handR_02
+  rotate: false
+  xy: 355, 107
+  size: 35, 39
+  orig: 35, 39
+  offset: 0, 0
+  index: -1
+H_grff01_Dwf_handR_03
+  rotate: false
+  xy: 358, 73
+  size: 40, 32
+  orig: 40, 32
+  offset: 0, 0
+  index: -1
+H_grff01_Dwf_head
+  rotate: true
+  xy: 137, 2
+  size: 70, 57
+  orig: 70, 57
+  offset: 0, 0
+  index: -1
+H_grff01_Dwf_weapon
+  rotate: true
+  xy: 537, 158
+  size: 33, 57
+  orig: 33, 57
+  offset: 0, 0
+  index: -1
+H_grff01_body
+  rotate: false
+  xy: 537, 193
+  size: 105, 61
+  orig: 105, 61
+  offset: 0, 0
+  index: -1
+H_grff01_footL1_01
+  rotate: false
+  xy: 2, 2
+  size: 51, 58
+  orig: 51, 58
+  offset: 0, 0
+  index: -1
+H_grff01_footL1_02
+  rotate: false
+  xy: 406, 36
+  size: 27, 37
+  orig: 27, 37
+  offset: 0, 0
+  index: -1
+H_grff01_footL1_03
+  rotate: true
+  xy: 370, 2
+  size: 24, 22
+  orig: 24, 22
+  offset: 0, 0
+  index: -1
+H_grff01_footL2_01
+  rotate: false
+  xy: 323, 98
+  size: 30, 51
+  orig: 30, 51
+  offset: 0, 0
+  index: -1
+H_grff01_footL2_02
+  rotate: true
+  xy: 414, 151
+  size: 26, 14
+  orig: 26, 14
+  offset: 0, 0
+  index: -1
+H_grff01_footL2_03
+  rotate: true
+  xy: 904, 190
+  size: 21, 33
+  orig: 21, 33
+  offset: 0, 0
+  index: -1
+H_grff01_footR2_01
+  rotate: true
+  xy: 321, 151
+  size: 26, 45
+  orig: 26, 45
+  offset: 0, 0
+  index: -1
+H_grff01_footR2_02
+  rotate: false
+  xy: 867, 194
+  size: 35, 17
+  orig: 35, 17
+  offset: 0, 0
+  index: -1
+H_grff01_footR2_03
+  rotate: false
+  xy: 298, 7
+  size: 39, 62
+  orig: 39, 62
+  offset: 0, 0
+  index: -1
+H_grff01_footR_01
+  rotate: false
+  xy: 430, 150
+  size: 26, 22
+  orig: 26, 22
+  offset: 0, 0
+  index: -1
+H_grff01_footR_02
+  rotate: false
+  xy: 777, 147
+  size: 18, 45
+  orig: 18, 45
+  offset: 0, 0
+  index: -1
+H_grff01_footR_03
+  rotate: true
+  xy: 800, 202
+  size: 52, 65
+  orig: 52, 65
+  offset: 0, 0
+  index: -1
+H_grff01_head_01
+  rotate: true
+  xy: 248, 2
+  size: 67, 48
+  orig: 67, 48
+  offset: 0, 0
+  index: -1
+H_grff01_head_02
+  rotate: false
+  xy: 368, 148
+  size: 44, 29
+  orig: 44, 29
+  offset: 0, 0
+  index: -1
+H_grff01_head_03
+  rotate: true
+  xy: 339, 2
+  size: 24, 29
+  orig: 24, 29
+  offset: 0, 0
+  index: -1
+H_grff01_head_04
+  rotate: false
+  xy: 596, 157
+  size: 47, 34
+  orig: 47, 34
+  offset: 0, 0
+  index: -1
+H_grff01_head_05
+  rotate: true
+  xy: 433, 174
+  size: 80, 102
+  orig: 80, 102
+  offset: 0, 0
+  index: -1
+H_grff01_tail
+  rotate: false
+  xy: 249, 71
+  size: 72, 78
+  orig: 72, 78
+  offset: 0, 0
+  index: -1
+H_grff01_wingL01
+  rotate: false
+  xy: 137, 74
+  size: 110, 75
+  orig: 110, 75
+  offset: 0, 0
+  index: -1
+H_grff01_wingL02
+  rotate: false
+  xy: 645, 150
+  size: 49, 48
+  orig: 49, 48
+  offset: 0, 0
+  index: -1
+H_grff01_wingR01_2
+  rotate: false
+  xy: 2, 159
+  size: 133, 95
+  orig: 133, 95
+  offset: 0, 0
+  index: -1
+H_grff01_wingR02_2
+  rotate: false
+  xy: 644, 200
+  size: 80, 54
+  orig: 80, 54
+  offset: 0, 0
+  index: -1
+H_grff02_head_05
+  rotate: false
+  xy: 137, 151
+  size: 90, 103
+  orig: 90, 103
+  offset: 0, 0
+  index: -1
+H_grff02_head_armor
+  rotate: false
+  xy: 867, 213
+  size: 69, 41
+  orig: 69, 41
+  offset: 0, 0
+  index: -1
+H_grff03_Dwf_weapon
+  rotate: false
+  xy: 196, 6
+  size: 50, 66
+  orig: 50, 66
+  offset: 0, 0
+  index: -1
+H_grff03_footL1_04
+  rotate: false
+  xy: 970, 184
+  size: 25, 27
+  orig: 25, 27
+  offset: 0, 0
+  index: -1
+H_grff03_footL2_04
+  rotate: false
+  xy: 478, 153
+  size: 14, 19
+  orig: 14, 19
+  offset: 0, 0
+  index: -1
+H_grff03_footR2_04
+  rotate: false
+  xy: 458, 151
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1
+H_grff03_footR_04
+  rotate: false
+  xy: 939, 182
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+H_grff03_head_05
+  rotate: false
+  xy: 229, 151
+  size: 90, 103
+  orig: 90, 103
+  offset: 0, 0
+  index: -1
+H_grff03_head_armor
+  rotate: false
+  xy: 938, 213
+  size: 69, 41
+  orig: 69, 41
+  offset: 0, 0
+  index: -1
+H_grff03_wingL01
+  rotate: false
+  xy: 321, 179
+  size: 110, 75
+  orig: 110, 75
+  offset: 0, 0
+  index: -1
+H_grff03_wingL02
+  rotate: false
+  xy: 726, 144
+  size: 49, 48
+  orig: 49, 48
+  offset: 0, 0
+  index: -1
+H_grff03_wingR01_2
+  rotate: false
+  xy: 2, 62
+  size: 133, 95
+  orig: 133, 95
+  offset: 0, 0
+  index: -1
+H_grff03_wingR02_2
+  rotate: false
+  xy: 55, 6
+  size: 80, 54
+  orig: 80, 54
+  offset: 0, 0
+  index: -1

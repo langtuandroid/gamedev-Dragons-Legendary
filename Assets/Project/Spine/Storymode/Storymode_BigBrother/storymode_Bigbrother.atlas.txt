@@ -1,0 +1,90 @@
+
+storymode_Bigbrother.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 347 copy
+  rotate: false
+  xy: 386, 218
+  size: 72, 28
+  orig: 72, 28
+  offset: 0, 0
+  index: -1
+Layer 409
+  rotate: false
+  xy: 386, 199
+  size: 64, 17
+  orig: 64, 17
+  offset: 0, 0
+  index: -1
+Layer 412
+  rotate: false
+  xy: 386, 132
+  size: 41, 17
+  orig: 41, 17
+  offset: 0, 0
+  index: -1
+Layer 414
+  rotate: false
+  xy: 386, 96
+  size: 25, 14
+  orig: 25, 14
+  offset: 0, 0
+  index: -1
+Layer 417
+  rotate: false
+  xy: 386, 151
+  size: 53, 22
+  orig: 53, 22
+  offset: 0, 0
+  index: -1
+Layer 417 copy
+  rotate: false
+  xy: 386, 175
+  size: 54, 22
+  orig: 54, 22
+  offset: 0, 0
+  index: -1
+Layer 424
+  rotate: true
+  xy: 460, 221
+  size: 25, 37
+  orig: 25, 37
+  offset: 0, 0
+  index: -1
+Layer 459
+  rotate: true
+  xy: 2, 2
+  size: 244, 382
+  orig: 244, 382
+  offset: 0, 0
+  index: -1
+Layer 460
+  rotate: true
+  xy: 442, 176
+  size: 21, 8
+  orig: 21, 8
+  offset: 0, 0
+  index: -1
+Layer 461
+  rotate: true
+  xy: 429, 136
+  size: 13, 10
+  orig: 13, 10
+  offset: 0, 0
+  index: -1
+Layer 463
+  rotate: false
+  xy: 386, 112
+  size: 30, 18
+  orig: 30, 18
+  offset: 0, 0
+  index: -1
+Layer 465
+  rotate: true
+  xy: 499, 222
+  size: 24, 9
+  orig: 24, 9
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,188 @@
+
+Guard.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+02/H_guard_02_helmet
+  rotate: false
+  xy: 396, 165
+  size: 119, 89
+  orig: 119, 89
+  offset: 0, 0
+  index: -1
+02/H_guard_02_shield
+  rotate: true
+  xy: 265, 171
+  size: 83, 129
+  orig: 83, 129
+  offset: 0, 0
+  index: -1
+03/H_guard_03_helmet
+  rotate: true
+  xy: 2, 2
+  size: 122, 125
+  orig: 122, 125
+  offset: 0, 0
+  index: -1
+03/H_guard_03_shield
+  rotate: true
+  xy: 133, 159
+  size: 95, 130
+  orig: 95, 130
+  offset: 0, 0
+  index: -1
+03/H_guard_03_weapon
+  rotate: false
+  xy: 129, 21
+  size: 73, 68
+  orig: 73, 68
+  offset: 0, 0
+  index: -1
+H_guard_01_FooL_01
+  rotate: false
+  xy: 936, 142
+  size: 24, 30
+  orig: 24, 30
+  offset: 0, 0
+  index: -1
+H_guard_01_FooL_02
+  rotate: false
+  xy: 827, 131
+  size: 38, 37
+  orig: 38, 37
+  offset: 0, 0
+  index: -1
+H_guard_01_FooR_01
+  rotate: true
+  xy: 265, 145
+  size: 24, 27
+  orig: 24, 27
+  offset: 0, 0
+  index: -1
+H_guard_01_FooR_02
+  rotate: false
+  xy: 899, 137
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
+H_guard_01_Sword
+  rotate: false
+  xy: 133, 91
+  size: 74, 66
+  orig: 74, 66
+  offset: 0, 0
+  index: -1
+H_guard_01_body01
+  rotate: false
+  xy: 209, 98
+  size: 51, 59
+  orig: 51, 59
+  offset: 0, 0
+  index: -1
+H_guard_01_body02
+  rotate: false
+  xy: 975, 216
+  size: 47, 38
+  orig: 47, 38
+  offset: 0, 0
+  index: -1
+H_guard_01_cloth
+  rotate: false
+  xy: 517, 156
+  size: 46, 38
+  orig: 46, 38
+  offset: 0, 0
+  index: -1
+H_guard_01_face
+  rotate: false
+  xy: 565, 156
+  size: 46, 38
+  orig: 46, 38
+  offset: 0, 0
+  index: -1
+H_guard_01_face02
+  rotate: false
+  xy: 657, 145
+  size: 45, 33
+  orig: 45, 33
+  offset: 0, 0
+  index: -1
+H_guard_01_handL_1
+  rotate: true
+  xy: 704, 150
+  size: 28, 44
+  orig: 28, 44
+  offset: 0, 0
+  index: -1
+H_guard_01_handL_2
+  rotate: false
+  xy: 867, 131
+  size: 30, 37
+  orig: 30, 37
+  offset: 0, 0
+  index: -1
+H_guard_01_handR_00
+  rotate: false
+  xy: 975, 164
+  size: 46, 50
+  orig: 46, 50
+  offset: 0, 0
+  index: -1
+H_guard_01_handR_01
+  rotate: true
+  xy: 750, 143
+  size: 35, 33
+  orig: 35, 33
+  offset: 0, 0
+  index: -1
+H_guard_01_handR_02
+  rotate: true
+  xy: 613, 155
+  size: 39, 42
+  orig: 39, 42
+  offset: 0, 0
+  index: -1
+H_guard_01_head
+  rotate: true
+  xy: 885, 174
+  size: 80, 88
+  orig: 80, 88
+  offset: 0, 0
+  index: -1
+H_guard_01_helmet
+  rotate: false
+  xy: 785, 170
+  size: 98, 84
+  orig: 98, 84
+  offset: 0, 0
+  index: -1
+H_guard_01_hip
+  rotate: false
+  xy: 785, 141
+  size: 40, 27
+  orig: 40, 27
+  offset: 0, 0
+  index: -1
+H_guard_01_shield
+  rotate: true
+  xy: 663, 180
+  size: 74, 120
+  orig: 74, 120
+  offset: 0, 0
+  index: -1
+ef001
+  rotate: false
+  xy: 2, 126
+  size: 129, 128
+  orig: 129, 128
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 517, 196
+  size: 144, 58
+  orig: 144, 58
+  offset: 0, 0
+  index: -1

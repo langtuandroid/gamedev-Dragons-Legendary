@@ -1,0 +1,398 @@
+
+Wolfrider.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+02/Wolf_2_head2
+  rotate: true
+  xy: 138, 65
+  size: 91, 80
+  orig: 91, 80
+  offset: 0, 0
+  index: -1
+02/_wolf2_foot_L102
+  rotate: false
+  xy: 220, 64
+  size: 66, 56
+  orig: 66, 56
+  offset: 0, 0
+  index: -1
+02/_wolf2_foot_L201
+  rotate: false
+  xy: 450, 469
+  size: 68, 59
+  orig: 68, 59
+  offset: 0, 0
+  index: -1
+02/_wolf2_foot_R102
+  rotate: true
+  xy: 520, 466
+  size: 62, 56
+  orig: 62, 56
+  offset: 0, 0
+  index: -1
+02/_wolf_2_foot_R102
+  rotate: true
+  xy: 484, 591
+  size: 59, 69
+  orig: 59, 69
+  offset: 0, 0
+  index: -1
+02/_wolfrider_2_Armor01
+  rotate: false
+  xy: 384, 731
+  size: 132, 117
+  orig: 132, 117
+  offset: 0, 0
+  index: -1
+02/_wolfrider_2_face
+  rotate: false
+  xy: 212, 2
+  size: 63, 60
+  orig: 63, 60
+  offset: 0, 0
+  index: -1
+02/_wolfrider_2_head
+  rotate: false
+  xy: 2, 351
+  size: 134, 141
+  orig: 134, 141
+  offset: 0, 0
+  index: -1
+02/_wolfrider_2_weapon
+  rotate: false
+  xy: 202, 855
+  size: 195, 167
+  orig: 195, 167
+  offset: 0, 0
+  index: -1
+03/Wolf_3_head2
+  rotate: false
+  xy: 179, 519
+  size: 112, 122
+  orig: 112, 122
+  offset: 0, 0
+  index: -1
+03/_wolf3_foot_L102
+  rotate: true
+  xy: 252, 449
+  size: 68, 56
+  orig: 68, 56
+  offset: 0, 0
+  index: -1
+03/_wolf3_foot_L201
+  rotate: true
+  xy: 252, 379
+  size: 68, 59
+  orig: 68, 59
+  offset: 0, 0
+  index: -1
+03/_wolf3_foot_R102
+  rotate: false
+  xy: 514, 408
+  size: 62, 56
+  orig: 62, 56
+  offset: 0, 0
+  index: -1
+03/_wolf_3_foot_R102
+  rotate: true
+  xy: 468, 530
+  size: 59, 69
+  orig: 59, 69
+  offset: 0, 0
+  index: -1
+03/_wolfrider_3_Armor02
+  rotate: true
+  xy: 866, 890
+  size: 132, 141
+  orig: 132, 141
+  offset: 0, 0
+  index: -1
+03/_wolfrider_3_face
+  rotate: false
+  xy: 449, 415
+  size: 63, 52
+  orig: 63, 52
+  offset: 0, 0
+  index: -1
+03/_wolfrider_3_head
+  rotate: false
+  xy: 2, 208
+  size: 134, 141
+  orig: 134, 141
+  offset: 0, 0
+  index: -1
+03/_wolfrider_3_helmet
+  rotate: true
+  xy: 328, 629
+  size: 98, 69
+  orig: 98, 69
+  offset: 0, 0
+  index: -1
+03/_wolfrider_3_weapon
+  rotate: false
+  xy: 2, 853
+  size: 198, 169
+  orig: 198, 169
+  offset: 0, 0
+  index: -1
+Wolf_1_blanket
+  rotate: true
+  xy: 484, 652
+  size: 77, 69
+  orig: 77, 69
+  offset: 0, 0
+  index: -1
+Wolf_1_body1
+  rotate: false
+  xy: 202, 729
+  size: 180, 124
+  orig: 180, 124
+  offset: 0, 0
+  index: -1
+Wolf_1_body2
+  rotate: false
+  xy: 202, 643
+  size: 124, 84
+  orig: 124, 84
+  offset: 0, 0
+  index: -1
+Wolf_1_chin
+  rotate: true
+  xy: 518, 776
+  size: 72, 43
+  orig: 72, 43
+  offset: 0, 0
+  index: -1
+Wolf_1_ear01
+  rotate: true
+  xy: 518, 731
+  size: 43, 21
+  orig: 43, 21
+  offset: 0, 0
+  index: -1
+Wolf_1_ear02
+  rotate: true
+  xy: 688, 858
+  size: 41, 51
+  orig: 41, 51
+  offset: 0, 0
+  index: -1
+Wolf_1_head
+  rotate: false
+  xy: 573, 901
+  size: 147, 121
+  orig: 147, 121
+  offset: 0, 0
+  index: -1
+_wolf1_foot_L101
+  rotate: false
+  xy: 507, 356
+  size: 62, 50
+  orig: 62, 50
+  offset: 0, 0
+  index: -1
+_wolf1_foot_L102
+  rotate: false
+  xy: 374, 379
+  size: 66, 56
+  orig: 66, 56
+  offset: 0, 0
+  index: -1
+_wolf1_foot_L103
+  rotate: false
+  xy: 795, 872
+  size: 50, 27
+  orig: 50, 27
+  offset: 0, 0
+  index: -1
+_wolf1_foot_L201
+  rotate: true
+  xy: 313, 394
+  size: 68, 59
+  orig: 68, 59
+  offset: 0, 0
+  index: -1
+_wolf1_foot_L202
+  rotate: false
+  xy: 563, 814
+  size: 47, 27
+  orig: 47, 27
+  offset: 0, 0
+  index: -1
+_wolf1_foot_L203
+  rotate: true
+  xy: 219, 191
+  size: 74, 67
+  orig: 74, 67
+  offset: 0, 0
+  index: -1
+_wolf1_foot_R101
+  rotate: false
+  xy: 636, 849
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+_wolf1_foot_R102
+  rotate: false
+  xy: 572, 843
+  size: 62, 56
+  orig: 62, 56
+  offset: 0, 0
+  index: -1
+_wolf1_foot_R103
+  rotate: true
+  xy: 545, 858
+  size: 50, 25
+  orig: 50, 25
+  offset: 0, 0
+  index: -1
+_wolf1_tail01
+  rotate: false
+  xy: 220, 122
+  size: 65, 67
+  orig: 65, 67
+  offset: 0, 0
+  index: -1
+_wolf2_tail02
+  rotate: true
+  xy: 722, 901
+  size: 121, 142
+  orig: 121, 142
+  offset: 0, 0
+  index: -1
+_wolf_foot_L101
+  rotate: false
+  xy: 741, 872
+  size: 52, 27
+  orig: 52, 27
+  offset: 0, 0
+  index: -1
+_wolf_foot_L102
+  rotate: true
+  xy: 379, 437
+  size: 56, 68
+  orig: 56, 68
+  offset: 0, 0
+  index: -1
+_wolf_foot_R203
+  rotate: false
+  xy: 379, 552
+  size: 87, 75
+  orig: 87, 75
+  offset: 0, 0
+  index: -1
+_wolfrider_1_Armor01
+  rotate: false
+  xy: 138, 267
+  size: 106, 108
+  orig: 106, 108
+  offset: 0, 0
+  index: -1
+_wolfrider_1_armL01
+  rotate: false
+  xy: 399, 629
+  size: 83, 100
+  orig: 83, 100
+  offset: 0, 0
+  index: -1
+_wolfrider_1_armL02
+  rotate: false
+  xy: 55, 4
+  size: 79, 59
+  orig: 79, 59
+  offset: 0, 0
+  index: -1
+_wolfrider_1_armL03
+  rotate: true
+  xy: 2, 2
+  size: 61, 51
+  orig: 61, 51
+  offset: 0, 0
+  index: -1
+_wolfrider_1_armR01
+  rotate: true
+  xy: 138, 377
+  size: 115, 112
+  orig: 115, 112
+  offset: 0, 0
+  index: -1
+_wolfrider_1_armR02
+  rotate: false
+  xy: 138, 158
+  size: 79, 107
+  orig: 79, 107
+  offset: 0, 0
+  index: -1
+_wolfrider_1_armR03
+  rotate: false
+  xy: 310, 464
+  size: 67, 65
+  orig: 67, 65
+  offset: 0, 0
+  index: -1
+_wolfrider_1_body
+  rotate: false
+  xy: 2, 494
+  size: 175, 186
+  orig: 175, 186
+  offset: 0, 0
+  index: -1
+_wolfrider_1_face
+  rotate: false
+  xy: 442, 361
+  size: 63, 52
+  orig: 63, 52
+  offset: 0, 0
+  index: -1
+_wolfrider_1_foot
+  rotate: true
+  xy: 136, 5
+  size: 58, 74
+  orig: 58, 74
+  offset: 0, 0
+  index: -1
+_wolfrider_1_foot2
+  rotate: true
+  xy: 379, 495
+  size: 55, 69
+  orig: 55, 69
+  offset: 0, 0
+  index: -1
+_wolfrider_1_head
+  rotate: false
+  xy: 2, 65
+  size: 134, 141
+  orig: 134, 141
+  offset: 0, 0
+  index: -1
+_wolfrider_1_saddle2
+  rotate: false
+  xy: 293, 531
+  size: 84, 96
+  orig: 84, 96
+  offset: 0, 0
+  index: -1
+_wolfrider_1_weapon
+  rotate: false
+  xy: 2, 682
+  size: 198, 169
+  orig: 198, 169
+  offset: 0, 0
+  index: -1
+_wolfrider_1_weaponhandle
+  rotate: true
+  xy: 399, 910
+  size: 112, 172
+  orig: 112, 172
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 399, 850
+  size: 144, 58
+  orig: 144, 58
+  offset: 0, 0
+  index: -1

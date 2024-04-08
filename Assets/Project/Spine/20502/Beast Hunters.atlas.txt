@@ -1,0 +1,181 @@
+
+Beast Hunters.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+_Obh_01_Hair
+  rotate: true
+  xy: 174, 119
+  size: 32, 109
+  orig: 32, 109
+  offset: 0, 0
+  index: -1
+_Obh_01_Hair2
+  rotate: false
+  xy: 259, 18
+  size: 24, 99
+  orig: 24, 99
+  offset: 0, 0
+  index: -1
+_Obh_01_Head
+  rotate: true
+  xy: 814, 162
+  size: 92, 103
+  orig: 92, 103
+  offset: 0, 0
+  index: -1
+_Obh_01_armL01
+  rotate: true
+  xy: 575, 2
+  size: 65, 73
+  orig: 65, 73
+  offset: 0, 0
+  index: -1
+_Obh_01_armL02
+  rotate: true
+  xy: 519, 69
+  size: 66, 85
+  orig: 66, 85
+  offset: 0, 0
+  index: -1
+_Obh_01_armL03
+  rotate: false
+  xy: 432, 75
+  size: 85, 77
+  orig: 85, 77
+  offset: 0, 0
+  index: -1
+_Obh_01_armR01
+  rotate: false
+  xy: 285, 61
+  size: 62, 90
+  orig: 62, 90
+  offset: 0, 0
+  index: -1
+_Obh_01_armR02
+  rotate: false
+  xy: 498, 2
+  size: 75, 65
+  orig: 75, 65
+  offset: 0, 0
+  index: -1
+_Obh_01_armR03
+  rotate: false
+  xy: 432, 2
+  size: 64, 71
+  orig: 64, 71
+  offset: 0, 0
+  index: -1
+_Obh_01_body
+  rotate: false
+  xy: 521, 137
+  size: 145, 117
+  orig: 145, 117
+  offset: 0, 0
+  index: -1
+_Obh_01_face
+  rotate: true
+  xy: 770, 147
+  size: 47, 41
+  orig: 47, 41
+  offset: 0, 0
+  index: -1
+_Obh_01_footL01
+  rotate: false
+  xy: 650, 2
+  size: 37, 46
+  orig: 37, 46
+  offset: 0, 0
+  index: -1
+_Obh_01_footR02
+  rotate: false
+  xy: 173, 2
+  size: 49, 30
+  orig: 49, 30
+  offset: 0, 0
+  index: -1
+_Obh_01_necklace
+  rotate: true
+  xy: 685, 50
+  size: 69, 79
+  orig: 69, 79
+  offset: 0, 0
+  index: -1
+_Obh_01_waist
+  rotate: false
+  xy: 606, 69
+  size: 77, 50
+  orig: 77, 50
+  offset: 0, 0
+  index: -1
+_Obh_02_Head
+  rotate: true
+  xy: 919, 162
+  size: 92, 103
+  orig: 92, 103
+  offset: 0, 0
+  index: -1
+_Obh_02_armL04
+  rotate: false
+  xy: 173, 34
+  size: 84, 83
+  orig: 84, 83
+  offset: 0, 0
+  index: -1
+_Obh_02_armR04
+  rotate: false
+  xy: 349, 67
+  size: 81, 85
+  orig: 81, 85
+  offset: 0, 0
+  index: -1
+_Obh_03_armL05
+  rotate: true
+  xy: 813, 91
+  size: 69, 78
+  orig: 69, 78
+  offset: 0, 0
+  index: -1
+_Obh_03_armor
+  rotate: false
+  xy: 668, 121
+  size: 100, 73
+  orig: 100, 73
+  offset: 0, 0
+  index: -1
+axe 03_01
+  rotate: false
+  xy: 2, 24
+  size: 169, 114
+  orig: 169, 114
+  offset: 0, 0
+  index: -1
+axe 03_02
+  rotate: false
+  xy: 174, 153
+  size: 172, 101
+  orig: 172, 101
+  offset: 0, 0
+  index: -1
+axe_01
+  rotate: false
+  xy: 2, 140
+  size: 170, 114
+  orig: 170, 114
+  offset: 0, 0
+  index: -1
+axe_01_2
+  rotate: false
+  xy: 348, 154
+  size: 171, 100
+  orig: 171, 100
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 668, 196
+  size: 144, 58
+  orig: 144, 58
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,272 @@
+
+OrcChampion.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+02/_O_chm_02_armL_01
+  rotate: false
+  xy: 215, 76
+  size: 120, 138
+  orig: 120, 138
+  offset: 0, 0
+  index: -1
+02/_O_chm_02_armL_03
+  rotate: false
+  xy: 337, 38
+  size: 100, 86
+  orig: 100, 86
+  offset: 0, 0
+  index: -1
+02/_O_chm_02_armL_04
+  rotate: true
+  xy: 439, 15
+  size: 109, 77
+  orig: 109, 77
+  offset: 0, 0
+  index: -1
+02/_O_chm_02_armR_01
+  rotate: false
+  xy: 187, 365
+  size: 151, 144
+  orig: 151, 144
+  offset: 0, 0
+  index: -1
+02/_O_chm_02_armR_02
+  rotate: true
+  xy: 419, 409
+  size: 101, 100
+  orig: 101, 100
+  offset: 0, 0
+  index: -1
+02/_O_chm_02_armR_04
+  rotate: true
+  xy: 337, 126
+  size: 112, 86
+  orig: 112, 86
+  offset: 0, 0
+  index: -1
+02/_O_chm_02_footL_01
+  rotate: false
+  xy: 952, 775
+  size: 67, 42
+  orig: 67, 42
+  offset: 0, 0
+  index: -1
+02/_O_chm_02_footR_01
+  rotate: false
+  xy: 2, 2
+  size: 76, 38
+  orig: 76, 38
+  offset: 0, 0
+  index: -1
+03/_O_chm_03_cape
+  rotate: false
+  xy: 2, 511
+  size: 345, 207
+  orig: 345, 207
+  offset: 0, 0
+  index: -1
+03/_O_chm_03_helmet
+  rotate: false
+  xy: 666, 881
+  size: 144, 141
+  orig: 144, 141
+  offset: 0, 0
+  index: -1
+03/_O_chm_axe_03
+  rotate: false
+  xy: 2, 720
+  size: 467, 149
+  orig: 467, 149
+  offset: 0, 0
+  index: -1
+_O_chm_01_armL_01
+  rotate: true
+  xy: 812, 784
+  size: 120, 138
+  orig: 120, 138
+  offset: 0, 0
+  index: -1
+_O_chm_01_armL_02
+  rotate: true
+  xy: 978, 953
+  size: 69, 43
+  orig: 69, 43
+  offset: 0, 0
+  index: -1
+_O_chm_01_armL_03
+  rotate: true
+  xy: 513, 141
+  size: 100, 86
+  orig: 100, 86
+  offset: 0, 0
+  index: -1
+_O_chm_01_armL_04
+  rotate: true
+  xy: 340, 400
+  size: 109, 77
+  orig: 109, 77
+  offset: 0, 0
+  index: -1
+_O_chm_01_armL_05
+  rotate: false
+  xy: 326, 240
+  size: 101, 123
+  orig: 101, 123
+  offset: 0, 0
+  index: -1
+_O_chm_01_armR_01
+  rotate: false
+  xy: 2, 42
+  size: 151, 144
+  orig: 151, 144
+  offset: 0, 0
+  index: -1
+_O_chm_01_armR_02
+  rotate: true
+  xy: 429, 306
+  size: 101, 100
+  orig: 101, 100
+  offset: 0, 0
+  index: -1
+_O_chm_01_armR_03
+  rotate: false
+  xy: 473, 817
+  size: 75, 58
+  orig: 75, 58
+  offset: 0, 0
+  index: -1
+_O_chm_01_armR_04
+  rotate: true
+  xy: 425, 126
+  size: 112, 86
+  orig: 112, 86
+  offset: 0, 0
+  index: -1
+_O_chm_01_armR_05
+  rotate: true
+  xy: 812, 906
+  size: 116, 164
+  orig: 116, 164
+  offset: 0, 0
+  index: -1
+_O_chm_01_body_01
+  rotate: false
+  xy: 2, 347
+  size: 183, 162
+  orig: 183, 162
+  offset: 0, 0
+  index: -1
+_O_chm_01_body_02
+  rotate: false
+  xy: 215, 12
+  size: 114, 62
+  orig: 114, 62
+  offset: 0, 0
+  index: -1
+_O_chm_01_footL_01
+  rotate: false
+  xy: 550, 833
+  size: 67, 42
+  orig: 67, 42
+  offset: 0, 0
+  index: -1
+_O_chm_01_footL_02
+  rotate: true
+  xy: 474, 243
+  size: 61, 56
+  orig: 61, 56
+  offset: 0, 0
+  index: -1
+_O_chm_01_footR_01
+  rotate: false
+  xy: 80, 2
+  size: 76, 38
+  orig: 76, 38
+  offset: 0, 0
+  index: -1
+_O_chm_01_footR_02
+  rotate: false
+  xy: 952, 846
+  size: 70, 58
+  orig: 70, 58
+  offset: 0, 0
+  index: -1
+_O_chm_01_hair
+  rotate: true
+  xy: 574, 59
+  size: 80, 55
+  orig: 80, 55
+  offset: 0, 0
+  index: -1
+_O_chm_01_handL
+  rotate: false
+  xy: 471, 767
+  size: 61, 48
+  orig: 61, 48
+  offset: 0, 0
+  index: -1
+_O_chm_01_handR
+  rotate: true
+  xy: 429, 240
+  size: 64, 43
+  orig: 64, 43
+  offset: 0, 0
+  index: -1
+_O_chm_01_head
+  rotate: false
+  xy: 187, 216
+  size: 137, 147
+  orig: 137, 147
+  offset: 0, 0
+  index: -1
+_O_chm_01_head01-11
+  rotate: false
+  xy: 952, 819
+  size: 70, 25
+  orig: 70, 25
+  offset: 0, 0
+  index: -1
+_O_chm_axe_01
+  rotate: false
+  xy: 2, 871
+  size: 469, 151
+  orig: 469, 151
+  offset: 0, 0
+  index: -1
+ef01_1
+  rotate: false
+  xy: 2, 188
+  size: 183, 157
+  orig: 183, 157
+  offset: 0, 0
+  index: -1
+ef01_2
+  rotate: false
+  xy: 473, 877
+  size: 191, 145
+  orig: 191, 145
+  offset: 0, 0
+  index: -1
+ef01_3
+  rotate: true
+  xy: 349, 512
+  size: 206, 120
+  orig: 206, 120
+  offset: 0, 0
+  index: -1
+mouse_back
+  rotate: true
+  xy: 518, 43
+  size: 96, 54
+  orig: 96, 54
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: true
+  xy: 155, 42
+  size: 144, 58
+  orig: 144, 58
+  offset: 0, 0
+  index: -1

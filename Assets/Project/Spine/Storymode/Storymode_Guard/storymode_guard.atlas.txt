@@ -1,0 +1,90 @@
+
+storymode_guard.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+H_guard_01_Sword
+  rotate: false
+  xy: 315, 57
+  size: 75, 66
+  orig: 75, 66
+  offset: 0, 0
+  index: -1
+H_guard_01_face2
+  rotate: false
+  xy: 171, 13
+  size: 48, 22
+  orig: 48, 22
+  offset: 0, 0
+  index: -1
+H_guard_01_face_1
+  rotate: false
+  xy: 121, 8
+  size: 48, 27
+  orig: 48, 27
+  offset: 0, 0
+  index: -1
+H_guard_01_face_1 copy
+  rotate: false
+  xy: 431, 96
+  size: 48, 27
+  orig: 48, 27
+  offset: 0, 0
+  index: -1
+H_guard_01_head
+  rotate: true
+  xy: 223, 39
+  size: 84, 90
+  orig: 84, 90
+  offset: 0, 0
+  index: -1
+H_guard_01_helmet
+  rotate: false
+  xy: 121, 37
+  size: 100, 86
+  orig: 100, 86
+  offset: 0, 0
+  index: -1
+Layer 1
+  rotate: false
+  xy: 315, 44
+  size: 16, 11
+  orig: 16, 11
+  offset: 0, 0
+  index: -1
+Layer 2
+  rotate: false
+  xy: 333, 46
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+Layer 3
+  rotate: false
+  xy: 431, 85
+  size: 18, 9
+  orig: 18, 9
+  offset: 0, 0
+  index: -1
+Layer 4
+  rotate: false
+  xy: 481, 117
+  size: 16, 6
+  orig: 16, 6
+  offset: 0, 0
+  index: -1
+_foot
+  rotate: false
+  xy: 2, 2
+  size: 117, 121
+  orig: 117, 121
+  offset: 0, 0
+  index: -1
+_handL
+  rotate: false
+  xy: 392, 59
+  size: 37, 64
+  orig: 37, 64
+  offset: 0, 0
+  index: -1

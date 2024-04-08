@@ -1,0 +1,102 @@
+{
+    "userInfo" : {"jewel" : 0, "coin" : 100000, "level" : 30, "exp" : 50, "energy" : 100},
+    "huntersUseInfo" : 
+    [
+        {"hunterIdx" : 20004, "hunterLevel" : 1, "hunterTier" : 1, "isNew" : false},
+        {"hunterIdx" : 20012, "hunterLevel" : 1, "hunterTier" : 1, "isNew" : false},
+        {"hunterIdx" : 20016, "hunterLevel" : 1, "hunterTier" : 1, "isNew" : false},
+        {"hunterIdx" : 20025, "hunterLevel" : 1, "hunterTier" : 1, "isNew" : false},
+        {"hunterIdx" : 20006, "hunterLevel" : 1, "hunterTier" : 1, "isNew" : false}
+    ],
+    "huntersOwnInfo" : 
+    [
+        {"hunterIdx" : 20001, "hunterLevel" : 1, "hunterTier" : 1, "isNew" : false},
+        {"hunterIdx" : 20002, "hunterLevel" : 1, "hunterTier" : 1, "isNew" : false},
+        {"hunterIdx" : 20007, "hunterLevel" : 1, "hunterTier" : 1, "isNew" : false},
+        {"hunterIdx" : 20009, "hunterLevel" : 1, "hunterTier" : 1, "isNew" : false},
+        {"hunterIdx" : 20011, "hunterLevel" : 1, "hunterTier" : 1, "isNew" : false},
+        {"hunterIdx" : 20015, "hunterLevel" : 1, "hunterTier" : 1, "isNew" : false},
+        {"hunterIdx" : 20019, "hunterLevel" : 1, "hunterTier" : 1, "isNew" : false},
+        {"hunterIdx" : 20020, "hunterLevel" : 1, "hunterTier" : 1, "isNew" : false},
+        {"hunterIdx" : 20022, "hunterLevel" : 1, "hunterTier" : 1, "isNew" : false},
+        {"hunterIdx" : 20023, "hunterLevel" : 1, "hunterTier" : 1, "isNew" : false}
+    ],
+    "userItemList" : 
+    [
+        {"itemIdx" : 50001, "count" : 100},
+        {"itemIdx" : 50002, "count" : 100},
+        {"itemIdx" : 50003, "count" : 100},
+        {"itemIdx" : 50004, "count" : 100},
+        {"itemIdx" : 50005, "count" : 100},
+        {"itemIdx" : 50006, "count" : 100},
+        {"itemIdx" : 50007, "count" : 100},
+        {"itemIdx" : 50008, "count" : 100},
+        {"itemIdx" : 50009, "count" : 100},
+        {"itemIdx" : 50010, "count" : 100},
+        {"itemIdx" : 50011, "count" : 100},
+        {"itemIdx" : 50012, "count" : 100},
+        {"itemIdx" : 50013, "count" : 100},
+        {"itemIdx" : 50014, "count" : 100},
+        {"itemIdx" : 50015, "count" : 100},
+        {"itemIdx" : 50016, "count" : 100},
+        {"itemIdx" : 50017, "count" : 100},
+        {"itemIdx" : 50018, "count" : 100},
+        {"itemIdx" : 50019, "count" : 100},
+        {"itemIdx" : 50020, "count" : 100},
+        {"itemIdx" : 50021, "count" : 100},
+        {"itemIdx" : 50022, "count" : 100},
+        {"itemIdx" : 50023, "count" : 100},
+        {"itemIdx" : 50024, "count" : 100},
+        {"itemIdx" : 50025, "count" : 100},
+        {"itemIdx" : 50026, "count" : 100},
+        {"itemIdx" : 50035, "count" : 100},
+        {"itemIdx" : 50036, "count" : 100},
+        {"itemIdx" : 50037, "count" : 100},
+        {"itemIdx" : 50038, "count" : 100},
+        {"itemIdx" : 50039, "count" : 100},
+        {"itemIdx" : 50040, "count" : 100},
+        {"itemIdx" : 50041, "count" : 100},
+        {"itemIdx" : 50042, "count" : 100}
+    ],
+    "userStageState" :
+    [
+        {
+            "stage" : 1,
+            "clearRate" : 0,
+            "chapterList" :
+            [
+                {
+                    "chapter" : 1,
+                    "isClear" : false,
+                    "isOpen" : true,
+                    "isReward" : false,
+                    "levelList" :
+                    [
+                        {"level" : 1, "starCount" : 3, "levelIdx" : 1},
+                        {"level" : 2, "starCount" : 0, "levelIdx" : 2}
+                    ]
+                }
+           ] 
+        }
+        
+    ],
+    "userFloorState" :
+    [
+        {
+            "stage" : 1,
+            "floorList" : 
+            [
+                {"storeIdx" : 40001, "storeTier" : 1, "isUnlock" : false, "operatingRatio" : 0},
+                {"storeIdx" : 40002, "storeTier" : 1, "isUnlock" : false, "operatingRatio" : 0},
+                {"storeIdx" : 40003, "storeTier" : 1, "isUnlock" : false, "operatingRatio" : 0},
+                {"storeIdx" : 40004, "storeTier" : 1, "isUnlock" : false, "operatingRatio" : 0},
+                {"storeIdx" : 40005, "storeTier" : 1, "isUnlock" : false, "operatingRatio" : 0}
+                
+            ]
+        }
+    ],
+    "userDailyItemList" :
+    [
+        
+    ]
+}

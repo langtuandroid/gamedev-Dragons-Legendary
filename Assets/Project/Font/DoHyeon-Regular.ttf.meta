@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: f8fafd2e71b146d2ae2cad8de03c42c4
+timeCreated: 1573567830
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: "DoHyeon-Regular"
+  fontNames:
+  - Do Hyeon
+  fallbackFontReferences: []
+  customCharacters:
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData:
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,146 @@
+
+Orc Warrior.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Blank
+  rotate: false
+  xy: 2, 3
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+O_Warrior_1_armL01
+  rotate: false
+  xy: 466, 4
+  size: 65, 87
+  orig: 65, 87
+  offset: 0, 0
+  index: -1
+O_Warrior_1_armL02
+  rotate: false
+  xy: 814, 144
+  size: 86, 110
+  orig: 86, 110
+  offset: 0, 0
+  index: -1
+O_Warrior_1_body01
+  rotate: false
+  xy: 349, 93
+  size: 152, 161
+  orig: 152, 161
+  offset: 0, 0
+  index: -1
+O_Warrior_1_footL01
+  rotate: true
+  xy: 855, 102
+  size: 40, 41
+  orig: 40, 41
+  offset: 0, 0
+  index: -1
+O_Warrior_1_footL02
+  rotate: true
+  xy: 335, 6
+  size: 46, 40
+  orig: 46, 40
+  offset: 0, 0
+  index: -1
+O_Warrior_1_footR01
+  rotate: false
+  xy: 855, 11
+  size: 40, 41
+  orig: 40, 41
+  offset: 0, 0
+  index: -1
+O_Warrior_1_fpptR02
+  rotate: true
+  xy: 855, 54
+  size: 46, 40
+  orig: 46, 40
+  offset: 0, 0
+  index: -1
+O_Warrior_1_handR01
+  rotate: false
+  xy: 654, 2
+  size: 82, 107
+  orig: 82, 107
+  offset: 0, 0
+  index: -1
+O_Warrior_1_handR02
+  rotate: false
+  xy: 694, 128
+  size: 118, 126
+  orig: 118, 126
+  offset: 0, 0
+  index: -1
+O_Warrior_1_head
+  rotate: true
+  xy: 563, 111
+  size: 143, 129
+  orig: 143, 129
+  offset: 0, 0
+  index: -1
+O_Warrior_1_head_face01
+  rotate: true
+  xy: 377, 2
+  size: 89, 87
+  orig: 89, 87
+  offset: 0, 0
+  index: -1
+O_Warrior_1_head_face02
+  rotate: true
+  xy: 902, 162
+  size: 92, 96
+  orig: 92, 96
+  offset: 0, 0
+  index: -1
+O_Warrior_1_pelvis
+  rotate: false
+  xy: 902, 103
+  size: 95, 57
+  orig: 95, 57
+  offset: 0, 0
+  index: -1
+O_Warrior_2_handR03
+  rotate: true
+  xy: 738, 5
+  size: 121, 115
+  orig: 121, 115
+  offset: 0, 0
+  index: -1
+O_Warrior_2_head_hair
+  rotate: false
+  xy: 242, 4
+  size: 91, 48
+  orig: 91, 48
+  offset: 0, 0
+  index: -1
+O_Warrior_3_helmet
+  rotate: false
+  xy: 533, 5
+  size: 119, 103
+  orig: 119, 103
+  offset: 0, 0
+  index: -1
+ef00002
+  rotate: false
+  xy: 2, 6
+  size: 238, 248
+  orig: 238, 248
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: true
+  xy: 503, 110
+  size: 144, 58
+  orig: 144, 58
+  offset: 0, 0
+  index: -1
+weapon
+  rotate: true
+  xy: 242, 54
+  size: 200, 105
+  orig: 200, 105
+  offset: 0, 0
+  index: -1

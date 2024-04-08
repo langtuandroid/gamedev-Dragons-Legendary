@@ -1,0 +1,8 @@
+public enum HUNTER_TRIBE
+{
+	TANKER = 1,
+	MELEE,
+	RANGED,
+	MAGICIAN,
+	HEALER
+}

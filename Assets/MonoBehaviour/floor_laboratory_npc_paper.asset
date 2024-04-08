@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19f5ecacb598e1f17acdf4f3478e0cf6, type: 3}
+  m_Name: "floor_laboratory_npc_paper"
+  m_EditorClassIdentifier: 
+  m_ApiVersion: 4
+  m_Sprite: {fileID: 21300000, guid: 27b74669ae9141169a0e29503e3f0f34, type: 3}
+  m_SharedMesh: {fileID: 4300000, guid: 9a4860f07e484fa3ad4ddcb6b19ba8fc, type: 2}

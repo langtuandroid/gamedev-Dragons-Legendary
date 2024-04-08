@@ -1,0 +1,90 @@
+
+storymode_musketeer.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+H_mk_01_belt
+  rotate: false
+  xy: 2, 127
+  size: 213, 238
+  orig: 213, 238
+  offset: 0, 0
+  index: -1
+H_mk_01_head_01
+  rotate: false
+  xy: 333, 379
+  size: 119, 115
+  orig: 119, 115
+  offset: 0, 0
+  index: -1
+H_mk_01_head_02
+  rotate: false
+  xy: 111, 93
+  size: 53, 32
+  orig: 53, 32
+  offset: 0, 0
+  index: -1
+H_mk_01_head_03
+  rotate: true
+  xy: 488, 421
+  size: 25, 22
+  orig: 25, 22
+  offset: 0, 0
+  index: -1
+H_mk_01_head_03 copy
+  rotate: true
+  xy: 488, 394
+  size: 25, 22
+  orig: 25, 22
+  offset: 0, 0
+  index: -1
+H_mk_01_head_04
+  rotate: false
+  xy: 217, 327
+  size: 88, 38
+  orig: 88, 38
+  offset: 0, 0
+  index: -1
+H_mk_01_head_05
+  rotate: true
+  xy: 454, 402
+  size: 44, 32
+  orig: 44, 32
+  offset: 0, 0
+  index: -1
+H_mk_01_head_06
+  rotate: false
+  xy: 307, 346
+  size: 21, 19
+  orig: 21, 19
+  offset: 0, 0
+  index: -1
+H_mk_01_head_07
+  rotate: false
+  xy: 454, 448
+  size: 40, 46
+  orig: 40, 46
+  offset: 0, 0
+  index: -1
+H_mk_01_head_08
+  rotate: false
+  xy: 217, 298
+  size: 57, 27
+  orig: 57, 27
+  offset: 0, 0
+  index: -1
+_armR
+  rotate: false
+  xy: 2, 2
+  size: 107, 123
+  orig: 107, 123
+  offset: 0, 0
+  index: -1
+_weapon
+  rotate: false
+  xy: 2, 367
+  size: 329, 127
+  orig: 329, 127
+  offset: 0, 0
+  index: -1

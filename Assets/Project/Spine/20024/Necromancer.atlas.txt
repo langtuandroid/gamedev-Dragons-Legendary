@@ -1,0 +1,314 @@
+
+Necromancer.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+03/_NM_03_cape
+  rotate: true
+  xy: 707, 214
+  size: 160, 105
+  orig: 160, 105
+  offset: 0, 0
+  index: -1
+03/_NM_03_hair_01
+  rotate: false
+  xy: 224, 232
+  size: 168, 111
+  orig: 168, 111
+  offset: 0, 0
+  index: -1
+03/_NM_03_hair_02
+  rotate: false
+  xy: 199, 94
+  size: 143, 136
+  orig: 143, 136
+  offset: 0, 0
+  index: -1
+03/_NM_03_hairband
+  rotate: false
+  xy: 199, 25
+  size: 168, 67
+  orig: 168, 67
+  offset: 0, 0
+  index: -1
+03/_NM_03_mouse
+  rotate: true
+  xy: 43, 2
+  size: 25, 14
+  orig: 25, 14
+  offset: 0, 0
+  index: -1
+03/_NM_03_mouse02
+  rotate: false
+  xy: 1005, 347
+  size: 17, 5
+  orig: 17, 5
+  offset: 0, 0
+  index: -1
+_NM_01_armL_01
+  rotate: true
+  xy: 896, 379
+  size: 20, 26
+  orig: 20, 26
+  offset: 0, 0
+  index: -1
+_NM_01_armL_02
+  rotate: false
+  xy: 797, 60
+  size: 29, 22
+  orig: 29, 22
+  offset: 0, 0
+  index: -1
+_NM_01_armL_03
+  rotate: true
+  xy: 677, 54
+  size: 28, 39
+  orig: 28, 39
+  offset: 0, 0
+  index: -1
+_NM_01_armR_01
+  rotate: false
+  xy: 1005, 375
+  size: 17, 24
+  orig: 17, 24
+  offset: 0, 0
+  index: -1
+_NM_01_armR_02
+  rotate: true
+  xy: 2, 6
+  size: 21, 39
+  orig: 21, 39
+  offset: 0, 0
+  index: -1
+_NM_01_armR_03
+  rotate: true
+  xy: 636, 48
+  size: 37, 39
+  orig: 37, 39
+  offset: 0, 0
+  index: -1
+_NM_01_body
+  rotate: true
+  xy: 478, 39
+  size: 45, 96
+  orig: 45, 96
+  offset: 0, 0
+  index: -1
+_NM_01_eye
+  rotate: false
+  xy: 924, 233
+  size: 15, 24
+  orig: 15, 24
+  offset: 0, 0
+  index: -1
+_NM_01_eye_close
+  rotate: true
+  xy: 1005, 354
+  size: 19, 16
+  orig: 19, 16
+  offset: 0, 0
+  index: -1
+_NM_01_eyebrow
+  rotate: true
+  xy: 718, 56
+  size: 26, 39
+  orig: 26, 39
+  offset: 0, 0
+  index: -1
+_NM_01_eyepoint
+  rotate: true
+  xy: 199, 236
+  size: 8, 21
+  orig: 8, 21
+  offset: 0, 0
+  index: -1
+_NM_01_face
+  rotate: false
+  xy: 941, 162
+  size: 64, 95
+  orig: 64, 95
+  offset: 0, 0
+  index: -1
+_NM_01_footL_01
+  rotate: false
+  xy: 435, 37
+  size: 41, 55
+  orig: 41, 55
+  offset: 0, 0
+  index: -1
+_NM_01_footL_02
+  rotate: true
+  xy: 856, 380
+  size: 19, 38
+  orig: 19, 38
+  offset: 0, 0
+  index: -1
+_NM_01_footR_01
+  rotate: true
+  xy: 759, 53
+  size: 29, 36
+  orig: 29, 36
+  offset: 0, 0
+  index: -1
+_NM_01_footR_02
+  rotate: true
+  xy: 576, 49
+  size: 36, 58
+  orig: 36, 58
+  offset: 0, 0
+  index: -1
+_NM_01_hair_01
+  rotate: false
+  xy: 394, 232
+  size: 168, 111
+  orig: 168, 111
+  offset: 0, 0
+  index: -1
+_NM_01_hair_02
+  rotate: false
+  xy: 344, 94
+  size: 143, 136
+  orig: 143, 136
+  offset: 0, 0
+  index: -1
+_NM_01_mouse
+  rotate: true
+  xy: 59, 2
+  size: 25, 14
+  orig: 25, 14
+  offset: 0, 0
+  index: -1
+_NM_01_mouse02png
+  rotate: false
+  xy: 1005, 340
+  size: 17, 5
+  orig: 17, 5
+  offset: 0, 0
+  index: -1
+_NM_01_mouse03png
+  rotate: true
+  xy: 435, 2
+  size: 33, 31
+  orig: 33, 31
+  offset: 0, 0
+  index: -1
+_NM_01_nose
+  rotate: true
+  xy: 924, 220
+  size: 11, 15
+  orig: 11, 15
+  offset: 0, 0
+  index: -1
+_NM_01_skull
+  rotate: false
+  xy: 673, 356
+  size: 27, 18
+  orig: 27, 18
+  offset: 0, 0
+  index: -1
+_NM_02_hair_01
+  rotate: false
+  xy: 564, 219
+  size: 141, 135
+  orig: 141, 135
+  offset: 0, 0
+  index: -1
+_NM_02_hair_02
+  rotate: false
+  xy: 856, 401
+  size: 166, 109
+  orig: 166, 109
+  offset: 0, 0
+  index: -1
+ef01
+  rotate: false
+  xy: 681, 84
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ef02
+  rotate: false
+  xy: 811, 84
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ef03
+  rotate: false
+  xy: 549, 87
+  size: 130, 130
+  orig: 130, 130
+  offset: 0, 0
+  index: -1
+ef05
+  rotate: false
+  xy: 941, 96
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+ef08_1
+  rotate: true
+  xy: 369, 2
+  size: 90, 64
+  orig: 90, 64
+  offset: 0, 0
+  index: -1
+ef08_2
+  rotate: true
+  xy: 924, 259
+  size: 140, 79
+  orig: 140, 79
+  offset: 0, 0
+  index: -1
+ef08_3
+  rotate: false
+  xy: 673, 376
+  size: 181, 134
+  orig: 181, 134
+  offset: 0, 0
+  index: -1
+ef08_4
+  rotate: false
+  xy: 224, 345
+  size: 223, 165
+  orig: 223, 165
+  offset: 0, 0
+  index: -1
+ef08_5
+  rotate: false
+  xy: 2, 29
+  size: 195, 215
+  orig: 195, 215
+  offset: 0, 0
+  index: -1
+ef08_6
+  rotate: true
+  xy: 449, 356
+  size: 154, 222
+  orig: 154, 222
+  offset: 0, 0
+  index: -1
+ef08_7
+  rotate: false
+  xy: 814, 223
+  size: 108, 151
+  orig: 108, 151
+  offset: 0, 0
+  index: -1
+ef09
+  rotate: false
+  xy: 2, 246
+  size: 220, 264
+  orig: 220, 264
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: true
+  xy: 489, 86
+  size: 144, 58
+  orig: 144, 58
+  offset: 0, 0
+  index: -1

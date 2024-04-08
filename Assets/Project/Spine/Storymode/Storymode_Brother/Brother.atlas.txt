@@ -1,0 +1,76 @@
+
+Brother.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 346
+  rotate: false
+  xy: 372, 206
+  size: 67, 18
+  orig: 67, 18
+  offset: 0, 0
+  index: -1
+Layer 347
+  rotate: false
+  xy: 72, 7
+  size: 70, 19
+  orig: 70, 19
+  offset: 0, 0
+  index: -1
+Layer 347 copy
+  rotate: false
+  xy: 372, 226
+  size: 72, 28
+  orig: 72, 28
+  offset: 0, 0
+  index: -1
+Layer 348
+  rotate: false
+  xy: 446, 232
+  size: 51, 22
+  orig: 51, 22
+  offset: 0, 0
+  index: -1
+Layer 349
+  rotate: false
+  xy: 372, 165
+  size: 38, 39
+  orig: 38, 39
+  offset: 0, 0
+  index: -1
+Layer 350
+  rotate: false
+  xy: 144, 7
+  size: 29, 19
+  orig: 29, 19
+  offset: 0, 0
+  index: -1
+Layer 352
+  rotate: false
+  xy: 2, 2
+  size: 68, 24
+  orig: 68, 24
+  offset: 0, 0
+  index: -1
+Layer 460
+  rotate: false
+  xy: 372, 155
+  size: 21, 8
+  orig: 21, 8
+  offset: 0, 0
+  index: -1
+Layer 460 copy
+  rotate: false
+  xy: 412, 198
+  size: 21, 6
+  orig: 21, 6
+  offset: 0, 0
+  index: -1
+동생 애니메이션용
+  rotate: true
+  xy: 2, 28
+  size: 226, 368
+  orig: 226, 368
+  offset: 0, 0
+  index: -1

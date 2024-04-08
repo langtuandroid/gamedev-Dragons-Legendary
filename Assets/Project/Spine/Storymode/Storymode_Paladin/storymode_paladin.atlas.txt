@@ -1,0 +1,76 @@
+
+storymode_paladin.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+H_pldin_1_eyebrow
+  rotate: true
+  xy: 478, 139
+  size: 47, 17
+  orig: 47, 17
+  offset: 0, 0
+  index: -1
+H_pldin_1_eyebrow02
+  rotate: true
+  xy: 440, 83
+  size: 51, 19
+  orig: 51, 19
+  offset: 0, 0
+  index: -1
+H_pldin_1_eyebrow03
+  rotate: false
+  xy: 2, 2
+  size: 57, 18
+  orig: 57, 18
+  offset: 0, 0
+  index: -1
+H_pldin_1_eyes
+  rotate: true
+  xy: 478, 188
+  size: 63, 26
+  orig: 63, 26
+  offset: 0, 0
+  index: -1
+H_pldin_1_head
+  rotate: true
+  xy: 2, 22
+  size: 229, 274
+  orig: 229, 274
+  offset: 0, 0
+  index: -1
+H_pldin_1_lips
+  rotate: true
+  xy: 440, 57
+  size: 24, 17
+  orig: 24, 17
+  offset: 0, 0
+  index: -1
+H_pldin_1_lips02
+  rotate: false
+  xy: 90, 3
+  size: 23, 17
+  orig: 23, 17
+  offset: 0, 0
+  index: -1
+H_pldin_1_lips03
+  rotate: false
+  xy: 61, 3
+  size: 27, 17
+  orig: 27, 17
+  offset: 0, 0
+  index: -1
+H_pldin_1_weapon
+  rotate: false
+  xy: 278, 136
+  size: 198, 115
+  orig: 198, 115
+  offset: 0, 0
+  index: -1
+_ArmR
+  rotate: true
+  xy: 278, 5
+  size: 129, 160
+  orig: 129, 160
+  offset: 0, 0
+  index: -1
