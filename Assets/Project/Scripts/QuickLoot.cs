@@ -134,7 +134,6 @@ public class QuickLoot : LobbyPopupBase
 		userLevelState = GameInfo.userData.GetUserLevelState(levelData.stage - 1, levelData.chapter - 1, levelData.levelIdx);
 		SetDeckEditBT();
 		ShowQuickLootState();
-		AdsManager.RequestRewardVideo();
 	}
 
 	public override void Hide()
@@ -376,12 +375,11 @@ public class QuickLoot : LobbyPopupBase
 	{
 		adsKey = _adKey;
 		GameInfo.isResumeUserDataConnect = false;
-		AdsManager.RewardVideo_Show(RewardVideoComplete);
 	}
 
 	private void RewardVideoComplete()
 	{
-		StartCoroutine(CheckUserQuickLoot(MonoSingleton<AdNetworkManager>.Instance.isReward));
+		
 	}
 
 	private IEnumerator CheckUserQuickLoot(bool _isReward)

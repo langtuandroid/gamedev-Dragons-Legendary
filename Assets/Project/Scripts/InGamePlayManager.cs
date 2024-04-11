@@ -674,7 +674,6 @@ public class InGamePlayManager : GameObjectSingleton<InGamePlayManager>
 			GameObjectSingleton<InGamePlayManager>.Inst.uiController.Init();
 			GameObjectSingleton<InGamePlayManager>.Inst.uiController.MatchTimeFlow = OnMatchTimeFlowEvent;
 			GameObjectSingleton<InGamePlayManager>.Inst.uiController.ShowBattleReward = OnShowBattleReward;
-			AdsManager.RequestRewardVideo();
 		}
 		GamePreferenceManager.SetIsBoostRewardVideo(isBoostRewardVideo: false);
 	}

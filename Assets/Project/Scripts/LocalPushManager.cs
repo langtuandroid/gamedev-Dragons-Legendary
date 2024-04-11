@@ -1,9 +1,10 @@
 using UTNotifications;
 
-public class LocalPushManager : GameObjectSingleton<AdsManager>
+public class LocalPushManager : GameObjectSingleton<LocalPushManager>
 {
 	public static void SetNotification(NotiType _type, int _delay = 0)
 	{
+		
 		if (GamePreferenceManager.GetIsNotification())
 		{
 			UnityEngine.Debug.Log("######### SetNotification :: " + Manager.Instance);

@@ -67,7 +67,7 @@ public class EnergyInfo : LobbyPopupBase
 	private void RewardVideoComplete()
 	{
 		UnityEngine.Debug.Log("Reward Video Complete !!");
-		if (MonoSingleton<AdNetworkManager>.Instance.isReward)
+		if (true)
 		{
 			Protocol_Set.Protocol_shop_ad_energy_Req(GameInfo.chargeEnergyAdsValue, GetAdEnergyResponse);
 		}
@@ -117,7 +117,6 @@ public class EnergyInfo : LobbyPopupBase
 	public void OnClickChargeEnergyForAds()
 	{
 		Protocol_Set.Protocol_shop_ad_energy_start_Req();
-		AdsManager.RewardVideo_Show(RewardVideoComplete);
 		SoundController.EffectSound_Play(EffectSoundType.ButtonClick);
 	}
 

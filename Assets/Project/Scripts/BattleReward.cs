@@ -101,7 +101,7 @@ public class BattleReward : MonoBehaviour
 
 	public void PickMore_Ads()
 	{
-		AdsManager.RewardVideo_Show(AdsComplete);
+		
 	}
 
 	public void AdsComplete()
@@ -112,7 +112,7 @@ public class BattleReward : MonoBehaviour
 	private IEnumerator AdsComplete_Delay()
 	{
 		yield return new WaitForSeconds(0.2f);
-		if (!MonoSingleton<AdNetworkManager>.Instance.isReward)
+		if (!true)
 		{
 			rewardState = RewardState.None;
 			yield break;

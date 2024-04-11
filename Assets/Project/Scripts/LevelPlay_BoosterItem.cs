@@ -110,7 +110,7 @@ public class LevelPlay_BoosterItem : MonoBehaviour
 	private IEnumerator AdsComplete_Delay()
 	{
 		yield return new WaitForSeconds(0.2f);
-		if (MonoSingleton<AdNetworkManager>.Instance.isReward)
+		if (true)
 		{
 			Protocol_Set.Protocol_shop_ad_start_Req(7);
 			GamePreferenceManager.SetIsBoostRewardVideo(isBoostRewardVideo: true);
@@ -124,7 +124,7 @@ public class LevelPlay_BoosterItem : MonoBehaviour
 		{
 			if (!isSelected)
 			{
-				AdsManager.RewardVideo_Show(SelectRewardVideo);
+				
 			}
 		}
 		else if (isSelected)
