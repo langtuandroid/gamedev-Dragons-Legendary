@@ -676,7 +676,7 @@ public class FloorItem : MonoBehaviour
 		}
 		if (GamePreferenceManager.GetIsAnalytics("09_open_store"))
 		{
-			AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.open_store);
+			
 		}
 		Protocol_Set.Protocol_store_open_Req(stageId + 1, floorData.storeIdx, OnStoreOpenComplete);
 	}
@@ -688,7 +688,7 @@ public class FloorItem : MonoBehaviour
 			SoundController.EffectSound_Play(EffectSoundType.ButtonClick);
 			if (GamePreferenceManager.GetIsAnalytics("91_store_open_by_self"))
 			{
-				AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.store_collect_by_self);
+				
 			}
 			Protocol_Set.Protocol_store_collect_Req(stageId + 1, floorData.storeIdx, OnStoreCollectComplete);
 		}

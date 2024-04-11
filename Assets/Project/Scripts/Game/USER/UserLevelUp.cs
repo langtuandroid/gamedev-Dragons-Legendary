@@ -60,10 +60,6 @@ public class UserLevelUp : GameObjectSingleton<UserLevelUp>
 
 	public void OnClickGoBack()
 	{
-		if (level == 2)
-		{
-			AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.level_up_user);
-		}
 		base.gameObject.SetActive(value: false);
 	}
 }

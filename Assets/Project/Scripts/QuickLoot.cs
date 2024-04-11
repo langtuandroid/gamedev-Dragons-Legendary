@@ -354,23 +354,7 @@ public class QuickLoot : LobbyPopupBase
 		}
 		return num;
 	}
-
-	private void CheckAnalytics()
-	{
-		if (GameInfo.inGamePlayData.levelIdx == 2)
-		{
-			AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.play_lv2);
-		}
-		else if (GameInfo.inGamePlayData.levelIdx == 3)
-		{
-			AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.play_level_lv3);
-		}
-		else if (GameInfo.inGamePlayData.levelIdx == 6)
-		{
-			AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.play_level_lv6);
-		}
-	}
-
+	
 	private void OnQuickLootAdStartConnect(int _adKey)
 	{
 		adsKey = _adKey;
@@ -481,7 +465,7 @@ public class QuickLoot : LobbyPopupBase
 			return;
 		}
 		*/
-		CheckAnalytics();
+		
 		GameInfo.userPlayData.Clear();
 		SoundController.EffectSound_Play(EffectSoundType.LevelPlay);
 		GameInfo.inGamePlayData.stage = levelData.stage;

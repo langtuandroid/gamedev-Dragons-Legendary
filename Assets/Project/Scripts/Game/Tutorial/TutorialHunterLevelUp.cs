@@ -180,7 +180,6 @@ public class TutorialHunterLevelUp : MonoBehaviour
 
 			private void OpenHunterLevelUp()
 			{
-				AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.hunter_level_up);
 				RequiredItem = null;
 				TutorialManager.ReturnHighLightUI();
 				TutorialManager.ClearHand();

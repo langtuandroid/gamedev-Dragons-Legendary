@@ -421,7 +421,6 @@ public class HunterLevel : LobbyPopupBase
 
 	public void OnClickGoBack()
 	{
-		AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.popup_hunter_close);
 		SoundController.EffectSound_Play(EffectSoundType.Cancel);
 		LobbyManager.ShowHunterView(hunterInfo_Origin, _isSpawn: false);
 		if (GoBackEvent != null)

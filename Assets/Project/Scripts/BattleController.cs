@@ -784,10 +784,6 @@ public class BattleController : MonoBehaviour
 		}
 		current_Wave++;
 		isAllClear = false;
-		if (GameInfo.inGamePlayData.levelIdx == 1)
-		{
-			AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.tuto1_wave2);
-		}
 		Set_Wave(current_Wave, levelData.dicMonsterStatData[current_Wave].Count);
 		InGamePlayManager.StartUserTurn();
 	}

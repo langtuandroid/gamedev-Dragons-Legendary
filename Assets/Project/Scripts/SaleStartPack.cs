@@ -146,6 +146,7 @@ public class SaleStartPack : LobbyPopupBase
 
 	public void OnClickPurchase()
 	{
+		Debug.Log(1);
 		InAppPurchaseManager.BuyProductID("matchhero_starter_pack", 1);
 		SoundController.EffectSound_Play(EffectSoundType.ButtonClick);
 	}

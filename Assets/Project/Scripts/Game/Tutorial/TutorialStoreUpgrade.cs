@@ -73,7 +73,6 @@ public class TutorialStoreUpgrade : MonoBehaviour
 
 	private void OnStoreUpgradeComplete()
 	{
-		AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.upgrade_store);
 		LobbyManager.StoreUpgradeComplete = null;
 		TutorialManager.ReturnHighLightUI();
 		TutorialManager.ClearHand();

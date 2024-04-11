@@ -1071,7 +1071,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		SoundController.BGM_Play(MusicSoundType.LobbyBGM);
 		TutorialManager.CheckTutorial();
 		CheckChestLock();
-		AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.lobby);
+		
 		if (GameInfo.inGamePlayData.inGameType == InGameType.Arena)
 		{
 			arenaLobby.Show();

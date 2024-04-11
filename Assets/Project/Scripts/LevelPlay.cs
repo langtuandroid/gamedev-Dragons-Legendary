@@ -271,21 +271,7 @@ public class LevelPlay : LobbyPopupBase
 		}
 	}
 
-	private void CheckAnalytics()
-	{
-		if (GameInfo.inGamePlayData.levelIdx == 2)
-		{
-			AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.play_lv2);
-		}
-		else if (GameInfo.inGamePlayData.levelIdx == 3)
-		{
-			AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.play_level_lv3);
-		}
-		else if (GameInfo.inGamePlayData.levelIdx == 6)
-		{
-			AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.play_level_lv6);
-		}
-	}
+	
 
 	public void OnClickLevelPlay()
 	{
@@ -299,8 +285,6 @@ public class LevelPlay : LobbyPopupBase
 		}
 		*/
 		
-		Debug.Log(1);
-		CheckAnalytics();
 		GameInfo.userPlayData.Clear();
 		if (SelectLevelPlay != null)
 		{

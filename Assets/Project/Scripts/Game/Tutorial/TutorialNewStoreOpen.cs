@@ -9,7 +9,6 @@ public class TutorialNewStoreOpen : MonoBehaviour
 		{
 		case 1:
 			StartCoroutine(ShowDelaySecondFloorItem());
-			AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.open_new_store);
 			break;
 		case 3:
 			TutorialManager.SetDimmedClick(isClick: false);

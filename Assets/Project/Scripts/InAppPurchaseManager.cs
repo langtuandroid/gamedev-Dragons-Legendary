@@ -7,8 +7,6 @@ using UnityEngine;
 
 public class InAppPurchaseManager : MonoBehaviour
 {
-	//public static Action<int, string, string, PurchaseEventArgs> OnInAppPurchaseProcessComplete;
-	// idx: index, _signature, _receipt, PurchaseEventArgs args
 	public static Action<int, string, string, System.Object> OnInAppPurchaseProcessComplete;
 
 	public const string INAPP_PURCHASE_JEWEL_1 = "matchhero_jewel_1";

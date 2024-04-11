@@ -655,7 +655,6 @@ public class TutorialManager : GameObjectSingleton<TutorialManager>
 			case 10:
 				HideTutorial();
 				EndEventTutorial();
-				AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.quick_loot_tuto);
 				return;
 			case 12:
 				InGamePlayManager.ResumeMatchTimer();

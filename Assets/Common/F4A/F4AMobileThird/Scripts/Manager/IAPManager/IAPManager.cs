@@ -357,6 +357,7 @@ using UnityEngine.Purchasing.Security;
 		/// <returns></returns>
 		public EStatusBuyIAP BuyProductByID(string productId)
 		{
+			OnBuyPurchaseSuccessed?.Invoke(productId);
 #if DEFINE_IAP
             // ONLY TEST
             if (iapSettingInfo.isTestIAP)

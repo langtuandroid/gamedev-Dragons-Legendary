@@ -70,7 +70,6 @@ public class TutorialJewelChest : MonoBehaviour
 	private void MysteriousChestOpen()
 	{
 		LobbyManager.JewelChestOpen = null;
-		AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.open_chest_2);
 		TutorialManager.SaveTutorial();
 		TutorialManager.EndEventTutorial();
 	}

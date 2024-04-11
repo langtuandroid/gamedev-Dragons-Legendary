@@ -255,7 +255,6 @@ public class TutorialBattleProgress : MonoBehaviour
 		TutorialManager.NextTutorialindex();
 		TutorialManager.SaveTutorial(2, 1);
 		InGamePlayManager.BattleRewardOpen = null;
-		AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.open_reward_lv1);
 	}
 
 	private void OnShowBattleResult()

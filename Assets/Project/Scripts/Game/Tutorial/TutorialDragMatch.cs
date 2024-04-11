@@ -53,7 +53,6 @@ public class TutorialDragMatch : MonoBehaviour
 				TutorialManager.ReturnHighLightSpriteList();
 				InGamePlayManager.BlockSelect = null;
 				StartCoroutine(ProcessDelayStopMatchTimer());
-				AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.tuto12_puzzle_drag_1);
 			}
 			break;
 		case 5:
@@ -69,7 +68,6 @@ public class TutorialDragMatch : MonoBehaviour
 				TutorialManager.ReturnHighLightSpriteList();
 				InGamePlayManager.BlockSelect = null;
 				StartCoroutine(ProcessDelayStopMatchTimer());
-				AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.tuto12_puzzle_drag_2);
 			}
 			break;
 		}

@@ -243,10 +243,6 @@ public class BattleResult : MonoBehaviour
 		}
 		else
 		{
-			if (CheckFireBase() != FBLog_Type.none)
-			{
-				AnalyticsManager.FirebaseAnalyticsLogEvent(CheckFireBase());
-			}
 			InGamePlayManager.BattleReward();
 			SoundController.EffectSound_Play(EffectSoundType.ButtonClick);
 		}

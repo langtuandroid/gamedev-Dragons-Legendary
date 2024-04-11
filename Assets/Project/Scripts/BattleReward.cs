@@ -417,10 +417,6 @@ public class BattleReward : MonoBehaviour
 				resultItem_Arr[j].GetChild(k).gameObject.SetActive(value: false);
 			}
 		}
-		if (GameInfo.inGamePlayData.level == 1)
-		{
-			AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.claim_reward_lv1);
-		}
 		MWPoolManager.DeSpawnPoolAll("Puzzle");
 		MWPoolManager.DeSpawnPoolAll("Hunter");
 		MWPoolManager.DeSpawnPoolAll("Monster");

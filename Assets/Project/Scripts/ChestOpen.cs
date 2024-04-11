@@ -378,7 +378,6 @@ public class ChestOpen : LobbyPopupBase
 
 	public void Click_CardResult_OK_BT()
 	{
-		AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.collect_chest);
 		if (current_boxCount != total_boxCount)
 		{
 			UnityEngine.Debug.Log("this.current_boxCount 11 = " + current_boxCount);

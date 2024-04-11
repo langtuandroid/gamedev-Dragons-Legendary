@@ -72,7 +72,6 @@ public class TutorialChest : MonoBehaviour
 		TutorialManager.SaveTutorial(5, 1);
 		TutorialManager.SetSeq(6);
 		TutorialManager.ShowTutorial();
-		AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.open_chest);
 		LobbyManager.OpenChestOpen = null;
 	}
 

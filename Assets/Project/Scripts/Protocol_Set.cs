@@ -108,7 +108,6 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 		Dictionary<string, string> dictionary = new Dictionary<string, string>();
 		dictionary.Add("commands", jSONObject.ToString());
 		UnityEngine.Debug.Log("@LOG Protocol_Set check_version = " + jSONObject);
-		AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.app_launch);
 		GameObjectSingleton<Protocol_Set>.Inst.CallforByBestHTTP(dictionary, GameObjectSingleton<Protocol_Set>.Inst.Protocol_check_version_Res);
 	}
 

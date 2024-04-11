@@ -23,7 +23,6 @@ public class TutorialStoreManagement : MonoBehaviour
 			break;
 		case 6:
 			TutorialManager.SetDimmedClick(isClick: false);
-			AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.battle_menu_click);
 			StartCoroutine(CheckDelayStageSelect());
 			break;
 		case 7:
@@ -130,7 +129,6 @@ public class TutorialStoreManagement : MonoBehaviour
 		TutorialManager.ShowTutorial();
 		TutorialManager.SaveTutorial(2, 5);
 		LobbyManager.StartStoreOpen = null;
-		AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.open_store);
 	}
 
 	private void OnOpenStageSelect()

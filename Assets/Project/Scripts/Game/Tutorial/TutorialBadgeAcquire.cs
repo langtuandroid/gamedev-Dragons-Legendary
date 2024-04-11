@@ -14,7 +14,6 @@ public class TutorialBadgeAcquire : MonoBehaviour
 		switch (_seq)
 		{
 		case 1:
-			AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.get_badge);
 			StartCoroutine(ShowDelayTutorialView());
 			break;
 		case 2:
