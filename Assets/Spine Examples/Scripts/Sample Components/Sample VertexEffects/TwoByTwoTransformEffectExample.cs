@@ -99,7 +99,7 @@ public class TwoByTwoTransformEffectExampleEditor : UnityEditor.Editor {
 		Color originalColor = UnityEditor.Handles.color;
 		UnityEditor.Handles.color = color;
 		UnityEditor.Handles.DrawLine(transform.position, transform.TransformPoint(v));
-		var fmh_102_103_638479296649763872 = Quaternion.identity; v = transform.InverseTransformPoint(UnityEditor.Handles.FreeMoveHandle(transform.TransformPoint(v), 0.3f, Vector3.zero, UnityEditor.Handles.CubeHandleCap));
+		var fmh_102_103_638483435347120764 = Quaternion.identity; v = transform.InverseTransformPoint(UnityEditor.Handles.FreeMoveHandle(transform.TransformPoint(v), 0.3f, Vector3.zero, UnityEditor.Handles.CubeHandleCap));
 		UnityEditor.Handles.color = originalColor;
 	}
 }

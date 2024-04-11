@@ -159,9 +159,11 @@ namespace PathologicalGames
 		{
 			if (ContainsKey(spawnPool.poolName))
 			{
+				UnityEngine.Debug.LogError($"A pool with the name '{spawnPool.poolName}' already exists. This should only happen if a SpawnPool with this name is added to a scene twice.");
 				return;
 			}
 			_pools.Add(spawnPool.poolName, spawnPool);
+			UnityEngine.Debug.Log($"Added pool '{spawnPool.poolName}'");
 			if (onCreatedDelegates.ContainsKey(spawnPool.poolName))
 			{
 				onCreatedDelegates[spawnPool.poolName](spawnPool);
