@@ -9,6 +9,5 @@ public class BuildSet
 	private const string SERVER_URL_REAL = "https://matchhero.cookappsgames.com/mw_match/api.php";
 
 	public static readonly string serverURL = "https://matchhero.cookappsgames.com/mw_match/api.php";
-
-	public static readonly bool isDEV = false;
+	
 }
