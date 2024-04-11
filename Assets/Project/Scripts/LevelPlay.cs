@@ -289,12 +289,17 @@ public class LevelPlay : LobbyPopupBase
 
 	public void OnClickLevelPlay()
 	{
-		if (GameInfo.userData.userInfo.energy < levelData.energyCost)
+		// TODO uncoment
+		/*
+		if (GameInfo.userData.userInfo.energy < levelData.energyCost) 
 		{
 			LobbyManager.ShowUserEnergyInfo();
 			AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.stamin_under_4);
 			return;
 		}
+		*/
+		
+		Debug.Log(1);
 		CheckAnalytics();
 		GameInfo.userPlayData.Clear();
 		if (SelectLevelPlay != null)

@@ -474,12 +474,15 @@ public class QuickLoot : LobbyPopupBase
 
 	public void OnClickLevelPlay()
 	{
+		//TODO remove coment
+		/*
 		if (GameInfo.userData.userInfo.energy < levelData.energyCost)
 		{
 			LobbyManager.ShowUserEnergyInfo();
 			AnalyticsManager.FirebaseAnalyticsLogEvent(FBLog_Type.stamin_under_4);
 			return;
 		}
+		*/
 		CheckAnalytics();
 		GameInfo.userPlayData.Clear();
 		SoundController.EffectSound_Play(EffectSoundType.LevelPlay);

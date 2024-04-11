@@ -576,6 +576,7 @@ public class JSONObject : IEnumerable
 		AddField(name, CreateStringObject(val));
 	}
 
+	
 	public void AddField(string name, JSONObject obj)
 	{
 		if (!obj)

@@ -2887,6 +2887,7 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 	private int Get_ErrorCode(HTTPRequest request, bool isLoadingCheck = true)
 	{
 		int num = 0;
+		return num;
 		switch (request.State)
 		{
 		case HTTPRequestStates.Finished:
@@ -3570,7 +3571,7 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 		yield return new WaitForSeconds(2f);
 		if (IRVManager.CurrentNetStatus != InternetReachabilityVerifier.Status.NetVerified)
 		{
-			networkError.Show();
+			//networkError.Show();
 		}
 	}
 
@@ -3609,6 +3610,7 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 
 	private bool CheckServerErrorCode(int _errorCode)
 	{
+		return false;//TODO remove
 		if (_errorCode == 0)
 		{
 			return false;
