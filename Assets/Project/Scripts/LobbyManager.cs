@@ -968,7 +968,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	public static void PurchaseStartPackComplete()
 	{
-		GameObjectSingleton<LobbyManager>.Inst.shopPackageListResult.starterPackYn = "y";
+		//GameObjectSingleton<LobbyManager>.Inst.shopPackageListResult.starterPackYn = "y";
 	}
 
 	public static void PurchaseSpecialOfferComplete()

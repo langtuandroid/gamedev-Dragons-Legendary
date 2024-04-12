@@ -85,7 +85,33 @@ public class SaleStartPack : LobbyPopupBase
 	private void OnInAppPurchaseComplete(int _purchase_id, string _signature, string _receipt, System.Object _args)
 	{
 		purchase_args = _args;
-		Protocol_Set.Protocol_shop_buy_package_Req(_purchase_id, _signature, _receipt, OnBuyProductComplete);
+		//Protocol_Set.Protocol_shop_buy_package_Req(_purchase_id, _signature, _receipt, OnBuyProductComplete);
+		
+		//TODO remove
+		ChestListDbData[] data = new ChestListDbData[]
+		{
+			new ChestListDbData()
+			{
+				chestHunter = 0,
+				chestItem = 50034,
+				chestItemN = 100000000
+			},
+			
+			new ChestListDbData()
+			{
+				chestHunter = 0,
+				chestItem = 50034,
+				chestItemN = 100000000
+			},
+			
+			new ChestListDbData()
+			{
+				chestHunter = 0,
+				chestItem = 50031,
+				chestItemN = 100000000
+			}
+		};
+		OnBuyProductComplete(data);
 	}
 
 	private void OnBuyProductComplete(ChestListDbData[] _arrRewardList)

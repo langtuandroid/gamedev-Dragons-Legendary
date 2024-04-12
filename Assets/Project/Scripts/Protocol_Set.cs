@@ -55,7 +55,7 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 
 	private Action onCallBack_User_Daily_Bonus_Collect;
 
-	private Action<ChestListDbData[]> OnCallBack_Buy_Package;
+	private Action<ChestListDbData[]> _onCallBackBuyPackage;
 
 	private Action<SHOP_PACKAGE_LIST_RESULT> OnCallBack_Shop_Package_List;
 
@@ -964,7 +964,7 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 	{
 		if (_onCallBack != null)
 		{
-			GameObjectSingleton<Protocol_Set>.Inst.OnCallBack_Buy_Package = _onCallBack;
+			GameObjectSingleton<Protocol_Set>.Inst._onCallBackBuyPackage = _onCallBack;
 		}
 		JSONObject jSONObject = new JSONObject();
 		jSONObject.AddField("cmd", "shop_buy_package");
@@ -2534,10 +2534,10 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 			if (!CheckServerErrorCode(array[0].errorCode) && !CheckForceUpdate(array[0].force_update))
 			{
 				GameObjectSingleton<Protocol_Set>.Inst.InsertUserData(array[0].result.userData);
-				if (array[0].success.Equals("true") && GameObjectSingleton<Protocol_Set>.Inst.OnCallBack_Buy_Package != null)
+				if (array[0].success.Equals("true") && GameObjectSingleton<Protocol_Set>.Inst._onCallBackBuyPackage != null)
 				{
-					GameObjectSingleton<Protocol_Set>.Inst.OnCallBack_Buy_Package(array[0].result.rewardList);
-					GameObjectSingleton<Protocol_Set>.Inst.OnCallBack_Buy_Package = null;
+					GameObjectSingleton<Protocol_Set>.Inst._onCallBackBuyPackage(array[0].result.rewardList);
+					GameObjectSingleton<Protocol_Set>.Inst._onCallBackBuyPackage = null;
 				}
 			}
 		}
