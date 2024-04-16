@@ -1,13 +1,9 @@
-using GooglePlayGames;
-using GooglePlayGames.BasicApi;
 using System;
 using UnityEngine;
 
 public class MWPlatformService : MonoBehaviour
 {
 	public static Action<bool, string> LoginResult;
-
-	private static PlayGamesClientConfiguration _GPGConfig;
 
 	[SerializeField]
 	private bool isAutoLogin = true;
@@ -22,10 +18,6 @@ public class MWPlatformService : MonoBehaviour
 
 	public static void Init()
 	{
-		_GPGConfig = new PlayGamesClientConfiguration.Builder().EnableSavedGames().Build();
-		PlayGamesPlatform.InitializeInstance(_GPGConfig);
-		PlayGamesPlatform.DebugLogEnabled = true;
-		PlayGamesPlatform.Activate();
 		if (instance.isAutoLogin)
 		{
 			Login(delegate(bool succeess, string errormessage)
