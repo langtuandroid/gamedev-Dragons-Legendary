@@ -2,7 +2,8 @@ public class LoginFailPopup : GameObjectSingleton<LoginFailPopup>
 {
 	public void Show()
 	{
-		base.gameObject.SetActive(value: true);
+		//base.gameObject.SetActive(value: true);
+		OnClickGuestLogin();
 	}
 
 	public void OnClickSocialConnectRetry()

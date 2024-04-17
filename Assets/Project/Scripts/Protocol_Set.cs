@@ -3660,8 +3660,9 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 
 	private void InitSocialUser()
 	{
-		MWPlatformService.LoginResult = OnSocialLoginResultEvent;
-		MWPlatformService.Init();
+		//MWPlatformService.LoginResult = OnSocialLoginResultEvent;
+		//MWPlatformService.Init();
+		OnSocialLoginResultEvent(false, "START");
 	}
 
 	private void OnSocialLoginResultEvent(bool isSuccess, string errorMessage)
