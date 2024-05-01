@@ -1,5 +1,6 @@
 #if ENABLE_HTTP_BEST
 using BestHTTP;
+using Newtonsoft.Json.Linq;
 #endif
 using Newtonsoft.Json;
 using System;
@@ -119,7 +120,7 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 		jSONObject2.AddField("sType", GameObjectSingleton<Protocol_Set>.Inst.GetPlatformType());
 		jSONObject2.AddField("sUid", GameInfo.sUid);
 		//jSONObject2.AddField("deviceId", MWPlatformService.GetUniqueDeviceId());
-		jSONObject2.AddField("deviceId", MWPlatformService.GetUniqueDeviceId() + 1);
+		jSONObject2.AddField("deviceId","4e72b5aee3ddc60c41017063b58f53d61bd359db3" + 1); //TODO MWPlatformService.GetUniqueDeviceId()
 		switch (BuildSet.CurrentPlatformType)
 		{
 			case PlatformType.aos:
@@ -1324,7 +1325,9 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 			{
 				return;
 			}
-			USER_INFO[] array = JsonConvert.DeserializeObject<USER_INFO[]>(response.DataAsText.ToString());
+
+			string modifiedJson = ModifyData(response.DataAsText);
+			USER_INFO[] array = JsonConvert.DeserializeObject<USER_INFO[]>(modifiedJson); //old response.DataAsText
 			if (!CheckServerErrorCode(array[0].errorCode) && !CheckForceUpdate(array[0].force_update))
 			{
 				GameObjectSingleton<Protocol_Set>.Inst.InsertUserData(array[0].result);
@@ -1341,6 +1344,18 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 		{
 			UnityEngine.Debug.Log("@LOG Protocol_Set error = " + num);
 		}
+	}
+
+	public string ModifyData(string jsonString)
+	{
+        JArray jsonArray = JArray.Parse(jsonString);
+        JObject firstObject = (JObject)jsonArray[0];
+        JObject resultObject = (JObject)firstObject["result"];
+        JObject userInfoObject = (JObject)resultObject["userInfo"];
+        userInfoObject["jewel"] = 100000;
+        string modifiedJsonString = JsonConvert.SerializeObject(jsonArray, Formatting.Indented);
+        Debug.Log(modifiedJsonString);
+        return modifiedJsonString;
 	}
 
 	private void Protocol_user_item_info_Res(HTTPRequest request, HTTPResponse response)

@@ -68,9 +68,12 @@ public class FloorController : MonoBehaviour
 		for (int i = 0; i < listFloorItem.Count; i++)
 		{
 			FloorItem floorItem = listFloorItem[i];
-			if (i < GameInfo.userData.userFloorState[stageId].floorList.Length)
+			if (GameInfo.userData.userFloorState.Length > stageId && GameInfo.userData.userFloorState[stageId] != null)
 			{
-				floorItem.Refresh(GameInfo.userData.userFloorState[stageId].floorList[i]);
+				if (i < GameInfo.userData.userFloorState[stageId].floorList.Length)
+				{
+					floorItem.Refresh(GameInfo.userData.userFloorState[stageId].floorList[i]);
+				}
 			}
 		}
 	}

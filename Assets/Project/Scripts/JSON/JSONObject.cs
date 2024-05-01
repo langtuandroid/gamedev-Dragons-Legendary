@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class JSONObject : IEnumerable
 {
@@ -820,6 +821,7 @@ public class JSONObject : IEnumerable
 	{
 		if (!IsObject)
 		{
+			Debug.Log("NOT OBJECT");
 			return false;
 		}
 		for (int i = 0; i < keys.Count; i++)

@@ -264,6 +264,7 @@ public class ValueShopBuy : LobbyPopupBase
 	{
 		if (total_Price <= GameInfo.userData.userInfo.jewel)
 		{
+			Debug.Log(GameInfo.userData.userInfo.jewel);
 			isbuyCondition = true;
 			item_Price.text = "<color=#ffffff>" + total_Price.ToString() + "</color>";
 		}
@@ -343,6 +344,7 @@ public class ValueShopBuy : LobbyPopupBase
 			Protocol_Set.Protocol_shop_buy_coin_Req(shopCoinDbData.productIdx, BuyCoinResponse);
 			return;
 		}
+		Debug.Log("NOT ENOUGH");
 		LobbyManager.ShowNotEnoughJewel(total_Price - GameInfo.userData.userInfo.jewel);
 		if (GoBackEvent != null)
 		{

@@ -36,7 +36,7 @@ public class GameInfo
 
 	public static bool IS_OS_LOGIN = false;
 
-	public static int caUid = 1;
+	public static int caUid = 11;
 
 	public static SceneType currentSceneType;
 

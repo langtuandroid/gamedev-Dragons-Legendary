@@ -50,7 +50,7 @@ public class LobbyTopUI : MonoBehaviour
 
 	private Vector2 expGaugeOffsetMax;
 
-	private EnergyTimeChecker timeChecker;
+	[SerializeField] private EnergyTimeChecker timeChecker;
 
 	public Vector3 UserLevelPosition => trUserLevel.position;
 
