@@ -122,7 +122,8 @@ public class LevelCell : MonoBehaviour
 			GameInfo.inGamePlayData.levelIdx = levelDbData.levelIdx;
 			if (userStarCount == 3)
 			{
-				LobbyManager.ShowQuickLoot(levelDbData.levelIdx);
+				//LobbyManager.ShowQuickLoot(levelDbData.levelIdx); //TODO 
+				LobbyManager.ShowLevelPlay(levelDbData.levelIdx);
 			}
 			else
 			{

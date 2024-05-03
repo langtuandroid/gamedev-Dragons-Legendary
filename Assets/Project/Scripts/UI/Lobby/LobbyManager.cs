@@ -636,7 +636,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	public static void ShowSaleArenaPack()
 	{
-		GameObjectSingleton<LobbyManager>.Inst.saleArenaPack.Show();
+		//GameObjectSingleton<LobbyManager>.Inst.saleArenaPack.Show();
 	}
 
 	public static bool CheckShowArenaLobbyHunter()
@@ -1409,11 +1409,11 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		{
 			if (_result.starterPackYn == "n")
 			{
-				saleStartPack.Show(_result.packageList[0]);
+				//saleStartPack.Show(_result.packageList[0]);
 			}
 			else if (_result.specialOfferYn == "n")
 			{
-				saleSpecialOffer.Show(_result.packageList[1]);
+				//saleSpecialOffer.Show(_result.packageList[1]);
 			}
 			else
 			{
@@ -2023,8 +2023,8 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	public static void OnShowRate()
 	{
-		GameInfo.isRate = false;
-		GameObjectSingleton<LobbyManager>.Inst.rate.Init();
+		//GameInfo.isRate = false;
+		//GameObjectSingleton<LobbyManager>.Inst.rate.Init();
 	}
 
 	protected override void Awake()
