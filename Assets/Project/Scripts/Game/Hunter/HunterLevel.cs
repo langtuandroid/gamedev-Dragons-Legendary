@@ -239,7 +239,7 @@ public class HunterLevel : LobbyPopupBase
 			break;
 		}
 		hunter_Character.transform.SetAsFirstSibling();
-		hunter_Character.transform.localPosition = new Vector3(-210f, 0f, 0f);
+		hunter_Character.transform.localPosition = new Vector3(0f, 130f, 0f);
 		hunter_Character.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
 		hunter_Character.Init(_hunterInfo);
 		current_level = hunterInfo_Origin.Stat.hunterLevel;

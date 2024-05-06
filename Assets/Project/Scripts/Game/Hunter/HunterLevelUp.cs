@@ -97,6 +97,7 @@ public class HunterLevelUp : LobbyPopupBase
     {
         hunterInfo_Before = _hunterInfo_before;
         hunterInfo_After = _hunterInfo_after;
+        
         if (hunter_Character != null)
         {
             MWPoolManager.DeSpawn("Hunter", hunter_Character.transform);
@@ -124,8 +125,11 @@ public class HunterLevelUp : LobbyPopupBase
         hunter_Character.transform.localPosition = new Vector3(0f, 180f, 0f);
         hunter_Character.transform.localScale = new Vector3(1f, 1f, 1f);
         hunter_Character.Init(_hunterInfo_after);
-        SetHunterData();
         hunter_Character.gameObject.SetActive(value: false);
+
+         
+        SetHunterData();
+        
         LevelUpEffectPlay();
     }
 
@@ -138,6 +142,7 @@ public class HunterLevelUp : LobbyPopupBase
             levelUP_Character = null;
         }
         SoundController.EffectSound_Play(EffectSoundType.HunterLevelUp);
+        /*
         switch (hunterInfo_After.Hunter.color)
         {
             case 0:
@@ -166,6 +171,8 @@ public class HunterLevelUp : LobbyPopupBase
                 levelUP_Anim.SetTrigger("Yellow");
                 break;
         }
+        */
+        
         levelUP_Character = MWPoolManager.Spawn("Hunter", hunterInfo_After.Hunter.hunterIdx.ToString(), levelUP_Character_Pos);
         UnityEngine.Debug.Log("LevelUp Hunter Parent 11 = " + levelUP_Character.parent.name);
         SetHunterImg();

@@ -96,6 +96,7 @@ public class MWLocalize : GameObjectSingleton<MWLocalize>
 
 	private int GetSystemLocalizeIndex()
 	{
+		return 1; //TODO
 		switch (Application.systemLanguage)
 		{
 		case SystemLanguage.Korean:

@@ -107,6 +107,7 @@ public class LevelPlay : LobbyPopupBase
 		SetDeckEditBT();
 		UnityEngine.Debug.Log("Tutorial LeaderSkill = " + levelIndex);
 		TutorialManager.CheckHunterDeckTutorial();
+		
 		if (LobbyManager.OpenDeckEdit != null && levelIndex == 13)
 		{
 			LobbyManager.OpenDeckEdit();
@@ -145,6 +146,7 @@ public class LevelPlay : LobbyPopupBase
 		RemoveHunterCard();
 		for (int i = 0; i < GameInfo.userData.huntersUseInfo.Length; i++)
 		{
+			Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 			HunterCard component = MWPoolManager.Spawn("Hunter", "HunterCard_" + GameInfo.userData.huntersUseInfo[i].hunterIdx, trHunterCardParent).GetComponent<HunterCard>();
 			component.Init(HUNTERCARD_TYPE.LEVELPLAY, GameDataManager.GetHunterInfo(GameInfo.userData.huntersUseInfo[i].hunterIdx, GameInfo.userData.huntersUseInfo[i].hunterLevel, GameInfo.userData.huntersUseInfo[i].hunterTier), _isOwn: true, _isArena: false);
 			component.HunterIdx = i;

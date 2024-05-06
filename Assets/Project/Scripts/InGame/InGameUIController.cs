@@ -482,7 +482,7 @@ public class InGameUIController : MonoBehaviour
 
 	public void ShowJewelShop()
 	{
-		jewelShop.Init();
+		//jewelShop.Init();
 	}
 
 	public void ShowJewelShopBuy(int key)

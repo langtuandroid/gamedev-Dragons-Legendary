@@ -144,6 +144,7 @@ public class HunterPromotionUp : LobbyPopupBase
                 break;
         }
         PromotionUpEffectPlay();
+        
         if (hunter_Character != null)
         {
             MWPoolManager.DeSpawn("Hunter", hunter_Character.transform);
@@ -172,6 +173,7 @@ public class HunterPromotionUp : LobbyPopupBase
         hunter_Character.transform.localScale = new Vector3(1f, 1f, 1f);
         hunter_Character.Init(_hunterInfo);
         hunter_Character.gameObject.SetActive(value: false);
+        
         SetHunterData();
         SetTierStar();
     }
@@ -218,6 +220,8 @@ public class HunterPromotionUp : LobbyPopupBase
         }
         promotionUP_Character.localPosition = Vector3.zero;
         SoundController.EffectSound_Play(EffectSoundType.HunterPromotionUp);
+        
+        /*
         switch (hunterInfo.Hunter.color)
         {
             case 0:
@@ -236,6 +240,8 @@ public class HunterPromotionUp : LobbyPopupBase
                 promotionUp_BG.color = new Color32(220, 179, 65, byte.MaxValue);
                 break;
         }
+        */
+        
         switch (hunterInfo.Stat.hunterTier)
         {
             case 2:

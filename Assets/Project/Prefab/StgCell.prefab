@@ -85,7 +85,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1790013148276553910}
   - component: {fileID: 1790013148276551487}
-  - component: {fileID: 1790013148276557611}
   m_Layer: 5
   m_Name: Btn_Locked
   m_TagString: 
@@ -111,7 +110,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0006184578, y: -332.0002}
+  m_AnchoredPosition: {x: -0.0006184578, y: -415}
   m_SizeDelta: {x: 436, y: 126}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1790013148276551487
@@ -122,62 +121,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1790013148276543658}
   m_CullTransparentMesh: 1
---- !u!114 &1790013148276557611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790013148276543658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.7843137, g: 0.7843137, b: 0.7843137, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.7843137, g: 0.7843137, b: 0.7843137, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Highlighted
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnClickGotoUpgrade
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1790013148276544020
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac12e17f4436a26b0ed27efc254ea3f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageStage: {fileID: 0}
+  imageStage: {fileID: 9180930321430180443}
   textStageName: {fileID: 1790013148276555888}
   textStageClearRate: {fileID: 1790013148276556341}
   goLock: {fileID: 1790013148276546170}
@@ -516,7 +459,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e483bf6707a544c8ba3bae07e63b6cec, type: 3}
+    m_Font: {fileID: 12800000, guid: a6ddb39fbffa5124ea905430c273c784, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 1
@@ -640,7 +583,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.9
-  m_Text: "\uC2A4\uD14C\uC774\uC9C0\uB97C\n\uD074\uB9AC\uC5B4\uD558\uC138\uC694"
+  m_Text: Complete chapter
   localizedId: ingame_guide_text_2
 --- !u!114 &1790013148276558135
 MonoBehaviour:
@@ -826,7 +769,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -400}
+  m_AnchoredPosition: {x: 0, y: -415}
   m_SizeDelta: {x: 436, y: 126}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1790013148276552708
@@ -907,7 +850,7 @@ MonoBehaviour:
     m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1790013148276558666}
+  m_TargetGraphic: {fileID: 1790013148276558125}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1565,7 +1508,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -26}
   m_SizeDelta: {x: 436, y: 790}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1790013148276551700
@@ -2049,7 +1992,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stage select
+  m_Text: Chapter
   localizedId: common_text_select
 --- !u!114 &3291618901116789000
 MonoBehaviour:

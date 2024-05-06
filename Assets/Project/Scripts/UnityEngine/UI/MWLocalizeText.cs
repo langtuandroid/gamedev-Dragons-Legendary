@@ -22,6 +22,7 @@ namespace UnityEngine.UI
 		protected override void Start()
 		{
 			base.Start();
+			/*
 			MWLocalize.RefreshFont = (Action)Delegate.Combine(MWLocalize.RefreshFont, new Action(OnLocalizedChange));
 			UnityEngine.Debug.Log("GameFont :: " + MWLocalize.GameFont);
 			if (MWLocalize.GameFont != null)
@@ -33,12 +34,15 @@ namespace UnityEngine.UI
 					text = data;
 				}
 			}
+			*/
 		}
 
 		protected override void OnDestroy()
 		{
 			base.OnDestroy();
+			/*
 			MWLocalize.RefreshFont = (Action)Delegate.Remove(MWLocalize.RefreshFont, new Action(OnLocalizedChange));
+			*/
 		}
 	}
 }
