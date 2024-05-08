@@ -28,7 +28,7 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 
 	private Dictionary<int, HunterDbData> dicHunterDbData = new Dictionary<int, HunterDbData>();
 
-	private Dictionary<int, HunterColorDbData> dicHunterColorDbData = new Dictionary<int, HunterColorDbData>();
+	private Dictionary<int, HeroColorDbData> dicHunterColorDbData = new Dictionary<int, HeroColorDbData>();
 
 	private Dictionary<int, string> dicHunterTribeDbData = new Dictionary<int, string>();
 
@@ -173,7 +173,7 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 		return dicHunterTribeDbData[hunterAlly];
 	}
 
-	public HunterColorDbData GetHunterColorData(int hunterColorIdx)
+	public HeroColorDbData GetHunterColorData(int hunterColorIdx)
 	{
 		return dicHunterColorDbData[hunterColorIdx];
 	}
@@ -589,7 +589,7 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 		dicHunterColorDbData.Clear();
 		while (dataReader.Read())
 		{
-			HunterColorDbData hunterColorDbData = new HunterColorDbData();
+			HeroColorDbData hunterColorDbData = new HeroColorDbData();
 			hunterColorDbData.color = dataReader.GetInt32(0);
 			hunterColorDbData.colorName = dataReader.GetString(1);
 			hunterColorDbData.colorOccupation = dataReader.GetString(2);

@@ -3,7 +3,7 @@ using System;
 [Serializable]
 public class HunterData
 {
-	public HUNTER_TYPE Hunter_Type;
+	public HeroType Hunter_Type;
 
 	public int hunterIdx;
 

@@ -100,6 +100,6 @@ public class TutorialLeaderSkill : MonoBehaviour
 
 	public void ClickHunterCard()
 	{
-		LobbyManager.HunterCardClickForTUtorial(deckEditHunter.GetComponent<HunterCard>());
+		LobbyManager.HunterCardClickForTUtorial(deckEditHunter.GetComponent<HeroCard>());
 	}
 }

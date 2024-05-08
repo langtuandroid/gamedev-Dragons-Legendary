@@ -389,8 +389,8 @@ public class QuickLoot : LobbyPopupBase
 
 	private void RemoveHunterCard()
 	{
-		HunterCard[] componentsInChildren = trHunterCardParent.GetComponentsInChildren<HunterCard>();
-		foreach (HunterCard hunterCard in componentsInChildren)
+		HeroCard[] componentsInChildren = trHunterCardParent.GetComponentsInChildren<HeroCard>();
+		foreach (HeroCard hunterCard in componentsInChildren)
 		{
 			MWPoolManager.DeSpawn("Hunter", hunterCard.transform);
 		}
@@ -400,10 +400,10 @@ public class QuickLoot : LobbyPopupBase
 	{
 		for (int i = 0; i < GameInfo.userData.huntersUseInfo.Length; i++)
 		{
-			HunterCard component = MWPoolManager.Spawn("Hunter", "HunterCard_" + GameInfo.userData.huntersUseInfo[i].hunterIdx, trHunterCardParent).GetComponent<HunterCard>();
-			component.Init(HUNTERCARD_TYPE.LEVELPLAY, GameDataManager.GetHunterInfo(GameInfo.userData.huntersUseInfo[i].hunterIdx, GameInfo.userData.huntersUseInfo[i].hunterLevel, GameInfo.userData.huntersUseInfo[i].hunterTier), _isOwn: true, _isArena: false);
-			component.HunterIdx = i;
-			component.IsUseHunter = true;
+			HeroCard component = MWPoolManager.Spawn("Hunter", "HunterCard_" + GameInfo.userData.huntersUseInfo[i].hunterIdx, trHunterCardParent).GetComponent<HeroCard>();
+			component.Construct(HerocardType.Levelplay, GameDataManager.GetHunterInfo(GameInfo.userData.huntersUseInfo[i].hunterIdx, GameInfo.userData.huntersUseInfo[i].hunterLevel, GameInfo.userData.huntersUseInfo[i].hunterTier), _isOwn: true, _isArena: false);
+			component.HeroIdx = i;
+			component.IsUseHero = true;
 			component.transform.localPosition = Vector3.zero;
 			component.transform.localScale = Vector3.one;
 			if (i == 0)
@@ -427,7 +427,7 @@ public class QuickLoot : LobbyPopupBase
 		totalRecovery_current = 0;
 		for (int i = 0; i < trHunterCardParent.childCount; i++)
 		{
-			HunterInfo hunterInfo = trHunterCardParent.GetChild(i).GetComponent<HunterCard>().HunterInfo;
+			HunterInfo hunterInfo = trHunterCardParent.GetChild(i).GetComponent<HeroCard>().HunterInfo;
 			totalHealth_current += (int)GameUtil.GetHunterReinForceHP(hunterInfo.Stat.hunterHp, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx));
 			totalAttack_current += (int)GameUtil.GetHunterReinForceAttack(hunterInfo.Stat.hunterAttack, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx));
 			totalRecovery_current += (int)GameUtil.GetHunterReinForceHeal(hunterInfo.Stat.hunterRecovery, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx));

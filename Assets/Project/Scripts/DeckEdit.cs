@@ -13,10 +13,10 @@ public class DeckEdit : LobbyPopupBase
 	private Transform trUseHunterContent;
 
 	[SerializeField]
-	private HunterCard SelectHunter_1;
+	private HeroCard SelectHunter_1;
 
 	[SerializeField]
-	private HunterCard SelectHunter_2;
+	private HeroCard SelectHunter_2;
 
 	[SerializeField]
 	private Text totalHealth_Text;
@@ -88,15 +88,15 @@ public class DeckEdit : LobbyPopupBase
 	private Transform trGetHunter2;
 
 	[SerializeField]
-	private HUNTERLIST_TYPE hunterListType;
+	private HanterListType hunterListType;
 
-	public HUNTERLIST_TYPE EditType => hunterListType;
+	public HanterListType EditType => hunterListType;
 
 	public Transform GetHunter1 => trGetHunter1;
 
 	public Transform GetHunter2 => trGetHunter2;
 
-	public void Show(HUNTERLIST_TYPE _listType)
+	public void Show(HanterListType _listType)
 	{
 		base.Show();
 		base.gameObject.SetActive(value: true);
@@ -111,13 +111,13 @@ public class DeckEdit : LobbyPopupBase
 
 	public override void HideProcessComplete()
 	{
-		HunterCard[] componentsInChildren = trOwnHunterContent.GetComponentsInChildren<HunterCard>();
-		foreach (HunterCard hunterCard in componentsInChildren)
+		HeroCard[] componentsInChildren = trOwnHunterContent.GetComponentsInChildren<HeroCard>();
+		foreach (HeroCard hunterCard in componentsInChildren)
 		{
 			MWPoolManager.DeSpawn("Hunter", hunterCard.transform);
 		}
-		HunterCard[] componentsInChildren2 = trUseHunterContent.GetComponentsInChildren<HunterCard>();
-		foreach (HunterCard hunterCard2 in componentsInChildren2)
+		HeroCard[] componentsInChildren2 = trUseHunterContent.GetComponentsInChildren<HeroCard>();
+		foreach (HeroCard hunterCard2 in componentsInChildren2)
 		{
 			MWPoolManager.DeSpawn("Hunter", hunterCard2.transform);
 		}
@@ -131,18 +131,18 @@ public class DeckEdit : LobbyPopupBase
 		}
 	}
 
-	public void OnSelect_HunterCardForTutorial(HunterCard _hunterCard)
+	public void OnSelect_HunterCardForTutorial(HeroCard _hunterCard)
 	{
 		OnSelect_HunterCard(_hunterCard);
 	}
 
-	private void Init(HUNTERLIST_TYPE _listType)
+	private void Init(HanterListType _listType)
 	{
 		hunterListType = _listType;
 		GameUtil.SetOwnHunterList(hunterListType);
 		origin_UseHunterData = null;
 		origin_OwnHunterData = null;
-		if (hunterListType == HUNTERLIST_TYPE.NORMAL)
+		if (hunterListType == HanterListType.Normal)
 		{
 			origin_UseHunterData = new UserHunterData[GameInfo.userData.huntersUseInfo.Length];
 			for (int i = 0; i < origin_UseHunterData.Length; i++)
@@ -168,34 +168,34 @@ public class DeckEdit : LobbyPopupBase
 		huntercardSelect.gameObject.SetActive(value: false);
 		for (int l = 0; l < GameInfo.userData.huntersOwnInfo.Length; l++)
 		{
-			HunterCard component = MWPoolManager.Spawn("Hunter", "HunterCard_" + GameInfo.userData.huntersOwnInfo[l].hunterIdx, trOwnHunterContent).GetComponent<HunterCard>();
-			if (hunterListType == HUNTERLIST_TYPE.NORMAL)
+			HeroCard component = MWPoolManager.Spawn("Hunter", "HunterCard_" + GameInfo.userData.huntersOwnInfo[l].hunterIdx, trOwnHunterContent).GetComponent<HeroCard>();
+			if (hunterListType == HanterListType.Normal)
 			{
-				component.Init(HUNTERCARD_TYPE.DECK, GameDataManager.GetHunterInfo(GameInfo.userData.huntersOwnInfo[l].hunterIdx, GameInfo.userData.huntersOwnInfo[l].hunterLevel, GameInfo.userData.huntersOwnInfo[l].hunterTier), _isOwn: true, _isArena: false);
+				component.Construct(HerocardType.Deck, GameDataManager.GetHunterInfo(GameInfo.userData.huntersOwnInfo[l].hunterIdx, GameInfo.userData.huntersOwnInfo[l].hunterLevel, GameInfo.userData.huntersOwnInfo[l].hunterTier), _isOwn: true, _isArena: false);
 			}
 			else
 			{
-				component.Init(HUNTERCARD_TYPE.DECK, GameDataManager.GetHunterInfo(GameInfo.userData.huntersOwnInfo[l].hunterIdx, GameInfo.userData.huntersOwnInfo[l].hunterLevel, GameInfo.userData.huntersOwnInfo[l].hunterTier), _isOwn: true, _isArena: true);
+				component.Construct(HerocardType.Deck, GameDataManager.GetHunterInfo(GameInfo.userData.huntersOwnInfo[l].hunterIdx, GameInfo.userData.huntersOwnInfo[l].hunterLevel, GameInfo.userData.huntersOwnInfo[l].hunterTier), _isOwn: true, _isArena: true);
 			}
-			component.HunterIdx = l;
-			component.IsUseHunter = false;
+			component.HeroIdx = l;
+			component.IsUseHero = false;
 			component.transform.localPosition = Vector3.zero;
 			component.transform.localScale = Vector3.one;
-			component.Select_HunterCard = OnSelect_HunterCard;
-			component.DeSelect_HunterCard = OnDeSelect_HunterCard;
+			component.OnSelect = OnSelect_HunterCard;
+			component.OnDeselect = OnDeSelect_HunterCard;
 		}
-		if (hunterListType == HUNTERLIST_TYPE.NORMAL)
+		if (hunterListType == HanterListType.Normal)
 		{
 			for (int m = 0; m < GameInfo.userData.huntersUseInfo.Length; m++)
 			{
-				HunterCard component2 = MWPoolManager.Spawn("Hunter", "HunterCard_" + GameInfo.userData.huntersUseInfo[m].hunterIdx, trUseHunterContent).GetComponent<HunterCard>();
-				component2.Init(HUNTERCARD_TYPE.DECK, GameDataManager.GetHunterInfo(GameInfo.userData.huntersUseInfo[m].hunterIdx, GameInfo.userData.huntersUseInfo[m].hunterLevel, GameInfo.userData.huntersUseInfo[m].hunterTier), _isOwn: true, _isArena: false);
-				component2.HunterIdx = m;
-				component2.IsUseHunter = true;
+				HeroCard component2 = MWPoolManager.Spawn("Hunter", "HunterCard_" + GameInfo.userData.huntersUseInfo[m].hunterIdx, trUseHunterContent).GetComponent<HeroCard>();
+				component2.Construct(HerocardType.Deck, GameDataManager.GetHunterInfo(GameInfo.userData.huntersUseInfo[m].hunterIdx, GameInfo.userData.huntersUseInfo[m].hunterLevel, GameInfo.userData.huntersUseInfo[m].hunterTier), _isOwn: true, _isArena: false);
+				component2.HeroIdx = m;
+				component2.IsUseHero = true;
 				component2.transform.localPosition = Vector3.zero;
 				component2.transform.localScale = Vector3.one;
-				component2.Select_HunterCard = OnSelect_HunterCard;
-				component2.DeSelect_HunterCard = OnDeSelect_HunterCard;
+				component2.OnSelect = OnSelect_HunterCard;
+				component2.OnDeselect = OnDeSelect_HunterCard;
 				if (m == 0)
 				{
 					if (component2.HunterInfo.Stat.hunterLeaderSkill == 0)
@@ -224,14 +224,14 @@ public class DeckEdit : LobbyPopupBase
 		{
 			for (int n = 0; n < GameInfo.userData.huntersArenaUseInfo.Length; n++)
 			{
-				HunterCard component3 = MWPoolManager.Spawn("Hunter", "HunterCard_" + GameInfo.userData.huntersArenaUseInfo[n].hunterIdx, trUseHunterContent).GetComponent<HunterCard>();
-				component3.Init(HUNTERCARD_TYPE.DECK, GameDataManager.GetHunterInfo(GameInfo.userData.huntersArenaUseInfo[n].hunterIdx, GameInfo.userData.huntersArenaUseInfo[n].hunterLevel, GameInfo.userData.huntersArenaUseInfo[n].hunterTier), _isOwn: true, _isArena: true);
-				component3.HunterIdx = n;
-				component3.IsUseHunter = true;
+				HeroCard component3 = MWPoolManager.Spawn("Hunter", "HunterCard_" + GameInfo.userData.huntersArenaUseInfo[n].hunterIdx, trUseHunterContent).GetComponent<HeroCard>();
+				component3.Construct(HerocardType.Deck, GameDataManager.GetHunterInfo(GameInfo.userData.huntersArenaUseInfo[n].hunterIdx, GameInfo.userData.huntersArenaUseInfo[n].hunterLevel, GameInfo.userData.huntersArenaUseInfo[n].hunterTier), _isOwn: true, _isArena: true);
+				component3.HeroIdx = n;
+				component3.IsUseHero = true;
 				component3.transform.localPosition = Vector3.zero;
 				component3.transform.localScale = Vector3.one;
-				component3.Select_HunterCard = OnSelect_HunterCard;
-				component3.DeSelect_HunterCard = OnDeSelect_HunterCard;
+				component3.OnSelect = OnSelect_HunterCard;
+				component3.OnDeselect = OnDeSelect_HunterCard;
 				if (n == 0)
 				{
 					if (component3.HunterInfo.Stat.hunterLeaderSkill == 0)
@@ -272,7 +272,7 @@ public class DeckEdit : LobbyPopupBase
 	private int CheckArenaBuff(HunterInfo _hunterinfo)
 	{
 		int num = 1;
-		if (hunterListType != HUNTERLIST_TYPE.NORMAL)
+		if (hunterListType != HanterListType.Normal)
 		{
 			if (GameInfo.inGamePlayData.arenaInfo == null)
 			{
@@ -303,7 +303,7 @@ public class DeckEdit : LobbyPopupBase
 		totalRecovery_after = 0;
 		for (int i = 0; i < trUseHunterContent.childCount; i++)
 		{
-			HunterInfo hunterInfo = trUseHunterContent.GetChild(i).GetComponent<HunterCard>().HunterInfo;
+			HunterInfo hunterInfo = trUseHunterContent.GetChild(i).GetComponent<HeroCard>().HunterInfo;
 			if (_isInit)
 			{
 				totalHealth_current += (int)GameUtil.GetHunterReinForceHP(hunterInfo.Stat.hunterHp, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx));
@@ -380,7 +380,7 @@ public class DeckEdit : LobbyPopupBase
 		return _stat.ToString();
 	}
 
-	private void OnSelect_HunterCard(HunterCard _hunterCard)
+	private void OnSelect_HunterCard(HeroCard _hunterCard)
 	{
 		if (LobbyManager.OpenDeckEdit != null)
 		{
@@ -407,22 +407,22 @@ public class DeckEdit : LobbyPopupBase
 		{
 			return;
 		}
-		if (SelectHunter_1.IsUseHunter && SelectHunter_2.IsUseHunter)
+		if (SelectHunter_1.IsUseHero && SelectHunter_2.IsUseHero)
 		{
 			SwapCard_UsetoUse();
 		}
-		else if (!SelectHunter_1.IsUseHunter && !SelectHunter_2.IsUseHunter)
+		else if (!SelectHunter_1.IsUseHero && !SelectHunter_2.IsUseHero)
 		{
 			if (flag)
 			{
 				UnityEngine.Debug.Log("Cancel Card 11");
-				SelectHunter_2.SelectCard_Cancel();
+				SelectHunter_2.CancelSelection();
 				SelectHunter_2 = null;
 			}
 			else
 			{
 				UnityEngine.Debug.Log("Cancel Card 22");
-				SelectHunter_1.SelectCard_Cancel();
+				SelectHunter_1.CancelSelection();
 				SelectHunter_1 = null;
 			}
 		}
@@ -432,7 +432,7 @@ public class DeckEdit : LobbyPopupBase
 		}
 	}
 
-	private void OnDeSelect_HunterCard(HunterCard _hunterCard)
+	private void OnDeSelect_HunterCard(HeroCard _hunterCard)
 	{
 		if (SelectHunter_1 != null && SelectHunter_1.GetInstanceID() == _hunterCard.GetInstanceID())
 		{
@@ -451,13 +451,13 @@ public class DeckEdit : LobbyPopupBase
 	private void SwapCard_OwntoUse()
 	{
 		UnityEngine.Debug.Log("JY ------------------------ SwapCard_OwntoUse()");
-		if (SelectHunter_1.IsUseHunter)
+		if (SelectHunter_1.IsUseHero)
 		{
-			GameDataManager.SwitchHunterFromOwnToUse(SelectHunter_2.HunterIdx, SelectHunter_1.HunterIdx, hunterListType);
+			GameDataManager.SwitchHunterFromOwnToUse(SelectHunter_2.HeroIdx, SelectHunter_1.HeroIdx, hunterListType);
 		}
 		else
 		{
-			GameDataManager.SwitchHunterFromOwnToUse(SelectHunter_1.HunterIdx, SelectHunter_2.HunterIdx, hunterListType);
+			GameDataManager.SwitchHunterFromOwnToUse(SelectHunter_1.HeroIdx, SelectHunter_2.HeroIdx, hunterListType);
 		}
 		SwapCard_Complete(_isUseToUse: false);
 		SetTotalHunterStat(_isInit: false);
@@ -466,7 +466,7 @@ public class DeckEdit : LobbyPopupBase
 	private void SwapCard_UsetoUse()
 	{
 		UnityEngine.Debug.Log("JY ------------------------ SwapCard_UsetoUse()");
-		GameDataManager.SwitchHunterFromUseToUse(SelectHunter_1.HunterIdx, SelectHunter_2.HunterIdx, hunterListType);
+		GameDataManager.SwitchHunterFromUseToUse(SelectHunter_1.HeroIdx, SelectHunter_2.HeroIdx, hunterListType);
 		SwapCard_Complete(_isUseToUse: true);
 		SetTotalHunterStat(_isInit: false);
 	}
@@ -479,38 +479,38 @@ public class DeckEdit : LobbyPopupBase
 		{
 			SelectHunter_1.transform.SetSiblingIndex(siblingIndex2);
 			SelectHunter_2.transform.SetSiblingIndex(siblingIndex);
-			SelectHunter_1.HunterIdx = siblingIndex2;
-			SelectHunter_2.HunterIdx = siblingIndex;
+			SelectHunter_1.HeroIdx = siblingIndex2;
+			SelectHunter_2.HeroIdx = siblingIndex;
 		}
 		else
 		{
-			if (SelectHunter_1.IsUseHunter)
+			if (SelectHunter_1.IsUseHero)
 			{
 				SelectHunter_1.transform.SetParent(trOwnHunterContent);
 				SelectHunter_1.transform.SetSiblingIndex(siblingIndex2);
-				SelectHunter_1.HunterIdx = siblingIndex2;
+				SelectHunter_1.HeroIdx = siblingIndex2;
 			}
 			else
 			{
 				SelectHunter_1.transform.SetParent(trUseHunterContent);
 				SelectHunter_1.transform.SetSiblingIndex(siblingIndex2);
-				SelectHunter_1.HunterIdx = siblingIndex2;
+				SelectHunter_1.HeroIdx = siblingIndex2;
 			}
-			if (SelectHunter_2.IsUseHunter)
+			if (SelectHunter_2.IsUseHero)
 			{
 				SelectHunter_2.transform.SetParent(trOwnHunterContent);
 				SelectHunter_2.transform.SetSiblingIndex(siblingIndex);
-				SelectHunter_2.HunterIdx = siblingIndex;
+				SelectHunter_2.HeroIdx = siblingIndex;
 			}
 			else
 			{
 				SelectHunter_2.transform.SetParent(trUseHunterContent);
 				SelectHunter_2.transform.SetSiblingIndex(siblingIndex);
-				SelectHunter_2.HunterIdx = siblingIndex;
+				SelectHunter_2.HeroIdx = siblingIndex;
 			}
 		}
-		SelectHunter_1.ChangedUseStatus(_isUseToUse);
-		SelectHunter_2.ChangedUseStatus(_isUseToUse);
+		SelectHunter_1.ChangeStatus(_isUseToUse);
+		SelectHunter_2.ChangeStatus(_isUseToUse);
 		huntercardSelect.gameObject.SetActive(value: false);
 		huntercardChange1 = MWPoolManager.Spawn("Effect", "FX_cha_select_02", SelectHunter_1.transform, 1f);
 		huntercardChange1.localPosition = Vector3.zero;
@@ -519,7 +519,7 @@ public class DeckEdit : LobbyPopupBase
 		SoundController.EffectSound_Play(EffectSoundType.HunterSwitching);
 		SelectHunter_1 = null;
 		SelectHunter_2 = null;
-		if (hunterListType == HUNTERLIST_TYPE.NORMAL)
+		if (hunterListType == HanterListType.Normal)
 		{
 			if (GameDataManager.GetHunterInfo(GameInfo.userData.huntersUseInfo[0].hunterIdx, GameInfo.userData.huntersUseInfo[0].hunterLevel, GameInfo.userData.huntersUseInfo[0].hunterTier).Stat.hunterLeaderSkill == 0)
 			{
@@ -542,7 +542,7 @@ public class DeckEdit : LobbyPopupBase
 
 	private int[] UseHunterArray()
 	{
-		if (hunterListType == HUNTERLIST_TYPE.NORMAL)
+		if (hunterListType == HanterListType.Normal)
 		{
 			int[] array = new int[GameInfo.userData.huntersUseInfo.Length];
 			for (int i = 0; i < GameInfo.userData.huntersUseInfo.Length; i++)
@@ -580,7 +580,7 @@ public class DeckEdit : LobbyPopupBase
 
 	public void OnClickCancel()
 	{
-		if (hunterListType == HUNTERLIST_TYPE.NORMAL)
+		if (hunterListType == HanterListType.Normal)
 		{
 			GameInfo.userData.huntersUseInfo = origin_UseHunterData;
 		}

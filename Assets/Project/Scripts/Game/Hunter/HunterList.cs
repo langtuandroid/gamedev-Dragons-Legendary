@@ -95,8 +95,8 @@ public class HunterList : LobbyPopupBase
 
 	public override void HideProcessComplete()
 	{
-		HunterCard[] componentsInChildren = trHunterContent.GetComponentsInChildren<HunterCard>();
-		foreach (HunterCard hunterCard in componentsInChildren)
+		HeroCard[] componentsInChildren = trHunterContent.GetComponentsInChildren<HeroCard>();
+		foreach (HeroCard hunterCard in componentsInChildren)
 		{
 			MWPoolManager.DeSpawn("Hunter", hunterCard.transform);
 		}
@@ -122,8 +122,8 @@ public class HunterList : LobbyPopupBase
 			HunterListSorting_Element();
 			break;
 		}
-		HunterCard[] componentsInChildren = trHunterContent.GetComponentsInChildren<HunterCard>();
-		foreach (HunterCard hunterCard in componentsInChildren)
+		HeroCard[] componentsInChildren = trHunterContent.GetComponentsInChildren<HeroCard>();
+		foreach (HeroCard hunterCard in componentsInChildren)
 		{
 			MWPoolManager.DeSpawn("Hunter", hunterCard.transform);
 		}
@@ -257,7 +257,7 @@ public class HunterList : LobbyPopupBase
 	private void Init()
 	{
 		GameUtil.SetUseHunterList();
-		GameUtil.SetOwnHunterList(HUNTERLIST_TYPE.NORMAL);
+		GameUtil.SetOwnHunterList(HanterListType.Normal);
 		if (Hunter_Own_List != null)
 		{
 			Hunter_Own_List.Clear();
@@ -281,17 +281,17 @@ public class HunterList : LobbyPopupBase
 
 	private void RefreshHunterUseCard()
 	{
-		HunterCard[] componentsInChildren = trMyDeckHunterCardParent.GetComponentsInChildren<HunterCard>();
-		foreach (HunterCard hunterCard in componentsInChildren)
+		HeroCard[] componentsInChildren = trMyDeckHunterCardParent.GetComponentsInChildren<HeroCard>();
+		foreach (HeroCard hunterCard in componentsInChildren)
 		{
 			MWPoolManager.DeSpawn("Hunter", hunterCard.transform);
 		}
 		for (int j = 0; j < GameInfo.userData.huntersUseInfo.Length; j++)
 		{
-			HunterCard component = MWPoolManager.Spawn("Hunter", "HunterCard_" + GameInfo.userData.huntersUseInfo[j].hunterIdx, trMyDeckHunterCardParent).GetComponent<HunterCard>();
-			component.Init(HUNTERCARD_TYPE.LEVELPLAY, GameDataManager.GetHunterInfo(GameInfo.userData.huntersUseInfo[j].hunterIdx, GameInfo.userData.huntersUseInfo[j].hunterLevel, GameInfo.userData.huntersUseInfo[j].hunterTier), _isOwn: true, _isArena: false);
-			component.HunterIdx = j;
-			component.IsUseHunter = true;
+			HeroCard component = MWPoolManager.Spawn("Hunter", "HunterCard_" + GameInfo.userData.huntersUseInfo[j].hunterIdx, trMyDeckHunterCardParent).GetComponent<HeroCard>();
+			component.Construct(HerocardType.Levelplay, GameDataManager.GetHunterInfo(GameInfo.userData.huntersUseInfo[j].hunterIdx, GameInfo.userData.huntersUseInfo[j].hunterLevel, GameInfo.userData.huntersUseInfo[j].hunterTier), _isOwn: true, _isArena: false);
+			component.HeroIdx = j;
+			component.IsUseHero = true;
 			component.transform.localPosition = Vector3.zero;
 			component.transform.localScale = Vector3.one;
 			if (j == 0)
@@ -315,7 +315,7 @@ public class HunterList : LobbyPopupBase
 		totalRecovery_current = 0;
 		for (int i = 0; i < trMyDeckHunterCardParent.childCount; i++)
 		{
-			HunterInfo hunterInfo = trMyDeckHunterCardParent.GetChild(i).GetComponent<HunterCard>().HunterInfo;
+			HunterInfo hunterInfo = trMyDeckHunterCardParent.GetChild(i).GetComponent<HeroCard>().HunterInfo;
 			totalHealth_current += (int)GameUtil.GetHunterReinForceHP(hunterInfo.Stat.hunterHp, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx));
 			totalAttack_current += (int)GameUtil.GetHunterReinForceAttack(hunterInfo.Stat.hunterAttack, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx));
 			totalRecovery_current += (int)GameUtil.GetHunterReinForceHeal(hunterInfo.Stat.hunterRecovery, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx));
@@ -444,9 +444,9 @@ public class HunterList : LobbyPopupBase
 	{
 		for (int i = 0; i < Hunter_Own_List.Count; i++)
 		{
-			HunterCard component = MWPoolManager.Spawn("Hunter", "HunterCard_" + Hunter_Own_List[i].Stat.hunterIdx, trHunterContent).GetComponent<HunterCard>();
-			component.Init(HUNTERCARD_TYPE.HUNTERLIST, GameDataManager.GetHunterInfo(Hunter_Own_List[i].Stat.hunterIdx, Hunter_Own_List[i].Stat.hunterLevel, Hunter_Own_List[i].Stat.hunterTier), _isOwn: true, _isArena: false);
-			component.HunterIdx = i;
+			HeroCard component = MWPoolManager.Spawn("Hunter", "HunterCard_" + Hunter_Own_List[i].Stat.hunterIdx, trHunterContent).GetComponent<HeroCard>();
+			component.Construct(HerocardType.Hunterlist, GameDataManager.GetHunterInfo(Hunter_Own_List[i].Stat.hunterIdx, Hunter_Own_List[i].Stat.hunterLevel, Hunter_Own_List[i].Stat.hunterTier), _isOwn: true, _isArena: false);
+			component.HeroIdx = i;
 			component.transform.localPosition = Vector3.zero;
 			component.transform.localScale = Vector3.one;
 			if (Hunter_Own_List[i].Stat.hunterIdx == 20001)
@@ -456,9 +456,9 @@ public class HunterList : LobbyPopupBase
 		}
 		for (int j = 0; j < Hunter_NotOwn_List.Count; j++)
 		{
-			HunterCard component2 = MWPoolManager.Spawn("Hunter", "HunterCard_" + Hunter_NotOwn_List[j].Stat.hunterIdx, trHunterContent).GetComponent<HunterCard>();
-			component2.Init(HUNTERCARD_TYPE.HUNTERLIST, GameDataManager.GetHunterInfo(Hunter_NotOwn_List[j].Stat.hunterIdx, Hunter_NotOwn_List[j].Hunter.maxTier * 20, Hunter_NotOwn_List[j].Hunter.maxTier), _isOwn: false, _isArena: false);
-			component2.HunterIdx = j;
+			HeroCard component2 = MWPoolManager.Spawn("Hunter", "HunterCard_" + Hunter_NotOwn_List[j].Stat.hunterIdx, trHunterContent).GetComponent<HeroCard>();
+			component2.Construct(HerocardType.Hunterlist, GameDataManager.GetHunterInfo(Hunter_NotOwn_List[j].Stat.hunterIdx, Hunter_NotOwn_List[j].Hunter.maxTier * 20, Hunter_NotOwn_List[j].Hunter.maxTier), _isOwn: false, _isArena: false);
+			component2.HeroIdx = j;
 			component2.transform.localPosition = Vector3.zero;
 			component2.transform.localScale = Vector3.one;
 		}

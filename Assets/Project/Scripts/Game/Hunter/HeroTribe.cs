@@ -1,4 +1,4 @@
-public enum HUNTER_TRIBE
+public enum HeroTribe
 {
 	TANKER = 1,
 	MELEE,

@@ -123,7 +123,7 @@ public class TutorialHunterLevelUp : MonoBehaviour
 		trCopyCell.position = LobbyManager.GetHunter.position;
 		trCopyCell.localScale = Vector3.one;
 		trCopyCell.GetComponent<Image>().SetNativeSize();
-		trCopyCell.GetComponent<HunterCard>().HunterInfo = LobbyManager.GetHunter.GetComponent<HunterCard>().HunterInfo;
+		trCopyCell.GetComponent<HeroCard>().HunterInfo = LobbyManager.GetHunter.GetComponent<HeroCard>().HunterInfo;
 		TutorialManager.ShowHand(trCopyCell, Vector3.zero);
 		LobbyManager.OpenHunterList = null;
 	}
@@ -175,7 +175,7 @@ public class TutorialHunterLevelUp : MonoBehaviour
 			RequiredItem.GetChild(1).GetChild(0).GetChild(1)
 				.GetComponent<Text>()
 				.text = "<color=#ffffff>1</color>/" + 1;
-				LobbyManager.GetHunterLevel.GetComponent<HunterLevel>().SetForceLevelupCondition();
+				LobbyManager.GetHunterLevel.GetComponent<HeroLevel>().LevelUpCondition();
 			}
 
 			private void OpenHunterLevelUp()

@@ -7,7 +7,7 @@ public class ChestResultItem : MonoBehaviour
 	private ChestListDbData chestListDbData;
 
 	[SerializeField]
-	private HunterCard hunterCard;
+	private HeroCard hunterCard;
 
 	[SerializeField]
 	private Transform itemCard;
@@ -42,9 +42,9 @@ public class ChestResultItem : MonoBehaviour
 		}
 		if (_data.chestHunter > 0 && _data.chestItem == 0)
 		{
-			hunterCard = MWPoolManager.Spawn("Hunter", "HunterCard_" + _data.chestHunter, base.transform).GetComponent<HunterCard>();
-			hunterCard.Init(HUNTERCARD_TYPE.CHESTOPEN, GameDataManager.GetHunterInfo(_data.chestHunter, _data.hunterLevel, _data.hunterTier), _isOwn: true, _isArena: false);
-			hunterCard.HunterIdx = 0;
+			hunterCard = MWPoolManager.Spawn("Hunter", "HunterCard_" + _data.chestHunter, base.transform).GetComponent<HeroCard>();
+			hunterCard.Construct(HerocardType.Chestopen, GameDataManager.GetHunterInfo(_data.chestHunter, _data.hunterLevel, _data.hunterTier), _isOwn: true, _isArena: false);
+			hunterCard.HeroIdx = 0;
 			hunterCard.transform.localPosition = Vector3.zero;
 			hunterCard.transform.localScale = size;
 			hunterCard.transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(100f, -80f);

@@ -159,7 +159,7 @@ public class TutorialHunterEnchant : MonoBehaviour
 		trCopyCell.position = LobbyManager.GetHunter.position;
 		trCopyCell.localScale = Vector3.one;
 		trCopyCell.GetComponent<Image>().SetNativeSize();
-		trCopyCell.GetComponent<HunterCard>().HunterInfo = LobbyManager.GetHunter.GetComponent<HunterCard>().HunterInfo;
+		trCopyCell.GetComponent<HeroCard>().HunterInfo = LobbyManager.GetHunter.GetComponent<HeroCard>().HunterInfo;
 		TutorialManager.ShowHand(trCopyCell, Vector3.zero);
 		LobbyManager.OpenChestOpenEnchant = null;
 		LobbyManager.OpenChestOpenEnchant = OpenChestOpenHunterView;

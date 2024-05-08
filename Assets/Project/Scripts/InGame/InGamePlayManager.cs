@@ -158,7 +158,7 @@ public class InGamePlayManager : GameObjectSingleton<InGamePlayManager>
 		return GameObjectSingleton<InGamePlayManager>.Inst.battleController.HunterHP();
 	}
 
-	public static HunterLeaderSkill GetHunterLeaderSkill()
+	public static HeroLeaderSkill GetHunterLeaderSkill()
 	{
 		if (GameObjectSingleton<InGamePlayManager>.Inst.battleController.HunterLeaderSkillNullCheck())
 		{

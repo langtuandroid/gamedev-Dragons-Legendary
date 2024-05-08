@@ -518,7 +518,7 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 		GameObjectSingleton<Protocol_Set>.Inst.CallforByBestHTTP(dictionary, GameObjectSingleton<Protocol_Set>.Inst.Protocol_chest_req_reward_Res, isLoading: false);
 	}
 
-	public static void Protocol_hunter_change_Req(int[] _useHunter, HUNTERLIST_TYPE _listType, Action _onCallBack)
+	public static void Protocol_hunter_change_Req(int[] _useHunter, HanterListType _listType, Action _onCallBack)
 	{
 		if (_onCallBack != null)
 		{

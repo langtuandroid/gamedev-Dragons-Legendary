@@ -177,7 +177,7 @@ public class InGameUIController : MonoBehaviour
 
 	private Dictionary<int, ComboMultiply> dicComboMultiply = new Dictionary<int, ComboMultiply>();
 
-	private Dictionary<int, HunterAttackUI> dicHunterAttackUI = new Dictionary<int, HunterAttackUI>();
+	private Dictionary<int, HeroAttackUI> dicHunterAttackUI = new Dictionary<int, HeroAttackUI>();
 
 	private Coroutine coroutineMatchTimer;
 
@@ -347,7 +347,7 @@ public class InGameUIController : MonoBehaviour
 		UnityEngine.Debug.Log("************ userCurrentHp = " + userCurrentHp);
 		if (userCurrentHp <= 0f && InGamePlayManager.GetHunterLeaderSkill() != null)
 		{
-			InGamePlayManager.GetHunterLeaderSkill().CheckLeaderSkillHP1Setting(prevHp);
+			InGamePlayManager.GetHunterLeaderSkill().CheckLeaderSkillHp1(prevHp);
 		}
 		InGamePlayManager.ShakeCamera();
 		RefreshUserHp();
@@ -418,7 +418,7 @@ public class InGameUIController : MonoBehaviour
 	{
 		if (!dicHunterAttackUI.ContainsKey(hunterIdx))
 		{
-			HunterAttackUI component = MWPoolManager.Spawn("Effect", "Text_HunterAttackDamage", trEffectAnchor).GetComponent<HunterAttackUI>();
+			HeroAttackUI component = MWPoolManager.Spawn("Effect", "Text_HunterAttackDamage", trEffectAnchor).GetComponent<HeroAttackUI>();
 			dicHunterAttackUI.Add(hunterIdx, component);
 		}
 		dicHunterAttackUI[hunterIdx].ShowAttack(attack, hunterColor, position);

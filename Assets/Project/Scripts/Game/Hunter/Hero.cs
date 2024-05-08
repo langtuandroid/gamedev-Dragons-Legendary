@@ -1,277 +1,240 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class Hero : Hunter_Base
+public class Hero : HeroBase
 {
 	private Action<int, int> OnHanterAttack;
 	private Action<int> OnComboEffect;
-	private Action OnCallback_Skill_End;
+	private Action OnSkill;
+	private Action OnAttack;
 
-	private Action OnCallback_CharacterAttack_End;
+	[FormerlySerializedAs("hunter_Tier_tr")] [SerializeField]
+	private Transform _hanterTier;
 
-	[SerializeField]
-	private Transform hunter_Tier_tr;
+	[FormerlySerializedAs("hunterCharacter")] [SerializeField]
+	private HeroCharacter _heroCharacter;
+	
+	[FormerlySerializedAs("hunter_type")] [SerializeField]
+	private HeroType _heroType;
 
-	[SerializeField]
-	private HunterCharacter hunterCharacter;
+	[FormerlySerializedAs("hunter_tribe")] [SerializeField]
+	private HeroTribe _heroTribe;
+	
+	[FormerlySerializedAs("hunter_Skill_Ready_Eff")] [SerializeField]
+	private GameObject _heroSkillReadyEff;
+	
+	[FormerlySerializedAs("hunter_Skill_Gauge_Sprite")] [SerializeField]
+	private Transform _heroSkillGaugeSprite;
+	
+	[FormerlySerializedAs("arenaBuffTextAnchor")] [SerializeField]
+	private Transform _arenaBuffTextAnchor;
 
-	[SerializeField]
-	private HunterInfo hunter_Info;
+	[FormerlySerializedAs("hunterFace")] [SerializeField]
+	private Transform _heroFace;
+	
+	private HunterInfo _heroInfo;
+	private int _heroIndex;
+	private int _heroBlockCount;
+	private int _heroTotalDamage;
+	private int _hunterSkillGaugeValue;
+	private bool _isHunterSkillAvailable;
+	private int _hunterSkillGaugeFullValue;
+	private bool _isHunterStun;
+	private int _isHunterStunClearCount;
+	private float _userBonusAttack;
+	private int _damageDummyConstX = 1;
+	private float _damageDummyCombo = 0.1f;
+	private Transform _stunEff;
+	private HeroLeaderSkill _hunterLeaderSkill;
+	private HeroState _hunterState;
+	private Monster _attackMonster;
+	private int _attackDamage;
 
-	[SerializeField]
-	private HUNTER_TYPE hunter_type;
+	public HunterInfo HeroInfo => _heroInfo;
 
-	[SerializeField]
-	private HUNTER_TRIBE hunter_tribe;
+	public HeroState HunterState => _hunterState;
 
-	[SerializeField]
-	private int hunter_Arr_Idx;
+	public HeroType HeroType => _heroType;
 
-	[SerializeField]
-	private int hunter_Block_Count;
+	public int HeroArrIdx => _heroIndex;
 
-	[SerializeField]
-	private int hunter_Total_Damage;
+	public int HeroTotalDamage => _heroTotalDamage;
 
-	[SerializeField]
-	private Transform hunter_Skill_Gauge_Sprite;
+	public bool IsHeroSkillAvailable => _isHunterSkillAvailable;
 
-	[SerializeField]
-	private int hunter_Skill_Gauge_Value;
+	public bool IsHunterStun => _isHunterStun;
 
-	[SerializeField]
-	private bool isHunter_Skill_Available;
+	public HeroCharacter HunterCharacter => _heroCharacter;
 
-	[SerializeField]
-	private bool isHunterStun;
-
-	[SerializeField]
-	private int isHunterStunClearCount;
-
-	[SerializeField]
-	private int hunter_Skill_Gauge_Full_Value;
-
-	[SerializeField]
-	private GameObject hunter_Skill_Ready_Eff;
-
-	[SerializeField]
-	private float user_Bonus_Attack;
-
-	[SerializeField]
-	private int Damage_Dummy_constX = 1;
-
-	[SerializeField]
-	private float Damage_Dummy_Combo = 0.1f;
-
-	[SerializeField]
-	private Transform stunEff;
-
-	[SerializeField]
-	private HunterLeaderSkill hunterLeaderSkill;
-
-	[SerializeField]
-	private Transform arenaBuffTextAnchor;
-
-	[SerializeField]
-	private Transform hunterFace;
-
-	private HUNTER_STATE hunterState;
-
-	private Monster attackMonster;
-
-	private int attackDamage;
-
-	public HunterInfo HunterInfo => hunter_Info;
-
-	public HUNTER_STATE HunterState => hunterState;
-
-	public HUNTER_TYPE HunterType => hunter_type;
-
-	public HUNTER_TRIBE HunterTribe => hunter_tribe;
-
-	public int Hunter_Arr_Idx => hunter_Arr_Idx;
-
-	public int Hunter_Total_Damage => hunter_Total_Damage;
-
-	public int Hunter_Block_Count => hunter_Block_Count;
-
-	public bool IsHunter_Skill_Available => isHunter_Skill_Available;
-
-	public bool IsHunterStun => isHunterStun;
-
-	public HunterCharacter HunterCharacter => hunterCharacter;
-
-	public void Init(int _hunter_arr_idx, HunterCharacter _hunterChacter, HunterLeaderSkill _hunterLeaderSkill, HunterInfo _hunter_Info = null)
+	public void Construct(int _hunter_arr_idx, HeroCharacter _hunterChacter, HeroLeaderSkill _hunterLeaderSkill, HunterInfo _hunter_Info = null)
 	{
-		if (hunter_Info != null)
+		if (_heroInfo != null)
 		{
-			hunter_Info = null;
-			hunter_Info = new HunterInfo();
+			_heroInfo = null;
+			_heroInfo = new HunterInfo();
 		}
-		for (int i = 0; i < hunter_Tier_tr.childCount; i++)
+		for (int i = 0; i < _hanterTier.childCount; i++)
 		{
-			hunter_Tier_tr.GetChild(i).gameObject.SetActive(value: false);
+			_hanterTier.GetChild(i).gameObject.SetActive(value: false);
 		}
-		if (stunEff != null)
+		if (_stunEff != null)
 		{
 			UnityEngine.Debug.Log("Return Stun !");
-			MWPoolManager.DeSpawn("Effect", stunEff);
-			stunEff = null;
+			MWPoolManager.DeSpawn("Effect", _stunEff);
+			_stunEff = null;
 		}
 		OnHanterAttack = null;
 		OnComboEffect = null;
-		OnCallback_Skill_End = null;
-		hunter_Block_Count = 0;
-		hunter_Total_Damage = 0;
-		hunter_Skill_Gauge_Sprite.localScale = SetVector3Scale("x", hunter_Skill_Gauge_Sprite, 0f);
-		hunter_Skill_Gauge_Value = 0;
-		isHunterStun = false;
-		isHunterStunClearCount = 0;
-		isHunter_Skill_Available = false;
-		hunter_Arr_Idx = _hunter_arr_idx;
-		hunter_Skill_Ready_Eff.SetActive(value: false);
-		user_Bonus_Attack = GameDataManager.GetUserLevelData(GameInfo.userData.userInfo.level).attackBonusAll + 1f;
+		OnSkill = null;
+		_heroBlockCount = 0;
+		_heroTotalDamage = 0;
+		_heroSkillGaugeSprite.localScale = SetScale("x", _heroSkillGaugeSprite, 0f);
+		_hunterSkillGaugeValue = 0;
+		_isHunterStun = false;
+		_isHunterStunClearCount = 0;
+		_isHunterSkillAvailable = false;
+		_heroIndex = _hunter_arr_idx;
+		_heroSkillReadyEff.SetActive(value: false);
+		_userBonusAttack = GameDataManager.GetUserLevelData(GameInfo.userData.userInfo.level).attackBonusAll + 1f;
 		if (_hunter_Info != null)
 		{
-			hunter_Info = _hunter_Info;
-			hunter_type = (HUNTER_TYPE)_hunter_Info.Hunter.color;
-			hunter_tribe = (HUNTER_TRIBE)_hunter_Info.Hunter.hunterTribe;
-			hunter_Skill_Gauge_Full_Value = hunter_Info.Skill.skillGauge;
+			_heroInfo = _hunter_Info;
+			_heroType = (HeroType)_hunter_Info.Hunter.color;
+			_heroTribe = (HeroTribe)_hunter_Info.Hunter.hunterTribe;
+			_hunterSkillGaugeFullValue = _heroInfo.Skill.skillGauge;
 		}
-		hunterCharacter = _hunterChacter;
-		hunterLeaderSkill = _hunterLeaderSkill;
-		hunterCharacter.Init(this);
-		SetHunterFace();
-		hunter_Tier_tr.GetChild(hunter_Info.Stat.hunterTier - 1).gameObject.SetActive(value: true);
+		_heroCharacter = _hunterChacter;
+		this._hunterLeaderSkill = _hunterLeaderSkill;
+		_heroCharacter.Construct(this);
+		ChangeHeroFave();
+		_hanterTier.GetChild(_heroInfo.Stat.hunterTier - 1).gameObject.SetActive(value: true);
 	}
 
-	public void SetHunterState(HUNTER_STATE _state)
+	public void ChangeState(HeroState _state)
 	{
 		switch (_state)
 		{
-		case HUNTER_STATE.ATTACK:
-			hunterState = HUNTER_STATE.ATTACK;
+		case HeroState.attack:
+			_hunterState = HeroState.attack;
 			break;
-		case HUNTER_STATE.IDLE:
-			hunterState = HUNTER_STATE.IDLE;
+		case HeroState.idle:
+			_hunterState = HeroState.idle;
 			break;
 		}
 	}
 
-	public void SetCharacterAttackAnim(Anim_Type _type, Monster _monster, int _damage, Action _onCallBack)
+	public void SetAnimation(Anim_Type _type, Monster _monster, int _damage, Action _onCallBack)
 	{
 		if (!(_monster == null))
 		{
 			UnityEngine.Debug.Log("** 11");
-			SetHunterState(HUNTER_STATE.ATTACK);
-			hunterCharacter.SetTweenMonster(_monster);
-			attackMonster = _monster;
-			attackDamage = _damage;
-			OnCallback_CharacterAttack_End = _onCallBack;
+			ChangeState(HeroState.attack);
+			_heroCharacter.SetTweeenMonster(_monster);
+			_attackMonster = _monster;
+			_attackDamage = _damage;
+			OnAttack = _onCallBack;
 		}
 	}
 
-	public void SetCharacterSkillAnim(HunterSkillRange _range, Monster[] _monster, Action _OnCallback)
+	public void SetCharacterSkill(HunterSkillRange _range, Monster[] _monster, Action _OnCallback)
 	{
 		if (_monster != null)
 		{
-			hunterCharacter.SetTweenSkill(_monster[UnityEngine.Random.Range(0, _monster.Length)]);
+			_heroCharacter.SetTweenSkil(_monster[UnityEngine.Random.Range(0, _monster.Length)]);
 		}
-		StartCoroutine(Use_Hunter_Skill(_range, _monster, _OnCallback));
+		StartCoroutine(UseSkill(_range, _monster, _OnCallback));
 	}
 
 	public void SetMonsterHP_Gauge()
 	{
 		Transform transform = null;
 		transform = MWPoolManager.Spawn("Effect", "Fx_hit01", null, 1.5f);
-		transform.position = attackMonster.HitAnchor;
-		attackMonster.SetMonsterHP_Gauge(attackDamage);
-		GameUtil.Check_Property_Damage_UI(this, attackMonster, attackDamage);
+		transform.position = _attackMonster.HitAnchor;
+		_attackMonster.SetMonsterHP_Gauge(_attackDamage);
+		GameUtil.Check_Property_Damage_UI(this, _attackMonster, _attackDamage);
 	}
 
-	public void EndCharacterAttack()
+	public void AttackEnd()
 	{
-		UnityEngine.Debug.Log("** 22 = " + hunterState);
-		OnCallback_CharacterAttack_End();
+		UnityEngine.Debug.Log("** 22 = " + _hunterState);
+		OnAttack();
 	}
 
-	public void SetArenaBuff()
+	public void SetBuff()
 	{
 		UnityEngine.Debug.Log("SetArenaBuff !!");
-		InGamePlayManager.ShowBuffUI(arenaBuffTextAnchor.position, (BlockType)hunter_Info.Hunter.color, CheckArenaBuff(hunter_Info));
+		InGamePlayManager.ShowBuffUI(_arenaBuffTextAnchor.position, (BlockType)_heroInfo.Hunter.color, CheckArenaBuff(_heroInfo));
 	}
 
 	public void SetHunterInfo(HunterInfo _info)
 	{
-		hunter_Info = _info;
+		_heroInfo = _info;
 	}
 
-	public void Add_Attack_Start()
+	public void ResetDamage()
 	{
-		hunter_Block_Count = 0;
-		hunter_Total_Damage = 0;
+		_heroBlockCount = 0;
+		_heroTotalDamage = 0;
 	}
 
-	public void Add_Attack_Damage(int _blockCount)
+	public void AddDamage(int _blockCount)
 	{
-		hunter_Block_Count += _blockCount - 2;
-		hunter_Total_Damage = (int)((GameUtil.GetHunterReinForceAttack(hunter_Info.Stat.hunterAttack, GameDataManager.HasUserHunterEnchant(hunter_Info.Hunter.hunterIdx)) * (float)CheckArenaBuff(hunter_Info) + (float)hunter_Info.leaderSkillAttack) * user_Bonus_Attack * (float)hunter_Block_Count * (float)Damage_Dummy_constX);
-		InGamePlayManager.AddHunterAttack(hunter_Total_Damage, hunter_Info.Hunter.color, base.transform.position, hunter_Info.Hunter.hunterIdx);
+		_heroBlockCount += _blockCount - 2;
+		_heroTotalDamage = (int)((GameUtil.GetHunterReinForceAttack(_heroInfo.Stat.hunterAttack, GameDataManager.HasUserHunterEnchant(_heroInfo.Hunter.hunterIdx)) * (float)CheckArenaBuff(_heroInfo) + (float)_heroInfo.leaderSkillAttack) * _userBonusAttack * (float)_heroBlockCount * (float)_damageDummyConstX);
+		InGamePlayManager.AddHunterAttack(_heroTotalDamage, _heroInfo.Hunter.color, base.transform.position, _heroInfo.Hunter.hunterIdx);
 	}
 
-	public void Add_Attack_Combo(int _combo, int _color, int _lastAttackIdx, Action<int> _OnCallBack)
+	public void AddDamageCombo(int _combo, int _color, int _lastAttackIdx, Action<int> _OnCallBack)
 	{
-		StartCoroutine(Add_Combo_Effect(_combo, _color, _lastAttackIdx, _OnCallBack));
+		StartCoroutine(AddComboEffect(_combo, _color, _lastAttackIdx, _OnCallBack));
 	}
 
-	public void Add_Skill_Gauge(int _count)
+	public void AddGaugeSkill(int _count)
 	{
-		if (hunter_Skill_Gauge_Full_Value <= hunter_Skill_Gauge_Value)
+		if (_hunterSkillGaugeFullValue <= _hunterSkillGaugeValue)
 		{
-			hunter_Skill_Gauge_Value = hunter_Skill_Gauge_Full_Value;
-			if (!isHunter_Skill_Available)
+			_hunterSkillGaugeValue = _hunterSkillGaugeFullValue;
+			if (!_isHunterSkillAvailable)
 			{
-				isHunter_Skill_Available = true;
+				_isHunterSkillAvailable = true;
 			}
 			return;
 		}
-		hunter_Skill_Gauge_Value += _count;
-		if (hunter_Skill_Gauge_Value >= hunter_Skill_Gauge_Full_Value)
+		_hunterSkillGaugeValue += _count;
+		if (_hunterSkillGaugeValue >= _hunterSkillGaugeFullValue)
 		{
-			hunter_Skill_Gauge_Value = hunter_Skill_Gauge_Full_Value;
-			if (!isHunter_Skill_Available)
+			_hunterSkillGaugeValue = _hunterSkillGaugeFullValue;
+			if (!_isHunterSkillAvailable)
 			{
-				isHunter_Skill_Available = true;
+				_isHunterSkillAvailable = true;
 			}
 		}
-		hunter_Skill_Gauge_Sprite.localScale = SetVector3Scale("x", hunter_Skill_Gauge_Sprite, (float)hunter_Skill_Gauge_Value * (1f / (float)hunter_Skill_Gauge_Full_Value));
+		_heroSkillGaugeSprite.localScale = SetScale("x", _heroSkillGaugeSprite, (float)_hunterSkillGaugeValue * (1f / (float)_hunterSkillGaugeFullValue));
 	}
 
-	public void SetHunterSkillFullValue()
+	public void SetHeroValue()
 	{
-		Add_Skill_Gauge(hunter_Skill_Gauge_Full_Value);
+		AddGaugeSkill(_hunterSkillGaugeFullValue);
 	}
+	
 
-	public void Add_Attack_End()
-	{
-	}
-
-	public void Attack_Start(Action<int, int> _OnCallback)
+	public void StartAttack(Action<int, int> _OnCallback)
 	{
 		OnHanterAttack = _OnCallback;
-		OnHanterAttack(hunter_Total_Damage, hunter_Arr_Idx);
+		OnHanterAttack(_heroTotalDamage, _heroIndex);
 		OnHanterAttack = null;
 	}
 
-	public IEnumerator Use_Hunter_Skill(HunterSkillRange _range, Monster[] _monster, Action _OnCallback)
+	public IEnumerator UseSkill(HunterSkillRange _range, Monster[] _monster, Action _OnCallback)
 	{
-		if (hunter_Info.Skill.motionType == 1)
+		if (_heroInfo.Skill.motionType == 1)
 		{
 			yield return new WaitForSeconds(0.2f / GameInfo.inGameBattleSpeedRate);
 		}
 		Transform skillEff = null;
-		switch (hunter_Info.Hunter.color)
+		switch (_heroInfo.Hunter.color)
 		{
 		case 0:
 			skillEff = MWPoolManager.Spawn("Skill", "FX_Blue_skill", null, 1f);
@@ -289,30 +252,30 @@ public class Hero : Hunter_Base
 			skillEff = MWPoolManager.Spawn("Skill", "FX_Purple_skill", null, 1f);
 			break;
 		}
-		SoundController.HunterSkillCutPlay(hunter_Info.Hunter.hunterIdx);
+		SoundController.HunterSkillCutPlay(_heroInfo.Hunter.hunterIdx);
 		skillEff.localScale = Vector3.one;
 		skillEff.position = Vector3.zero;
-		skillEff.GetComponent<HunterSkillEffect>().Init(this);
+		skillEff.GetComponent<HeroSkillEffect>().Construct(this);
 		yield return new WaitForSeconds(1f);
-		OnCallback_Skill_End = _OnCallback;
-		hunter_Skill_Gauge_Value = 0;
-		hunter_Skill_Gauge_Sprite.localScale = SetVector3Scale("x", hunter_Skill_Gauge_Sprite, (float)hunter_Skill_Gauge_Value * (1f / (float)hunter_Skill_Gauge_Full_Value));
-		isHunter_Skill_Available = false;
-		hunter_Skill_Ready_Eff.SetActive(value: false);
-		SoundController.HunterSkillSound(HunterInfo.Skill.skillIdx);
-		UnityEngine.Debug.Log("************ this.hunter_Info.Skill.skillType = " + hunter_Info.Skill.skillType);
-		switch (hunter_Info.Skill.skillType)
+		OnSkill = _OnCallback;
+		_hunterSkillGaugeValue = 0;
+		_heroSkillGaugeSprite.localScale = SetScale("x", _heroSkillGaugeSprite, (float)_hunterSkillGaugeValue * (1f / (float)_hunterSkillGaugeFullValue));
+		_isHunterSkillAvailable = false;
+		_heroSkillReadyEff.SetActive(value: false);
+		SoundController.HunterSkillSound(HeroInfo.Skill.skillIdx);
+		UnityEngine.Debug.Log("************ this.hunter_Info.Skill.skillType = " + _heroInfo.Skill.skillType);
+		switch (_heroInfo.Skill.skillType)
 		{
 		case 1:
-			StartCoroutine(Use_Hunter_Skill_Setting(_range, _monster));
+			StartCoroutine(UseSkillSettings(_range, _monster));
 			break;
 		case 2:
-			StartCoroutine(Use_Hunter_Skill_Setting(_range, _monster));
-			InGamePlayManager.Heal((int)((float)InGamePlayManager.GetHunterTotalHP() * hunter_Info.Skill.recPowers));
+			StartCoroutine(UseSkillSettings(_range, _monster));
+			InGamePlayManager.Heal((int)((float)InGamePlayManager.GetHunterTotalHP() * _heroInfo.Skill.recPowers));
 			break;
 		case 3:
 			UnityEngine.Debug.Log("***********STUN 11");
-			StartCoroutine(Use_Hunter_Skill_Setting(_range, _monster));
+			StartCoroutine(UseSkillSettings(_range, _monster));
 			if (_range == HunterSkillRange.SINGLE)
 			{
 				_monster[0].SetStun();
@@ -324,29 +287,29 @@ public class Hero : Hunter_Base
 			}
 			break;
 		case 4:
-			InGamePlayManager.ChangeBlockType((BlockType)hunter_Info.Skill.beforeBlock, (BlockType)hunter_Info.Skill.afterBlock, hunter_Info.Skill.skillIdx);
-			StartCoroutine(SkillEndDelay());
+			InGamePlayManager.ChangeBlockType((BlockType)_heroInfo.Skill.beforeBlock, (BlockType)_heroInfo.Skill.afterBlock, _heroInfo.Skill.skillIdx);
+			StartCoroutine(SkillEnd());
 			break;
 		}
 	}
 
-	public IEnumerator Use_Hunter_Skill_Setting(HunterSkillRange _range, Monster[] _monster)
+	public IEnumerator UseSkillSettings(HunterSkillRange _range, Monster[] _monster)
 	{
 		int _damage = 0;
-		Transform[] _eff = new Transform[hunter_Info.Skill.times];
+		Transform[] _eff = new Transform[_heroInfo.Skill.times];
 		float _eff_delay = 0.2f;
-		for (int attackcount = 0; attackcount < hunter_Info.Skill.times; attackcount++)
+		for (int attackcount = 0; attackcount < _heroInfo.Skill.times; attackcount++)
 		{
-			switch (hunter_Info.Skill.statType)
+			switch (_heroInfo.Skill.statType)
 			{
 			case 1:
-				_damage = (int)((GameUtil.GetHunterReinForceHP(hunter_Info.Stat.hunterHp, GameDataManager.HasUserHunterEnchant(hunter_Info.Hunter.hunterIdx)) + (float)hunter_Info.leaderSkillHp) * hunter_Info.Skill.multiple);
+				_damage = (int)((GameUtil.GetHunterReinForceHP(_heroInfo.Stat.hunterHp, GameDataManager.HasUserHunterEnchant(_heroInfo.Hunter.hunterIdx)) + (float)_heroInfo.leaderSkillHp) * _heroInfo.Skill.multiple);
 				break;
 			case 2:
-				_damage = (int)((GameUtil.GetHunterReinForceAttack(hunter_Info.Stat.hunterAttack, GameDataManager.HasUserHunterEnchant(hunter_Info.Hunter.hunterIdx)) * (float)CheckArenaBuff(hunter_Info) + (float)hunter_Info.leaderSkillAttack) * hunter_Info.Skill.multiple);
+				_damage = (int)((GameUtil.GetHunterReinForceAttack(_heroInfo.Stat.hunterAttack, GameDataManager.HasUserHunterEnchant(_heroInfo.Hunter.hunterIdx)) * (float)CheckArenaBuff(_heroInfo) + (float)_heroInfo.leaderSkillAttack) * _heroInfo.Skill.multiple);
 				break;
 			case 3:
-				_damage = (int)((GameUtil.GetHunterReinForceHeal(hunter_Info.Stat.hunterRecovery, GameDataManager.HasUserHunterEnchant(hunter_Info.Hunter.hunterIdx)) + (float)hunter_Info.leaderSkillRecovery) * hunter_Info.Skill.multiple);
+				_damage = (int)((GameUtil.GetHunterReinForceHeal(_heroInfo.Stat.hunterRecovery, GameDataManager.HasUserHunterEnchant(_heroInfo.Hunter.hunterIdx)) + (float)_heroInfo.leaderSkillRecovery) * _heroInfo.Skill.multiple);
 				break;
 			}
 			for (int i = 0; i < _monster.Length; i++)
@@ -354,7 +317,7 @@ public class Hero : Hunter_Base
 				GameUtil.Check_Property_Damage(this, _monster[i], _damage);
 				_monster[i].SetMonsterHP(_damage);
 			}
-			_eff[attackcount] = MWPoolManager.Spawn("Effect", "Skill_" + hunter_Info.Skill.skillIdx, null, 1.5f);
+			_eff[attackcount] = MWPoolManager.Spawn("Effect", "Skill_" + _heroInfo.Skill.skillIdx, null, 1.5f);
 			if (_range == HunterSkillRange.SINGLE)
 			{
 				_eff[attackcount].position = _monster[0].SkillHitAnchor;
@@ -364,7 +327,7 @@ public class Hero : Hunter_Base
 				_eff[attackcount].position = Vector3.zero;
 			}
 			_eff[attackcount].GetChild(0).GetComponent<SkillEffect_Anim>().SetMonster(this, _monster, _damage);
-			if (hunter_Info.Skill.times > 1)
+			if (_heroInfo.Skill.times > 1)
 			{
 				yield return new WaitForSeconds(_eff_delay);
 			}
@@ -374,61 +337,61 @@ public class Hero : Hunter_Base
 			}
 		}
 		yield return new WaitForSeconds(1f);
-		OnCallback_Skill_End();
-		OnCallback_Skill_End = null;
+		OnSkill();
+		OnSkill = null;
 	}
 
-	public void Hunter_Skill_Ready_Effect_Setting(bool _isOn)
+	public void SkillReadyEffect(bool _isOn)
 	{
 		if (_isOn)
 		{
-			if (isHunter_Skill_Available)
+			if (_isHunterSkillAvailable)
 			{
-				hunter_Skill_Ready_Eff.SetActive(value: true);
+				_heroSkillReadyEff.SetActive(value: true);
 				SoundController.EffectSound_Play(EffectSoundType.HunterSkillReady);
 			}
 			else
 			{
-				hunter_Skill_Ready_Eff.SetActive(value: false);
+				_heroSkillReadyEff.SetActive(value: false);
 			}
 		}
 		else
 		{
-			hunter_Skill_Ready_Eff.SetActive(value: false);
+			_heroSkillReadyEff.SetActive(value: false);
 		}
 	}
 
-	public void SetHunterStun()
+	public void StunHunter()
 	{
-		if (stunEff != null)
+		if (_stunEff != null)
 		{
 			UnityEngine.Debug.Log("Return Stun !");
-			MWPoolManager.DeSpawn("Effect", stunEff);
-			stunEff = null;
+			MWPoolManager.DeSpawn("Effect", _stunEff);
+			_stunEff = null;
 		}
-		stunEff = MWPoolManager.Spawn("Effect", "FX_stun_hunter", base.transform);
-		stunEff.position = base.transform.position;
-		isHunterStun = true;
-		isHunterStunClearCount = 1;
-		hunterCharacter.SetAnim(Anim_Type.STUN);
-		InGamePlayManager.DeActiveBlock((BlockType)hunter_Info.Hunter.color);
+		_stunEff = MWPoolManager.Spawn("Effect", "FX_stun_hunter", base.transform);
+		_stunEff.position = base.transform.position;
+		_isHunterStun = true;
+		_isHunterStunClearCount = 1;
+		_heroCharacter.ChangeAnim(Anim_Type.STUN);
+		InGamePlayManager.DeActiveBlock((BlockType)_heroInfo.Hunter.color);
 	}
 
-	public void ClearHunterStun()
+	public void RemoveStun()
 	{
-		if (isHunterStunClearCount > 0)
+		if (_isHunterStunClearCount > 0)
 		{
-			isHunterStunClearCount--;
+			_isHunterStunClearCount--;
 			return;
 		}
-		isHunterStun = false;
-		hunterCharacter.SetAnim(Anim_Type.IDLE);
-		InGamePlayManager.ActiveBlock((BlockType)hunter_Info.Hunter.color);
-		if (stunEff != null)
+		_isHunterStun = false;
+		_heroCharacter.ChangeAnim(Anim_Type.IDLE);
+		InGamePlayManager.ActiveBlock((BlockType)_heroInfo.Hunter.color);
+		if (_stunEff != null)
 		{
 			UnityEngine.Debug.Log("Return Stun !");
-			MWPoolManager.DeSpawn("Effect", stunEff);
-			stunEff = null;
+			MWPoolManager.DeSpawn("Effect", _stunEff);
+			_stunEff = null;
 		}
 	}
 
@@ -453,25 +416,25 @@ public class Hero : Hunter_Base
 		return num;
 	}
 
-	private IEnumerator Add_Combo_Effect(int _combo, int _color, int _lastAttackIdx, Action<int> _OnCallBack)
+	private IEnumerator AddComboEffect(int _combo, int _color, int _lastAttackIdx, Action<int> _OnCallBack)
 	{
 		OnComboEffect = _OnCallBack;
 		yield return null;
-		if (_combo > 0 && hunter_Total_Damage > 0)
+		if (_combo > 0 && _heroTotalDamage > 0)
 		{
 			float comboDuration = 0.24f;
 			for (int i = 0; i < _combo; i++)
 			{
 				base.transform.localScale = Vector3.one;
-				InGamePlayManager.AddHunterCombo(i + 1, hunter_Info.Hunter.color, base.transform.position, hunter_Info.Hunter.hunterIdx);
+				InGamePlayManager.AddHunterCombo(i + 1, _heroInfo.Hunter.color, base.transform.position, _heroInfo.Hunter.hunterIdx);
 				if (i > 0)
 				{
-					hunter_Total_Damage += (int)((float)hunter_Total_Damage * Damage_Dummy_Combo);
+					_heroTotalDamage += (int)((float)_heroTotalDamage * _damageDummyCombo);
 				}
 				LeanTween.cancel(base.transform.gameObject);
 				LeanTween.scale(base.transform.gameObject, new Vector3(1.2f, 1.2f, 1.2f), comboDuration / 2f).setLoopPingPong(1).setEase(LeanTweenType.linear);
-				InGamePlayManager.AddHunterAttack(hunter_Total_Damage, hunter_Info.Hunter.color, base.transform.position, hunter_Info.Hunter.hunterIdx);
-				if (hunter_Arr_Idx == _lastAttackIdx)
+				InGamePlayManager.AddHunterAttack(_heroTotalDamage, _heroInfo.Hunter.color, base.transform.position, _heroInfo.Hunter.hunterIdx);
+				if (_heroIndex == _lastAttackIdx)
 				{
 					SoundController.EffectSound_Play(EffectSoundType.ComboAdd);
 				}
@@ -483,41 +446,41 @@ public class Hero : Hunter_Base
 					comboDuration -= 0.02f;
 				}
 			}
-			hunter_Total_Damage = hunterLeaderSkill.CheckLeaderSkillComboSetting(_combo, hunter_Total_Damage);
-			hunter_Total_Damage = hunterLeaderSkill.CheckLeaderSkillColorSetting(_color, hunter_Total_Damage);
-			InGamePlayManager.AddHunterAttack(hunter_Total_Damage, hunter_Info.Hunter.color, base.transform.position, hunter_Info.Hunter.hunterIdx);
+			_heroTotalDamage = _hunterLeaderSkill.CkeckSkillCombo(_combo, _heroTotalDamage);
+			_heroTotalDamage = _hunterLeaderSkill.CheckLeaderSkillColor(_color, _heroTotalDamage);
+			InGamePlayManager.AddHunterAttack(_heroTotalDamage, _heroInfo.Hunter.color, base.transform.position, _heroInfo.Hunter.hunterIdx);
 		}
-		OnComboEffect(hunter_Arr_Idx);
+		OnComboEffect(_heroIndex);
 		OnComboEffect = null;
 	}
 
-	private void SetHunterFace()
+	private void ChangeHeroFave()
 	{
-		for (int i = 0; i < hunterFace.childCount; i++)
+		for (int i = 0; i < _heroFace.childCount; i++)
 		{
-			hunterFace.GetChild(i).gameObject.SetActive(value: false);
+			_heroFace.GetChild(i).gameObject.SetActive(value: false);
 		}
-		switch (hunter_Info.Stat.hunterTier)
+		switch (_heroInfo.Stat.hunterTier)
 		{
 		case 1:
-			hunterFace.GetChild(int.Parse(hunter_Info.Hunter.hunterImg1) - 1).gameObject.SetActive(value: true);
+			_heroFace.GetChild(int.Parse(_heroInfo.Hunter.hunterImg1) - 1).gameObject.SetActive(value: true);
 			break;
 		case 2:
-			hunterFace.GetChild(int.Parse(hunter_Info.Hunter.hunterImg2) - 1).gameObject.SetActive(value: true);
+			_heroFace.GetChild(int.Parse(_heroInfo.Hunter.hunterImg2) - 1).gameObject.SetActive(value: true);
 			break;
 		case 3:
-			hunterFace.GetChild(int.Parse(hunter_Info.Hunter.hunterImg3) - 1).gameObject.SetActive(value: true);
+			_heroFace.GetChild(int.Parse(_heroInfo.Hunter.hunterImg3) - 1).gameObject.SetActive(value: true);
 			break;
 		case 4:
-			hunterFace.GetChild(int.Parse(hunter_Info.Hunter.hunterImg4) - 1).gameObject.SetActive(value: true);
+			_heroFace.GetChild(int.Parse(_heroInfo.Hunter.hunterImg4) - 1).gameObject.SetActive(value: true);
 			break;
 		case 5:
-			hunterFace.GetChild(int.Parse(hunter_Info.Hunter.hunterImg5) - 1).gameObject.SetActive(value: true);
+			_heroFace.GetChild(int.Parse(_heroInfo.Hunter.hunterImg5) - 1).gameObject.SetActive(value: true);
 			break;
 		}
 	}
 
-	private Vector3 SetVector3Scale(string _type, Transform _tr, float _scale)
+	private Vector3 SetScale(string _type, Transform _tr, float _scale)
 	{
 		Vector3 result = Vector3.one;
 		switch (_type)
@@ -550,11 +513,11 @@ public class Hero : Hunter_Base
 		return result;
 	}
 
-	private IEnumerator SkillEndDelay()
+	private IEnumerator SkillEnd()
 	{
 		yield return new WaitForSeconds(1f);
-		OnCallback_Skill_End();
-		OnCallback_Skill_End = null;
+		OnSkill();
+		OnSkill = null;
 	}
 
 	private void OnDisable()

@@ -9,7 +9,7 @@ public class Effect_Anim : MonoBehaviour
 	private HunterPromotionUp hunterPromotionUp;
 
 	[SerializeField]
-	private HunterPromotionEffect hunterPromotionEffect;
+	private PromotionEffect hunterPromotionEffect;
 
 	[SerializeField]
 	private ChestOpen chestOpen;

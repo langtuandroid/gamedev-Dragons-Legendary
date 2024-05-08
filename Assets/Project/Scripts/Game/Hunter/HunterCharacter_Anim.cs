@@ -4,11 +4,11 @@ using UnityEngine;
 public class HunterCharacter_Anim : MonoBehaviour
 {
 	[SerializeField]
-	private HunterCharacter hunterCharacter;
+	private HeroCharacter hunterCharacter;
 
     private void Awake()
     {
-        if (hunterCharacter == null) hunterCharacter = transform.parent.GetComponent<HunterCharacter>();
+        if (hunterCharacter == null) hunterCharacter = transform.parent.GetComponent<HeroCharacter>();
         var skeleton = GetComponent<SkeletonAnimation>();
         if (skeleton) skeleton.loop = true;
     }
@@ -29,13 +29,13 @@ public class HunterCharacter_Anim : MonoBehaviour
 
 	public void CheckStun()
 	{
-		if (hunterCharacter.Hunter.IsHunterStun)
+		if (hunterCharacter.Hero.IsHunterStun)
 		{
-			hunterCharacter.SetAnim(Anim_Type.STUN);
+			hunterCharacter.ChangeAnim(Anim_Type.STUN);
 		}
 		else
 		{
-			hunterCharacter.SetAnim(Anim_Type.IDLE);
+			hunterCharacter.ChangeAnim(Anim_Type.IDLE);
 		}
 	}
 }

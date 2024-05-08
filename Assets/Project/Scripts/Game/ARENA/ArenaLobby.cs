@@ -188,7 +188,7 @@ public class ArenaLobby : LobbyPopupBase
 			state = ArenaState.Close;
 		}
 		GameUtil.SetUseArenaHunterList();
-		GameUtil.SetOwnHunterList(HUNTERLIST_TYPE.ARENA);
+		GameUtil.SetOwnHunterList(HanterListType.Arena);
 		RefreshData();
 		LobbyManager.ShowArenaEventEnd(infoDataResult.rewardInfo);
 		TutorialManager.CheckArenaLobbyEnter();

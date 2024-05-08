@@ -39,7 +39,7 @@ public class ArenaChestOpen : MonoBehaviour
 	[SerializeField]
 	private Transform hunterCard_tr;
 
-	private HunterCard hunterCard;
+	private HeroCard hunterCard;
 
 	[SerializeField]
 	private Text hunterName_Text;
@@ -188,9 +188,9 @@ public class ArenaChestOpen : MonoBehaviour
 			MWPoolManager.DeSpawn("Hunter", hunterCard.transform);
 			hunterCard = null;
 		}
-		hunterCard = MWPoolManager.Spawn("Hunter", "HunterCard_" + chestListDbData[_idx].chestHunter, hunterCard_tr).GetComponent<HunterCard>();
-		hunterCard.Init(HUNTERCARD_TYPE.CHESTOPEN, GameDataManager.GetHunterInfo(chestListDbData[_idx].chestHunter, chestListDbData[_idx].hunterLevel, chestListDbData[_idx].hunterTier), _isOwn: true, _isArena: false);
-		hunterCard.HunterIdx = 0;
+		hunterCard = MWPoolManager.Spawn("Hunter", "HunterCard_" + chestListDbData[_idx].chestHunter, hunterCard_tr).GetComponent<HeroCard>();
+		hunterCard.Construct(HerocardType.Chestopen, GameDataManager.GetHunterInfo(chestListDbData[_idx].chestHunter, chestListDbData[_idx].hunterLevel, chestListDbData[_idx].hunterTier), _isOwn: true, _isArena: false);
+		hunterCard.HeroIdx = 0;
 		hunterCard.transform.localPosition = Vector3.zero;
 		hunterCard.transform.localScale = Vector3.one;
 		UnityEngine.Debug.Log("Set HunterCard AnchoredPosition !!");

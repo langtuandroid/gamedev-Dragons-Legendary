@@ -1,4 +1,4 @@
-public enum HUNTER_TYPE
+public enum HeroType
 {
 	BLUE,
 	GREEN,

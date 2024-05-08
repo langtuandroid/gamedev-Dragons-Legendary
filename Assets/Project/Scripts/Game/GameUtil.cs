@@ -256,7 +256,7 @@ public static class GameUtil
 		float num2 = 0.7f;
 		float num3 = 1f;
 		int result = 0;
-		switch (_hunter.HunterInfo.Hunter.color)
+		switch (_hunter.HeroInfo.Hunter.color)
 		{
 		case 3:
 			result = ((_monster.MonsterInfo.mColor != 1) ? ((_monster.MonsterInfo.mColor != 0) ? _damage : ((int)((float)_damage * num2))) : ((int)((float)_damage * num)));
@@ -279,7 +279,7 @@ public static class GameUtil
 
 	public static void Check_Property_Damage_UI(Hero _hunter, Monster _monster, int _damage)
 	{
-		switch (_hunter.HunterInfo.Hunter.color)
+		switch (_hunter.HeroInfo.Hunter.color)
 		{
 		case 3:
 			if (_monster.MonsterInfo.mColor == 1)
@@ -474,14 +474,14 @@ public static class GameUtil
 		}
 	}
 
-	public static void SetOwnHunterList(HUNTERLIST_TYPE _type)
+	public static void SetOwnHunterList(HanterListType _type)
 	{
 		int num = 0;
 		int num2 = 0;
 		GameInfo.userData.huntersOwnInfo = null;
 		switch (_type)
 		{
-		case HUNTERLIST_TYPE.NORMAL:
+		case HanterListType.Normal:
 			for (int k = 0; k < GameInfo.userData.userHunterList.Length; k++)
 			{
 				if (GameInfo.userData.userHunterList[k].useYn.Equals("n"))
@@ -499,7 +499,7 @@ public static class GameUtil
 				}
 			}
 			break;
-		case HUNTERLIST_TYPE.ARENA:
+		case HanterListType.Arena:
 			for (int i = 0; i < GameInfo.userData.userHunterList.Length; i++)
 			{
 				if (GameInfo.userData.userHunterList[i].arenaUseYn.Equals("n"))

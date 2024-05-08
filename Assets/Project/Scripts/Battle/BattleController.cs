@@ -56,7 +56,7 @@ public class BattleController : MonoBehaviour
 	private Transform Target_DragonAim;
 
 	[SerializeField]
-	private HunterLeaderSkill hunterLeaderSkill;
+	private HeroLeaderSkill hunterLeaderSkill;
 
 	[SerializeField]
 	private int monsterAttackCount;
@@ -90,7 +90,7 @@ public class BattleController : MonoBehaviour
 
 	public int CurrentCombo => current_Combo;
 
-	public HunterLeaderSkill GetHunterLeaderSkill => hunterLeaderSkill;
+	public HeroLeaderSkill GetHunterLeaderSkill => hunterLeaderSkill;
 
 	public bool HunterLeaderSkillNullCheck()
 	{
@@ -106,7 +106,7 @@ public class BattleController : MonoBehaviour
 		int num = 0;
 		for (int i = 0; i < Hunter_Arr.Length; i++)
 		{
-			num += (int)GameUtil.GetHunterReinForceHeal(Hunter_Arr[i].HunterInfo.Stat.hunterRecovery + Hunter_Arr[i].HunterInfo.leaderSkillRecovery, GameDataManager.HasUserHunterEnchant(Hunter_Arr[i].HunterInfo.Hunter.hunterIdx));
+			num += (int)GameUtil.GetHunterReinForceHeal(Hunter_Arr[i].HeroInfo.Stat.hunterRecovery + Hunter_Arr[i].HeroInfo.leaderSkillRecovery, GameDataManager.HasUserHunterEnchant(Hunter_Arr[i].HeroInfo.Hunter.hunterIdx));
 		}
 		return num;
 	}
@@ -116,7 +116,7 @@ public class BattleController : MonoBehaviour
 		int num = 0;
 		for (int i = 0; i < Hunter_Arr.Length; i++)
 		{
-			num += (int)GameUtil.GetHunterReinForceHP(Hunter_Arr[i].HunterInfo.Stat.hunterHp + Hunter_Arr[i].HunterInfo.leaderSkillRecovery, GameDataManager.HasUserHunterEnchant(Hunter_Arr[i].HunterInfo.Hunter.hunterIdx));
+			num += (int)GameUtil.GetHunterReinForceHP(Hunter_Arr[i].HeroInfo.Stat.hunterHp + Hunter_Arr[i].HeroInfo.leaderSkillRecovery, GameDataManager.HasUserHunterEnchant(Hunter_Arr[i].HeroInfo.Hunter.hunterIdx));
 		}
 		return num;
 	}
@@ -143,11 +143,11 @@ public class BattleController : MonoBehaviour
 	{
 		if (current_Turn > 0)
 		{
-			hunterLeaderSkill.CheckLeaderSkillHealSetting(Hunter_Arr);
+			hunterLeaderSkill.CheckLeaderSkillHeal(Hunter_Arr);
 			UnityEngine.Debug.Log("*********************** LeaderSkill Heal Check ~~~~");
 			for (int i = 0; i < Hunter_Arr.Length; i++)
 			{
-				Hunter_Arr[i].SetHunterState(HUNTER_STATE.IDLE);
+				Hunter_Arr[i].ChangeState(HeroState.idle);
 			}
 			for (int j = 0; j < Monster_Arr.Length; j++)
 			{
@@ -167,7 +167,7 @@ public class BattleController : MonoBehaviour
 		UnityEngine.Debug.Log("JY ------------------------- PUZZLE");
 		for (int i = 0; i < Hunter_Arr.Length; i++)
 		{
-			Hunter_Arr[i].Hunter_Skill_Ready_Effect_Setting(_isOn: false);
+			Hunter_Arr[i].SkillReadyEffect(_isOn: false);
 		}
 	}
 
@@ -185,7 +185,7 @@ public class BattleController : MonoBehaviour
 			Set_State(BATTLE_STATE.ADDDAMAGE);
 			for (int i = 0; i < Hunter_Arr.Length; i++)
 			{
-				Hunter_Arr[i].Add_Attack_Start();
+				Hunter_Arr[i].ResetDamage();
 			}
 		}
 	}
@@ -200,35 +200,35 @@ public class BattleController : MonoBehaviour
 			{
 				isColor_Red = true;
 			}
-			Check_HunterType_And_AddDamge(HUNTER_TYPE.RED, count);
+			Check_HunterType_And_AddDamge(HeroType.RED, count);
 			break;
 		case BlockType.Green:
 			if (!isColor_Green)
 			{
 				isColor_Green = true;
 			}
-			Check_HunterType_And_AddDamge(HUNTER_TYPE.GREEN, count);
+			Check_HunterType_And_AddDamge(HeroType.GREEN, count);
 			break;
 		case BlockType.Yellow:
 			if (!isColor_Yellow)
 			{
 				isColor_Yellow = true;
 			}
-			Check_HunterType_And_AddDamge(HUNTER_TYPE.YELLOW, count);
+			Check_HunterType_And_AddDamge(HeroType.YELLOW, count);
 			break;
 		case BlockType.Purple:
 			if (!isColor_Purple)
 			{
 				isColor_Purple = true;
 			}
-			Check_HunterType_And_AddDamge(HUNTER_TYPE.PURPLE, count);
+			Check_HunterType_And_AddDamge(HeroType.PURPLE, count);
 			break;
 		case BlockType.Blue:
 			if (!isColor_Blue)
 			{
 				isColor_Blue = true;
 			}
-			Check_HunterType_And_AddDamge(HUNTER_TYPE.BLUE, count);
+			Check_HunterType_And_AddDamge(HeroType.BLUE, count);
 			break;
 		}
 	}
@@ -240,8 +240,7 @@ public class BattleController : MonoBehaviour
 		Set_State(BATTLE_STATE.ADDCOMBO);
 		for (int i = 0; i < Hunter_Arr.Length; i++)
 		{
-			Hunter_Arr[i].Add_Attack_End();
-			Hunter_Arr[i].Add_Attack_Combo(current_Combo, current_Color, attack_last_idx, End_Combo_Effect);
+			Hunter_Arr[i].AddDamageCombo(current_Combo, current_Color, attack_last_idx, End_Combo_Effect);
 		}
 	}
 
@@ -256,7 +255,7 @@ public class BattleController : MonoBehaviour
 		{
 			for (int i = 0; i < Hunter_Arr.Length; i++)
 			{
-				Hunter_Arr[i].Attack_Start(Set_Hunter_Attack_Arr);
+				Hunter_Arr[i].StartAttack(Set_Hunter_Attack_Arr);
 			}
 		}
 		else
@@ -361,31 +360,31 @@ public class BattleController : MonoBehaviour
 			switch (_type)
 			{
 			case BlockType.Red:
-				if (Hunter_Arr[i].HunterType == HUNTER_TYPE.RED)
+				if (Hunter_Arr[i].HeroType == HeroType.RED)
 				{
 					num++;
 				}
 				break;
 			case BlockType.Green:
-				if (Hunter_Arr[i].HunterType == HUNTER_TYPE.GREEN)
+				if (Hunter_Arr[i].HeroType == HeroType.GREEN)
 				{
 					num++;
 				}
 				break;
 			case BlockType.Yellow:
-				if (Hunter_Arr[i].HunterType == HUNTER_TYPE.YELLOW)
+				if (Hunter_Arr[i].HeroType == HeroType.YELLOW)
 				{
 					num++;
 				}
 				break;
 			case BlockType.Purple:
-				if (Hunter_Arr[i].HunterType == HUNTER_TYPE.PURPLE)
+				if (Hunter_Arr[i].HeroType == HeroType.PURPLE)
 				{
 					num++;
 				}
 				break;
 			case BlockType.Blue:
-				if (Hunter_Arr[i].HunterType == HUNTER_TYPE.BLUE)
+				if (Hunter_Arr[i].HeroType == HeroType.BLUE)
 				{
 					num++;
 				}
@@ -401,35 +400,35 @@ public class BattleController : MonoBehaviour
 			switch (_type)
 			{
 			case BlockType.Red:
-				if (Hunter_Arr[j].HunterType == HUNTER_TYPE.RED)
+				if (Hunter_Arr[j].HeroType == HeroType.RED)
 				{
 					array[num2] = Hunter_Arr[j].transform.position;
 					num2++;
 				}
 				break;
 			case BlockType.Green:
-				if (Hunter_Arr[j].HunterType == HUNTER_TYPE.GREEN)
+				if (Hunter_Arr[j].HeroType == HeroType.GREEN)
 				{
 					array[num2] = Hunter_Arr[j].transform.position;
 					num2++;
 				}
 				break;
 			case BlockType.Yellow:
-				if (Hunter_Arr[j].HunterType == HUNTER_TYPE.YELLOW)
+				if (Hunter_Arr[j].HeroType == HeroType.YELLOW)
 				{
 					array[num2] = Hunter_Arr[j].transform.position;
 					num2++;
 				}
 				break;
 			case BlockType.Purple:
-				if (Hunter_Arr[j].HunterType == HUNTER_TYPE.PURPLE)
+				if (Hunter_Arr[j].HeroType == HeroType.PURPLE)
 				{
 					array[num2] = Hunter_Arr[j].transform.position;
 					num2++;
 				}
 				break;
 			case BlockType.Blue:
-				if (Hunter_Arr[j].HunterType == HUNTER_TYPE.BLUE)
+				if (Hunter_Arr[j].HeroType == HeroType.BLUE)
 				{
 					array[num2] = Hunter_Arr[j].transform.position;
 					num2++;
@@ -450,7 +449,7 @@ public class BattleController : MonoBehaviour
 		Transform transform = null;
 		for (int i = 0; i < Hunter_Arr.Length; i++)
 		{
-			if (Hunter_Arr[i].IsHunter_Skill_Available)
+			if (Hunter_Arr[i].IsHeroSkillAvailable)
 			{
 				transform = Hunter_Arr[i].transform;
 				break;
@@ -521,8 +520,8 @@ public class BattleController : MonoBehaviour
 
 	public void SetFullSkillGague(int _index)
 	{
-		Hunter_Arr[_index].SetHunterSkillFullValue();
-		Hunter_Arr[_index].Hunter_Skill_Ready_Effect_Setting(_isOn: true);
+		Hunter_Arr[_index].SetHeroValue();
+		Hunter_Arr[_index].SkillReadyEffect(_isOn: true);
 	}
 
 	private void Init()
@@ -610,7 +609,7 @@ public class BattleController : MonoBehaviour
 			hunterInfo = GameDataManager.GetHunterInfo(GameInfo.userData.huntersUseInfo[i].hunterIdx, GameInfo.userData.huntersUseInfo[i].hunterLevel, GameInfo.userData.huntersUseInfo[i].hunterTier);
 			if (i == 0 && hunterInfo.Stat.hunterLeaderSkill != 0)
 			{
-				hunterLeaderSkill.SetLeaderSkill(hunterInfo.Stat.hunterLeaderSkill);
+				hunterLeaderSkill.SetSkill(hunterInfo.Stat.hunterLeaderSkill);
 			}
 			transform2 = MWPoolManager.Spawn("Hunter", hunterInfo.Hunter.hunterIdx.ToString());
 			if (!transform2.gameObject.activeSelf)
@@ -625,8 +624,8 @@ public class BattleController : MonoBehaviour
 			transform.localPosition = Vector3.zero;
 			transform.localScale = Vector3.one;
 			Hunter_Arr[i] = transform.GetComponent<Hero>();
-			Hunter_Arr[i].Init(i, transform2.GetComponent<HunterCharacter>(), hunterLeaderSkill, hunterLeaderSkill.CheckLeaderSkillStatSetting(hunterInfo));
-			num += (int)GameUtil.GetHunterReinForceHP(Hunter_Arr[i].HunterInfo.Stat.hunterHp + Hunter_Arr[i].HunterInfo.leaderSkillHp, GameDataManager.HasUserHunterEnchant(Hunter_Arr[i].HunterInfo.Hunter.hunterIdx));
+			Hunter_Arr[i].Construct(i, transform2.GetComponent<HeroCharacter>(), hunterLeaderSkill, hunterLeaderSkill.CheckLeaderSkillSettings(hunterInfo));
+			num += (int)GameUtil.GetHunterReinForceHP(Hunter_Arr[i].HeroInfo.Stat.hunterHp + Hunter_Arr[i].HeroInfo.leaderSkillHp, GameDataManager.HasUserHunterEnchant(Hunter_Arr[i].HeroInfo.Hunter.hunterIdx));
 		}
 		InGamePlayManager.SetUserMaxHp(num);
 	}
@@ -643,7 +642,7 @@ public class BattleController : MonoBehaviour
 			hunterInfo = GameDataManager.GetHunterInfo(GameInfo.userData.huntersArenaUseInfo[i].hunterIdx, GameInfo.userData.huntersArenaUseInfo[i].hunterLevel, GameInfo.userData.huntersArenaUseInfo[i].hunterTier);
 			if (i == 0 && hunterInfo.Stat.hunterLeaderSkill != 0)
 			{
-				hunterLeaderSkill.SetLeaderSkill(hunterInfo.Stat.hunterLeaderSkill);
+				hunterLeaderSkill.SetSkill(hunterInfo.Stat.hunterLeaderSkill);
 			}
 			transform2 = MWPoolManager.Spawn("Hunter", hunterInfo.Hunter.hunterIdx.ToString());
 			if (!transform2.gameObject.activeSelf)
@@ -658,12 +657,12 @@ public class BattleController : MonoBehaviour
 			transform.localPosition = Vector3.zero;
 			transform.localScale = Vector3.one;
 			Hunter_Arr[i] = transform.GetComponent<Hero>();
-			Hunter_Arr[i].Init(i, transform2.GetComponent<HunterCharacter>(), hunterLeaderSkill, hunterLeaderSkill.CheckLeaderSkillStatSetting(hunterInfo));
-			num += (int)GameUtil.GetHunterReinForceHP(Hunter_Arr[i].HunterInfo.Stat.hunterHp + Hunter_Arr[i].HunterInfo.leaderSkillHp, GameDataManager.HasUserHunterEnchant(Hunter_Arr[i].HunterInfo.Hunter.hunterIdx));
+			Hunter_Arr[i].Construct(i, transform2.GetComponent<HeroCharacter>(), hunterLeaderSkill, hunterLeaderSkill.CheckLeaderSkillSettings(hunterInfo));
+			num += (int)GameUtil.GetHunterReinForceHP(Hunter_Arr[i].HeroInfo.Stat.hunterHp + Hunter_Arr[i].HeroInfo.leaderSkillHp, GameDataManager.HasUserHunterEnchant(Hunter_Arr[i].HeroInfo.Hunter.hunterIdx));
 			UnityEngine.Debug.Log("GameInfo.inGamePlayData.inGameType = " + GameInfo.inGamePlayData.inGameType);
 			if (GameInfo.inGamePlayData.inGameType == InGameType.Arena)
 			{
-				Hunter_Arr[i].SetArenaBuff();
+				Hunter_Arr[i].SetBuff();
 			}
 		}
 		InGamePlayManager.SetUserMaxHp(num);
@@ -675,7 +674,7 @@ public class BattleController : MonoBehaviour
 		{
 			int num = 0;
 			num = UnityEngine.Random.Range(0, Hunter_Arr.Length);
-			Hunter_Arr[num].SetHunterSkillFullValue();
+			Hunter_Arr[num].SetHeroValue();
 		}
 	}
 
@@ -683,7 +682,7 @@ public class BattleController : MonoBehaviour
 	{
 		for (int i = 0; i < Hunter_Arr.Length; i++)
 		{
-			Hunter_Arr[i].HunterCharacter.SetSummonEffect();
+			Hunter_Arr[i].HunterCharacter.SetEffect();
 		}
 	}
 
@@ -744,8 +743,8 @@ public class BattleController : MonoBehaviour
 		Set_State(BATTLE_STATE.NONE);
 		for (int k = 0; k < Hunter_Arr.Length; k++)
 		{
-			Hunter_Arr[k].Hunter_Skill_Ready_Effect_Setting(_isOn: true);
-			Hunter_Arr[k].ClearHunterStun();
+			Hunter_Arr[k].SkillReadyEffect(_isOn: true);
+			Hunter_Arr[k].RemoveStun();
 		}
 		InGamePlayManager.CurrentWave(current_Wave);
 	}
@@ -827,7 +826,7 @@ public class BattleController : MonoBehaviour
 	{
 		for (int i = 0; i < Hunter_Arr.Length; i++)
 		{
-			Hunter_Arr[i].HunterCharacter.SetAnim(Anim_Type.MOVE);
+			Hunter_Arr[i].HunterCharacter.ChangeAnim(Anim_Type.MOVE);
 		}
 	}
 
@@ -835,7 +834,7 @@ public class BattleController : MonoBehaviour
 	{
 		for (int i = 0; i < Hunter_Arr.Length; i++)
 		{
-			Hunter_Arr[i].HunterCharacter.SetAnim(Anim_Type.IDLE);
+			Hunter_Arr[i].HunterCharacter.ChangeAnim(Anim_Type.IDLE);
 		}
 	}
 
@@ -923,14 +922,14 @@ public class BattleController : MonoBehaviour
 		}
 	}
 
-	private void Check_HunterType_And_AddDamge(HUNTER_TYPE _type, int _count)
+	private void Check_HunterType_And_AddDamge(HeroType _type, int _count)
 	{
 		for (int i = 0; i < Hunter_Arr.Length; i++)
 		{
-			if (Hunter_Arr[i].HunterType == _type && !Hunter_Arr[i].IsHunterStun)
+			if (Hunter_Arr[i].HeroType == _type && !Hunter_Arr[i].IsHunterStun)
 			{
-				Hunter_Arr[i].Add_Attack_Damage(_count);
-				Hunter_Arr[i].Add_Skill_Gauge(_count);
+				Hunter_Arr[i].AddDamage(_count);
+				Hunter_Arr[i].AddGaugeSkill(_count);
 			}
 		}
 	}
@@ -1110,10 +1109,10 @@ public class BattleController : MonoBehaviour
 		Monster[] monster = null;
 		int num = 0;
 		int num2 = 0;
-		switch (_hunter.HunterInfo.Skill.range)
+		switch (_hunter.HeroInfo.Skill.range)
 		{
 		case 0:
-			Hunter_Arr[_hunter.Hunter_Arr_Idx].SetCharacterSkillAnim((HunterSkillRange)_hunter.HunterInfo.Skill.range, monster, Use_Hunter_Skill_End);
+			Hunter_Arr[_hunter.HeroArrIdx].SetCharacterSkill((HunterSkillRange)_hunter.HeroInfo.Skill.range, monster, Use_Hunter_Skill_End);
 			break;
 		case 1:
 			monster = new Monster[1];
@@ -1124,7 +1123,7 @@ public class BattleController : MonoBehaviour
 			}
 			if (monster[num] != null)
 			{
-				Hunter_Arr[_hunter.Hunter_Arr_Idx].SetCharacterSkillAnim((HunterSkillRange)_hunter.HunterInfo.Skill.range, monster, Use_Hunter_Skill_End);
+				Hunter_Arr[_hunter.HeroArrIdx].SetCharacterSkill((HunterSkillRange)_hunter.HeroInfo.Skill.range, monster, Use_Hunter_Skill_End);
 			}
 			break;
 		case 2:
@@ -1144,7 +1143,7 @@ public class BattleController : MonoBehaviour
 					num++;
 				}
 			}
-			Hunter_Arr[_hunter.Hunter_Arr_Idx].SetCharacterSkillAnim((HunterSkillRange)_hunter.HunterInfo.Skill.range, monster, Use_Hunter_Skill_End);
+			Hunter_Arr[_hunter.HeroArrIdx].SetCharacterSkill((HunterSkillRange)_hunter.HeroInfo.Skill.range, monster, Use_Hunter_Skill_End);
 			break;
 		}
 	}
@@ -1169,13 +1168,13 @@ public class BattleController : MonoBehaviour
 				Hunter_Attack_List[i].damage = GameUtil.Check_Property_Damage(Hunter_Arr[Hunter_Attack_List[i].idx], _monster2, Hunter_Attack_List[i].damage);
 				_monster2.SetMonsterHP(Hunter_Attack_List[i].damage);
 				HunterCharacterAttack(_monster2, Hunter_Attack_List[i].idx, Hunter_Attack_List[i].damage);
-				InGamePlayManager.StartHunterAttack(Hunter_Arr[Hunter_Attack_List[i].idx].HunterInfo.Hunter.hunterIdx);
+				InGamePlayManager.StartHunterAttack(Hunter_Arr[Hunter_Attack_List[i].idx].HeroInfo.Hunter.hunterIdx);
 			}
 			else
 			{
 				_monster2 = Attack_Monster_Already_Killed();
 				HunterCharacterAttack(_monster2, Hunter_Attack_List[i].idx, Hunter_Attack_List[i].damage);
-				InGamePlayManager.StartHunterAttack(Hunter_Arr[Hunter_Attack_List[i].idx].HunterInfo.Hunter.hunterIdx);
+				InGamePlayManager.StartHunterAttack(Hunter_Arr[Hunter_Attack_List[i].idx].HeroInfo.Hunter.hunterIdx);
 			}
 			yield return new WaitForSeconds(0.4f / GameInfo.inGameBattleSpeedRate);
 		}
@@ -1183,7 +1182,7 @@ public class BattleController : MonoBehaviour
 
 	private void HunterCharacterAttack(Monster _monster, int _idx, int _damage)
 	{
-		Hunter_Arr[_idx].SetCharacterAttackAnim(Anim_Type.ATTACK_HUNTER, _monster, _damage, HunterCharacterAttackEndCheck);
+		Hunter_Arr[_idx].SetAnimation(Anim_Type.ATTACK_HUNTER, _monster, _damage, HunterCharacterAttackEndCheck);
 	}
 
 	private void HunterCharacterAttackEndCheck()
@@ -1211,7 +1210,7 @@ public class BattleController : MonoBehaviour
 			}
 			for (int j = 0; j < Hunter_Arr.Length; j++)
 			{
-				if (Hunter_Arr[j].HunterState == HUNTER_STATE.ATTACK)
+				if (Hunter_Arr[j].HunterState == HeroState.attack)
 				{
 					return;
 				}
@@ -1250,31 +1249,31 @@ public class BattleController : MonoBehaviour
 		attack_last_idx = -1;
 		for (int i = 0; i < Hunter_Arr.Length; i++)
 		{
-			if (Hunter_Arr[i].Hunter_Total_Damage > 0)
+			if (Hunter_Arr[i].HeroTotalDamage > 0)
 			{
 				attack_last_idx = i;
 			}
 		}
 	}
 
-	private Transform Hunter_Attack_To_Monster(HUNTER_TYPE _type)
+	private Transform Hunter_Attack_To_Monster(HeroType _type)
 	{
 		Transform result = null;
 		switch (_type)
 		{
-		case HUNTER_TYPE.RED:
+		case HeroType.RED:
 			result = MWPoolManager.Spawn("Effect", "Fx_Puzzle_red_attack", null, 0.5f);
 			break;
-		case HUNTER_TYPE.GREEN:
+		case HeroType.GREEN:
 			result = MWPoolManager.Spawn("Effect", "Fx_Puzzle_green_attack", null, 0.5f);
 			break;
-		case HUNTER_TYPE.YELLOW:
+		case HeroType.YELLOW:
 			result = MWPoolManager.Spawn("Effect", "Fx_Puzzle_yellow_attack", null, 0.5f);
 			break;
-		case HUNTER_TYPE.PURPLE:
+		case HeroType.PURPLE:
 			result = MWPoolManager.Spawn("Effect", "Fx_Puzzle_purple_attack", null, 0.5f);
 			break;
-		case HUNTER_TYPE.BLUE:
+		case HeroType.BLUE:
 			result = MWPoolManager.Spawn("Effect", "Fx_Puzzle_blue_attack", null, 0.5f);
 			break;
 		}
@@ -1328,8 +1327,8 @@ public class BattleController : MonoBehaviour
 			InGamePlayManager.StartUserTurn();
 			for (int j = 0; j < Hunter_Arr.Length; j++)
 			{
-				Hunter_Arr[j].Hunter_Skill_Ready_Effect_Setting(_isOn: true);
-				Hunter_Arr[j].ClearHunterStun();
+				Hunter_Arr[j].SkillReadyEffect(_isOn: true);
+				Hunter_Arr[j].RemoveStun();
 			}
 		}
 	}
@@ -1380,7 +1379,7 @@ public class BattleController : MonoBehaviour
 		case 2:
 		{
 			int num = UnityEngine.Random.Range(0, Hunter_Arr.Length);
-			Hunter_Arr[num].SetHunterStun();
+			Hunter_Arr[num].StunHunter();
 			break;
 		}
 		case 3:
@@ -1413,7 +1412,7 @@ public class BattleController : MonoBehaviour
 			}
 			Hero hunter = null;
 			hunter = hit.collider.GetComponent<Hero>();
-			if (hunter.IsHunter_Skill_Available && !hunter.IsHunterStun)
+			if (hunter.IsHeroSkillAvailable && !hunter.IsHunterStun)
 			{
 				if (GameInfo.inGamePlayData.level < 4)
 				{

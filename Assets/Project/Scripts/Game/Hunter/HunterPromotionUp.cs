@@ -1,80 +1,68 @@
 using Spine.Unity;
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class HunterPromotionUp : LobbyPopupBase
 {
-    public Action GoBackEvent;
+    public Action OnGoBackEvent;
 
-    [SerializeField]
-    private Transform hunterCharactertr;
+    [FormerlySerializedAs("hunterCharactertr")] [SerializeField]
+    private Transform _hunterCharactertr;
 
-    [SerializeField]
-    private HunterView_Color hunter_Character;
+    [FormerlySerializedAs("hunter_Character")] [SerializeField]
+    private HeroColor _hunterCharacter;
 
-    [SerializeField]
-    private Transform hunterTiertr;
+    [FormerlySerializedAs("hunterTiertr")] [SerializeField]
+    private Transform _hunterTiertr;
 
-    [SerializeField]
-    private Text hunter_MaxLevel_Before;
+    [FormerlySerializedAs("hunter_MaxLevel_Before")] [SerializeField]
+    private Text _hunterMaxLevelBefore;
 
-    [SerializeField]
-    private Text hunter_MaxLevel_After;
+    [FormerlySerializedAs("hunter_MaxLevel_After")] [SerializeField]
+    private Text _hunterMaxLevelAfter;
 
-    [SerializeField]
-    private Text hunter_Name;
+    [FormerlySerializedAs("hunter_Name")] [SerializeField]
+    private Text _hunterName;
 
-    [SerializeField]
-    private Text hunter_Level;
+    [FormerlySerializedAs("hunter_Level")] [SerializeField]
+    private Text _heroLevel;
 
-    [SerializeField]
-    private Text hunter_HP_Before;
+    [FormerlySerializedAs("hunter_HP_Before")] [SerializeField]
+    private Text _heroHpBefore;
 
-    [SerializeField]
-    private Text hunter_HP_After;
+    [FormerlySerializedAs("hunter_HP_After")] [SerializeField]
+    private Text _heroHpAfter;
 
-    [SerializeField]
-    private Text hunter_Attack_Before;
+    [FormerlySerializedAs("hunter_Attack_Before")] [SerializeField]
+    private Text _heroAttackBefore;
 
-    [SerializeField]
-    private Text hunter_Attack_After;
+    [FormerlySerializedAs("hunter_Attack_After")] [SerializeField]
+    private Text _heroAttackAfter;
 
-    [SerializeField]
-    private Text hunter_Recovery_Before;
+    [FormerlySerializedAs("hunter_Recovery_Before")] [SerializeField]
+    private Text _heroRecoveryBefore;
 
-    [SerializeField]
-    private Text hunter_Recovery_After;
+    [FormerlySerializedAs("hunter_Recovery_After")] [SerializeField]
+    private Text _heroRecoveryAfter;
+    
+    private HunterInfo heroInfo;
+    private PromotionEffect _promotionEffect;
+    private Transform _promotionUpCharacterPos;
+    private Transform _promotionUpCharacter;
+    private Transform _promotionUpTier1;
+    private Transform _promotionUpTier2;
+    private Animator _promotionUpAnim;
 
-    [SerializeField]
-    private HunterInfo hunterInfo;
+    [FormerlySerializedAs("promotionUp_BG")] [SerializeField]
+    private Image _promotionUpBg;
 
-    [SerializeField]
-    private HunterPromotionEffect promotionUP_Eff;
-
-    [SerializeField]
-    private Transform promotionUP_Character_Pos;
-
-    [SerializeField]
-    private Transform promotionUP_Character;
-
-    [SerializeField]
-    private Transform promotionUP_Tier1;
-
-    [SerializeField]
-    private Transform promotionUP_Tier2;
-
-    [SerializeField]
-    private Animator promotionUP_Anim;
-
-    [SerializeField]
-    private Image promotionUp_BG;
-
-    public void Show(HunterInfo _hunterInfo)
+    public void ActivatPanel(HunterInfo _hunterInfo)
     {
         base.Show();
         base.gameObject.SetActive(value: true);
-        Init(_hunterInfo);
+        Construct(_hunterInfo);
     }
 
     public override void Hide()
@@ -82,9 +70,9 @@ public class HunterPromotionUp : LobbyPopupBase
         base.Hide();
     }
 
-    public void SetInit(HunterInfo _hunterInfo)
+    public void SetConfigure(HunterInfo _hunterInfo)
     {
-        Init(_hunterInfo);
+        Construct(_hunterInfo);
     }
 
     public override void HideProcessComplete()
@@ -93,132 +81,132 @@ public class HunterPromotionUp : LobbyPopupBase
 
     public void End_LevelUp_Anim()
     {
-        hunter_Character.gameObject.SetActive(value: true);
+        _hunterCharacter.gameObject.SetActive(value: true);
         Transform transform = null;
         transform = MWPoolManager.Spawn("Effect", "FX_Boom", base.transform, 2f);
         transform.SetAsLastSibling();
-        promotionUP_Eff.gameObject.SetActive(value: false);
+        _promotionEffect.gameObject.SetActive(value: false);
     }
 
-    private void Init(HunterInfo _hunterInfo)
+    private void Construct(HunterInfo _hunterInfo)
     {
-        hunterInfo = _hunterInfo;
-        if (promotionUP_Eff != null)
+        heroInfo = _hunterInfo;
+        if (_promotionEffect != null)
         {
-            MWPoolManager.DeSpawn("Hunter", promotionUP_Eff.transform);
-            promotionUP_Eff = null;
+            MWPoolManager.DeSpawn("Hunter", _promotionEffect.transform);
+            _promotionEffect = null;
         }
-        switch (hunterInfo.Hunter.color)
+        switch (heroInfo.Hunter.color)
         {
             case 0:
-                promotionUP_Eff = MWPoolManager.Spawn("Effect", "FX_PromotionUp_Blue", base.transform).GetComponent<HunterPromotionEffect>();
+                _promotionEffect = MWPoolManager.Spawn("Effect", "FX_PromotionUp_Blue", base.transform).GetComponent<PromotionEffect>();
                 break;
             case 1:
-                promotionUP_Eff = MWPoolManager.Spawn("Effect", "FX_PromotionUp_Green", base.transform).GetComponent<HunterPromotionEffect>();
+                _promotionEffect = MWPoolManager.Spawn("Effect", "FX_PromotionUp_Green", base.transform).GetComponent<PromotionEffect>();
                 break;
             case 2:
-                promotionUP_Eff = MWPoolManager.Spawn("Effect", "FX_PromotionUp_Purple", base.transform).GetComponent<HunterPromotionEffect>();
+                _promotionEffect = MWPoolManager.Spawn("Effect", "FX_PromotionUp_Purple", base.transform).GetComponent<PromotionEffect>();
                 break;
             case 3:
-                promotionUP_Eff = MWPoolManager.Spawn("Effect", "FX_PromotionUp_Red", base.transform).GetComponent<HunterPromotionEffect>();
+                _promotionEffect = MWPoolManager.Spawn("Effect", "FX_PromotionUp_Red", base.transform).GetComponent<PromotionEffect>();
                 break;
             case 4:
-                promotionUP_Eff = MWPoolManager.Spawn("Effect", "FX_PromotionUp_Yellow", base.transform).GetComponent<HunterPromotionEffect>();
+                _promotionEffect = MWPoolManager.Spawn("Effect", "FX_PromotionUp_Yellow", base.transform).GetComponent<PromotionEffect>();
                 break;
         }
-        promotionUP_Character_Pos = promotionUP_Eff.PromotionUP_Character_Pos;
-        promotionUP_Character = promotionUP_Eff.PromotionUP_Character;
-        promotionUP_Tier1 = promotionUP_Eff.PromotionUP_Tier1;
-        promotionUP_Tier2 = promotionUP_Eff.PromotionUP_Tier1;
-        promotionUP_Anim = promotionUP_Eff.PromotionUP_Anim;
-        promotionUP_Eff.SetHunterPromotionUp(this);
+        _promotionUpCharacterPos = _promotionEffect.PromotionUP_Character_Pos;
+        _promotionUpCharacter = _promotionEffect.PromotionUP_Character;
+        _promotionUpTier1 = _promotionEffect.PromotionUP_Tier1;
+        _promotionUpTier2 = _promotionEffect.PromotionUP_Tier1;
+        _promotionUpAnim = _promotionEffect.PromotionUP_Anim;
+        _promotionEffect.SetHunterPromotionUp(this);
         switch (_hunterInfo.Stat.hunterTier)
         {
             case 2:
-                promotionUP_Tier1.gameObject.SetActive(value: true);
-                promotionUP_Tier2.gameObject.SetActive(value: false);
+                _promotionUpTier1.gameObject.SetActive(value: true);
+                _promotionUpTier2.gameObject.SetActive(value: false);
                 break;
             case 3:
-                promotionUP_Tier1.gameObject.SetActive(value: false);
-                promotionUP_Tier2.gameObject.SetActive(value: true);
+                _promotionUpTier1.gameObject.SetActive(value: false);
+                _promotionUpTier2.gameObject.SetActive(value: true);
                 break;
         }
-        PromotionUpEffectPlay();
+        PromotionEffect();
         
-        if (hunter_Character != null)
+        if (_hunterCharacter != null)
         {
-            MWPoolManager.DeSpawn("Hunter", hunter_Character.transform);
-            hunter_Character = null;
+            MWPoolManager.DeSpawn("Hunter", _hunterCharacter.transform);
+            _hunterCharacter = null;
         }
-        switch (hunterInfo.Hunter.color)
+        switch (heroInfo.Hunter.color)
         {
             case 0:
-                hunter_Character = MWPoolManager.Spawn("Hunter", "HunterPhotoBg2_B2", hunterCharactertr).GetComponent<HunterView_Color>();
+                _hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg2_B2", _hunterCharactertr).GetComponent<HeroColor>();
                 break;
             case 1:
-                hunter_Character = MWPoolManager.Spawn("Hunter", "HunterPhotoBg2_G", hunterCharactertr).GetComponent<HunterView_Color>();
+                _hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg2_G", _hunterCharactertr).GetComponent<HeroColor>();
                 break;
             case 2:
-                hunter_Character = MWPoolManager.Spawn("Hunter", "HunterPhotoBg2_P", hunterCharactertr).GetComponent<HunterView_Color>();
+                _hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg2_P", _hunterCharactertr).GetComponent<HeroColor>();
                 break;
             case 3:
-                hunter_Character = MWPoolManager.Spawn("Hunter", "HunterPhotoBg2_R", hunterCharactertr).GetComponent<HunterView_Color>();
+                _hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg2_R", _hunterCharactertr).GetComponent<HeroColor>();
                 break;
             case 4:
-                hunter_Character = MWPoolManager.Spawn("Hunter", "HunterPhotoBg2_Y", hunterCharactertr).GetComponent<HunterView_Color>();
+                _hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg2_Y", _hunterCharactertr).GetComponent<HeroColor>();
                 break;
         }
-        hunter_Character.transform.SetAsFirstSibling();
-        hunter_Character.transform.localPosition = new Vector3(0f, 180f, 0f);
-        hunter_Character.transform.localScale = new Vector3(1f, 1f, 1f);
-        hunter_Character.Init(_hunterInfo);
-        hunter_Character.gameObject.SetActive(value: false);
+        _hunterCharacter.transform.SetAsFirstSibling();
+        _hunterCharacter.transform.localPosition = new Vector3(0f, 180f, 0f);
+        _hunterCharacter.transform.localScale = new Vector3(1f, 1f, 1f);
+        _hunterCharacter.Construct(_hunterInfo);
+        _hunterCharacter.gameObject.SetActive(value: false);
         
-        SetHunterData();
-        SetTierStar();
+        SetHeroData();
+        SetStars();
     }
 
-    private void SetTierStar()
+    private void SetStars()
     {
-        for (int i = 0; i < hunterTiertr.childCount; i++)
+        for (int i = 0; i < _hunterTiertr.childCount; i++)
         {
-            hunterTiertr.GetChild(i).GetChild(0).gameObject.SetActive(value: false);
-            hunterTiertr.GetChild(i).gameObject.SetActive(value: false);
+            _hunterTiertr.GetChild(i).GetChild(0).gameObject.SetActive(value: false);
+            _hunterTiertr.GetChild(i).gameObject.SetActive(value: false);
         }
-        for (int j = 0; j < hunterInfo.Hunter.maxTier; j++)
+        for (int j = 0; j < heroInfo.Hunter.maxTier; j++)
         {
-            hunterTiertr.GetChild(j).gameObject.SetActive(value: true);
-            if (hunterInfo.Stat.hunterTier >= j + 1)
+            _hunterTiertr.GetChild(j).gameObject.SetActive(value: true);
+            if (heroInfo.Stat.hunterTier >= j + 1)
             {
-                hunterTiertr.GetChild(j).GetChild(0).gameObject.SetActive(value: true);
+                _hunterTiertr.GetChild(j).GetChild(0).gameObject.SetActive(value: true);
             }
         }
     }
 
-    private void PromotionUpEffectPlay()
+    private void PromotionEffect()
     {
-        promotionUP_Eff.gameObject.SetActive(value: true);
-        if (promotionUP_Character != null)
+        _promotionEffect.gameObject.SetActive(value: true);
+        if (_promotionUpCharacter != null)
         {
-            MWPoolManager.DeSpawn("Hunter", promotionUP_Character);
-            promotionUP_Character = null;
+            MWPoolManager.DeSpawn("Hunter", _promotionUpCharacter);
+            _promotionUpCharacter = null;
         }
-        promotionUP_Character = MWPoolManager.Spawn("Hunter", hunterInfo.Hunter.hunterIdx.ToString(), promotionUP_Character_Pos);
-        promotionUP_Character.gameObject.SetActive(value: true);
+        _promotionUpCharacter = MWPoolManager.Spawn("Hunter", heroInfo.Hunter.hunterIdx.ToString(), _promotionUpCharacterPos);
+        _promotionUpCharacter.gameObject.SetActive(value: true);
         SetHunterImg();
-        if (hunterInfo.Hunter.hunterSize == 3)
+        if (heroInfo.Hunter.hunterSize == 3)
         {
-            promotionUP_Character.localScale = new Vector3(150f, 150f, 150f);
+            _promotionUpCharacter.localScale = new Vector3(150f, 150f, 150f);
         }
-        else if (hunterInfo.Hunter.hunterSize == 2)
+        else if (heroInfo.Hunter.hunterSize == 2)
         {
-            promotionUP_Character.localScale = new Vector3(200f, 200f, 200f);
+            _promotionUpCharacter.localScale = new Vector3(200f, 200f, 200f);
         }
         else
         {
-            promotionUP_Character.localScale = new Vector3(220f, 220f, 220f);
+            _promotionUpCharacter.localScale = new Vector3(220f, 220f, 220f);
         }
-        promotionUP_Character.localPosition = Vector3.zero;
+        _promotionUpCharacter.localPosition = Vector3.zero;
         SoundController.EffectSound_Play(EffectSoundType.HunterPromotionUp);
         
         /*
@@ -242,75 +230,75 @@ public class HunterPromotionUp : LobbyPopupBase
         }
         */
         
-        switch (hunterInfo.Stat.hunterTier)
+        switch (heroInfo.Stat.hunterTier)
         {
             case 2:
-                promotionUP_Anim.ResetTrigger("Promotion1");
-                promotionUP_Anim.SetTrigger("Promotion1");
+                _promotionUpAnim.ResetTrigger("Promotion1");
+                _promotionUpAnim.SetTrigger("Promotion1");
                 break;
             case 3:
-                promotionUP_Anim.ResetTrigger("Promotion2");
-                promotionUP_Anim.SetTrigger("Promotion2");
+                _promotionUpAnim.ResetTrigger("Promotion2");
+                _promotionUpAnim.SetTrigger("Promotion2");
                 break;
         }
     }
 
     private void SetHunterImg()
     {
-        var anim = promotionUP_Character.GetChild(0).GetComponent<SkeletonAnimation>();
+        var anim = _promotionUpCharacter.GetChild(0).GetComponent<SkeletonAnimation>();
 
         if (!(anim == null))
         {
-            switch (hunterInfo.Stat.hunterTier)
+            switch (heroInfo.Stat.hunterTier)
             {
                 case 1:
-                    anim.initialSkinName = hunterInfo.Hunter.hunterImg1;
+                    anim.initialSkinName = heroInfo.Hunter.hunterImg1;
                     break;
                 case 2:
-                    anim.initialSkinName = hunterInfo.Hunter.hunterImg2;
+                    anim.initialSkinName = heroInfo.Hunter.hunterImg2;
                     break;
                 case 3:
-                    anim.initialSkinName = hunterInfo.Hunter.hunterImg3;
+                    anim.initialSkinName = heroInfo.Hunter.hunterImg3;
                     break;
                 case 4:
-                    anim.initialSkinName = hunterInfo.Hunter.hunterImg4;
+                    anim.initialSkinName = heroInfo.Hunter.hunterImg4;
                     break;
                 case 5:
-                    anim.initialSkinName = hunterInfo.Hunter.hunterImg5;
+                    anim.initialSkinName = heroInfo.Hunter.hunterImg5;
                     break;
             }
             anim.Initialize(overwrite: true);
-            promotionUP_Character.GetChild(0).GetComponent<MeshRenderer>().sortingLayerName = "Popup";
-            promotionUP_Character.GetChild(0).GetComponent<MeshRenderer>().sortingOrder = 5;
+            _promotionUpCharacter.GetChild(0).GetComponent<MeshRenderer>().sortingLayerName = "Popup";
+            _promotionUpCharacter.GetChild(0).GetComponent<MeshRenderer>().sortingOrder = 5;
         }
     }
 
-    private void SetHunterData()
+    private void SetHeroData()
     {
-        UnityEngine.Debug.Log("this.hunterInfo.Hunter.hunterIdx = " + this.hunterInfo.Hunter.hunterIdx);
-        UnityEngine.Debug.Log("this.hunterInfo.Stat.hunterLevel-1 = " + (this.hunterInfo.Stat.hunterLevel - 1));
-        HunterInfo hunterInfo = GameDataManager.GetHunterInfo(this.hunterInfo.Hunter.hunterIdx, this.hunterInfo.Stat.hunterLevel, this.hunterInfo.Stat.hunterTier - 1);
-        hunter_MaxLevel_Before.text = string.Format(MWLocalize.GetData("common_text_max_level"), ((this.hunterInfo.Stat.hunterTier - 1) * 20).ToString());
-        hunter_MaxLevel_After.text = (this.hunterInfo.Stat.hunterTier * 20).ToString();
-        hunter_Name.text = MWLocalize.GetData(this.hunterInfo.Hunter.hunterName);
-        hunter_Level.text = MWLocalize.GetData("common_text_level") + this.hunterInfo.Stat.hunterLevel.ToString();
-        hunter_HP_Before.text = GameUtil.InsertCommaInt((int)GameUtil.GetHunterReinForceHP(hunterInfo.Stat.hunterHp, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx)));
-        hunter_HP_After.text = GameUtil.InsertCommaInt((int)GameUtil.GetHunterReinForceHP(this.hunterInfo.Stat.hunterHp, GameDataManager.HasUserHunterEnchant(this.hunterInfo.Hunter.hunterIdx)));
-        hunter_Attack_Before.text = GameUtil.InsertCommaInt((int)GameUtil.GetHunterReinForceAttack(hunterInfo.Stat.hunterAttack, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx)));
-        hunter_Attack_After.text = GameUtil.InsertCommaInt((int)GameUtil.GetHunterReinForceAttack(this.hunterInfo.Stat.hunterAttack, GameDataManager.HasUserHunterEnchant(this.hunterInfo.Hunter.hunterIdx)));
-        hunter_Recovery_Before.text = GameUtil.InsertCommaInt((int)GameUtil.GetHunterReinForceHeal(hunterInfo.Stat.hunterRecovery, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx)));
-        hunter_Recovery_After.text = GameUtil.InsertCommaInt((int)GameUtil.GetHunterReinForceHeal(this.hunterInfo.Stat.hunterRecovery, GameDataManager.HasUserHunterEnchant(this.hunterInfo.Hunter.hunterIdx)));
+        UnityEngine.Debug.Log("this.hunterInfo.Hunter.hunterIdx = " + this.heroInfo.Hunter.hunterIdx);
+        UnityEngine.Debug.Log("this.hunterInfo.Stat.hunterLevel-1 = " + (this.heroInfo.Stat.hunterLevel - 1));
+        HunterInfo hunterInfo = GameDataManager.GetHunterInfo(this.heroInfo.Hunter.hunterIdx, this.heroInfo.Stat.hunterLevel, this.heroInfo.Stat.hunterTier - 1);
+        _hunterMaxLevelBefore.text = string.Format(MWLocalize.GetData("common_text_max_level"), ((this.heroInfo.Stat.hunterTier - 1) * 20).ToString());
+        _hunterMaxLevelAfter.text = (this.heroInfo.Stat.hunterTier * 20).ToString();
+        _hunterName.text = MWLocalize.GetData(this.heroInfo.Hunter.hunterName);
+        _heroLevel.text = MWLocalize.GetData("common_text_level") + this.heroInfo.Stat.hunterLevel.ToString();
+        _heroHpBefore.text = GameUtil.InsertCommaInt((int)GameUtil.GetHunterReinForceHP(hunterInfo.Stat.hunterHp, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx)));
+        _heroHpAfter.text = GameUtil.InsertCommaInt((int)GameUtil.GetHunterReinForceHP(this.heroInfo.Stat.hunterHp, GameDataManager.HasUserHunterEnchant(this.heroInfo.Hunter.hunterIdx)));
+        _heroAttackBefore.text = GameUtil.InsertCommaInt((int)GameUtil.GetHunterReinForceAttack(hunterInfo.Stat.hunterAttack, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx)));
+        _heroAttackAfter.text = GameUtil.InsertCommaInt((int)GameUtil.GetHunterReinForceAttack(this.heroInfo.Stat.hunterAttack, GameDataManager.HasUserHunterEnchant(this.heroInfo.Hunter.hunterIdx)));
+        _heroRecoveryBefore.text = GameUtil.InsertCommaInt((int)GameUtil.GetHunterReinForceHeal(hunterInfo.Stat.hunterRecovery, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx)));
+        _heroRecoveryAfter.text = GameUtil.InsertCommaInt((int)GameUtil.GetHunterReinForceHeal(this.heroInfo.Stat.hunterRecovery, GameDataManager.HasUserHunterEnchant(this.heroInfo.Hunter.hunterIdx)));
         hunterInfo = null;
     }
 
     public void OnClickGoBack()
     {
         LobbyManager.GetExpEff(Vector3.zero);
-        if (GoBackEvent != null)
+        if (OnGoBackEvent != null)
         {
-            GoBackEvent();
+            OnGoBackEvent();
         }
-        LobbyManager.ShowHunterView(hunterInfo, _isSpawn: true);
+        LobbyManager.ShowHunterView(heroInfo, _isSpawn: true);
         LobbyManager.OnGoBackPromotion();
     }
 }

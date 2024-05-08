@@ -69,7 +69,7 @@ public class Chest : LobbyPopupBase
 	public void Init()
 	{
 		GameUtil.SetUseHunterList();
-		GameUtil.SetOwnHunterList(HUNTERLIST_TYPE.NORMAL);
+		GameUtil.SetOwnHunterList(HanterListType.Normal);
 		if (chestListDbData != null)
 		{
 			chestListDbData.Clear();
@@ -176,7 +176,7 @@ public class Chest : LobbyPopupBase
 				20011,
 				20019,
 				20025
-			}, HUNTERLIST_TYPE.NORMAL, null);
+			}, HanterListType.Normal, null);
 			GamePreferenceManager.SetIsGetHunter20025(isGet: false);
 		}
 		if (LobbyManager.OpenChestOpenResult != null)

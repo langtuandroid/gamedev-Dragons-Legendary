@@ -424,7 +424,7 @@ public class Monster : Monster_Base
 
 	public void SetAttackHunterDamageAnim()
 	{
-		attack_Hunter.HunterCharacter.SetAnim(Anim_Type.DAMAGE);
+		attack_Hunter.HunterCharacter.ChangeAnim(Anim_Type.DAMAGE);
 	}
 
 	public void MonsterUIOnOff(bool _onoff)

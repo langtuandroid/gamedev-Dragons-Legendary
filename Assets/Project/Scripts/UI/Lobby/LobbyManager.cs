@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class LobbyManager : GameObjectSingleton<LobbyManager>
@@ -111,16 +112,16 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	private HunterList hunterList;
 
 	[SerializeField]
-	private HunterView hunterView;
+	private HeroView hunterView;
 
-	[SerializeField]
-	private HunterLevel hunterLevel;
+	[FormerlySerializedAs("hunterLevel")] [SerializeField]
+	private HeroLevel heroLevel;
 
 	[SerializeField]
 	private HunterLevelUp hunterLevelUp;
 
 	[SerializeField]
-	private HunterPromotion hunterPromotion;
+	private HeroPromotion hunterPromotion;
 
 	[SerializeField]
 	private HunterPromotionUp hunterPromotionUp;
@@ -314,15 +315,15 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	public static Transform LevelUpBT => GameObjectSingleton<LobbyManager>.Inst.hunterView.transform.GetChild(2).GetChild(1);
 
-	public static Transform LevelUpPlayBT => GameObjectSingleton<LobbyManager>.Inst.hunterLevel.transform.GetChild(3);
+	public static Transform LevelUpPlayBT => GameObjectSingleton<LobbyManager>.Inst.heroLevel.transform.GetChild(3);
 
-	public static Transform LevelUpRequiredItem => GameObjectSingleton<LobbyManager>.Inst.hunterLevel.transform.GetChild(1).GetChild(1);
+	public static Transform LevelUpRequiredItem => GameObjectSingleton<LobbyManager>.Inst.heroLevel.transform.GetChild(1).GetChild(1);
 
 	public static Transform GetHunterList => GameObjectSingleton<LobbyManager>.Inst.hunterList.transform;
 
-	public static Transform GetHunterLevel => GameObjectSingleton<LobbyManager>.Inst.hunterLevel.transform;
+	public static Transform GetHunterLevel => GameObjectSingleton<LobbyManager>.Inst.heroLevel.transform;
 
-	public static HunterInfo HunterLevelHunterInfo => GameObjectSingleton<LobbyManager>.Inst.hunterLevel.HunterInfo;
+	public static HunterInfo HunterLevelHunterInfo => GameObjectSingleton<LobbyManager>.Inst.heroLevel.HunterInfo;
 
 	public static HunterInfo HunterPromotionHunterInfo => GameObjectSingleton<LobbyManager>.Inst.hunterPromotion.HunterInfo;
 
@@ -452,11 +453,11 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	{
 		if (_isSpawn)
 		{
-			GameObjectSingleton<LobbyManager>.Inst.hunterView.Show(_hunterInfo, _isOwn);
+			GameObjectSingleton<LobbyManager>.Inst.hunterView.ShowView(_hunterInfo, _isOwn);
 		}
 		else
 		{
-			GameObjectSingleton<LobbyManager>.Inst.hunterView.SetInit(_hunterInfo, _isOwn);
+			GameObjectSingleton<LobbyManager>.Inst.hunterView.SetConfigure(_hunterInfo, _isOwn);
 		}
 		if (OpenHunterInfo != null)
 		{
@@ -469,11 +470,11 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	{
 		if (_isSpawn)
 		{
-			GameObjectSingleton<LobbyManager>.Inst.hunterLevel.Show(_hunterInfo);
+			GameObjectSingleton<LobbyManager>.Inst.heroLevel.ShowHnter(_hunterInfo);
 		}
 		else
 		{
-			GameObjectSingleton<LobbyManager>.Inst.hunterLevel.SetInit(_hunterInfo);
+			GameObjectSingleton<LobbyManager>.Inst.heroLevel.SetConfigure(_hunterInfo);
 		}
 		if (OpenHunterLevel != null)
 		{
@@ -485,11 +486,11 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	{
 		if (_isSpawn)
 		{
-			GameObjectSingleton<LobbyManager>.Inst.hunterLevelUp.Show(_hunterInfo_before, _hunterInfo_after);
+			GameObjectSingleton<LobbyManager>.Inst.hunterLevelUp.ShowLevel(_hunterInfo_before, _hunterInfo_after);
 		}
 		else
 		{
-			GameObjectSingleton<LobbyManager>.Inst.hunterLevelUp.SetInit(_hunterInfo_before, _hunterInfo_after);
+			GameObjectSingleton<LobbyManager>.Inst.hunterLevelUp.SetConstruct(_hunterInfo_before, _hunterInfo_after);
 		}
 		if (OpenHunterLevelUp != null)
 		{
@@ -501,11 +502,11 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	{
 		if (_isSpawn)
 		{
-			GameObjectSingleton<LobbyManager>.Inst.hunterPromotion.Show(_hunterInfo);
+			GameObjectSingleton<LobbyManager>.Inst.hunterPromotion.ShowPanel(_hunterInfo);
 		}
 		else
 		{
-			GameObjectSingleton<LobbyManager>.Inst.hunterPromotion.SetInit(_hunterInfo);
+			GameObjectSingleton<LobbyManager>.Inst.hunterPromotion.SetConfigure(_hunterInfo);
 		}
 	}
 
@@ -513,11 +514,11 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	{
 		if (_isSpawn)
 		{
-			GameObjectSingleton<LobbyManager>.Inst.hunterPromotionUp.Show(_hunterInfo);
+			GameObjectSingleton<LobbyManager>.Inst.hunterPromotionUp.ActivatPanel(_hunterInfo);
 		}
 		else
 		{
-			GameObjectSingleton<LobbyManager>.Inst.hunterPromotionUp.SetInit(_hunterInfo);
+			GameObjectSingleton<LobbyManager>.Inst.hunterPromotionUp.SetConfigure(_hunterInfo);
 		}
 	}
 
@@ -666,7 +667,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	public static void OnGoBackLevel()
 	{
-		GameObjectSingleton<LobbyManager>.Inst.hunterLevel.Hide();
+		GameObjectSingleton<LobbyManager>.Inst.heroLevel.Hide();
 	}
 
 	public static void OnGoBackPromotion()
@@ -680,11 +681,11 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		{
 			GameObjectSingleton<LobbyManager>.Inst.hunterPromotion.HunterTransform.gameObject.SetActive(value: false);
 		}
-		else if (GameObjectSingleton<LobbyManager>.Inst.hunterLevel.HunterCheckNull() && GameObjectSingleton<LobbyManager>.Inst.hunterLevel.gameObject.activeSelf)
+		else if (GameObjectSingleton<LobbyManager>.Inst.heroLevel.CheckNull() && GameObjectSingleton<LobbyManager>.Inst.heroLevel.gameObject.activeSelf)
 		{
-			GameObjectSingleton<LobbyManager>.Inst.hunterLevel.HunterTransform.gameObject.SetActive(value: false);
+			GameObjectSingleton<LobbyManager>.Inst.heroLevel.HunterTransform.gameObject.SetActive(value: false);
 		}
-		else if (GameObjectSingleton<LobbyManager>.Inst.hunterView.HunterCheckNull() && GameObjectSingleton<LobbyManager>.Inst.hunterView.gameObject.activeSelf)
+		else if (GameObjectSingleton<LobbyManager>.Inst.hunterView.IsHunterNull() && GameObjectSingleton<LobbyManager>.Inst.hunterView.gameObject.activeSelf)
 		{
 			GameObjectSingleton<LobbyManager>.Inst.hunterView.HunterTransform.gameObject.SetActive(value: false);
 		}
@@ -697,11 +698,11 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		{
 			GameObjectSingleton<LobbyManager>.Inst.hunterPromotion.HunterTransform.gameObject.SetActive(value: true);
 		}
-		else if (GameObjectSingleton<LobbyManager>.Inst.hunterLevel.HunterCheckNull() && GameObjectSingleton<LobbyManager>.Inst.hunterLevel.gameObject.activeSelf)
+		else if (GameObjectSingleton<LobbyManager>.Inst.heroLevel.CheckNull() && GameObjectSingleton<LobbyManager>.Inst.heroLevel.gameObject.activeSelf)
 		{
-			GameObjectSingleton<LobbyManager>.Inst.hunterLevel.HunterTransform.gameObject.SetActive(value: true);
+			GameObjectSingleton<LobbyManager>.Inst.heroLevel.HunterTransform.gameObject.SetActive(value: true);
 		}
-		else if (GameObjectSingleton<LobbyManager>.Inst.hunterView.HunterCheckNull() && GameObjectSingleton<LobbyManager>.Inst.hunterView.gameObject.activeSelf)
+		else if (GameObjectSingleton<LobbyManager>.Inst.hunterView.IsHunterNull() && GameObjectSingleton<LobbyManager>.Inst.hunterView.gameObject.activeSelf)
 		{
 			GameObjectSingleton<LobbyManager>.Inst.hunterView.HunterTransform.gameObject.SetActive(value: true);
 		}
@@ -976,7 +977,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		GameObjectSingleton<LobbyManager>.Inst.shopPackageListResult.specialOfferYn = "y";
 	}
 
-	public static void HunterCardClickForTUtorial(HunterCard _card)
+	public static void HunterCardClickForTUtorial(HeroCard _card)
 	{
 		GameObjectSingleton<LobbyManager>.Inst.deckEdit.OnSelect_HunterCardForTutorial(_card);
 	}
@@ -1004,7 +1005,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		GameInfo.isDirectBattleReward = false;
 		base.gameObject.SetActive(value: true);
 		GameUtil.SetUseHunterList();
-		GameUtil.SetOwnHunterList(HUNTERLIST_TYPE.NORMAL);
+		GameUtil.SetOwnHunterList(HanterListType.Normal);
 		topUI.Init();
 		castleUI.Init();
 		topUI.RefreshData();
@@ -1021,11 +1022,11 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		valueShopBuy.GoBackEvent = OnValueShopBuyGoBackEvent;
 		hunterList.GoBackEvent = OnHunterListGoBackEvent;
 		setting.GoBackEvent = OnSettingGoBackEvent;
-		hunterView.GoBackEvent = OnHunterViewGoBackEvent;
-		hunterLevel.GoBackEvent = OnHunterLevelGoBackEvent;
+		hunterView.OnBackEvent = OnHunterViewGoBackEvent;
+		heroLevel.OnGoBack = OnHunterLevelGoBackEvent;
 		hunterLevelUp.GoBackEvent = OnHunterLevelUpGoBackEvent;
-		hunterPromotion.GoBackEvent = OnHunterPromotionGoBackEvent;
-		hunterPromotionUp.GoBackEvent = OnHunterPromotionUpGoBackEvent;
+		hunterPromotion.OnBackEvent = OnHunterPromotionGoBackEvent;
+		hunterPromotionUp.OnGoBackEvent = OnHunterPromotionUpGoBackEvent;
 		floorDetail.GoBackEvent = OnFloorDetailGoBackEvent;
 		floorUpgrade.GoBackEvent = OnFloorUpgradeGoBackEvent;
 		userLevelInfo.GoBackEvent = OnUserLevelInfoGoBackEvent;
@@ -1182,7 +1183,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	private void OnDeckEditGoBackEvent()
 	{
-		if (deckEdit.EditType == HUNTERLIST_TYPE.NORMAL)
+		if (deckEdit.EditType == HanterListType.Normal)
 		{
 			levelPlay.RefreshDeck();
 			hunterList.RefreshDeck();
@@ -1238,7 +1239,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	private void OnHunterLevelGoBackEvent()
 	{
-		hunterLevel.Hide();
+		heroLevel.Hide();
 		RefreshFloor();
 	}
 
@@ -1941,14 +1942,14 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	public void OnShowDeckEditNormal()
 	{
-		deckEdit.Show(HUNTERLIST_TYPE.NORMAL);
+		deckEdit.Show(HanterListType.Normal);
 		HideReadyMonsterList();
 		SoundController.EffectSound_Play(EffectSoundType.ButtonClick);
 	}
 
 	public void OnShowDeckEditArena()
 	{
-		deckEdit.Show(HUNTERLIST_TYPE.ARENA);
+		deckEdit.Show(HanterListType.Arena);
 		HideReadyMonsterList();
 		SoundController.EffectSound_Play(EffectSoundType.ButtonClick);
 	}

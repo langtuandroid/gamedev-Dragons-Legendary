@@ -156,7 +156,7 @@ public class GameDataManager : GameObjectSingleton<GameDataManager>
 		return GameObjectSingleton<GameDataManager>.Inst.localDB.GetHunterTribeData(hunterAllyIdx);
 	}
 
-	public static HunterColorDbData GetHunterColorName(int hunterColorIdx)
+	public static HeroColorDbData GetHunterColorName(int hunterColorIdx)
 	{
 		return GameObjectSingleton<GameDataManager>.Inst.localDB.GetHunterColorData(hunterColorIdx);
 	}
@@ -349,9 +349,9 @@ public class GameDataManager : GameObjectSingleton<GameDataManager>
 		LoadUserData();
 	}
 
-	public static void SwitchHunterFromUseToUse(int fromIndex, int toIndex, HUNTERLIST_TYPE hunterListType)
+	public static void SwitchHunterFromUseToUse(int fromIndex, int toIndex, HanterListType hunterListType)
 	{
-		if (hunterListType == HUNTERLIST_TYPE.NORMAL)
+		if (hunterListType == HanterListType.Normal)
 		{
 			UserHunterData userHunterData = GameInfo.userData.huntersUseInfo[fromIndex];
 			GameInfo.userData.huntersUseInfo[fromIndex] = GameInfo.userData.huntersUseInfo[toIndex];
@@ -365,9 +365,9 @@ public class GameDataManager : GameObjectSingleton<GameDataManager>
 		}
 	}
 
-	public static void SwitchHunterFromOwnToUse(int ownIndex, int useIndex, HUNTERLIST_TYPE hunterListType)
+	public static void SwitchHunterFromOwnToUse(int ownIndex, int useIndex, HanterListType hunterListType)
 	{
-		if (hunterListType == HUNTERLIST_TYPE.NORMAL)
+		if (hunterListType == HanterListType.Normal)
 		{
 			UserHunterData userHunterData = GameInfo.userData.huntersOwnInfo[ownIndex];
 			GameInfo.userData.huntersOwnInfo[ownIndex] = GameInfo.userData.huntersUseInfo[useIndex];

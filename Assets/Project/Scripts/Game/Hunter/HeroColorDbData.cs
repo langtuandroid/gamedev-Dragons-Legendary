@@ -1,4 +1,4 @@
-public class HunterColorDbData
+public class HeroColorDbData
 {
 	public int color;
 
