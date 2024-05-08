@@ -64,12 +64,12 @@ public class FloorDetail : LobbyPopupBase
 	{
 		userFloorData = _userData;
 		produceData = _produceData;
-		Show();
+		Open();
 	}
 
-	public override void Show()
+	public override void Open()
 	{
-		base.Show();
+		base.Open();
 		Init();
 	}
 
@@ -78,7 +78,7 @@ public class FloorDetail : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 

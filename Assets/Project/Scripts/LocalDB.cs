@@ -20,9 +20,9 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 
 	private Dictionary<int, Dictionary<int, ChapterDbData>> dicChapterDbData = new Dictionary<int, Dictionary<int, ChapterDbData>>();
 
-	private Dictionary<int, Dictionary<int, List<LevelDbData>>> dicLevelDbData = new Dictionary<int, Dictionary<int, List<LevelDbData>>>();
+	private Dictionary<int, Dictionary<int, List<LevelGameDbData>>> dicLevelDbData = new Dictionary<int, Dictionary<int, List<LevelGameDbData>>>();
 
-	private Dictionary<int, LevelDbData> dicLevelIndexDbData = new Dictionary<int, LevelDbData>();
+	private Dictionary<int, LevelGameDbData> dicLevelIndexDbData = new Dictionary<int, LevelGameDbData>();
 
 	private Dictionary<int, Dictionary<int, WaveDbData>> dicWaveDbData = new Dictionary<int, Dictionary<int, WaveDbData>>();
 
@@ -91,17 +91,17 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 		return dicChapterDbData[stageId];
 	}
 
-	public List<LevelDbData> GetLevelDbList(int stageId, int chapterId)
+	public List<LevelGameDbData> GetLevelDbList(int stageId, int chapterId)
 	{
 		return dicLevelDbData[stageId][chapterId];
 	}
 
-	public LevelDbData GetLevelIndexDbData(int levelIdx)
+	public LevelGameDbData GetLevelIndexDbData(int levelIdx)
 	{
 		return dicLevelIndexDbData[levelIdx];
 	}
 
-	public Dictionary<int, LevelDbData> GetDicLevelIndexDbData()
+	public Dictionary<int, LevelGameDbData> GetDicLevelIndexDbData()
 	{
 		return dicLevelIndexDbData;
 	}
@@ -461,7 +461,7 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 		dicLevelDbData.Clear();
 		while (dataReader.Read())
 		{
-			LevelDbData levelDbData = new LevelDbData();
+			LevelGameDbData levelDbData = new LevelGameDbData();
 			levelDbData.levelIdx = dataReader.GetInt32(0);
 			levelDbData.stage = dataReader.GetInt32(1);
 			levelDbData.chapter = dataReader.GetInt32(2);
@@ -491,11 +491,11 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 			levelDbData.boosterItem_3 = dataReader.GetInt32(26);
 			if (!dicLevelDbData.ContainsKey(levelDbData.stage))
 			{
-				dicLevelDbData.Add(levelDbData.stage, new Dictionary<int, List<LevelDbData>>());
+				dicLevelDbData.Add(levelDbData.stage, new Dictionary<int, List<LevelGameDbData>>());
 			}
 			if (!dicLevelDbData[levelDbData.stage].ContainsKey(levelDbData.chapter))
 			{
-				dicLevelDbData[levelDbData.stage].Add(levelDbData.chapter, new List<LevelDbData>());
+				dicLevelDbData[levelDbData.stage].Add(levelDbData.chapter, new List<LevelGameDbData>());
 			}
 			dicLevelDbData[levelDbData.stage][levelDbData.chapter].Add(levelDbData);
 			dicLevelIndexDbData.Add(levelDbData.levelIdx, levelDbData);

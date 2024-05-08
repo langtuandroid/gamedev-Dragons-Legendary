@@ -29,9 +29,9 @@ public class EnergyInfo : LobbyPopupBase
 	[SerializeField]
 	private Transform trEnergyChargeForJewel;
 
-	public override void Show()
+	public override void Open()
 	{
-		base.Show();
+		base.Open();
 		Init();
 		LobbyManager.HideHunterLobby();
 	}
@@ -41,7 +41,7 @@ public class EnergyInfo : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 

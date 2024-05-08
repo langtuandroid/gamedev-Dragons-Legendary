@@ -70,10 +70,10 @@ public class ArenaLevelPlay : LobbyPopupBase
 	private GameObject[] arrGoTribeBuff = new GameObject[0];
 
 	[SerializeField]
-	private LevelPlay_Booster boosterItem;
+	private LevelGameBooster boosterItem;
 
 	[SerializeField]
-	private LevelPlay_BoosterDescription boostDescription;
+	private LevelGamePlayBoosterDescription boostDescription;
 
 	private Transform trRewardItem;
 
@@ -83,7 +83,7 @@ public class ArenaLevelPlay : LobbyPopupBase
 
 	public void Show(ARENA_INFO_DATA_RESULT _data)
 	{
-		base.Show();
+		base.Open();
 		arenaInfoData = _data;
 		GameInfo.inGamePlayData.arenaInfo = arenaInfoData.arenaInfo;
 		GameInfo.inGamePlayData.arenaLevelData = arenaInfoData.activeLevelData;
@@ -115,7 +115,7 @@ public class ArenaLevelPlay : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 		RemoveHunterCard();
 	}
@@ -132,7 +132,7 @@ public class ArenaLevelPlay : LobbyPopupBase
 		if (GameInfo.userData.userInfo.arenaTicket >= arenaInfoData.activeLevelData.costTicket)
 		{
 			List<int> list = new List<int>();
-			boosterItem.AddBoostItem();
+			boosterItem.AddBuster();
 			if (GameInfo.inGamePlayData.dicActiveBoostItem.Count > 0)
 			{
 				foreach (KeyValuePair<int, BoostItemDbData> item in GameInfo.inGamePlayData.dicActiveBoostItem)
@@ -245,7 +245,7 @@ public class ArenaLevelPlay : LobbyPopupBase
 			GameInfo.inGamePlayData.arenaLevelData.booster2,
 			GameInfo.inGamePlayData.arenaLevelData.booster3
 		};
-		boosterItem.Init(itemType);
+		boosterItem.Construct(itemType);
 	}
 
 	private string StatTranslate(float _stat)
@@ -275,7 +275,7 @@ public class ArenaLevelPlay : LobbyPopupBase
 		else
 		{
 			List<int> list = new List<int>();
-			boosterItem.AddBoostItem();
+			boosterItem.AddBuster();
 			if (GameInfo.inGamePlayData.dicActiveBoostItem.Count > 0)
 			{
 				foreach (KeyValuePair<int, BoostItemDbData> item in GameInfo.inGamePlayData.dicActiveBoostItem)
@@ -296,12 +296,12 @@ public class ArenaLevelPlay : LobbyPopupBase
 			GameInfo.inGamePlayData.arenaLevelData.booster2,
 			GameInfo.inGamePlayData.arenaLevelData.booster3
 		};
-		boostDescription.Init(itemType);
+		boostDescription.Construct(itemType);
 	}
 
 	public void OnClickGoBack()
 	{
-		boosterItem.BoostItemCancel();
+		boosterItem.BoostCancel();
 		if (GoBackEvent != null)
 		{
 			GoBackEvent();

@@ -82,12 +82,12 @@ public class FloorUpgrade : LobbyPopupBase
 		upgradeStoreData = GameDataManager.GetStoreUpgradeData(storeIdx, storeTier);
 		currentProduceStoreData = GameDataManager.GetStoreProduceData(storeIdx, storeTier);
 		nextProduceStoreData = GameDataManager.GetStoreProduceData(storeIdx, storeTier + 1);
-		Show();
+		Open();
 	}
 
-	public override void Show()
+	public override void Open()
 	{
-		base.Show();
+		base.Open();
 		GameDataManager.ChangeUserData = (Action)Delegate.Combine(GameDataManager.ChangeUserData, new Action(OnUserDataChangeEvent));
 		Init();
 	}
@@ -97,7 +97,7 @@ public class FloorUpgrade : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 

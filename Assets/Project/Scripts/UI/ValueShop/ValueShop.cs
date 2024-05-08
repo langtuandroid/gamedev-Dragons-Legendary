@@ -110,7 +110,7 @@ public class ValueShop : LobbyPopupBase
 
 	public void Show(ValueShopType _type = ValueShopType.Daily)
 	{
-		base.Show();
+		base.Open();
 		base.gameObject.SetActive(value: true);
 		Init(_type);
 		LobbyManager.HideHunterLobby();
@@ -121,7 +121,7 @@ public class ValueShop : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 

@@ -1,4 +1,4 @@
-public class LevelDbData
+public class LevelGameDbData
 {
 	public int levelIdx;
 

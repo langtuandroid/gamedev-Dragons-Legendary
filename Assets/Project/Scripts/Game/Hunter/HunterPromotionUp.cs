@@ -60,7 +60,7 @@ public class HunterPromotionUp : LobbyPopupBase
 
     public void ActivatPanel(HunterInfo _hunterInfo)
     {
-        base.Show();
+        base.Open();
         base.gameObject.SetActive(value: true);
         Construct(_hunterInfo);
     }
@@ -75,7 +75,7 @@ public class HunterPromotionUp : LobbyPopupBase
         Construct(_hunterInfo);
     }
 
-    public override void HideProcessComplete()
+    public override void CloseProcessComplete()
     {
     }
 

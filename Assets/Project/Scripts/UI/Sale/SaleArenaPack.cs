@@ -28,12 +28,12 @@ public class SaleArenaPack : LobbyPopupBase
 
 	private System.Object purchase_args;
 
-	public override void Show()
+	public override void Open()
 	{
 		UnityEngine.Debug.Log("GameInfo.arenaPackageData :: " + GameInfo.arenaPackageData);
 		if (GameInfo.arenaPackageData != null)
 		{
-			base.Show();
+			base.Open();
 			Init();
 			InAppPurchaseManager.OnInAppPurchaseProcessComplete = OnInAppPurchaseComplete;
 		}
@@ -44,7 +44,7 @@ public class SaleArenaPack : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 

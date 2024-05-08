@@ -26,9 +26,9 @@ public class ArenaTicketNone : LobbyPopupBase
 	[SerializeField]
 	private Button btnCancel;
 
-	public override void Show()
+	public override void Open()
 	{
-		base.Show();
+		base.Open();
 		btnJewel.enabled = true;
 		btnCancel.enabled = true;
 		textNeedJewel.text = $"{GameDataManager.GetGameConfigData(ConfigDataType.Arena_ticket_price)}";
@@ -39,7 +39,7 @@ public class ArenaTicketNone : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 

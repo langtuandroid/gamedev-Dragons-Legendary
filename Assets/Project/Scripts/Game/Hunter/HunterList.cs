@@ -75,9 +75,9 @@ public class HunterList : LobbyPopupBase
 
 	public Transform GetHunter => trGetHunter;
 
-	public override void Show()
+	public override void Open()
 	{
-		base.Show();
+		base.Open();
 		base.gameObject.SetActive(value: true);
 		Init();
 	}
@@ -93,7 +93,7 @@ public class HunterList : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 		HeroCard[] componentsInChildren = trHunterContent.GetComponentsInChildren<HeroCard>();
 		foreach (HeroCard hunterCard in componentsInChildren)

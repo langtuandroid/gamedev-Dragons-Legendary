@@ -22,7 +22,7 @@ public class NotEnouchCoin : LobbyPopupBase
 	{
 		lackCoin = coin;
 		LobbyManager.HideHunterLobby();
-		base.Show();
+		base.Open();
 		Init();
 	}
 

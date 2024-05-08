@@ -46,7 +46,7 @@ public class SaleSpecialOffer : LobbyPopupBase
 		}
 		else
 		{
-			base.Show();
+			base.Open();
 			Init();
 		}
 	}
@@ -56,7 +56,7 @@ public class SaleSpecialOffer : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 

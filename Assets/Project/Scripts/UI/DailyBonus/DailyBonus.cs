@@ -24,7 +24,7 @@ public class DailyBonus : LobbyPopupBase
 
 	private DailyBonusItem currentDailyItem;
 
-	public override void Show()
+	public override void Open()
 	{
 		Protocol_Set.Protocol_user_daily_bonus_Req(OnDailyBonusConnectComplete);
 	}
@@ -34,7 +34,7 @@ public class DailyBonus : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 
@@ -104,7 +104,7 @@ public class DailyBonus : LobbyPopupBase
 		}
 		else
 		{
-			base.Show();
+			base.Open();
 			Init();
 		}
 	}

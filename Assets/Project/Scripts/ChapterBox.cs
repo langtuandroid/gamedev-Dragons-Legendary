@@ -71,7 +71,7 @@ public class ChapterBox : MonoBehaviour
 
 	private ChapterDbData chapterDbData;
 
-	private List<LevelDbData> listLevelDbData = new List<LevelDbData>();
+	private List<LevelGameDbData> listLevelDbData = new List<LevelGameDbData>();
 
 	public void SetData(ChapterDbData data)
 	{
@@ -97,8 +97,8 @@ public class ChapterBox : MonoBehaviour
 
 	public void Clear()
 	{
-		LevelCell[] componentsInChildren = trContent.GetComponentsInChildren<LevelCell>();
-		foreach (LevelCell levelCell in componentsInChildren)
+		LevelGameBlock[] componentsInChildren = trContent.GetComponentsInChildren<LevelGameBlock>();
+		foreach (LevelGameBlock levelCell in componentsInChildren)
 		{
 			MWPoolManager.DeSpawn("Lobby", levelCell.transform);
 		}
@@ -106,10 +106,10 @@ public class ChapterBox : MonoBehaviour
 
 	public void Refresh()
 	{
-		LevelCell[] componentsInChildren = trContent.GetComponentsInChildren<LevelCell>();
-		foreach (LevelCell levelCell in componentsInChildren)
+		LevelGameBlock[] componentsInChildren = trContent.GetComponentsInChildren<LevelGameBlock>();
+		foreach (LevelGameBlock levelCell in componentsInChildren)
 		{
-			levelCell.Refresh();
+			levelCell.Reset();
 		}
 	}
 
@@ -125,11 +125,11 @@ public class ChapterBox : MonoBehaviour
 		textRequireStarOpen.text = $"{GameDataManager.GetUserClearStarCount()}/{chapterDbData.ocStar}";
 		for (int i = 0; i < listLevelDbData.Count; i++)
 		{
-			LevelDbData levelDbData = listLevelDbData[i];
-			LevelCell component = MWPoolManager.Spawn("Lobby", "Cell_level", trContent).GetComponent<LevelCell>();
+			LevelGameDbData levelDbData = listLevelDbData[i];
+			LevelGameBlock component = MWPoolManager.Spawn("Lobby", "Cell_level", trContent).GetComponent<LevelGameBlock>();
 			component.transform.localScale = Vector3.one;
 			component.SetData(levelDbData);
-			component.SetStarCount(GameDataManager.GetLevelStarCount(levelDbData.stage, levelDbData.chapter, levelDbData.level));
+			component.PlaceStars(GameDataManager.GetLevelStarCount(levelDbData.stage, levelDbData.chapter, levelDbData.level));
 			if (component.StarCount == 0)
 			{
 				SnapFianlLevel(i);

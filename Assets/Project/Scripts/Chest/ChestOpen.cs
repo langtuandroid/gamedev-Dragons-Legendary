@@ -83,7 +83,7 @@ public class ChestOpen : LobbyPopupBase
 	public void Show(List<ChestListDbData> _chestList, ChestType _chestType)
 	{
 		UnityEngine.Debug.Log("ChestOpen count :: " + _chestList.Count);
-		base.Show();
+		base.Open();
 		base.gameObject.SetActive(value: true);
 		chestListDbData = _chestList;
 		chestType = _chestType;
@@ -124,7 +124,7 @@ public class ChestOpen : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 

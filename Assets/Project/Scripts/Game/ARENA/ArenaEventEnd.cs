@@ -28,7 +28,7 @@ public class ArenaEventEnd : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 
@@ -36,7 +36,7 @@ public class ArenaEventEnd : LobbyPopupBase
 	{
 		if (rewardInfoData.rewardYn == "y")
 		{
-			base.Show();
+			base.Open();
 			textLevel.text = string.Format(MWLocalize.GetData("arena_lobby_text_03"), "<color=#FCF13E>" + rewardInfoData.arenaLevel + "</color>/10");
 			textGetPoint.text = $"+{rewardInfoData.arenaPoint}";
 			textNextPoint.text = $"{rewardInfoData.nextArenaPoint}";

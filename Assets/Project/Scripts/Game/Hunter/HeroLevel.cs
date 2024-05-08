@@ -79,7 +79,7 @@ public class HeroLevel : LobbyPopupBase
 
 	public void ShowHnter(HunterInfo _hunterInfo)
 	{
-		base.Show();
+		base.Open();
 		base.gameObject.SetActive(value: true);
 		Construct(_hunterInfo);
 	}
@@ -89,7 +89,7 @@ public class HeroLevel : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 

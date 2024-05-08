@@ -39,7 +39,7 @@ public class BattleResult : MonoBehaviour
 
 	private int userClearStar;
 
-	private LevelDbData levelData;
+	private LevelGameDbData levelData;
 
 	private GAME_END_RESULT gameEndData;
 
@@ -72,10 +72,10 @@ public class BattleResult : MonoBehaviour
 		}
 	}
 
-	private LevelDbData GetLevelData()
+	private LevelGameDbData GetLevelData()
 	{
-		List<LevelDbData> levelListDbData = GameDataManager.GetLevelListDbData(GameInfo.inGamePlayData.stage, GameInfo.inGamePlayData.chapter);
-		foreach (LevelDbData item in levelListDbData)
+		List<LevelGameDbData> levelListDbData = GameDataManager.GetLevelListDbData(GameInfo.inGamePlayData.stage, GameInfo.inGamePlayData.chapter);
+		foreach (LevelGameDbData item in levelListDbData)
 		{
 			if (item.level == GameInfo.inGamePlayData.level)
 			{

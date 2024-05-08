@@ -30,7 +30,7 @@ public class ArenaShopBuy : LobbyPopupBase
 
 	public void Show(ARENA_STORE_INFO _key)
 	{
-		base.Show();
+		base.Open();
 		base.gameObject.SetActive(value: true);
 		Init(_key);
 	}
@@ -40,7 +40,7 @@ public class ArenaShopBuy : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 

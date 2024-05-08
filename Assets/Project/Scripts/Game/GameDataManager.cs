@@ -81,17 +81,17 @@ public class GameDataManager : GameObjectSingleton<GameDataManager>
 		return GameObjectSingleton<GameDataManager>.Inst.localDB.GetChapterDataList(stageId);
 	}
 
-	public static List<LevelDbData> GetLevelListDbData(int stageId, int chapterId)
+	public static List<LevelGameDbData> GetLevelListDbData(int stageId, int chapterId)
 	{
 		return GameObjectSingleton<GameDataManager>.Inst.localDB.GetLevelDbList(stageId, chapterId);
 	}
 
-	public static LevelDbData GetLevelIndexDbData(int levelIdx)
+	public static LevelGameDbData GetLevelIndexDbData(int levelIdx)
 	{
 		return GameObjectSingleton<GameDataManager>.Inst.localDB.GetLevelIndexDbData(levelIdx);
 	}
 
-	public static Dictionary<int, LevelDbData> GetDicLevelIndexDbData()
+	public static Dictionary<int, LevelGameDbData> GetDicLevelIndexDbData()
 	{
 		return GameObjectSingleton<GameDataManager>.Inst.localDB.GetDicLevelIndexDbData();
 	}

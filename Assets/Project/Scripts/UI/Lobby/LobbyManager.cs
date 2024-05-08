@@ -85,10 +85,10 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	private StageSelect stageSelect;
 
 	[SerializeField]
-	private LevelSelect levelSelect;
+	private LevelGameSelect levelSelect;
 
 	[SerializeField]
-	private LevelPlay levelPlay;
+	private LevelGamePlay levelPlay;
 
 	[SerializeField]
 	private QuickLoot quickLoot;
@@ -136,7 +136,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	private FloorUpgrade floorUpgrade;
 
 	[SerializeField]
-	private LevelInfo userLevelInfo;
+	private LevelGameInfo userLevelInfo;
 
 	[SerializeField]
 	private EnergyInfo userEnergyInfo;
@@ -271,7 +271,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	public static Vector3 FloorStorePosition => GameObjectSingleton<LobbyManager>.Inst.listFloorController[0].ListFloorItem[0].TrStore.position;
 
-	public static LevelCell SecondLevelCell => GameObjectSingleton<LobbyManager>.Inst.levelSelect.SecondLevelCell;
+	public static LevelGameBlock SecondLevelCell => GameObjectSingleton<LobbyManager>.Inst.levelSelect.SecondLevelCell;
 
 	public static Transform LevelPlayButton => GameObjectSingleton<LobbyManager>.Inst.levelPlay.PlayButton;
 
@@ -353,7 +353,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		if (!GameObjectSingleton<LobbyManager>.Inst.levelSelect.gameObject.activeSelf)
 		{
 			GameInfo.inGamePlayData.stage = stageid;
-			GameObjectSingleton<LobbyManager>.Inst.levelSelect.Show(stageid);
+			GameObjectSingleton<LobbyManager>.Inst.levelSelect.Open(stageid);
 		}
 	}
 
@@ -361,7 +361,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	{
 		if (!GameObjectSingleton<LobbyManager>.Inst.levelPlay.gameObject.activeSelf)
 		{
-			GameObjectSingleton<LobbyManager>.Inst.levelPlay.Show(levelIndex);
+			GameObjectSingleton<LobbyManager>.Inst.levelPlay.Open(levelIndex);
 		}
 	}
 
@@ -436,7 +436,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	public static void ShowLevelPlay()
 	{
-		GameObjectSingleton<LobbyManager>.Inst.levelPlay.RefreshDeck();
+		GameObjectSingleton<LobbyManager>.Inst.levelPlay.DeckReset();
 	}
 
 	public static void ShowArenaLevelPlay()
@@ -555,7 +555,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	{
 		if (!GameObjectSingleton<LobbyManager>.Inst.userLevelInfo.gameObject.activeSelf)
 		{
-			GameObjectSingleton<LobbyManager>.Inst.userLevelInfo.Show();
+			GameObjectSingleton<LobbyManager>.Inst.userLevelInfo.Open();
 		}
 	}
 
@@ -563,7 +563,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	{
 		if (!GameObjectSingleton<LobbyManager>.Inst.userEnergyInfo.gameObject.activeSelf)
 		{
-			GameObjectSingleton<LobbyManager>.Inst.userEnergyInfo.Show();
+			GameObjectSingleton<LobbyManager>.Inst.userEnergyInfo.Open();
 			GameObjectSingleton<LobbyManager>.Inst.HideReadyMonsterList();
 		}
 	}
@@ -627,7 +627,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	public static void ShowArenaTicketNone()
 	{
-		GameObjectSingleton<LobbyManager>.Inst.arenaTicketNone.Show();
+		GameObjectSingleton<LobbyManager>.Inst.arenaTicketNone.Open();
 	}
 
 	public static void HideSpeedUpCollect()
@@ -753,7 +753,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		GameInfo.inGamePlayData.matchTime = GameDataManager.GetGameConfigData(ConfigDataType.TurnTimeTotal);
 		GameInfo.inGamePlayData.matchTimeBonus = GameDataManager.GetGameConfigData(ConfigDataType.TurnTimeBonus);
 		GameInfo.inGamePlayData.matchTimeRatio = GameDataManager.GetGameConfigData(ConfigDataType.TurnTimeRatio);
-		LevelDbData levelIndexDbData = GameDataManager.GetLevelIndexDbData(levelIndex);
+		LevelGameDbData levelIndexDbData = GameDataManager.GetLevelIndexDbData(levelIndex);
 		GameInfo.inGamePlayData.puzzleR = levelIndexDbData.puzzleR;
 		GameInfo.inGamePlayData.puzzleY = levelIndexDbData.puzzleY;
 		GameInfo.inGamePlayData.puzzleG = levelIndexDbData.puzzleG;
@@ -923,7 +923,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	public static void ShowHunterListForce()
 	{
-		GameObjectSingleton<LobbyManager>.Inst.hunterList.Show();
+		GameObjectSingleton<LobbyManager>.Inst.hunterList.Open();
 		GameObjectSingleton<LobbyManager>.Inst.HideAllStore();
 		if (OpenHunterList != null)
 		{
@@ -1012,8 +1012,8 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		castleUI.RefreshNotice();
 		bottomUI.RefreshNotice();
 		stageSelect.GoBackEvent = OnStageSelectGoBackEvent;
-		levelSelect.GoBackEvent = OnLevelSelectGoBackEvent;
-		levelPlay.GoBackEvent = OnLevelPlayGoBackEvent;
+		levelSelect.OnGoBackEvent = OnLevelSelectGoBackEvent;
+		levelPlay.OnGoBackEvent = OnLevelPlayGoBackEvent;
 		quickLoot.GoBackEvent = OnQuickLootGoBackEvent;
 		chest.GoBackEvent = OnChestGoBackEvent;
 		deckEdit.GoBackEvent = OnDeckEditGoBackEvent;
@@ -1029,7 +1029,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		hunterPromotionUp.OnGoBackEvent = OnHunterPromotionUpGoBackEvent;
 		floorDetail.GoBackEvent = OnFloorDetailGoBackEvent;
 		floorUpgrade.GoBackEvent = OnFloorUpgradeGoBackEvent;
-		userLevelInfo.GoBackEvent = OnUserLevelInfoGoBackEvent;
+		userLevelInfo.OnGoBackEvent = OnUserLevelInfoGoBackEvent;
 		userEnergyInfo.GoBackEvent = OnUserEnergyInfoGoBackEvent;
 		itemSortList.GoBackEvent = OnItemSortListGoBackEvent;
 		notEnoughCoin.GoBackEvent = OnNotEnoughCoinGoBackEvent;
@@ -1075,7 +1075,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		
 		if (GameInfo.inGamePlayData.inGameType == PuzzleInGameType.Arena)
 		{
-			arenaLobby.Show();
+			arenaLobby.Open();
 		}
 		if (!TutorialManager.Intro)
 		{
@@ -1144,7 +1144,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	private void ShowDailyBonus()
 	{
-		dailyBonus.Show();
+		dailyBonus.Open();
 	}
 
 	private void CallShopPackageList()
@@ -1185,7 +1185,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	{
 		if (deckEdit.EditType == HanterListType.Normal)
 		{
-			levelPlay.RefreshDeck();
+			levelPlay.DeckReset();
 			hunterList.RefreshDeck();
 			quickLoot.RefreshDeck();
 		}
@@ -1450,7 +1450,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		}
 		if (levelSelect.gameObject.activeSelf)
 		{
-			levelSelect.Refresh();
+			levelSelect.Reset();
 		}
 	}
 
@@ -1913,21 +1913,21 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	private void ShowReadyMonsterList()
 	{
-		levelPlay.ShowMonster();
+		levelPlay.SpawnMonster();
 		quickLoot.ShowMonster();
 		arenaLevelPlay.ShowMonster();
 	}
 
 	private void HideReadyMonsterList()
 	{
-		levelPlay.HideMonster();
+		levelPlay.CloseMonster();
 		quickLoot.HideMonster();
 		arenaLevelPlay.HideMonster();
 	}
 
 	public void OnShowStageSelect()
 	{
-		stageSelect.Show();
+		stageSelect.Open();
 		SoundController.EffectSound_Play(EffectSoundType.ButtonClick);
 		if (OpenStageSelect != null)
 		{
@@ -1956,7 +1956,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	public void OnShowHunterList()
 	{
-		hunterList.Show();
+		hunterList.Open();
 		HideAllStore();
 		SoundController.EffectSound_Play(EffectSoundType.ButtonClick);
 		if (OpenHunterList != null)
@@ -1967,7 +1967,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	public void OnShowChest()
 	{
-		GameObjectSingleton<LobbyManager>.Inst.chest.Show();
+		GameObjectSingleton<LobbyManager>.Inst.chest.Open();
 		SoundController.EffectSound_Play(EffectSoundType.ButtonClick);
 		if (OpenChest != null)
 		{
@@ -1984,7 +1984,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	public void OnShowArena()
 	{
-		arenaLobby.Show();
+		arenaLobby.Open();
 		SoundController.EffectSound_Play(EffectSoundType.ButtonClick);
 		if (ArenaMenuEnter != null)
 		{
@@ -2039,7 +2039,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	{
 		if (UnityEngine.Input.GetKey(KeyCode.Escape) && !gameQuitPopup.gameObject.activeSelf && !CheckLobbyPopupActive())
 		{
-			gameQuitPopup.Show();
+			gameQuitPopup.Open();
 		}
 	}
 

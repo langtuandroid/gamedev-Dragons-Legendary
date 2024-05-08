@@ -89,7 +89,7 @@ public class ValueShopBuy : LobbyPopupBase
 
 	public void Show(int _key, string _type)
 	{
-		base.Show();
+		base.Open();
 		base.gameObject.SetActive(value: true);
 		Init(_key, _type);
 	}
@@ -99,7 +99,7 @@ public class ValueShopBuy : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 		InAppPurchaseManager.OnInAppPurchaseProcessComplete = null;
 	}

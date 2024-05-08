@@ -25,7 +25,7 @@ public class SpeedUpCollect : LobbyPopupBase
 
 	public void Show(float _second, int _needJewel, int _getCoin, Action<bool> callBack)
 	{
-		base.Show();
+		base.Open();
 		second = _second;
 		needJewel = _needJewel;
 		getCoin = _getCoin;
@@ -38,7 +38,7 @@ public class SpeedUpCollect : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 

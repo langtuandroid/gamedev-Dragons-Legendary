@@ -98,7 +98,7 @@ public class DeckEdit : LobbyPopupBase
 
 	public void Show(HanterListType _listType)
 	{
-		base.Show();
+		base.Open();
 		base.gameObject.SetActive(value: true);
 		Init(_listType);
 		UnityEngine.Debug.Log("_listType = " + _listType);
@@ -109,7 +109,7 @@ public class DeckEdit : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 		HeroCard[] componentsInChildren = trOwnHunterContent.GetComponentsInChildren<HeroCard>();
 		foreach (HeroCard hunterCard in componentsInChildren)

@@ -100,14 +100,14 @@ public class TutorialStoreManagement : MonoBehaviour
 	private IEnumerator CheckDelayShowLevelCell()
 	{
 		yield return null;
-		LevelCell secondCell = LobbyManager.SecondLevelCell;
-		LevelDbData data = GameDataManager.GetLevelIndexDbData(2);
-		LevelCell copySecondLevelCell = TutorialManager.ShowCopyHighLightUI(secondCell.transform).GetComponent<LevelCell>();
+		LevelGameBlock secondCell = LobbyManager.SecondLevelCell;
+		LevelGameDbData data = GameDataManager.GetLevelIndexDbData(2);
+		LevelGameBlock copySecondLevelCell = TutorialManager.ShowCopyHighLightUI(secondCell.transform).GetComponent<LevelGameBlock>();
 		copySecondLevelCell.transform.position = secondCell.transform.position;
 		copySecondLevelCell.transform.localScale = Vector3.one;
 		copySecondLevelCell.SetData(data);
 		copySecondLevelCell.SetUnLock();
-		copySecondLevelCell.SelectLevelCell = OnSelectLevelCell;
+		copySecondLevelCell.OnSelectLevelCell = OnSelectLevelCell;
 		TutorialManager.ShowHand(copySecondLevelCell.transform, Vector3.zero);
 	}
 

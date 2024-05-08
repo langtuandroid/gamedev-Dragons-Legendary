@@ -109,7 +109,7 @@ public class HeroView : LobbyPopupBase
 
 	public void ShowView(HunterInfo _hunterInfo, bool _isOwn)
 	{
-		base.Show();
+		base.Open();
 		base.gameObject.SetActive(value: true);
 		Configure(_hunterInfo, _isOwn);
 	}
@@ -119,7 +119,7 @@ public class HeroView : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 

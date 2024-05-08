@@ -62,7 +62,7 @@ public class BattleDefeat : MonoBehaviour
 		}
 		SoundController.EffectSound_Play(EffectSoundType.LevelFail);
 		textChallengeCost.text = $"{10}";
-		LevelDbData levelIndexDbData = GameDataManager.GetLevelIndexDbData(GameInfo.inGamePlayData.levelIdx);
+		LevelGameDbData levelIndexDbData = GameDataManager.GetLevelIndexDbData(GameInfo.inGamePlayData.levelIdx);
 		ResultItemData resultItemData = new ResultItemData();
 		resultItemData.itemIdx = levelIndexDbData.rewardFixItem;
 		resultItemData.itemMultiply = levelIndexDbData.rewardFixCount;

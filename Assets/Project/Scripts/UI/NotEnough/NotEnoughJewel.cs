@@ -14,7 +14,7 @@ public class NotEnoughJewel : LobbyPopupBase
 	public void Show(int _jewel)
 	{
 		lackJewel = _jewel;
-		base.Show();
+		base.Open();
 		Init();
 	}
 

@@ -46,7 +46,7 @@ public class SaleStartPack : LobbyPopupBase
 		}
 		else
 		{
-			base.Show();
+			base.Open();
 			Init();
 		}
 	}
@@ -57,7 +57,7 @@ public class SaleStartPack : LobbyPopupBase
 		InAppPurchaseManager.OnInAppPurchaseProcessComplete = null;
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 

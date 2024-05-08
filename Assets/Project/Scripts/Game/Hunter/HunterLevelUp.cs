@@ -58,7 +58,7 @@ public class HunterLevelUp : LobbyPopupBase
 
     public void ShowLevel(HunterInfo _hunterInfo_before, HunterInfo _hunterInfo_after)
     {
-        base.Show();
+        base.Open();
         base.gameObject.SetActive(value: true);
         Construct(_hunterInfo_before, _hunterInfo_after);
     }
@@ -73,7 +73,7 @@ public class HunterLevelUp : LobbyPopupBase
         Construct(_hunterInfo_before, _hunterInfo_after);
     }
 
-    public override void HideProcessComplete()
+    public override void CloseProcessComplete()
     {
     }
 

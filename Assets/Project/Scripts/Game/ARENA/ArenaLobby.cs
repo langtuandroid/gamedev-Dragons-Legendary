@@ -119,7 +119,7 @@ public class ArenaLobby : LobbyPopupBase
 
 	public Transform ArenaShopButton => btnShop.transform;
 
-	public override void Show()
+	public override void Open()
 	{
 		UnityEngine.Debug.Log("Arena Lobby Show");
 		LocalTimeCheckManager.InitType("ArenaOpenEndTime");
@@ -134,7 +134,7 @@ public class ArenaLobby : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 
@@ -175,7 +175,7 @@ public class ArenaLobby : LobbyPopupBase
 	{
 		if (!base.gameObject.activeSelf)
 		{
-			base.Show();
+			base.Open();
 		}
 		topUI.Show();
 		LobbyManager.HideTopUI();

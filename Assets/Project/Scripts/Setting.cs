@@ -54,7 +54,7 @@ public class Setting : LobbyPopupBase
 
 	public new void Show()
 	{
-		base.Show();
+		base.Open();
 		base.gameObject.SetActive(value: true);
 		Init();
 		LobbyManager.HideHunterLobby();
@@ -65,7 +65,7 @@ public class Setting : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 

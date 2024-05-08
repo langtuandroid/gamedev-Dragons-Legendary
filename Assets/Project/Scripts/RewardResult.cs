@@ -20,7 +20,7 @@ public class RewardResult : LobbyPopupBase
 
 	public void Show(RewardResultType _type, ChestListDbData[] _arrData)
 	{
-		base.Show();
+		base.Open();
 		rewardResultType = _type;
 		Init(_arrData);
 	}
@@ -30,7 +30,7 @@ public class RewardResult : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 

@@ -21,7 +21,7 @@ public class LobbyPopupBase : MonoBehaviour
 
 	private Vector3 popupPosition;
 
-	public virtual void Show()
+	public virtual void Open()
 	{
 		base.gameObject.SetActive(value: true);
 		base.gameObject.transform.SetSiblingIndex(-1);
@@ -29,11 +29,11 @@ public class LobbyPopupBase : MonoBehaviour
 
 	public virtual void Hide()
 	{
-		HideProcessComplete();
+		CloseProcessComplete();
 		base.gameObject.SetActive(value: false);
 	}
 
-	public virtual void HideProcessComplete()
+	public virtual void CloseProcessComplete()
 	{
 	}
 
@@ -55,7 +55,7 @@ public class LobbyPopupBase : MonoBehaviour
 		trLobbyPopup.localPosition = popupPosition;
 		LeanTween.moveLocalX(base.gameObject, startPosX, 0.1f).setEaseOutCubic();
 		yield return new WaitForSeconds(0.1f);
-		HideProcessComplete();
+		CloseProcessComplete();
 		base.gameObject.SetActive(value: false);
 	}
 

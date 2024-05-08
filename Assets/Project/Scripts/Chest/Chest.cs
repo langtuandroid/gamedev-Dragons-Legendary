@@ -50,9 +50,9 @@ public class Chest : LobbyPopupBase
 
 	public Transform MysteriousChestButton => trMysteriousChestButton;
 
-	public override void Show()
+	public override void Open()
 	{
-		base.Show();
+		base.Open();
 		base.gameObject.SetActive(value: true);
 		Init();
 	}
@@ -62,7 +62,7 @@ public class Chest : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 	}
 

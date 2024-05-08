@@ -33,9 +33,9 @@ public class StageSelect : LobbyPopupBase
 		}
 	}
 
-	public override void Show()
+	public override void Open()
 	{
-		base.Show();
+		base.Open();
 		base.gameObject.SetActive(value: true);
 		Init();
 	}
@@ -45,7 +45,7 @@ public class StageSelect : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void HideProcessComplete()
+	public override void CloseProcessComplete()
 	{
 		scrollSnap.ScrollPageSnapEvent = null;
 		StageCell[] componentsInChildren = trContent.GetComponentsInChildren<StageCell>();

@@ -113,7 +113,7 @@ public class QuickLoot : LobbyPopupBase
 
 	private Transform trRewardItem;
 
-	private LevelDbData levelData;
+	private LevelGameDbData levelData;
 
 	private QuickLootState currentState;
 
@@ -123,7 +123,7 @@ public class QuickLoot : LobbyPopupBase
 
 	public void Show(int index)
 	{
-		base.Show();
+		base.Open();
 		levelIndex = index;
 		levelData = GameDataManager.GetLevelIndexDbData(levelIndex);
 		textStageName.text = MWLocalize.GetData(GameDataManager.GetDicStageDbData()[GameInfo.inGamePlayData.stage].stageName);
