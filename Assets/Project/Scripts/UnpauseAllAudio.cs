@@ -1,4 +1,4 @@
-public class UnpauseAllAudio : AudioTriggerBase
+public class UnpauseAllAudio : SoundTriggerBase
 {
 	public enum PauseType
 	{
@@ -19,16 +19,16 @@ public class UnpauseAllAudio : AudioTriggerBase
 		switch (pauseType)
 		{
 		case PauseType.All:
-			AudioController.UnpauseAll(fadeIn);
+			AudioController.UnpauseAllSounds(fadeIn);
 			break;
 		case PauseType.MusicOnly:
-			AudioController.UnpauseMusic(fadeIn);
+			AudioController.UnpauseSound(fadeIn);
 			break;
 		case PauseType.AmbienceOnly:
-			AudioController.UnpauseAmbienceSound(fadeIn);
+			AudioController.UnpauseAmbienceMusic(fadeIn);
 			break;
 		case PauseType.Category:
-			AudioController.UnpauseCategory(categoryName, fadeIn);
+			AudioController.UnpauseByCategory(categoryName, fadeIn);
 			break;
 		}
 	}

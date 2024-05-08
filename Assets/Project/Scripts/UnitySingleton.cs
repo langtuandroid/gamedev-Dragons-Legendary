@@ -25,7 +25,7 @@ public class UnitySingleton<T> where T : MonoBehaviour
 				for (int i = 0; i < array.Length; i++)
 				{
 					ISingletonMonoBehaviour singletonMonoBehaviour = array[i] as ISingletonMonoBehaviour;
-					if (singletonMonoBehaviour != null && singletonMonoBehaviour.isSingletonObject)
+					if (singletonMonoBehaviour != null && singletonMonoBehaviour.isSingleton)
 					{
 						val = array[i];
 						break;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayAudio : AudioTriggerBase
+public class PlayAudio : SoundTriggerBase
 {
 	public enum PlayPosition
 	{
@@ -30,7 +30,7 @@ public class PlayAudio : AudioTriggerBase
 
 	protected override void Awake()
 	{
-		if (triggerEvent == EventType.OnDestroy && position == PlayPosition.ChildObject)
+		if (_eventType == Type.OnDestroy && position == PlayPosition.ChildObject)
 		{
 			position = PlayPosition.ObjectPosition;
 			UnityEngine.Debug.LogWarning("OnDestroy event can not be used with ChildObject");
@@ -43,13 +43,13 @@ public class PlayAudio : AudioTriggerBase
 		switch (position)
 		{
 		case PlayPosition.Global:
-			AudioController.Play(audioID, volume, delay, startTime);
+			AudioController.PlayAudio(audioID, volume, delay, startTime);
 			break;
 		case PlayPosition.ChildObject:
-			AudioController.Play(audioID, base.transform, volume, delay, startTime);
+			AudioController.PlayAudio(audioID, base.transform, volume, delay, startTime);
 			break;
 		case PlayPosition.ObjectPosition:
-			AudioController.Play(audioID, base.transform.position, null, volume, delay, startTime);
+			AudioController.PlayAudio(audioID, base.transform.position, null, volume, delay, startTime);
 			break;
 		}
 	}
@@ -78,13 +78,13 @@ public class PlayAudio : AudioTriggerBase
 		switch (position)
 		{
 		case PlayPosition.Global:
-			AudioController.PlayMusic(audioID, volume, delay, startTime);
+			AudioController.PlaySound(audioID, volume, delay, startTime);
 			break;
 		case PlayPosition.ChildObject:
-			AudioController.PlayMusic(audioID, base.transform, volume, delay, startTime);
+			AudioController.PlaySound(audioID, base.transform, volume, delay, startTime);
 			break;
 		case PlayPosition.ObjectPosition:
-			AudioController.PlayMusic(audioID, base.transform.position, null, volume, delay, startTime);
+			AudioController.PlaySound(audioID, base.transform.position, null, volume, delay, startTime);
 			break;
 		}
 	}
@@ -94,13 +94,13 @@ public class PlayAudio : AudioTriggerBase
 		switch (position)
 		{
 		case PlayPosition.Global:
-			AudioController.PlayAmbienceSound(audioID, volume, delay, startTime);
+			AudioController.PlayAmbienceMusic(audioID, volume, delay, startTime);
 			break;
 		case PlayPosition.ChildObject:
-			AudioController.PlayAmbienceSound(audioID, base.transform, volume, delay, startTime);
+			AudioController.PlayAmbienceMusic(audioID, base.transform, volume, delay, startTime);
 			break;
 		case PlayPosition.ObjectPosition:
-			AudioController.PlayAmbienceSound(audioID, base.transform.position, null, volume, delay, startTime);
+			AudioController.PlayAmbienceMusic(audioID, base.transform.position, null, volume, delay, startTime);
 			break;
 		}
 	}

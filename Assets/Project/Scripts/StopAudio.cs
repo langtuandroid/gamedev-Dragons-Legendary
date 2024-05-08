@@ -1,4 +1,4 @@
-public class StopAudio : AudioTriggerBase
+public class StopAudio : SoundTriggerBase
 {
 	public string audioID;
 
@@ -6,6 +6,6 @@ public class StopAudio : AudioTriggerBase
 
 	protected override void _OnEventTriggered()
 	{
-		AudioController.Stop(audioID, fadeOut);
+		AudioController.StopSound(audioID, fadeOut);
 	}
 }

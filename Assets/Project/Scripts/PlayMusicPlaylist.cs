@@ -1,9 +1,9 @@
-public class PlayMusicPlaylist : AudioTriggerBase
+public class PlayMusicPlaylist : SoundTriggerBase
 {
 	public string playListName = "Default";
 
 	protected override void _OnEventTriggered()
 	{
-		AudioController.PlayMusicPlaylist(playListName);
+		AudioController.PlayMusic(playListName);
 	}
 }

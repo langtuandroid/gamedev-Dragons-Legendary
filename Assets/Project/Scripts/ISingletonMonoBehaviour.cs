@@ -1,6 +1,6 @@
 internal interface ISingletonMonoBehaviour
 {
-	bool isSingletonObject
+	bool isSingleton
 	{
 		get;
 	}

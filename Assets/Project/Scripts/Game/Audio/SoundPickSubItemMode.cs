@@ -1,4 +1,4 @@
-public enum AudioPickSubItemMode
+public enum SoundPickSubItemMode
 {
 	Disabled,
 	Random,

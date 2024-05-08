@@ -4,7 +4,7 @@ public abstract class SingletonMonoBehaviour<T> : MonoBehaviour, ISingletonMonoB
 {
 	public static T Instance => UnitySingleton<T>.GetSingleton(throwErrorIfNotFound: true, autoCreate: true);
 
-	public virtual bool isSingletonObject => true;
+	public virtual bool isSingleton => true;
 
 	public static T DoesInstanceExist()
 	{
@@ -23,7 +23,7 @@ public abstract class SingletonMonoBehaviour<T> : MonoBehaviour, ISingletonMonoB
 
 	protected virtual void Awake()
 	{
-		if (isSingletonObject)
+		if (isSingleton)
 		{
 			UnitySingleton<T>._Awake(this as T);
 		}
@@ -31,7 +31,7 @@ public abstract class SingletonMonoBehaviour<T> : MonoBehaviour, ISingletonMonoB
 
 	protected virtual void OnDestroy()
 	{
-		if (isSingletonObject)
+		if (isSingleton)
 		{
 			UnitySingleton<T>._Destroy();
 		}

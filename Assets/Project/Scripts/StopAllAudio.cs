@@ -1,9 +1,9 @@
-public class StopAllAudio : AudioTriggerBase
+public class StopAllAudio : SoundTriggerBase
 {
 	public float fadeOut;
 
 	protected override void _OnEventTriggered()
 	{
-		AudioController.StopAll(fadeOut);
+		AudioController.StopAllSounds(fadeOut);
 	}
 }
