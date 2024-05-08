@@ -40,11 +40,11 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 
 	private List<HunterPromotionDbData> listHunterPromotionDbData = new List<HunterPromotionDbData>();
 
-	private Dictionary<int, MonsterDbData> dicMonsterDbData = new Dictionary<int, MonsterDbData>();
+	private Dictionary<int, EnemyDbData> dicMonsterDbData = new Dictionary<int, EnemyDbData>();
 
-	private Dictionary<int, MonsterStatDbData> dicMonsterStatDbData = new Dictionary<int, MonsterStatDbData>();
+	private Dictionary<int, EnemyStatDbData> dicMonsterStatDbData = new Dictionary<int, EnemyStatDbData>();
 
-	private Dictionary<int, MonsterSkillDbData> dicMonsterSkillDbData = new Dictionary<int, MonsterSkillDbData>();
+	private Dictionary<int, EnemySkillDbData> dicMonsterSkillDbData = new Dictionary<int, EnemySkillDbData>();
 
 	private Dictionary<int, StoreDbData> dicStoreDbData = new Dictionary<int, StoreDbData>();
 
@@ -111,12 +111,12 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 		return dicWaveDbData[levelIndex];
 	}
 
-	public MonsterDbData GetMonsterData(int mIdx)
+	public EnemyDbData GetMonsterData(int mIdx)
 	{
 		return dicMonsterDbData[mIdx];
 	}
 
-	public MonsterStatDbData GetMonsterStatData(int levelIndex)
+	public EnemyStatDbData GetMonsterStatData(int levelIndex)
 	{
 		if (!dicMonsterStatDbData.ContainsKey(levelIndex))
 		{
@@ -125,7 +125,7 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 		return dicMonsterStatDbData[levelIndex];
 	}
 
-	public MonsterSkillDbData GetMonsterSkillData(int skillIdx)
+	public EnemySkillDbData GetMonsterSkillData(int skillIdx)
 	{
 		return dicMonsterSkillDbData[skillIdx];
 	}
@@ -739,7 +739,7 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 		dicMonsterDbData.Clear();
 		while (dataReader.Read())
 		{
-			MonsterDbData monsterDbData = new MonsterDbData();
+			EnemyDbData monsterDbData = new EnemyDbData();
 			monsterDbData.mIdx = dataReader.GetInt32(0);
 			monsterDbData.mName = dataReader.GetString(1);
 			monsterDbData.mColor = dataReader.GetInt32(2);
@@ -761,7 +761,7 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 		dicMonsterStatDbData.Clear();
 		while (dataReader.Read())
 		{
-			MonsterStatDbData monsterStatDbData = new MonsterStatDbData();
+			EnemyStatDbData monsterStatDbData = new EnemyStatDbData();
 			monsterStatDbData.mLevelIdx = dataReader.GetInt32(0);
 			monsterStatDbData.mIdx = dataReader.GetInt32(1);
 			monsterStatDbData.mLevel = dataReader.GetInt32(2);
@@ -788,7 +788,7 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 		dicMonsterSkillDbData.Clear();
 		while (dataReader.Read())
 		{
-			MonsterSkillDbData monsterSkillDbData = new MonsterSkillDbData();
+			EnemySkillDbData monsterSkillDbData = new EnemySkillDbData();
 			monsterSkillDbData.mSkillIdx = dataReader.GetInt32(0);
 			monsterSkillDbData.mSkillAttackMagnification = dataReader.GetInt32(1);
 			monsterSkillDbData.mSkillType = dataReader.GetInt32(2);

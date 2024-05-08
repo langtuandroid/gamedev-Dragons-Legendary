@@ -413,10 +413,10 @@ public class PuzzleUI : MonoBehaviour
 		_dicHunterAttackUI[hunterIdx].ShowAttack(attack, hunterColor, position);
 	}
 
-	public void ShowMonsterDamage(MonsterDamageUI.MonsterDamageType type, int damage, Vector3 position)
+	public void ShowMonsterDamage(EnemyDamageUI.EnemyDamageType type, int damage, Vector3 position)
 	{
-		MonsterDamageUI component = MasterPoolManager.SpawnObject("Effect", "Text_MonsterDamage", _trEffectAnchor).GetComponent<MonsterDamageUI>();
-		component.ShowDamageUI(type, damage, position);
+		EnemyDamageUI component = MasterPoolManager.SpawnObject("Effect", "Text_MonsterDamage", _trEffectAnchor).GetComponent<EnemyDamageUI>();
+		component.OpenDamageUI(type, damage, position);
 	}
 
 	public void ClearHunterUI(int hunterIdx)

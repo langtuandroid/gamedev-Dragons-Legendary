@@ -79,7 +79,7 @@ public class HeroCharacter : MonoBehaviour
 		_hunterAnimator.GetComponent<MeshRenderer>().sortingOrder = _hunter.HeroArrIdx;
 	}
 
-	public void SetTweeenMonster(Monster _monster)
+	public void SetTweeenMonster(Enemy _monster)
 	{
 		_isTweening = true;
 		_originPos = base.transform.position;
@@ -98,7 +98,7 @@ public class HeroCharacter : MonoBehaviour
 		}
 	}
 
-	public void SetTweenSkil(Monster _monster)
+	public void SetTweenSkil(Enemy _monster)
 	{
 		_originPos = base.transform.position;
 		_originDepth = _hunterAnimator.GetComponent<MeshRenderer>().sortingOrder;
@@ -160,7 +160,7 @@ public class HeroCharacter : MonoBehaviour
 		}
 	}
 
-	private IEnumerator SetTweenMonster_Coroutine(Monster _monster)
+	private IEnumerator SetTweenMonster_Coroutine(Enemy _monster)
 	{
 		float addY = (GameInfo.inGamePlayData.isDragon != 1) ? 0f : 0.5f;
 		if (_hero.HeroInfo.Skill.motionType == 1)
@@ -205,7 +205,7 @@ public class HeroCharacter : MonoBehaviour
 		OnCompleteTween();
 	}
 
-	private IEnumerator SetSkillCoroutine(Monster _monster)
+	private IEnumerator SetSkillCoroutine(Enemy _monster)
 	{
 		GameObject gameObject = base.transform.gameObject;
 		Vector3 position = _monster.transform.position;

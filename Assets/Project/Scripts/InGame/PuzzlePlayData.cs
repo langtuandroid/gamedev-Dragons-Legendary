@@ -40,7 +40,7 @@ public class PuzzlePlayData
 
 	public Dictionary<int, WaveDbData> dicWaveDbData = new Dictionary<int, WaveDbData>();
 
-	public Dictionary<int, List<MonsterStatDbData>> dicMonsterStatData = new Dictionary<int, List<MonsterStatDbData>>();
+	public Dictionary<int, List<EnemyStatDbData>> dicMonsterStatData = new Dictionary<int, List<EnemyStatDbData>>();
 
 	public Dictionary<int, HunterInfo> dicHunterInfo = new Dictionary<int, HunterInfo>();
 

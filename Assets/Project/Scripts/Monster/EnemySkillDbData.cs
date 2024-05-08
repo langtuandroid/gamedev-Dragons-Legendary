@@ -1,4 +1,4 @@
-public class MonsterSkillDbData
+public class EnemySkillDbData
 {
 	public int mSkillIdx;
 

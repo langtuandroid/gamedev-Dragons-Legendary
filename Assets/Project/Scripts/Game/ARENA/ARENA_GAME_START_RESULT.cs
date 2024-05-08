@@ -6,5 +6,5 @@ public class ARENA_GAME_START_RESULT
 
 	public WaveDbData[] spec_arena_wave;
 
-	public MonsterStatDbData[][] spec_monster_stat;
+	public EnemyStatDbData[][] spec_monster_stat;
 }

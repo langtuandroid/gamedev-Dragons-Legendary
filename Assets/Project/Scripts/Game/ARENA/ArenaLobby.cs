@@ -222,8 +222,8 @@ public class ArenaLobby : LobbyPopupBase
 		{
 			MasterPoolManager.ReturnToPool("Lobby", arenaLevelCell.transform);
 		}
-		Monster[] componentsInChildren2 = trHunterSpawnAnchor.GetComponentsInChildren<Monster>(includeInactive: true);
-		foreach (Monster monster in componentsInChildren2)
+		Enemy[] componentsInChildren2 = trHunterSpawnAnchor.GetComponentsInChildren<Enemy>(includeInactive: true);
+		foreach (Enemy monster in componentsInChildren2)
 		{
 			MasterPoolManager.ReturnToPool("Monster", monster.transform);
 		}
@@ -322,9 +322,9 @@ public class ArenaLobby : LobbyPopupBase
 		}
 		for (int i = 0; i < infoDataResult.lastWaveMonsterList.Length; i++)
 		{
-			Monster component = MasterPoolManager.SpawnObject("Monster", $"{GameDataManager.GetMonsterStatData(infoDataResult.lastWaveMonsterList[i]).mMonsterIdx}").GetComponent<Monster>();
+			Enemy component = MasterPoolManager.SpawnObject("Monster", $"{GameDataManager.GetMonsterStatData(infoDataResult.lastWaveMonsterList[i]).mMonsterIdx}").GetComponent<Enemy>();
 			component.MonsterAnim.GetComponent<MeshRenderer>().sortingOrder = 1;
-			component.MonsterUIOnOff(_onoff: false);
+			component.DisableMonsterUI(_onoff: false);
 			component.transform.position = trHunterSpawnAnchor.position;
 			component.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 			if (infoDataResult.lastWaveMonsterList.Length > 1)

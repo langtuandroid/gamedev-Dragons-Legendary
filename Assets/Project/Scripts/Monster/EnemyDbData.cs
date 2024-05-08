@@ -1,4 +1,4 @@
-public class MonsterDbData
+public class EnemyDbData
 {
 	public int mIdx;
 

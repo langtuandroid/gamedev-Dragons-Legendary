@@ -779,7 +779,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		{
 			if (!GameInfo.inGamePlayData.dicMonsterStatData.ContainsKey(dicWaveDbDatum2.Value.wave))
 			{
-				GameInfo.inGamePlayData.dicMonsterStatData.Add(dicWaveDbDatum2.Value.wave, new List<MonsterStatDbData>());
+				GameInfo.inGamePlayData.dicMonsterStatData.Add(dicWaveDbDatum2.Value.wave, new List<EnemyStatDbData>());
 			}
 			if (dicWaveDbDatum2.Value.spawnM1 > 0)
 			{
@@ -854,10 +854,10 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 			GameInfo.inGamePlayData.dicWaveDbData.Add(waveDbData.wave, waveDbData);
 			if (!GameInfo.inGamePlayData.dicMonsterStatData.ContainsKey(waveDbData.wave))
 			{
-				GameInfo.inGamePlayData.dicMonsterStatData.Add(waveDbData.wave, new List<MonsterStatDbData>());
+				GameInfo.inGamePlayData.dicMonsterStatData.Add(waveDbData.wave, new List<EnemyStatDbData>());
 			}
-			MonsterStatDbData[] array = _arenaResult.spec_monster_stat[k];
-			foreach (MonsterStatDbData item in array)
+			EnemyStatDbData[] array = _arenaResult.spec_monster_stat[k];
+			foreach (EnemyStatDbData item in array)
 			{
 				GameInfo.inGamePlayData.dicMonsterStatData[waveDbData.wave].Add(item);
 			}

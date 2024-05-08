@@ -4,7 +4,7 @@ public class SkillEffect_Anim : MonoBehaviour
 {
 	public Hero hunter;
 
-	public Monster[] monster;
+	public Enemy[] monster;
 
 	public int damage;
 
@@ -18,7 +18,7 @@ public class SkillEffect_Anim : MonoBehaviour
 		PuzzlePlayManager.ShakeEffect();
 	}
 
-	public void SetMonster(Hero _hunter, Monster[] _monster, int _damage)
+	public void SetMonster(Hero _hunter, Enemy[] _monster, int _damage)
 	{
 		hunter = _hunter;
 		monster = _monster;

@@ -1,4 +1,4 @@
-public class MonsterStatDbData
+public class EnemyStatDbData
 {
 	public int mLevelIdx;
 

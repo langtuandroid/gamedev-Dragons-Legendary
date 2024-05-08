@@ -1,4 +1,4 @@
-public enum MONSTER_TYPE
+public enum EnemyType
 {
 	RED,
 	GREEN,

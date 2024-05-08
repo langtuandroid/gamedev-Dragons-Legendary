@@ -1,4 +1,4 @@
-public enum MONSTER_SKILL
+public enum EnemySkill
 {
 	Heal = 1,
 	Stun,

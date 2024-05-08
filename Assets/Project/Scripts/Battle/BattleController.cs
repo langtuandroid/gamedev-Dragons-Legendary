@@ -35,13 +35,13 @@ public class BattleController : MonoBehaviour
 	private Transform[] Hunter_Character_Pos_Arr;
 
 	[SerializeField]
-	private Monster[] Hunter_Character_Arr;
+	private Enemy[] Hunter_Character_Arr;
 
 	[SerializeField]
 	private Transform[] Monster_Pos_Arr;
 
 	[SerializeField]
-	private Monster[] Monster_Arr;
+	private Enemy[] Monster_Arr;
 
 	[SerializeField]
 	private Transform BG_Tr;
@@ -151,7 +151,7 @@ public class BattleController : MonoBehaviour
 			}
 			for (int j = 0; j < Monster_Arr.Length; j++)
 			{
-				Monster_Arr[j].SetMonsterState(MONSTER_STATE.IDLE);
+				Monster_Arr[j].ChangeMonsterState(EnemyState.Idle);
 			}
 		}
 		if (isAddTurn)
@@ -324,7 +324,7 @@ public class BattleController : MonoBehaviour
 		}
 	}
 
-	public void MonsterTargeting(Monster _monster)
+	public void MonsterTargeting(Enemy _monster)
 	{
 		if (GameInfo.inGamePlayData.inGameType == PuzzleInGameType.Arena)
 		{
@@ -475,7 +475,7 @@ public class BattleController : MonoBehaviour
 	{
 		for (int i = 0; i < Monster_Arr.Length; i++)
 		{
-			Monster_Arr[i].SetMonsterHP(1000000);
+			Monster_Arr[i].SetMonsterHealth(1000000);
 		}
 		attack_last_idx = -1;
 		StartCoroutine(End_Hunter_Attack());
@@ -698,13 +698,13 @@ public class BattleController : MonoBehaviour
 			}
 			Monster_Arr = null;
 		}
-		Monster_Arr = new Monster[_monstercount];
+		Monster_Arr = new Enemy[_monstercount];
 		for (int j = 0; j < _monstercount; j++)
 		{
 			Transform transform = null;
 			Transform transform2 = null;
 			transform = MasterPoolManager.SpawnObject("Monster", levelData.dicMonsterStatData[_wave][j].mMonsterIdx.ToString());
-			Monster_Arr[j] = transform.GetComponent<Monster>();
+			Monster_Arr[j] = transform.GetComponent<Enemy>();
 			int monsterSettingTurn = 0;
 			int monster_DropItem = 0;
 			switch (j)
@@ -726,7 +726,7 @@ public class BattleController : MonoBehaviour
 				monster_DropItem = levelData.dicWaveDbData[_wave].spawnM4;
 				break;
 			}
-			Monster_Arr[j].Init(monsterSettingTurn, monster_DropItem, levelData.dicMonsterStatData[_wave][j], j);
+			Monster_Arr[j].Construct(monsterSettingTurn, monster_DropItem, levelData.dicMonsterStatData[_wave][j], j);
 			transform.SetParent(Monster_Pos_Arr[j]);
 			transform.localPosition = Vector3.zero;
 			transform2 = MasterPoolManager.SpawnObject("Effect", "FX_Summon01", null, 1f);
@@ -951,9 +951,9 @@ public class BattleController : MonoBehaviour
 		}
 	}
 
-	private Monster Attack_Monster_Targeting()
+	private Enemy Attack_Monster_Targeting()
 	{
-		Monster result = null;
+		Enemy result = null;
 		for (int i = 0; i < Monster_Arr.Length; i++)
 		{
 			if (Monster_Arr[i].MonsterTarget && Monster_Arr[i].MonsterHP > 0)
@@ -964,9 +964,9 @@ public class BattleController : MonoBehaviour
 		return result;
 	}
 
-	private Monster Attack_Monster_NonTargeting()
+	private Enemy Attack_Monster_NonTargeting()
 	{
-		Monster result = null;
+		Enemy result = null;
 		int num = 100;
 		int num2 = 100;
 		for (int i = 0; i < Monster_Arr.Length; i++)
@@ -980,7 +980,7 @@ public class BattleController : MonoBehaviour
 		return result;
 	}
 
-	private Monster Attack_Monster_Already_Killed()
+	private Enemy Attack_Monster_Already_Killed()
 	{
 		return null;
 	}
@@ -1005,7 +1005,7 @@ public class BattleController : MonoBehaviour
 		bool isAllClear = true;
 		for (int j = 0; j < Monster_Arr.Length; j++)
 		{
-			Monster_Arr[j].SetMonsterAttackTurnOnly(1);
+			Monster_Arr[j].SetMonsterAttack(1);
 		}
 		for (int k = 0; k < Monster_Arr.Length; k++)
 		{
@@ -1106,7 +1106,7 @@ public class BattleController : MonoBehaviour
 		{
 			PuzzlePlayManager.OnUseHunterSkill();
 		}
-		Monster[] monster = null;
+		Enemy[] monster = null;
 		int num = 0;
 		int num2 = 0;
 		switch (_hunter.HeroInfo.Skill.range)
@@ -1115,7 +1115,7 @@ public class BattleController : MonoBehaviour
 			Hunter_Arr[_hunter.HeroArrIdx].SetCharacterSkill((HunterSkillRange)_hunter.HeroInfo.Skill.range, monster, Use_Hunter_Skill_End);
 			break;
 		case 1:
-			monster = new Monster[1];
+			monster = new Enemy[1];
 			monster[num] = Attack_Monster_Targeting();
 			if (monster[num] == null)
 			{
@@ -1134,7 +1134,7 @@ public class BattleController : MonoBehaviour
 					num2++;
 				}
 			}
-			monster = new Monster[num2];
+			monster = new Enemy[num2];
 			for (int j = 0; j < Monster_Arr.Length; j++)
 			{
 				if (Monster_Arr[j].MonsterHP > 0)
@@ -1158,7 +1158,7 @@ public class BattleController : MonoBehaviour
 		yield return null;
 		for (int i = 0; i < Hunter_Attack_List.Count; i++)
 		{
-			Monster _monster2 = Attack_Monster_Targeting();
+			Enemy _monster2 = Attack_Monster_Targeting();
 			if (_monster2 == null)
 			{
 				_monster2 = Attack_Monster_NonTargeting();
@@ -1166,7 +1166,7 @@ public class BattleController : MonoBehaviour
 			if (_monster2 != null)
 			{
 				Hunter_Attack_List[i].damage = GameUtil.Check_Property_Damage(Hunter_Arr[Hunter_Attack_List[i].idx], _monster2, Hunter_Attack_List[i].damage);
-				_monster2.SetMonsterHP(Hunter_Attack_List[i].damage);
+				_monster2.SetMonsterHealth(Hunter_Attack_List[i].damage);
 				HunterCharacterAttack(_monster2, Hunter_Attack_List[i].idx, Hunter_Attack_List[i].damage);
 				PuzzlePlayManager.StartHunterAttack(Hunter_Arr[Hunter_Attack_List[i].idx].HeroInfo.Hunter.hunterIdx);
 			}
@@ -1180,7 +1180,7 @@ public class BattleController : MonoBehaviour
 		}
 	}
 
-	private void HunterCharacterAttack(Monster _monster, int _idx, int _damage)
+	private void HunterCharacterAttack(Enemy _monster, int _idx, int _damage)
 	{
 		Hunter_Arr[_idx].SetAnimation(Anim_Type.ATTACK_HUNTER, _monster, _damage, HunterCharacterAttackEndCheck);
 	}
@@ -1300,12 +1300,12 @@ public class BattleController : MonoBehaviour
 					yield return StartCoroutine(MonsterSkillUse(Monster_Arr[i]));
 					continue;
 				}
-				Monster_Arr[i].SetCharacterAnim(Anim_Type.ATTACK_MONSTER, SetAttackToHunter(), Monster_Attack_End_Check);
+				Monster_Arr[i].SetAnimation(SetAttackToHunter(), Monster_Attack_End_Check);
 				yield return new WaitForSeconds(0.2f / GameInfo.inGameBattleSpeedRate);
-				Monster_Arr[i].SetMonsterCurrentDamage(Monster_Arr[i].MonsterDamage);
+				Monster_Arr[i].SetDamage(Monster_Arr[i].MonsterDamage);
 				SoundController.EffectSound_Play(EffectSoundType.HunterHit);
 				yield return new WaitForSeconds(0.5f / GameInfo.inGameBattleSpeedRate);
-				Monster_Arr[i].SetMonsterAttackTurnRefresh();
+				Monster_Arr[i].RefreshTurnAttack();
 			}
 		}
 		if (monsterAttackCount == 0)
@@ -1321,7 +1321,7 @@ public class BattleController : MonoBehaviour
 		{
 			for (int i = 0; i < Monster_Arr.Length; i++)
 			{
-				Monster_Arr[i].SetMonsterAttackTurn();
+				Monster_Arr[i].AttackTurn();
 			}
 			Set_State(BATTLE_STATE.NONE);
 			PuzzlePlayManager.StartTurn();
@@ -1333,34 +1333,34 @@ public class BattleController : MonoBehaviour
 		}
 	}
 
-	private bool CheckMonsterSkill(Monster _monster)
+	private bool CheckMonsterSkill(Enemy _monster)
 	{
 		bool result = false;
 		int num = 0;
 		if (_monster.SkillInterval <= 0)
 		{
 			num = UnityEngine.Random.Range(1, 101);
-			if (num < _monster.MonsterSkill.mSkillRatio)
+			if (num < _monster.MonsterSkillDbData.mSkillRatio)
 			{
 				result = true;
-				_monster.ResetSkillInterval();
+				_monster.SkillIntervalChange();
 			}
 		}
 		else
 		{
-			_monster.SkillIntervalDecrease();
+			_monster.DecreaseSkill();
 		}
 		return result;
 	}
 
-	private IEnumerator MonsterSkillUse(Monster _monster)
+	private IEnumerator MonsterSkillUse(Enemy _monster)
 	{
-		Transform _eff_skill_cut = MasterPoolManager.SpawnObject("Skill", "FX_monsterskill_" + _monster.MonsterSkill.mSkillType, null, 1f);
+		Transform _eff_skill_cut = MasterPoolManager.SpawnObject("Skill", "FX_monsterskill_" + _monster.MonsterSkillDbData.mSkillType, null, 1f);
 		_eff_skill_cut.position = Vector3.zero;
 		yield return new WaitForSeconds(1f / GameInfo.inGameBattleSpeedRate);
-		_monster.SetCharacterAnim(Anim_Type.ATTACK_MONSTER, SetAttackToHunter(), Monster_Attack_End_Check);
+		_monster.SetAnimation(SetAttackToHunter(), Monster_Attack_End_Check);
 		yield return new WaitForSeconds(0.2f / GameInfo.inGameBattleSpeedRate);
-		switch (_monster.MonsterSkill.mSkillType)
+		switch (_monster.MonsterSkillDbData.mSkillType)
 		{
 		case 1:
 		{
@@ -1369,7 +1369,7 @@ public class BattleController : MonoBehaviour
 			{
 				if (Monster_Arr[i].MonsterHP > 0)
 				{
-					Monster_Arr[i].AddMonsterHP(healHP);
+					Monster_Arr[i].HealMonster(healHP);
 					Transform _eff_skill = MasterPoolManager.SpawnObject("Effect", "FX_Heal", Monster_Arr[i].transform, 2f);
 					_eff_skill.position = Monster_Arr[i].transform.position;
 				}
@@ -1389,10 +1389,10 @@ public class BattleController : MonoBehaviour
 			PuzzlePlayManager.ExeptionBlock(BlockExceptionType.DefaultFix);
 			break;
 		}
-		_monster.SetMonsterCurrentDamage(_monster.MonsterDamage * (_monster.MonsterSkill.mSkillAttackMagnification / 100));
+		_monster.SetDamage(_monster.MonsterDamage * (_monster.MonsterSkillDbData.mSkillAttackMagnification / 100));
 		SoundController.EffectSound_Play(EffectSoundType.HunterHit);
 		yield return new WaitForSeconds(0.5f / GameInfo.inGameBattleSpeedRate);
-		_monster.SetMonsterAttackTurnRefresh();
+		_monster.RefreshTurnAttack();
 	}
 
 	private Hero SetAttackToHunter()
@@ -1431,8 +1431,8 @@ public class BattleController : MonoBehaviour
 			{
 				return;
 			}
-			Monster monster = null;
-			monster = hit.collider.GetComponent<Monster>();
+			Enemy monster = null;
+			monster = hit.collider.GetComponent<Enemy>();
 			for (int i = 0; i < Monster_Arr.Length; i++)
 			{
 				if (monster.gameObject.name == Monster_Arr[i].gameObject.name)

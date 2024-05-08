@@ -298,7 +298,7 @@ public class PuzzlePlayManager : GameObjectSingleton<PuzzlePlayManager>
 	{
 	}
 
-	public static void ShowDamageUI(MonsterDamageUI.MonsterDamageType type, int damage, Vector3 position)
+	public static void ShowDamageUI(EnemyDamageUI.EnemyDamageType type, int damage, Vector3 position)
 	{
 		Inst._uiController.ShowMonsterDamage(type, damage, position);
 	}
@@ -481,7 +481,7 @@ public class PuzzlePlayManager : GameObjectSingleton<PuzzlePlayManager>
 		Inst._uiController.CloseJewelShopBuy();
 	}
 
-	public static void MonsterTargeting(Monster _monster)
+	public static void MonsterTargeting(Enemy _monster)
 	{
 		Inst._battleController.MonsterTargeting(_monster);
 	}

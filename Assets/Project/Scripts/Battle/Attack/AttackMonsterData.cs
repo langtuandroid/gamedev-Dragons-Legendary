@@ -1,6 +1,6 @@
 public class AttackMonsterData
 {
-	public Monster monster;
+	public Enemy monster;
 
 	public int damage;
 }

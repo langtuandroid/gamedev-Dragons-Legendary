@@ -49,7 +49,7 @@ public class Hero : HeroBase
 	private Transform _stunEff;
 	private HeroLeaderSkill _hunterLeaderSkill;
 	private HeroState _hunterState;
-	private Monster _attackMonster;
+	private Enemy _attackMonster;
 	private int _attackDamage;
 
 	public HunterInfo HeroInfo => _heroInfo;
@@ -125,7 +125,7 @@ public class Hero : HeroBase
 		}
 	}
 
-	public void SetAnimation(Anim_Type _type, Monster _monster, int _damage, Action _onCallBack)
+	public void SetAnimation(Anim_Type _type, Enemy _monster, int _damage, Action _onCallBack)
 	{
 		if (!(_monster == null))
 		{
@@ -138,7 +138,7 @@ public class Hero : HeroBase
 		}
 	}
 
-	public void SetCharacterSkill(HunterSkillRange _range, Monster[] _monster, Action _OnCallback)
+	public void SetCharacterSkill(HunterSkillRange _range, Enemy[] _monster, Action _OnCallback)
 	{
 		if (_monster != null)
 		{
@@ -227,7 +227,7 @@ public class Hero : HeroBase
 		OnHanterAttack = null;
 	}
 
-	public IEnumerator UseSkill(HunterSkillRange _range, Monster[] _monster, Action _OnCallback)
+	public IEnumerator UseSkill(HunterSkillRange _range, Enemy[] _monster, Action _OnCallback)
 	{
 		if (_heroInfo.Skill.motionType == 1)
 		{
@@ -278,12 +278,12 @@ public class Hero : HeroBase
 			StartCoroutine(UseSkillSettings(_range, _monster));
 			if (_range == HunterSkillRange.SINGLE)
 			{
-				_monster[0].SetStun();
+				_monster[0].StunMonster();
 				break;
 			}
 			for (int i = 0; i < _monster.Length; i++)
 			{
-				_monster[i].SetStun();
+				_monster[i].StunMonster();
 			}
 			break;
 		case 4:
@@ -293,7 +293,7 @@ public class Hero : HeroBase
 		}
 	}
 
-	public IEnumerator UseSkillSettings(HunterSkillRange _range, Monster[] _monster)
+	public IEnumerator UseSkillSettings(HunterSkillRange _range, Enemy[] _monster)
 	{
 		int _damage = 0;
 		Transform[] _eff = new Transform[_heroInfo.Skill.times];
@@ -315,7 +315,7 @@ public class Hero : HeroBase
 			for (int i = 0; i < _monster.Length; i++)
 			{
 				GameUtil.Check_Property_Damage(this, _monster[i], _damage);
-				_monster[i].SetMonsterHP(_damage);
+				_monster[i].SetMonsterHealth(_damage);
 			}
 			_eff[attackcount] = MasterPoolManager.SpawnObject("Effect", "Skill_" + _heroInfo.Skill.skillIdx, null, 1.5f);
 			if (_range == HunterSkillRange.SINGLE)

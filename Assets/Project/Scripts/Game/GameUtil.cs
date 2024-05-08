@@ -250,7 +250,7 @@ public static class GameUtil
 		return (int)Mathf.Ceil(f);
 	}
 
-	public static int Check_Property_Damage(Hero _hunter, Monster _monster, int _damage)
+	public static int Check_Property_Damage(Hero _hunter, Enemy _monster, int _damage)
 	{
 		float num = 1.3f;
 		float num2 = 0.7f;
@@ -277,70 +277,70 @@ public static class GameUtil
 		return result;
 	}
 
-	public static void Check_Property_Damage_UI(Hero _hunter, Monster _monster, int _damage)
+	public static void Check_Property_Damage_UI(Hero _hunter, Enemy _monster, int _damage)
 	{
 		switch (_hunter.HeroInfo.Hunter.color)
 		{
 		case 3:
 			if (_monster.MonsterInfo.mColor == 1)
 			{
-				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Critical, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(EnemyDamageUI.EnemyDamageType.Critical, _damage, _monster.transform.position);
 			}
 			else if (_monster.MonsterInfo.mColor == 0)
 			{
-				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Weak, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(EnemyDamageUI.EnemyDamageType.Weak, _damage, _monster.transform.position);
 			}
 			else
 			{
-				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Normal, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(EnemyDamageUI.EnemyDamageType.Normal, _damage, _monster.transform.position);
 			}
 			break;
 		case 1:
 			if (_monster.MonsterInfo.mColor == 0)
 			{
-				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Critical, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(EnemyDamageUI.EnemyDamageType.Critical, _damage, _monster.transform.position);
 			}
 			else if (_monster.MonsterInfo.mColor == 3)
 			{
-				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Weak, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(EnemyDamageUI.EnemyDamageType.Weak, _damage, _monster.transform.position);
 			}
 			else
 			{
-				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Normal, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(EnemyDamageUI.EnemyDamageType.Normal, _damage, _monster.transform.position);
 			}
 			break;
 		case 0:
 			if (_monster.MonsterInfo.mColor == 3)
 			{
-				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Critical, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(EnemyDamageUI.EnemyDamageType.Critical, _damage, _monster.transform.position);
 			}
 			else if (_monster.MonsterInfo.mColor == 1)
 			{
-				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Weak, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(EnemyDamageUI.EnemyDamageType.Weak, _damage, _monster.transform.position);
 			}
 			else
 			{
-				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Normal, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(EnemyDamageUI.EnemyDamageType.Normal, _damage, _monster.transform.position);
 			}
 			break;
 		case 2:
 			if (_monster.MonsterInfo.mColor == 4)
 			{
-				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Critical, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(EnemyDamageUI.EnemyDamageType.Critical, _damage, _monster.transform.position);
 			}
 			else
 			{
-				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Normal, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(EnemyDamageUI.EnemyDamageType.Normal, _damage, _monster.transform.position);
 			}
 			break;
 		case 4:
 			if (_monster.MonsterInfo.mColor == 2)
 			{
-				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Critical, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(EnemyDamageUI.EnemyDamageType.Critical, _damage, _monster.transform.position);
 			}
 			else
 			{
-				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Normal, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(EnemyDamageUI.EnemyDamageType.Normal, _damage, _monster.transform.position);
 			}
 			break;
 		}

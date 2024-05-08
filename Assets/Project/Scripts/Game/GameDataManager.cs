@@ -101,17 +101,17 @@ public class GameDataManager : GameObjectSingleton<GameDataManager>
 		return GameObjectSingleton<GameDataManager>.Inst.localDB.GetWaveDbData(levelIndex);
 	}
 
-	public static MonsterDbData GetMonsterData(int mIdx)
+	public static EnemyDbData GetMonsterData(int mIdx)
 	{
 		return GameObjectSingleton<GameDataManager>.Inst.localDB.GetMonsterData(mIdx);
 	}
 
-	public static MonsterStatDbData GetMonsterStatData(int monsterIndex)
+	public static EnemyStatDbData GetMonsterStatData(int monsterIndex)
 	{
 		return GameObjectSingleton<GameDataManager>.Inst.localDB.GetMonsterStatData(monsterIndex);
 	}
 
-	public static MonsterSkillDbData GetMonsterSkillData(int skillIndex)
+	public static EnemySkillDbData GetMonsterSkillData(int skillIndex)
 	{
 		return GameObjectSingleton<GameDataManager>.Inst.localDB.GetMonsterSkillData(skillIndex);
 	}
