@@ -255,16 +255,16 @@ public class QuickLoot : LobbyPopupBase
 			resultItemData.itemMultiply = chestKeyCount;
 			resultItemData.itemName = GameDataManager.GetItemListData(resultItemData.itemIdx).itemName;
 			resultItemData.itemAmount = GameInfo.userData.GetItemCount(resultItemData.itemIdx);
-			InGameResultItem component = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trLootsAnchor).GetComponent<InGameResultItem>();
-			component.Show(resultItemData);
+			PuzzleResultItem component = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trLootsAnchor).GetComponent<PuzzleResultItem>();
+			component.OpenMenu(resultItemData);
 		}
 		ResultItemData resultItemData2 = new ResultItemData();
 		resultItemData2.itemIdx = 50040;
 		resultItemData2.itemMultiply = quickLootData.result.rewardExp;
 		resultItemData2.itemName = GameDataManager.GetItemListData(resultItemData2.itemIdx).itemName;
 		resultItemData2.itemAmount = GameInfo.userData.GetItemCount(resultItemData2.itemIdx);
-		InGameResultItem component2 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trLootsAnchor).GetComponent<InGameResultItem>();
-		component2.Show(resultItemData2);
+		PuzzleResultItem component2 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trLootsAnchor).GetComponent<PuzzleResultItem>();
+		component2.OpenMenu(resultItemData2);
 		REWARDITEM[] rewardMonsterItem = quickLootData.result.rewardMonsterItem;
 		foreach (REWARDITEM rEWARDITEM in rewardMonsterItem)
 		{
@@ -275,8 +275,8 @@ public class QuickLoot : LobbyPopupBase
 				resultItemData3.itemMultiply = rEWARDITEM.count;
 				resultItemData3.itemName = GameDataManager.GetItemListData(resultItemData3.itemIdx).itemName;
 				resultItemData3.itemAmount = GameInfo.userData.GetItemCount(resultItemData3.itemIdx);
-				InGameResultItem component3 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trLootsAnchor).GetComponent<InGameResultItem>();
-				component3.Show(resultItemData3);
+				PuzzleResultItem component3 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trLootsAnchor).GetComponent<PuzzleResultItem>();
+				component3.OpenMenu(resultItemData3);
 			}
 		}
 		ResultItemData resultItemData4 = new ResultItemData();
@@ -284,8 +284,8 @@ public class QuickLoot : LobbyPopupBase
 		resultItemData4.itemMultiply = quickLootData.result.rewardChest[0].chestItemN;
 		resultItemData4.itemName = GameDataManager.GetItemListData(resultItemData4.itemIdx).itemName;
 		resultItemData4.itemAmount = GameInfo.userData.GetItemCount(resultItemData4.itemIdx);
-		InGameResultItem component4 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trLootsAnchor).GetComponent<InGameResultItem>();
-		component4.Show(resultItemData4);
+		PuzzleResultItem component4 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trLootsAnchor).GetComponent<PuzzleResultItem>();
+		component4.OpenMenu(resultItemData4);
 		scrollLoot.horizontalNormalizedPosition = 0f;
 	}
 
@@ -320,11 +320,11 @@ public class QuickLoot : LobbyPopupBase
 			itemInfoUI2.Clear();
 			MWPoolManager.DeSpawn("Lobby", itemInfoUI2.transform);
 		}
-		InGameResultItem[] componentsInChildren2 = trLootsAnchor.GetComponentsInChildren<InGameResultItem>();
-		InGameResultItem[] array3 = componentsInChildren2;
-		foreach (InGameResultItem inGameResultItem in array3)
+		PuzzleResultItem[] componentsInChildren2 = trLootsAnchor.GetComponentsInChildren<PuzzleResultItem>();
+		PuzzleResultItem[] array3 = componentsInChildren2;
+		foreach (PuzzleResultItem inGameResultItem in array3)
 		{
-			inGameResultItem.Clear();
+			inGameResultItem.ClearItems();
 			MWPoolManager.DeSpawn("Puzzle", inGameResultItem.transform);
 		}
 	}

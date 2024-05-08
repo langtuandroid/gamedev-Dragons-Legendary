@@ -15,7 +15,7 @@ public class SkillEffect_Anim : MonoBehaviour
 			monster[i].SetMonsterHP_Gauge(damage);
 			GameUtil.Check_Property_Damage_UI(hunter, monster[i], damage);
 		}
-		InGamePlayManager.ShakeCamera();
+		PuzzlePlayManager.ShakeEffect();
 	}
 
 	public void SetMonster(Hero _hunter, Monster[] _monster, int _damage)

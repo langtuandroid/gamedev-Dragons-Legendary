@@ -18,7 +18,7 @@ public class TutorialHunterSkill : MonoBehaviour
 			break;
 		case 2:
 			UnityEngine.Debug.Log("TutorialHunterSkill - 2");
-			userSkillHunter = InGamePlayManager.CheckIsUseHunterSkill();
+			userSkillHunter = PuzzlePlayManager.CheckIsUseHunterSkill();
 			TutorialManager.ShowAndSortHighLightSprite(userSkillHunter);
 			TutorialManager.SetDimmedClick(isClick: true);
 			break;
@@ -29,11 +29,11 @@ public class TutorialHunterSkill : MonoBehaviour
 			TutorialManager.SetDimmedClick(isClick: true);
 			break;
 		case 5:
-			InGamePlayManager.HunterSkillEvent = null;
+			PuzzlePlayManager.OnHunterSkill = null;
 			TutorialManager.SetDimmedClick(isClick: false);
 			userSkillBT.gameObject.SetActive(value: true);
 			userSkillBT.position = userSkillHunter.position;
-			InGamePlayManager.HunterSkillEventComplete = HunterSkillEventComplete;
+			PuzzlePlayManager.OnHunterSkillEventComplete = HunterSkillEventComplete;
 			break;
 		}
 	}
@@ -43,13 +43,13 @@ public class TutorialHunterSkill : MonoBehaviour
 		TutorialManager.ReturnHighLightSpriteList();
 		userSkillBT.gameObject.SetActive(value: false);
 		TutorialManager.HideTutorial();
-		InGamePlayManager.HunterSkillEventComplete = null;
+		PuzzlePlayManager.OnHunterSkillEventComplete = null;
 		TutorialManager.SaveTutorial();
 		TutorialManager.EndEventTutorial();
 	}
 
 	public void UseHunterSkillForTutorial()
 	{
-		InGamePlayManager.UseHunterSkillForTutorial(userSkillHunter.GetComponent<Hero>());
+		PuzzlePlayManager.TutorialHunterSkill(userSkillHunter.GetComponent<Hero>());
 	}
 }

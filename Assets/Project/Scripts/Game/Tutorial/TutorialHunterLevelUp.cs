@@ -25,12 +25,12 @@ public class TutorialHunterLevelUp : MonoBehaviour
 				GameInfo.inGamePlayData.levelIdx = 3;
 				LobbyManager.GotoInGame(3);
 				UnityEngine.Debug.Log("Tutorial 3:1");
-				InGamePlayManager.BattleRewardTutorial = OpenReward;
+				PuzzlePlayManager.OnBattleRewardTutorial = OpenReward;
 			}
 			else
 			{
 				UnityEngine.Debug.Log("Tutorial 3:1");
-				InGamePlayManager.BattleRewardTutorial = OpenReward;
+				PuzzlePlayManager.OnBattleRewardTutorial = OpenReward;
 			}
 			break;
 		case 2:
@@ -41,7 +41,7 @@ public class TutorialHunterLevelUp : MonoBehaviour
 			TutorialManager.SetDimmedClick(isClick: true);
 			if (GameInfo.currentSceneType == SceneType.InGame)
 			{
-				InGamePlayManager.BattleRewardComplete = OpenRewardComplete;
+				PuzzlePlayManager.OnBattleRewardComplete = OpenRewardComplete;
 			}
 			break;
 		case 4:
@@ -94,16 +94,16 @@ public class TutorialHunterLevelUp : MonoBehaviour
 		TutorialManager.ShowTutorial();
 		if (GameInfo.currentSceneType == SceneType.InGame)
 		{
-			TutorialManager.ShowHighLightUI(InGamePlayManager.BattleRewardPickItem);
+			TutorialManager.ShowHighLightUI(PuzzlePlayManager.BattleRewardPickItem);
 		}
-		InGamePlayManager.BattleRewardTutorial = null;
+		PuzzlePlayManager.OnBattleRewardTutorial = null;
 	}
 
 	private void OpenRewardComplete()
 	{
 		TutorialManager.ReturnHighLightUI();
-		InGamePlayManager.BattleRewardClaim();
-		InGamePlayManager.BattleRewardComplete = null;
+		PuzzlePlayManager.ClaimReward();
+		PuzzlePlayManager.OnBattleRewardComplete = null;
 		TutorialManager.HideTutorial();
 	}
 

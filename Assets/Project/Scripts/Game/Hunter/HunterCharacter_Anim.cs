@@ -23,7 +23,7 @@ public class HunterCharacter_Anim : MonoBehaviour
 	{
 		UnityEngine.Debug.Log("11111111111111 = ");
 		SoundController.EffectSound_Play(EffectSoundType.HunterAttack);
-		InGamePlayManager.ShakeCamera(isVibration: false);
+		PuzzlePlayManager.ShakeEffect(isVibration: false);
 		hunterCharacter.SetMonsterHP_Gauge();
 	}
 

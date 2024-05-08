@@ -41,8 +41,8 @@ public class TutorialStoreManagement : MonoBehaviour
 			break;
 		case 9:
 			TutorialManager.HideTutorial();
-			InGamePlayManager.ShowBattleReward = OnShowBattleReward;
-			InGamePlayManager.GameLose = onGameLose;
+			PuzzlePlayManager.ShowBattleReward = OnShowBattleReward;
+			PuzzlePlayManager.OnGameLose = onGameLose;
 			break;
 		case 11:
 			TutorialManager.SaveTutorial();
@@ -58,7 +58,7 @@ public class TutorialStoreManagement : MonoBehaviour
 			}
 			else
 			{
-				InGamePlayManager.BattleRewardOpen = OnBattleRewardOpenEvent;
+				PuzzlePlayManager.OnBattleRewardOpen = OnBattleRewardOpenEvent;
 			}
 			break;
 		case 12:
@@ -187,7 +187,7 @@ public class TutorialStoreManagement : MonoBehaviour
 
 	private void OnBattleRewardOpenEvent()
 	{
-		InGamePlayManager.BattleRewardOpen = null;
+		PuzzlePlayManager.OnBattleRewardOpen = null;
 		TutorialManager.SetSeq(12);
 		TutorialManager.SaveTutorial(3, 1);
 	}
@@ -195,8 +195,8 @@ public class TutorialStoreManagement : MonoBehaviour
 	private void OnShowBattleReward()
 	{
 		UnityEngine.Debug.Log("OnShowBattleReward");
-		InGamePlayManager.ShowBattleReward = null;
-		InGamePlayManager.GameLose = null;
+		PuzzlePlayManager.ShowBattleReward = null;
+		PuzzlePlayManager.OnGameLose = null;
 		TutorialManager.SetSeq(11);
 		TutorialManager.ShowTutorial();
 		TutorialManager.HideTutorial();
@@ -204,8 +204,8 @@ public class TutorialStoreManagement : MonoBehaviour
 
 	public void onGameLose()
 	{
-		InGamePlayManager.ShowBattleReward = null;
-		InGamePlayManager.GameLose = null;
+		PuzzlePlayManager.ShowBattleReward = null;
+		PuzzlePlayManager.OnGameLose = null;
 		TutorialManager.SetSeq(5);
 	}
 }

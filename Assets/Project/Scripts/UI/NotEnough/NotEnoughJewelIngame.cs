@@ -17,7 +17,7 @@ public class NotEnoughJewelIngame : MonoBehaviour
 
 	private void ShopListResponse()
 	{
-		InGamePlayManager.JewelShop();
+		PuzzlePlayManager.ShowJewelShop();
 		base.gameObject.SetActive(value: false);
 	}
 
@@ -28,16 +28,16 @@ public class NotEnoughJewelIngame : MonoBehaviour
 			Protocol_Set.Protocol_shop_list_Req(ShopListResponse);
 			return;
 		}
-		InGamePlayManager.JewelShop();
+		PuzzlePlayManager.ShowJewelShop();
 		base.gameObject.SetActive(value: false);
 	}
 
 	public void OnClickCancel()
 	{
-		if (InGamePlayManager.continueTimer != null)
+		if (PuzzlePlayManager.OnContinueTimer != null)
 		{
-			InGamePlayManager.continueTimer();
-			InGamePlayManager.continueTimer = null;
+			PuzzlePlayManager.OnContinueTimer();
+			PuzzlePlayManager.OnContinueTimer = null;
 		}
 		base.gameObject.SetActive(value: false);
 	}

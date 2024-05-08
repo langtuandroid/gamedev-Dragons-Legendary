@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-public class InGamePlayData
+public class PuzzlePlayData
 {
-	public InGameType inGameType;
+	public PuzzleInGameType inGameType;
 
 	public bool isShowScenario;
 

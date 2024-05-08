@@ -196,11 +196,11 @@ public class TutorialManager : GameObjectSingleton<TutorialManager>
 		if (GameObjectSingleton<TutorialManager>.Inst.tutorialData.eventData[0].passYn == "n")
 		{
 			UnityEngine.Debug.Log("USERSKILL TUTORIAL 11");
-			if (GameInfo.inGamePlayData.level >= 4 && InGamePlayManager.CheckIsUseHunterSkill() != null)
+			if (GameInfo.inGamePlayData.level >= 4 && PuzzlePlayManager.CheckIsUseHunterSkill() != null)
 			{
 				UnityEngine.Debug.Log("USERSKILL TUTORIAL 22");
-				InGamePlayManager.HunterSkillEvent = GameObjectSingleton<TutorialManager>.Inst.HunterSkillEvent;
-				InGamePlayManager.HunterSkillEvent();
+				PuzzlePlayManager.OnHunterSkill = GameObjectSingleton<TutorialManager>.Inst.HunterSkillEvent;
+				PuzzlePlayManager.OnHunterSkill();
 			}
 		}
 		else
@@ -635,7 +635,7 @@ public class TutorialManager : GameObjectSingleton<TutorialManager>
 		currentSeq++;
 		if (currentSIdx == 3 && currentSeq == 4 && GameInfo.currentSceneType == SceneType.InGame)
 		{
-			InGamePlayManager.BattleRewardCompleteEvent();
+			PuzzlePlayManager.BattleRewardCompleteEvent();
 		}
 		else if (!GameDataManager.GetDicTutorialDbData()[currentSIdx].ContainsKey(currentSeq))
 		{
@@ -657,7 +657,7 @@ public class TutorialManager : GameObjectSingleton<TutorialManager>
 				EndEventTutorial();
 				return;
 			case 12:
-				InGamePlayManager.ResumeMatchTimer();
+				PuzzlePlayManager.ContinueTimer();
 				HideTutorial();
 				EndEventTutorial();
 				return;
@@ -747,7 +747,7 @@ public class TutorialManager : GameObjectSingleton<TutorialManager>
 	private void HunterSkillEvent()
 	{
 		ShowTutorial(6, 1);
-		InGamePlayManager.HunterSkillEvent = null;
+		PuzzlePlayManager.OnHunterSkill = null;
 		tutorialData.eventData[0].passYn = "y";
 	}
 

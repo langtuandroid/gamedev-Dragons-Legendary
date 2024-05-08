@@ -89,11 +89,11 @@ public class BattleResult : MonoBehaviour
 	{
 		switch (GameInfo.inGamePlayData.inGameType)
 		{
-		case InGameType.Stage:
+		case PuzzleInGameType.Stage:
 			SoundController.BGM_Stop(MusicSoundType.IngameBGM);
 			SoundController.BGM_Stop(MusicSoundType.InGameDragonBgm);
 			break;
-		case InGameType.Arena:
+		case PuzzleInGameType.Arena:
 			SoundController.BGM_Stop(MusicSoundType.ArenaBGM);
 			break;
 		}
@@ -103,16 +103,16 @@ public class BattleResult : MonoBehaviour
 		resultItemData.itemMultiply = gameEndData.rewardExp;
 		resultItemData.itemName = GameDataManager.GetItemListData(resultItemData.itemIdx).itemName;
 		resultItemData.itemAmount = GameInfo.userData.GetItemCount(resultItemData.itemIdx);
-		InGameResultItem component = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<InGameResultItem>();
-		component.Show(resultItemData);
+		PuzzleResultItem component = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
+		component.OpenMenu(resultItemData);
 		ResultItemData resultItemData2 = new ResultItemData();
 		resultItemData2.itemIdx = 50032;
 		resultItemData2.itemMultiply = gameEndData.rewardCoin;
 		resultItemData2.itemName = GameDataManager.GetItemListData(resultItemData2.itemIdx).itemName;
 		resultItemData2.itemAmount = GameInfo.userData.GetItemCount(resultItemData2.itemIdx);
-		InGameResultItem component2 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<InGameResultItem>();
-		component2.Show(resultItemData2);
-		InGameResultItem inGameResultItem = null;
+		PuzzleResultItem component2 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
+		component2.OpenMenu(resultItemData2);
+		PuzzleResultItem inGameResultItem = null;
 		if (GameInfo.userPlayData.chestKey > 0)
 		{
 			ResultItemData resultItemData3 = new ResultItemData();
@@ -120,8 +120,8 @@ public class BattleResult : MonoBehaviour
 			resultItemData3.itemMultiply = GameInfo.userPlayData.chestKey;
 			resultItemData3.itemName = GameDataManager.GetItemListData(resultItemData3.itemIdx).itemName;
 			resultItemData3.itemAmount = GameInfo.userData.GetItemCount(resultItemData3.itemIdx);
-			inGameResultItem = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<InGameResultItem>();
-			inGameResultItem.Show(resultItemData3);
+			inGameResultItem = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
+			inGameResultItem.OpenMenu(resultItemData3);
 		}
 		if (gameEndData.rewardFixItem.Length > 0)
 		{
@@ -144,8 +144,8 @@ public class BattleResult : MonoBehaviour
 				resultItemData4.itemMultiply = gameEndData.rewardFixItem[0].count;
 				resultItemData4.itemName = GameDataManager.GetItemListData(resultItemData4.itemIdx).itemName;
 				resultItemData4.itemAmount = GameInfo.userData.GetItemCount(resultItemData4.itemIdx);
-				InGameResultItem component3 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<InGameResultItem>();
-				component3.Show(resultItemData4);
+				PuzzleResultItem component3 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
+				component3.OpenMenu(resultItemData4);
 			}
 		}
 		REWARDITEM[] rewardMonsterItem = gameEndData.rewardMonsterItem;
@@ -166,8 +166,8 @@ public class BattleResult : MonoBehaviour
 			resultItemData5.itemMultiply = rEWARDITEM.count;
 			resultItemData5.itemName = GameDataManager.GetItemListData(resultItemData5.itemIdx).itemName;
 			resultItemData5.itemAmount = GameInfo.userData.GetItemCount(resultItemData5.itemIdx);
-			InGameResultItem component4 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<InGameResultItem>();
-			component4.Show(resultItemData5);
+			PuzzleResultItem component4 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
+			component4.OpenMenu(resultItemData5);
 		}
 		scrollLoot.horizontalNormalizedPosition = 0f;
 	}
@@ -243,7 +243,7 @@ public class BattleResult : MonoBehaviour
 		}
 		else
 		{
-			InGamePlayManager.BattleReward();
+			PuzzlePlayManager.WinReward();
 			SoundController.EffectSound_Play(EffectSoundType.ButtonClick);
 		}
 	}

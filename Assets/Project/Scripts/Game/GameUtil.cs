@@ -284,63 +284,63 @@ public static class GameUtil
 		case 3:
 			if (_monster.MonsterInfo.mColor == 1)
 			{
-				InGamePlayManager.ShowMonsterDamageUI(MonsterDamageUI.MonsterDamageType.Critical, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Critical, _damage, _monster.transform.position);
 			}
 			else if (_monster.MonsterInfo.mColor == 0)
 			{
-				InGamePlayManager.ShowMonsterDamageUI(MonsterDamageUI.MonsterDamageType.Weak, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Weak, _damage, _monster.transform.position);
 			}
 			else
 			{
-				InGamePlayManager.ShowMonsterDamageUI(MonsterDamageUI.MonsterDamageType.Normal, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Normal, _damage, _monster.transform.position);
 			}
 			break;
 		case 1:
 			if (_monster.MonsterInfo.mColor == 0)
 			{
-				InGamePlayManager.ShowMonsterDamageUI(MonsterDamageUI.MonsterDamageType.Critical, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Critical, _damage, _monster.transform.position);
 			}
 			else if (_monster.MonsterInfo.mColor == 3)
 			{
-				InGamePlayManager.ShowMonsterDamageUI(MonsterDamageUI.MonsterDamageType.Weak, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Weak, _damage, _monster.transform.position);
 			}
 			else
 			{
-				InGamePlayManager.ShowMonsterDamageUI(MonsterDamageUI.MonsterDamageType.Normal, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Normal, _damage, _monster.transform.position);
 			}
 			break;
 		case 0:
 			if (_monster.MonsterInfo.mColor == 3)
 			{
-				InGamePlayManager.ShowMonsterDamageUI(MonsterDamageUI.MonsterDamageType.Critical, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Critical, _damage, _monster.transform.position);
 			}
 			else if (_monster.MonsterInfo.mColor == 1)
 			{
-				InGamePlayManager.ShowMonsterDamageUI(MonsterDamageUI.MonsterDamageType.Weak, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Weak, _damage, _monster.transform.position);
 			}
 			else
 			{
-				InGamePlayManager.ShowMonsterDamageUI(MonsterDamageUI.MonsterDamageType.Normal, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Normal, _damage, _monster.transform.position);
 			}
 			break;
 		case 2:
 			if (_monster.MonsterInfo.mColor == 4)
 			{
-				InGamePlayManager.ShowMonsterDamageUI(MonsterDamageUI.MonsterDamageType.Critical, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Critical, _damage, _monster.transform.position);
 			}
 			else
 			{
-				InGamePlayManager.ShowMonsterDamageUI(MonsterDamageUI.MonsterDamageType.Normal, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Normal, _damage, _monster.transform.position);
 			}
 			break;
 		case 4:
 			if (_monster.MonsterInfo.mColor == 2)
 			{
-				InGamePlayManager.ShowMonsterDamageUI(MonsterDamageUI.MonsterDamageType.Critical, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Critical, _damage, _monster.transform.position);
 			}
 			else
 			{
-				InGamePlayManager.ShowMonsterDamageUI(MonsterDamageUI.MonsterDamageType.Normal, _damage, _monster.transform.position);
+				PuzzlePlayManager.ShowDamageUI(MonsterDamageUI.MonsterDamageType.Normal, _damage, _monster.transform.position);
 			}
 			break;
 		}

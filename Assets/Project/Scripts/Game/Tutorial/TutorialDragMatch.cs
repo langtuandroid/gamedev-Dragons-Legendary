@@ -18,18 +18,18 @@ public class TutorialDragMatch : MonoBehaviour
 		{
 		case 3:
 			TutorialManager.SetDimmedClick(isClick: false);
-			InGamePlayManager.BlockSelect = OnBlockSelectEvent;
-			InGamePlayManager.PuzzleTouchEnd = OnPuzzleTouchEnd;
-			InGamePlayManager.ActiveOnlySelectOneBlock(3, 2);
-			InGamePlayManager.StopDeSelectAllBlock();
+			PuzzlePlayManager.OnClock = OnBlockSelectEvent;
+			PuzzlePlayManager.PuzzleTouchEnd = OnPuzzleTouchEnd;
+			PuzzlePlayManager.ActiveOnlySelectOneBlock(3, 2);
+			PuzzlePlayManager.SelectDeBlocks();
 			ShowHandBlock(3, 2);
 			ShowDragHighLightTutorialFirst();
 			break;
 		case 5:
 			TutorialManager.SetDimmedClick(isClick: false);
-			InGamePlayManager.BlockSelect = OnBlockSelectEvent;
-			InGamePlayManager.ActiveOnlySelectOneBlock(4, 3);
-			InGamePlayManager.StopDeSelectAllBlock();
+			PuzzlePlayManager.OnClock = OnBlockSelectEvent;
+			PuzzlePlayManager.ActiveOnlySelectOneBlock(4, 3);
+			PuzzlePlayManager.SelectDeBlocks();
 			ShowHandBlock(4, 3, 1);
 			ShowDragHighLightTutorialSecond();
 			break;
@@ -49,9 +49,9 @@ public class TutorialDragMatch : MonoBehaviour
 			{
 				isFirstBlockSelect = false;
 				ClearHand();
-				InGamePlayManager.AllActiveBlock();
+				PuzzlePlayManager.ActiveBlocks();
 				TutorialManager.ReturnHighLightSpriteList();
-				InGamePlayManager.BlockSelect = null;
+				PuzzlePlayManager.OnClock = null;
 				StartCoroutine(ProcessDelayStopMatchTimer());
 			}
 			break;
@@ -64,9 +64,9 @@ public class TutorialDragMatch : MonoBehaviour
 			{
 				isFirstBlockSelect = false;
 				ClearHand();
-				InGamePlayManager.AllActiveBlock();
+				PuzzlePlayManager.ActiveBlocks();
 				TutorialManager.ReturnHighLightSpriteList();
-				InGamePlayManager.BlockSelect = null;
+				PuzzlePlayManager.OnClock = null;
 				StartCoroutine(ProcessDelayStopMatchTimer());
 			}
 			break;
@@ -75,10 +75,10 @@ public class TutorialDragMatch : MonoBehaviour
 
 	private IEnumerator ProcessDelayStopMatchTimer()
 	{
-		InGamePlayManager.TouchLock();
+		PuzzlePlayManager.LockTouch();
 		yield return new WaitForSeconds(0.3f);
-		InGamePlayManager.TouchActive();
-		InGamePlayManager.StopMatchTimer();
+		PuzzlePlayManager.ActivateTouch();
+		PuzzlePlayManager.PauseTimer();
 		TutorialManager.NextSep();
 	}
 
@@ -90,7 +90,7 @@ public class TutorialDragMatch : MonoBehaviour
 	{
 		ClearHand();
 		trHand = MWPoolManager.Spawn("Tutorial", "Tutorial_Hand");
-		trHand.position = InGamePlayManager.GetBlockPosition(_x, _y);
+		trHand.position = PuzzlePlayManager.BlockPositions(_x, _y);
 		switch (type)
 		{
 		case 0:
@@ -101,7 +101,7 @@ public class TutorialDragMatch : MonoBehaviour
 			break;
 		}
 		trBlockTile = MWPoolManager.Spawn("Tutorial", "Tutorial_Tile");
-		trBlockTile.position = InGamePlayManager.GetBlockPosition(_x, _y);
+		trBlockTile.position = PuzzlePlayManager.BlockPositions(_x, _y);
 	}
 
 	private void ClearHand()
@@ -147,7 +147,7 @@ public class TutorialDragMatch : MonoBehaviour
 	private List<SpriteRenderer> GetHighLightBlock(int _x, int _y)
 	{
 		List<SpriteRenderer> list = new List<SpriteRenderer>();
-		Transform block = InGamePlayManager.GetBlock(_x, _y);
+		Transform block = PuzzlePlayManager.GetBlocks(_x, _y);
 		SpriteRenderer[] componentsInChildren = block.GetComponentsInChildren<SpriteRenderer>(includeInactive: true);
 		foreach (SpriteRenderer item in componentsInChildren)
 		{

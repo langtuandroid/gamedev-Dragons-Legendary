@@ -35,20 +35,20 @@ public class TutorialBattleProgress : MonoBehaviour
 		case 4:
 			isFirstBlockSelect = false;
 			TutorialManager.SetDimmedClick(isClick: false);
-			InGamePlayManager.BlockSelect = OnBlockSelectEvent;
-			InGamePlayManager.PuzzleTouchEnd = OnPuzzleTouchEnd;
-			InGamePlayManager.AllActiveBlock();
-			InGamePlayManager.ActiveOnlySelectOneBlock(3, 3);
+			PuzzlePlayManager.OnClock = OnBlockSelectEvent;
+			PuzzlePlayManager.PuzzleTouchEnd = OnPuzzleTouchEnd;
+			PuzzlePlayManager.ActiveBlocks();
+			PuzzlePlayManager.ActiveOnlySelectOneBlock(3, 3);
 			ShowHandBlock(3, 3, isBottom: true);
 			ShowMatchHighLightTutorialFirst();
 			break;
 		case 6:
 			isFirstBlockSelect = false;
 			TutorialManager.SetDimmedClick(isClick: false);
-			InGamePlayManager.BlockSelect = OnBlockSelectEvent;
-			InGamePlayManager.PuzzleTouchEnd = OnPuzzleTouchEnd;
-			InGamePlayManager.AllActiveBlock();
-			InGamePlayManager.ActiveOnlySelectOneBlock(5, 3);
+			PuzzlePlayManager.OnClock = OnBlockSelectEvent;
+			PuzzlePlayManager.PuzzleTouchEnd = OnPuzzleTouchEnd;
+			PuzzlePlayManager.ActiveBlocks();
+			PuzzlePlayManager.ActiveOnlySelectOneBlock(5, 3);
 			ShowHandBlock(5, 3, isBottom: false);
 			ShowMatchHighLightTutorialSecond();
 			break;
@@ -65,8 +65,8 @@ public class TutorialBattleProgress : MonoBehaviour
 			}
 			else
 			{
-				InGamePlayManager.ShowBattleClearResult = OnShowBattleResult;
-				InGamePlayManager.ShowBattleReward = OnShowBattleReward;
+				PuzzlePlayManager.OnShowBattleClearResult = OnShowBattleResult;
+				PuzzlePlayManager.ShowBattleReward = OnShowBattleReward;
 			}
 			break;
 		case 9:
@@ -83,7 +83,7 @@ public class TutorialBattleProgress : MonoBehaviour
 			}
 			else
 			{
-				InGamePlayManager.BattleRewardOpen = OnBattleRewardOpenEvent;
+				PuzzlePlayManager.OnBattleRewardOpen = OnBattleRewardOpenEvent;
 			}
 			break;
 		}
@@ -92,7 +92,7 @@ public class TutorialBattleProgress : MonoBehaviour
 	private IEnumerator ProcessDelayLock()
 	{
 		yield return new WaitForSeconds(0.2f);
-		InGamePlayManager.AllLockBlock();
+		PuzzlePlayManager.LockedBlocks();
 	}
 
 	private void OnBlockSelectEvent(int _x, int _y)
@@ -110,10 +110,10 @@ public class TutorialBattleProgress : MonoBehaviour
 				UnityEngine.Debug.Log("OnBlockSelectEvent 2");
 				isFirstBlockSelect = false;
 				ClearHand();
-				InGamePlayManager.AllActiveBlock();
-				InGamePlayManager.MatchTimeFlow = OnMatchTimeFlowEvent;
-				InGamePlayManager.BlockSelect = null;
-				InGamePlayManager.PuzzleTouchEnd = null;
+				PuzzlePlayManager.ActiveBlocks();
+				PuzzlePlayManager.OnMatchTimeFlow = OnMatchTimeFlowEvent;
+				PuzzlePlayManager.OnClock = null;
+				PuzzlePlayManager.PuzzleTouchEnd = null;
 				TutorialManager.ReturnHighLightSpriteList();
 				StartCoroutine(ProcessDelayLock());
 			}
@@ -127,14 +127,14 @@ public class TutorialBattleProgress : MonoBehaviour
 			{
 				isFirstBlockSelect = false;
 				ClearHand();
-				InGamePlayManager.AllActiveBlock();
-				InGamePlayManager.BlockSelect = null;
-				InGamePlayManager.PuzzleTouchEnd = null;
+				PuzzlePlayManager.ActiveBlocks();
+				PuzzlePlayManager.OnClock = null;
+				PuzzlePlayManager.PuzzleTouchEnd = null;
 				TutorialManager.ReturnHighLightSpriteList();
-				InGamePlayManager.ResumeMatchTimer();
+				PuzzlePlayManager.ContinueTimer();
 				TutorialManager.SetSeq(8);
 				TutorialManager.ShowTutorial();
-				InGamePlayManager.AllActiveBlock();
+				PuzzlePlayManager.ActiveBlocks();
 			}
 			break;
 		}
@@ -151,9 +151,9 @@ public class TutorialBattleProgress : MonoBehaviour
 
 	private IEnumerator ProcessNextTutorialNext()
 	{
-		InGamePlayManager.TouchLock();
+		PuzzlePlayManager.LockTouch();
 		yield return new WaitForSeconds(0.5f);
-		InGamePlayManager.TouchActive();
+		PuzzlePlayManager.ActivateTouch();
 		TutorialManager.NextSep();
 	}
 
@@ -162,8 +162,8 @@ public class TutorialBattleProgress : MonoBehaviour
 		if (time < 4f)
 		{
 			TutorialManager.ReturnHighLightSpriteList();
-			InGamePlayManager.MatchTimeFlow = null;
-			InGamePlayManager.StopMatchTimer();
+			PuzzlePlayManager.OnMatchTimeFlow = null;
+			PuzzlePlayManager.PauseTimer();
 			TutorialManager.SetSeq(5);
 			TutorialManager.ShowTutorial();
 		}
@@ -179,7 +179,7 @@ public class TutorialBattleProgress : MonoBehaviour
 		int seq = TutorialManager.Seq;
 		if (seq == 14)
 		{
-			InGamePlayManager.AllActiveBlock();
+			PuzzlePlayManager.ActiveBlocks();
 			TutorialManager.ShowTutorial();
 			ClearHand();
 		}
@@ -189,7 +189,7 @@ public class TutorialBattleProgress : MonoBehaviour
 	{
 		ClearHand();
 		trHand = MWPoolManager.Spawn("Tutorial", "Tutorial_Hand");
-		trHand.position = InGamePlayManager.GetBlockPosition(_x, _y);
+		trHand.position = PuzzlePlayManager.BlockPositions(_x, _y);
 		if (isBottom)
 		{
 			trHand.GetComponent<TutorialHand>().ShowHandBottomAnim();
@@ -199,7 +199,7 @@ public class TutorialBattleProgress : MonoBehaviour
 			trHand.GetComponent<TutorialHand>().ShowHandDiagonalAnim();
 		}
 		trBlockTile = MWPoolManager.Spawn("Tutorial", "Tutorial_Tile");
-		trBlockTile.position = InGamePlayManager.GetBlockPosition(_x, _y);
+		trBlockTile.position = PuzzlePlayManager.BlockPositions(_x, _y);
 	}
 
 	private void ClearHand()
@@ -240,7 +240,7 @@ public class TutorialBattleProgress : MonoBehaviour
 	private List<SpriteRenderer> GetHighLightBlock(int _x, int _y)
 	{
 		List<SpriteRenderer> list = new List<SpriteRenderer>();
-		Transform block = InGamePlayManager.GetBlock(_x, _y);
+		Transform block = PuzzlePlayManager.GetBlocks(_x, _y);
 		SpriteRenderer[] componentsInChildren = block.GetComponentsInChildren<SpriteRenderer>(includeInactive: true);
 		foreach (SpriteRenderer item in componentsInChildren)
 		{
@@ -254,14 +254,14 @@ public class TutorialBattleProgress : MonoBehaviour
 		UnityEngine.Debug.Log("OnBattleRewardOpenEvent");
 		TutorialManager.NextTutorialindex();
 		TutorialManager.SaveTutorial(2, 1);
-		InGamePlayManager.BattleRewardOpen = null;
+		PuzzlePlayManager.OnBattleRewardOpen = null;
 	}
 
 	private void OnShowBattleResult()
 	{
 		UnityEngine.Debug.Log("OnShowBattleResult");
-		InGamePlayManager.ShowBattleClearResult = null;
-		InGamePlayManager.ShowBattleReward = null;
+		PuzzlePlayManager.OnShowBattleClearResult = null;
+		PuzzlePlayManager.ShowBattleReward = null;
 		TutorialManager.SetSeq(9);
 		TutorialManager.ShowTutorial();
 		TutorialManager.HideTutorial();
@@ -270,8 +270,8 @@ public class TutorialBattleProgress : MonoBehaviour
 	private void OnShowBattleReward()
 	{
 		UnityEngine.Debug.Log("OnShowBattleReward");
-		InGamePlayManager.ShowBattleClearResult = null;
-		InGamePlayManager.ShowBattleReward = null;
+		PuzzlePlayManager.OnShowBattleClearResult = null;
+		PuzzlePlayManager.ShowBattleReward = null;
 		TutorialManager.SetSeq(9);
 		TutorialManager.ShowTutorial();
 		TutorialManager.HideTutorial();

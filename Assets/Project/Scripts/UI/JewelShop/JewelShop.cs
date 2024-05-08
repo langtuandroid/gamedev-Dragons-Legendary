@@ -63,15 +63,15 @@ public class JewelShop : MonoBehaviour
 
 	public void ShowJewelShopBuyPopup(int _type)
 	{
-		InGamePlayManager.JewelShopBuy(_type);
+		PuzzlePlayManager.BuyJewelShop(_type);
 	}
 
 	public void ClosePopup()
 	{
-		if (InGamePlayManager.continueTimer != null)
+		if (PuzzlePlayManager.OnContinueTimer != null)
 		{
-			InGamePlayManager.continueTimer();
-			InGamePlayManager.continueTimer = null;
+			PuzzlePlayManager.OnContinueTimer();
+			PuzzlePlayManager.OnContinueTimer = null;
 		}
 		base.gameObject.SetActive(value: false);
 	}

@@ -129,7 +129,7 @@ public class Monster : Monster_Base
     }
     public void Init(int _monsterSettingTurn, int _monster_DropItem, MonsterStatDbData _monster_Data, int _sortIdx)
 	{
-		if (GameInfo.inGamePlayData.inGameType == InGameType.Arena)
+		if (GameInfo.inGamePlayData.inGameType == PuzzleInGameType.Arena)
 		{
 			MonsterUIOnOff(_onoff: true);
 		}
@@ -267,7 +267,7 @@ public class Monster : Monster_Base
 				if (!isDying)
 				{
 					isDying = true;
-					InGamePlayManager.AddMonster(killMonster);
+					PuzzlePlayManager.MoreMonster(killMonster);
 				}
 			}
 		}
@@ -296,7 +296,7 @@ public class Monster : Monster_Base
 		transform.localPosition = new Vector3(x, y, localPosition3.z);
 		if (isTarget)
 		{
-			InGamePlayManager.MonsterUnTargeting();
+			PuzzlePlayManager.MonsterUnTargeting();
 		}
 	}
 
@@ -466,9 +466,9 @@ public class Monster : Monster_Base
 			return;
 		}
 		isItemGet = true;
-		InGamePlayManager.LastMonsterCoinEffect();
+		PuzzlePlayManager.LastCoinEffect();
 		ClearStun();
-		if (GameInfo.inGamePlayData.inGameType == InGameType.Stage)
+		if (GameInfo.inGamePlayData.inGameType == PuzzleInGameType.Stage)
 		{
 			transform = MWPoolManager.Spawn("Effect", "Fx_ItemDrop", null, 2f);
 			transform.position = base.transform.position;
@@ -490,7 +490,7 @@ public class Monster : Monster_Base
 		{
 			if (isTarget)
 			{
-				InGamePlayManager.MonsterUnTargeting();
+				PuzzlePlayManager.MonsterUnTargeting();
 			}
 			SetAnim(Anim_Type.MOVE);
 			GameObject gameObject = base.transform.gameObject;
@@ -530,7 +530,7 @@ public class Monster : Monster_Base
 			yield return new WaitForSeconds(0.2f / GameInfo.inGameBattleSpeedRate / 2f);
 			if (isTarget)
 			{
-				InGamePlayManager.MonsterTargeting(this);
+				PuzzlePlayManager.MonsterTargeting(this);
 			}
 		}
 		yield return null;

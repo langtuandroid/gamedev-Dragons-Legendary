@@ -165,7 +165,7 @@ public class Hero : HeroBase
 	public void SetBuff()
 	{
 		UnityEngine.Debug.Log("SetArenaBuff !!");
-		InGamePlayManager.ShowBuffUI(_arenaBuffTextAnchor.position, (BlockType)_heroInfo.Hunter.color, CheckArenaBuff(_heroInfo));
+		PuzzlePlayManager.UIBuff(_arenaBuffTextAnchor.position, (BlockType)_heroInfo.Hunter.color, CheckArenaBuff(_heroInfo));
 	}
 
 	public void SetHunterInfo(HunterInfo _info)
@@ -183,7 +183,7 @@ public class Hero : HeroBase
 	{
 		_heroBlockCount += _blockCount - 2;
 		_heroTotalDamage = (int)((GameUtil.GetHunterReinForceAttack(_heroInfo.Stat.hunterAttack, GameDataManager.HasUserHunterEnchant(_heroInfo.Hunter.hunterIdx)) * (float)CheckArenaBuff(_heroInfo) + (float)_heroInfo.leaderSkillAttack) * _userBonusAttack * (float)_heroBlockCount * (float)_damageDummyConstX);
-		InGamePlayManager.AddHunterAttack(_heroTotalDamage, _heroInfo.Hunter.color, base.transform.position, _heroInfo.Hunter.hunterIdx);
+		PuzzlePlayManager.AddAttack(_heroTotalDamage, _heroInfo.Hunter.color, base.transform.position, _heroInfo.Hunter.hunterIdx);
 	}
 
 	public void AddDamageCombo(int _combo, int _color, int _lastAttackIdx, Action<int> _OnCallBack)
@@ -271,7 +271,7 @@ public class Hero : HeroBase
 			break;
 		case 2:
 			StartCoroutine(UseSkillSettings(_range, _monster));
-			InGamePlayManager.Heal((int)((float)InGamePlayManager.GetHunterTotalHP() * _heroInfo.Skill.recPowers));
+			PuzzlePlayManager.HealHeroes((int)((float)PuzzlePlayManager.GetTotalHp() * _heroInfo.Skill.recPowers));
 			break;
 		case 3:
 			UnityEngine.Debug.Log("***********STUN 11");
@@ -287,7 +287,7 @@ public class Hero : HeroBase
 			}
 			break;
 		case 4:
-			InGamePlayManager.ChangeBlockType((BlockType)_heroInfo.Skill.beforeBlock, (BlockType)_heroInfo.Skill.afterBlock, _heroInfo.Skill.skillIdx);
+			PuzzlePlayManager.ChangeBlockType((BlockType)_heroInfo.Skill.beforeBlock, (BlockType)_heroInfo.Skill.afterBlock, _heroInfo.Skill.skillIdx);
 			StartCoroutine(SkillEnd());
 			break;
 		}
@@ -374,7 +374,7 @@ public class Hero : HeroBase
 		_isHunterStun = true;
 		_isHunterStunClearCount = 1;
 		_heroCharacter.ChangeAnim(Anim_Type.STUN);
-		InGamePlayManager.DeActiveBlock((BlockType)_heroInfo.Hunter.color);
+		PuzzlePlayManager.DeBlock((BlockType)_heroInfo.Hunter.color);
 	}
 
 	public void RemoveStun()
@@ -386,7 +386,7 @@ public class Hero : HeroBase
 		}
 		_isHunterStun = false;
 		_heroCharacter.ChangeAnim(Anim_Type.IDLE);
-		InGamePlayManager.ActiveBlock((BlockType)_heroInfo.Hunter.color);
+		PuzzlePlayManager.Block((BlockType)_heroInfo.Hunter.color);
 		if (_stunEff != null)
 		{
 			UnityEngine.Debug.Log("Return Stun !");
@@ -426,14 +426,14 @@ public class Hero : HeroBase
 			for (int i = 0; i < _combo; i++)
 			{
 				base.transform.localScale = Vector3.one;
-				InGamePlayManager.AddHunterCombo(i + 1, _heroInfo.Hunter.color, base.transform.position, _heroInfo.Hunter.hunterIdx);
+				PuzzlePlayManager.AddCombo(i + 1, _heroInfo.Hunter.color, base.transform.position, _heroInfo.Hunter.hunterIdx);
 				if (i > 0)
 				{
 					_heroTotalDamage += (int)((float)_heroTotalDamage * _damageDummyCombo);
 				}
 				LeanTween.cancel(base.transform.gameObject);
 				LeanTween.scale(base.transform.gameObject, new Vector3(1.2f, 1.2f, 1.2f), comboDuration / 2f).setLoopPingPong(1).setEase(LeanTweenType.linear);
-				InGamePlayManager.AddHunterAttack(_heroTotalDamage, _heroInfo.Hunter.color, base.transform.position, _heroInfo.Hunter.hunterIdx);
+				PuzzlePlayManager.AddAttack(_heroTotalDamage, _heroInfo.Hunter.color, base.transform.position, _heroInfo.Hunter.hunterIdx);
 				if (_heroIndex == _lastAttackIdx)
 				{
 					SoundController.EffectSound_Play(EffectSoundType.ComboAdd);
@@ -448,7 +448,7 @@ public class Hero : HeroBase
 			}
 			_heroTotalDamage = _hunterLeaderSkill.CkeckSkillCombo(_combo, _heroTotalDamage);
 			_heroTotalDamage = _hunterLeaderSkill.CheckLeaderSkillColor(_color, _heroTotalDamage);
-			InGamePlayManager.AddHunterAttack(_heroTotalDamage, _heroInfo.Hunter.color, base.transform.position, _heroInfo.Hunter.hunterIdx);
+			PuzzlePlayManager.AddAttack(_heroTotalDamage, _heroInfo.Hunter.color, base.transform.position, _heroInfo.Hunter.hunterIdx);
 		}
 		OnComboEffect(_heroIndex);
 		OnComboEffect = null;

@@ -47,36 +47,36 @@ public class TutorialIntro : MonoBehaviour
 		case 3:
 			isFirstBlockSelect = false;
 			TutorialManager.SetDimmedClick(isClick: false);
-			InGamePlayManager.MatchTimeFlow = OnMatchTimeFlowEvent;
-			InGamePlayManager.BlockSelect = OnBlockSelectEvent;
-			InGamePlayManager.PuzzleTouchEnd = OnPuzzleTouchEnd;
-			InGamePlayManager.AllActiveBlock();
-			InGamePlayManager.ActiveOnlySelectOneBlock(3, 3);
+			PuzzlePlayManager.OnMatchTimeFlow = OnMatchTimeFlowEvent;
+			PuzzlePlayManager.OnClock = OnBlockSelectEvent;
+			PuzzlePlayManager.PuzzleTouchEnd = OnPuzzleTouchEnd;
+			PuzzlePlayManager.ActiveBlocks();
+			PuzzlePlayManager.ActiveOnlySelectOneBlock(3, 3);
 			ShowHandBlock(3, 3, isBottom: true);
 			ShowMatchHighLightTutorialFirst();
 			break;
 		case 5:
 			isFirstBlockSelect = false;
 			TutorialManager.SetDimmedClick(isClick: false);
-			InGamePlayManager.BlockSelect = OnBlockSelectEvent;
-			InGamePlayManager.PuzzleTouchEnd = OnPuzzleTouchEnd;
-			InGamePlayManager.AllActiveBlock();
-			InGamePlayManager.ActiveOnlySelectOneBlock(3, 1);
+			PuzzlePlayManager.OnClock = OnBlockSelectEvent;
+			PuzzlePlayManager.PuzzleTouchEnd = OnPuzzleTouchEnd;
+			PuzzlePlayManager.ActiveBlocks();
+			PuzzlePlayManager.ActiveOnlySelectOneBlock(3, 1);
 			ShowHandBlock(3, 1, isBottom: false);
 			ShowMatchHighLightTutorialSecond();
 			break;
 		case 8:
 			TutorialManager.SetDimmedClick(isClick: false);
-			InGamePlayManager.UseHunterSkill = OnUseHunterSkillEvent;
-			InGamePlayManager.SetHunterFullSkillGauge(1);
-			InGamePlayManager.TouchLock();
-			trUserSkillHunter = InGamePlayManager.CheckIsUseHunterSkill();
+			PuzzlePlayManager.OnUseHunterSkill = OnUseHunterSkillEvent;
+			PuzzlePlayManager.SetHunterFullSkillGauge(1);
+			PuzzlePlayManager.LockTouch();
+			trUserSkillHunter = PuzzlePlayManager.CheckIsUseHunterSkill();
 			goHunterSkillButton.transform.position = trUserSkillHunter.position;
 			goHunterSkillButton.SetActive(value: true);
 			TutorialManager.ShowAndSortHighLightSprite(trUserSkillHunter);
 			break;
 		case 9:
-			InGamePlayManager.TouchLock();
+			PuzzlePlayManager.LockTouch();
 			TutorialManager.HideTutorial();
 			TutorialManager.NextTutorialindex();
 			TutorialManager.SaveTutorial(1, 0, OnTutorialIntroComplete);
@@ -92,7 +92,7 @@ public class TutorialIntro : MonoBehaviour
 	private IEnumerator ProcessDelayLock()
 	{
 		yield return new WaitForSeconds(0.2f);
-		InGamePlayManager.AllLockBlock();
+		PuzzlePlayManager.LockedBlocks();
 	}
 
 	private void OnBlockSelectEvent(int _x, int _y)
@@ -110,9 +110,9 @@ public class TutorialIntro : MonoBehaviour
 				UnityEngine.Debug.Log("OnBlockSelectEvent 2");
 				isFirstBlockSelect = false;
 				ClearHand();
-				InGamePlayManager.AllActiveBlock();
-				InGamePlayManager.BlockSelect = null;
-				InGamePlayManager.PuzzleTouchEnd = null;
+				PuzzlePlayManager.ActiveBlocks();
+				PuzzlePlayManager.OnClock = null;
+				PuzzlePlayManager.PuzzleTouchEnd = null;
 				TutorialManager.ReturnHighLightSpriteList();
 				StartCoroutine(ProcessDelayLock());
 			}
@@ -129,9 +129,9 @@ public class TutorialIntro : MonoBehaviour
 				TutorialManager.ReturnHighLightSpriteList();
 				TutorialManager.SetSeq(7);
 				TutorialManager.HideTutorial();
-				InGamePlayManager.AllActiveBlock();
-				InGamePlayManager.BlockSelect = null;
-				InGamePlayManager.PuzzleTouchEnd = null;
+				PuzzlePlayManager.ActiveBlocks();
+				PuzzlePlayManager.OnClock = null;
+				PuzzlePlayManager.PuzzleTouchEnd = null;
 				StartCoroutine(ProcessCancelMatchTime());
 			}
 			break;
@@ -141,7 +141,7 @@ public class TutorialIntro : MonoBehaviour
 	private IEnumerator ProcessCancelMatchTime()
 	{
 		yield return null;
-		InGamePlayManager.CancelMatchTimer();
+		PuzzlePlayManager.CancelTimer();
 	}
 
 	private void OnPuzzleTouchEnd(Block first, Block second, bool isMatchBlock)
@@ -158,8 +158,8 @@ public class TutorialIntro : MonoBehaviour
 		if (time < 4f)
 		{
 			TutorialManager.ReturnHighLightSpriteList();
-			InGamePlayManager.MatchTimeFlow = null;
-			InGamePlayManager.StopMatchTimer();
+			PuzzlePlayManager.OnMatchTimeFlow = null;
+			PuzzlePlayManager.PauseTimer();
 			TutorialManager.SetSeq(4);
 			TutorialManager.ShowTutorial();
 		}
@@ -167,8 +167,8 @@ public class TutorialIntro : MonoBehaviour
 
 	private void OnUseHunterSkillEvent()
 	{
-		InGamePlayManager.ForceIntroMonsterHp();
-		InGamePlayManager.UseHunterSkill = null;
+		PuzzlePlayManager.ForceMonsterHP();
+		PuzzlePlayManager.OnUseHunterSkill = null;
 		TutorialManager.HideTutorial();
 		TutorialManager.ReturnHighLightSpriteList();
 		TutorialManager.SetSeq(9);
@@ -196,7 +196,7 @@ public class TutorialIntro : MonoBehaviour
 	{
 		ClearHand();
 		trHand = MWPoolManager.Spawn("Tutorial", "Tutorial_Hand");
-		trHand.position = InGamePlayManager.GetBlockPosition(_x, _y);
+		trHand.position = PuzzlePlayManager.BlockPositions(_x, _y);
 		if (isBottom)
 		{
 			trHand.GetComponent<TutorialHand>().ShowHandLeftAnim();
@@ -206,7 +206,7 @@ public class TutorialIntro : MonoBehaviour
 			trHand.GetComponent<TutorialHand>().ShowHandDiagonalAnimTopLeft();
 		}
 		trBlockTile = MWPoolManager.Spawn("Tutorial", "Tutorial_Tile");
-		trBlockTile.position = InGamePlayManager.GetBlockPosition(_x, _y);
+		trBlockTile.position = PuzzlePlayManager.BlockPositions(_x, _y);
 	}
 
 	private void ClearHand()
@@ -249,7 +249,7 @@ public class TutorialIntro : MonoBehaviour
 	private List<SpriteRenderer> GetHighLightBlock(int _x, int _y)
 	{
 		List<SpriteRenderer> list = new List<SpriteRenderer>();
-		Transform block = InGamePlayManager.GetBlock(_x, _y);
+		Transform block = PuzzlePlayManager.GetBlocks(_x, _y);
 		SpriteRenderer[] componentsInChildren = block.GetComponentsInChildren<SpriteRenderer>(includeInactive: true);
 		foreach (SpriteRenderer item in componentsInChildren)
 		{
@@ -260,7 +260,7 @@ public class TutorialIntro : MonoBehaviour
 
 	public void OnClickHunterSkill()
 	{
-		InGamePlayManager.UseHunterSkillForTutorial(trUserSkillHunter.GetComponent<Hero>());
+		PuzzlePlayManager.TutorialHunterSkill(trUserSkillHunter.GetComponent<Hero>());
 		goHunterSkillButton.SetActive(value: false);
 	}
 }

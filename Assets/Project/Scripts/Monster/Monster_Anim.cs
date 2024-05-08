@@ -25,9 +25,9 @@ public class Monster_Anim : MonoBehaviour
 		SoundController.Monster_Play(monster.MonsterInfo.mIdx);
 		Transform transform = null;
 		transform = MWPoolManager.Spawn("Effect", "Fx_Damage_hit", null, 0.5f);
-		transform.position = InGamePlayManager.DamagePosition;
+		transform.position = PuzzlePlayManager.DamagePosition;
 		monster.SetAttackHunterDamageAnim();
-		InGamePlayManager.Damage(monster.MonsterCurrentDamage);
+		PuzzlePlayManager.Damage(monster.MonsterCurrentDamage);
 	}
 
 	public void End_Attack_Anim()

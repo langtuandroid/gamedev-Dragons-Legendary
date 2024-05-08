@@ -480,7 +480,7 @@ public class Pallete : GameObjectSingleton<Pallete>
 			}
 			else
 			{
-				item.isActive = (InGamePlayManager.GetHunterPosition(item.type) != null);
+				item.isActive = (PuzzlePlayManager.HunterPos(item.type) != null);
 			}
 		}
 		GameObjectSingleton<Pallete>.Inst.SetBlockRate();
@@ -562,7 +562,7 @@ public class Pallete : GameObjectSingleton<Pallete>
 		{
 			return true;
 		}
-		if (GameInfo.inGamePlayData.inGameType == InGameType.Stage)
+		if (GameInfo.inGamePlayData.inGameType == PuzzleInGameType.Stage)
 		{
 			if (GameInfo.userData.huntersUseInfo.Length >= 5)
 			{

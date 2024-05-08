@@ -1,13 +1,14 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class InGameResultStarAnimEvent : MonoBehaviour
+public class PuzzleResultStarAnimEvent : MonoBehaviour
 {
-	[SerializeField]
-	private int starIndex;
+	[FormerlySerializedAs("starIndex")] [SerializeField]
+	private int _starsIndex;
 
 	public void OnShowStar()
 	{
-		switch (starIndex)
+		switch (_starsIndex)
 		{
 		case 0:
 			SoundController.EffectSound_Play(EffectSoundType.GetStar1);

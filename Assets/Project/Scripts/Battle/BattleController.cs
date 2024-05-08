@@ -20,7 +20,7 @@ public class BattleController : MonoBehaviour
 		GAMEFAIL
 	}
 
-	private InGamePlayData levelData = new InGamePlayData();
+	private PuzzlePlayData levelData = new PuzzlePlayData();
 
 	[SerializeField]
 	private Transform[] Hunter_Pos_Arr;
@@ -121,7 +121,7 @@ public class BattleController : MonoBehaviour
 		return num;
 	}
 
-	public void Set_Battle_Data(InGamePlayData _levelData)
+	public void Set_Battle_Data(PuzzlePlayData _levelData)
 	{
 		levelData = _levelData;
 		current_Combo = 0;
@@ -158,7 +158,7 @@ public class BattleController : MonoBehaviour
 		{
 			current_Turn++;
 		}
-		InGamePlayManager.CurrentTurn(current_Turn);
+		PuzzlePlayManager.ThisTurn(current_Turn);
 	}
 
 	public void Battle_Start_Match()
@@ -310,7 +310,7 @@ public class BattleController : MonoBehaviour
 		if (num == 1)
 		{
 			Transform transform2 = null;
-			if (GameInfo.inGamePlayData.inGameType == InGameType.Stage)
+			if (GameInfo.inGamePlayData.inGameType == PuzzleInGameType.Stage)
 			{
 				transform2 = MWPoolManager.Spawn("Effect", "Fx_CoinDrop", null, 2f);
 				SoundController.EffectSound_Play(EffectSoundType.GetCoinIngame);
@@ -326,7 +326,7 @@ public class BattleController : MonoBehaviour
 
 	public void MonsterTargeting(Monster _monster)
 	{
-		if (GameInfo.inGamePlayData.inGameType == InGameType.Arena)
+		if (GameInfo.inGamePlayData.inGameType == PuzzleInGameType.Arena)
 		{
 			Target_Aim.gameObject.SetActive(value: true);
 			Target_Aim.position = _monster.HP_GaugeBar.position;
@@ -464,9 +464,9 @@ public class BattleController : MonoBehaviour
 
 	public void UseHunterSkillForTutorial(Hero hunter)
 	{
-		if (InGamePlayManager.HunterSkillEventComplete != null)
+		if (PuzzlePlayManager.OnHunterSkillEventComplete != null)
 		{
-			InGamePlayManager.HunterSkillEventComplete();
+			PuzzlePlayManager.OnHunterSkillEventComplete();
 		}
 		Use_Hunter_Skill(hunter);
 	}
@@ -530,7 +530,7 @@ public class BattleController : MonoBehaviour
 
 	private void RegisterTouchEvent()
 	{
-		InGamePlayManager.TouchBeginEvent = (Action<Vector3, RaycastHit2D>)Delegate.Combine(InGamePlayManager.TouchBeginEvent, new Action<Vector3, RaycastHit2D>(OnTouchBeginEvent));
+		PuzzlePlayManager.OnTouchBegin = (Action<Vector3, RaycastHit2D>)Delegate.Combine(PuzzlePlayManager.OnTouchBegin, new Action<Vector3, RaycastHit2D>(OnTouchBeginEvent));
 	}
 
 	private void Set_BG(int _level)
@@ -584,7 +584,7 @@ public class BattleController : MonoBehaviour
 
 	private void Set_Hunter()
 	{
-		if (GameInfo.inGamePlayData.inGameType == InGameType.Stage)
+		if (GameInfo.inGamePlayData.inGameType == PuzzleInGameType.Stage)
 		{
 			SetStageHunter();
 		}
@@ -627,7 +627,7 @@ public class BattleController : MonoBehaviour
 			Hunter_Arr[i].Construct(i, transform2.GetComponent<HeroCharacter>(), hunterLeaderSkill, hunterLeaderSkill.CheckLeaderSkillSettings(hunterInfo));
 			num += (int)GameUtil.GetHunterReinForceHP(Hunter_Arr[i].HeroInfo.Stat.hunterHp + Hunter_Arr[i].HeroInfo.leaderSkillHp, GameDataManager.HasUserHunterEnchant(Hunter_Arr[i].HeroInfo.Hunter.hunterIdx));
 		}
-		InGamePlayManager.SetUserMaxHp(num);
+		PuzzlePlayManager.SetMaxHP(num);
 	}
 
 	private void SetArenaHunter()
@@ -660,12 +660,12 @@ public class BattleController : MonoBehaviour
 			Hunter_Arr[i].Construct(i, transform2.GetComponent<HeroCharacter>(), hunterLeaderSkill, hunterLeaderSkill.CheckLeaderSkillSettings(hunterInfo));
 			num += (int)GameUtil.GetHunterReinForceHP(Hunter_Arr[i].HeroInfo.Stat.hunterHp + Hunter_Arr[i].HeroInfo.leaderSkillHp, GameDataManager.HasUserHunterEnchant(Hunter_Arr[i].HeroInfo.Hunter.hunterIdx));
 			UnityEngine.Debug.Log("GameInfo.inGamePlayData.inGameType = " + GameInfo.inGamePlayData.inGameType);
-			if (GameInfo.inGamePlayData.inGameType == InGameType.Arena)
+			if (GameInfo.inGamePlayData.inGameType == PuzzleInGameType.Arena)
 			{
 				Hunter_Arr[i].SetBuff();
 			}
 		}
-		InGamePlayManager.SetUserMaxHp(num);
+		PuzzlePlayManager.SetMaxHP(num);
 	}
 
 	private void SetHunterSkillBooster()
@@ -731,7 +731,7 @@ public class BattleController : MonoBehaviour
 			transform.localPosition = Vector3.zero;
 			transform2 = MWPoolManager.Spawn("Effect", "FX_Summon01", null, 1f);
 			transform2.position = transform.position;
-			if (GameInfo.inGamePlayData.inGameType == InGameType.Stage)
+			if (GameInfo.inGamePlayData.inGameType == PuzzleInGameType.Stage)
 			{
 				transform.localScale = Vector3.one;
 			}
@@ -746,7 +746,7 @@ public class BattleController : MonoBehaviour
 			Hunter_Arr[k].SkillReadyEffect(_isOn: true);
 			Hunter_Arr[k].RemoveStun();
 		}
-		InGamePlayManager.CurrentWave(current_Wave);
+		PuzzlePlayManager.ThisWave(current_Wave);
 	}
 
 	private IEnumerator Set_Wave_Delay()
@@ -757,7 +757,7 @@ public class BattleController : MonoBehaviour
 			SoundController.EffectSound_Play(EffectSoundType.WaveMove);
 			if (levelData.dicWaveDbData[current_Wave + 1].isWarning == 1)
 			{
-				InGamePlayManager.ShowWarningEffect();
+				PuzzlePlayManager.WarningEffect();
 			}
 			BG_Anim.ResetTrigger("BG_Walk");
 			BG_Anim.SetTrigger("BG_Walk");
@@ -765,7 +765,7 @@ public class BattleController : MonoBehaviour
 			yield return new WaitForSeconds(2f / GameInfo.inGameBattleSpeedRate);
 			if (levelData.dicWaveDbData[current_Wave + 1].isWarning == 1)
 			{
-				InGamePlayManager.HideWarningEffect();
+				PuzzlePlayManager.HideEffect();
 			}
 			HunterCharacterIdle();
 		}
@@ -773,18 +773,18 @@ public class BattleController : MonoBehaviour
 		{
 			if (levelData.dicWaveDbData[current_Wave + 1].isWarning == 1)
 			{
-				InGamePlayManager.ShowWarningEffect();
+				PuzzlePlayManager.WarningEffect();
 			}
 			yield return new WaitForSeconds(2f / GameInfo.inGameBattleSpeedRate);
 			if (levelData.dicWaveDbData[current_Wave + 1].isWarning == 1)
 			{
-				InGamePlayManager.HideWarningEffect();
+				PuzzlePlayManager.HideEffect();
 			}
 		}
 		current_Wave++;
 		isAllClear = false;
 		Set_Wave(current_Wave, levelData.dicMonsterStatData[current_Wave].Count);
-		InGamePlayManager.StartUserTurn();
+		PuzzlePlayManager.StartTurn();
 	}
 
 	private IEnumerator Start_Set_Wave_Delay()
@@ -794,13 +794,13 @@ public class BattleController : MonoBehaviour
 			SoundController.EffectSound_Play(EffectSoundType.WaveMove);
 			if (levelData.dicWaveDbData[current_Wave + 1].isWarning == 1)
 			{
-				InGamePlayManager.ShowWarningEffect();
+				PuzzlePlayManager.WarningEffect();
 			}
 			HunterCharacterMove();
 			yield return new WaitForSeconds(2f / GameInfo.inGameBattleSpeedRate);
 			if (levelData.dicWaveDbData[current_Wave + 1].isWarning == 1)
 			{
-				InGamePlayManager.HideWarningEffect();
+				PuzzlePlayManager.HideEffect();
 			}
 			HunterCharacterIdle();
 		}
@@ -808,18 +808,18 @@ public class BattleController : MonoBehaviour
 		{
 			if (levelData.dicWaveDbData[current_Wave + 1].isWarning == 1)
 			{
-				InGamePlayManager.ShowWarningEffect();
+				PuzzlePlayManager.WarningEffect();
 			}
 			yield return new WaitForSeconds(2f / GameInfo.inGameBattleSpeedRate);
 			if (levelData.dicWaveDbData[current_Wave + 1].isWarning == 1)
 			{
-				InGamePlayManager.HideWarningEffect();
+				PuzzlePlayManager.HideEffect();
 			}
 		}
 		current_Wave++;
 		isAllClear = false;
 		Set_Wave(current_Wave, levelData.dicMonsterStatData[current_Wave].Count);
-		InGamePlayManager.StartUserTurn();
+		PuzzlePlayManager.StartTurn();
 	}
 
 	private void HunterCharacterMove()
@@ -940,14 +940,14 @@ public class BattleController : MonoBehaviour
 		{
 			if (attack_last_idx == _idx)
 			{
-				InGamePlayManager.HunterComboComplete();
-				InGamePlayManager.StartHunterAttack();
+				PuzzlePlayManager.HunterComboComplete();
+				PuzzlePlayManager.StartHunterAttack();
 			}
 		}
 		else if (Hunter_Arr.Length - 1 == _idx)
 		{
-			InGamePlayManager.StartHunterAttack();
-			InGamePlayManager.HunterComboComplete();
+			PuzzlePlayManager.StartHunterAttack();
+			PuzzlePlayManager.HunterComboComplete();
 		}
 	}
 
@@ -1017,14 +1017,14 @@ public class BattleController : MonoBehaviour
 		}
 		if (isAllClear)
 		{
-			InGamePlayManager.EndtHunterAttack();
+			PuzzlePlayManager.AttackOver();
 			switch (GameInfo.inGamePlayData.inGameType)
 			{
-			case InGameType.Stage:
-				InGamePlayManager.AddCoin(levelData.dicWaveDbData[current_Wave].getCoin);
+			case PuzzleInGameType.Stage:
+				PuzzlePlayManager.MoreCoins(levelData.dicWaveDbData[current_Wave].getCoin);
 				break;
-			case InGameType.Arena:
-				InGamePlayManager.AddArenaPoint(levelData.dicWaveDbData[current_Wave].getArenaPoint);
+			case PuzzleInGameType.Arena:
+				PuzzlePlayManager.ArenaPoins(levelData.dicWaveDbData[current_Wave].getArenaPoint);
 				break;
 			}
 			if (current_Wave == levelData.dicWaveDbData.Count)
@@ -1057,14 +1057,14 @@ public class BattleController : MonoBehaviour
 		}
 		if (flag)
 		{
-			InGamePlayManager.EndtHunterAttack();
+			PuzzlePlayManager.AttackOver();
 			switch (GameInfo.inGamePlayData.inGameType)
 			{
-			case InGameType.Stage:
-				InGamePlayManager.AddCoin(levelData.dicWaveDbData[current_Wave].getCoin);
+			case PuzzleInGameType.Stage:
+				PuzzlePlayManager.MoreCoins(levelData.dicWaveDbData[current_Wave].getCoin);
 				break;
-			case InGameType.Arena:
-				InGamePlayManager.AddArenaPoint(levelData.dicWaveDbData[current_Wave].getArenaPoint);
+			case PuzzleInGameType.Arena:
+				PuzzlePlayManager.ArenaPoins(levelData.dicWaveDbData[current_Wave].getArenaPoint);
 				break;
 			}
 			if (current_Wave == levelData.dicWaveDbData.Count)
@@ -1080,7 +1080,7 @@ public class BattleController : MonoBehaviour
 		}
 		else
 		{
-			InGamePlayManager.PuzzleControlStart();
+			PuzzlePlayManager.ControllerStart();
 			Set_State(BATTLE_STATE.NONE);
 		}
 	}
@@ -1088,23 +1088,23 @@ public class BattleController : MonoBehaviour
 	private IEnumerator Game_Clear()
 	{
 		yield return new WaitForSeconds(1f);
-		InGamePlayManager.GameClear();
+		PuzzlePlayManager.ClearGame();
 	}
 
 	private IEnumerator Hunter_Attack_Complete()
 	{
 		yield return new WaitForSeconds(0.1f);
 		Set_State(BATTLE_STATE.MONSTERATTACK);
-		InGamePlayManager.StartMonsterTurn();
+		PuzzlePlayManager.StartEnemyTurn();
 	}
 
 	private void Use_Hunter_Skill(Hero _hunter)
 	{
 		Set_State(BATTLE_STATE.USERSKILL);
-		InGamePlayManager.PuzzleControlLock();
-		if (InGamePlayManager.UseHunterSkill != null)
+		PuzzlePlayManager.LockController();
+		if (PuzzlePlayManager.OnUseHunterSkill != null)
 		{
-			InGamePlayManager.UseHunterSkill();
+			PuzzlePlayManager.OnUseHunterSkill();
 		}
 		Monster[] monster = null;
 		int num = 0;
@@ -1168,13 +1168,13 @@ public class BattleController : MonoBehaviour
 				Hunter_Attack_List[i].damage = GameUtil.Check_Property_Damage(Hunter_Arr[Hunter_Attack_List[i].idx], _monster2, Hunter_Attack_List[i].damage);
 				_monster2.SetMonsterHP(Hunter_Attack_List[i].damage);
 				HunterCharacterAttack(_monster2, Hunter_Attack_List[i].idx, Hunter_Attack_List[i].damage);
-				InGamePlayManager.StartHunterAttack(Hunter_Arr[Hunter_Attack_List[i].idx].HeroInfo.Hunter.hunterIdx);
+				PuzzlePlayManager.StartHunterAttack(Hunter_Arr[Hunter_Attack_List[i].idx].HeroInfo.Hunter.hunterIdx);
 			}
 			else
 			{
 				_monster2 = Attack_Monster_Already_Killed();
 				HunterCharacterAttack(_monster2, Hunter_Attack_List[i].idx, Hunter_Attack_List[i].damage);
-				InGamePlayManager.StartHunterAttack(Hunter_Arr[Hunter_Attack_List[i].idx].HeroInfo.Hunter.hunterIdx);
+				PuzzlePlayManager.StartHunterAttack(Hunter_Arr[Hunter_Attack_List[i].idx].HeroInfo.Hunter.hunterIdx);
 			}
 			yield return new WaitForSeconds(0.4f / GameInfo.inGameBattleSpeedRate);
 		}
@@ -1324,7 +1324,7 @@ public class BattleController : MonoBehaviour
 				Monster_Arr[i].SetMonsterAttackTurn();
 			}
 			Set_State(BATTLE_STATE.NONE);
-			InGamePlayManager.StartUserTurn();
+			PuzzlePlayManager.StartTurn();
 			for (int j = 0; j < Hunter_Arr.Length; j++)
 			{
 				Hunter_Arr[j].SkillReadyEffect(_isOn: true);
@@ -1383,10 +1383,10 @@ public class BattleController : MonoBehaviour
 			break;
 		}
 		case 3:
-			InGamePlayManager.SetExceptionBlock(BlockExceptionType.Obstruction);
+			PuzzlePlayManager.ExeptionBlock(BlockExceptionType.Obstruction);
 			break;
 		case 4:
-			InGamePlayManager.SetExceptionBlock(BlockExceptionType.DefaultFix);
+			PuzzlePlayManager.ExeptionBlock(BlockExceptionType.DefaultFix);
 			break;
 		}
 		_monster.SetMonsterCurrentDamage(_monster.MonsterDamage * (_monster.MonsterSkill.mSkillAttackMagnification / 100));
@@ -1406,7 +1406,7 @@ public class BattleController : MonoBehaviour
 	{
 		if (hit.collider != null && hit.collider.tag == "Hunter")
 		{
-			if (Battle_State != 0 || InGamePlayManager.HunterSkillEvent != null)
+			if (Battle_State != 0 || PuzzlePlayManager.OnHunterSkill != null)
 			{
 				return;
 			}
@@ -1418,9 +1418,9 @@ public class BattleController : MonoBehaviour
 				{
 					TutorialManager.HunterSkillTutorialForceClear();
 				}
-				else if (InGamePlayManager.HunterSkillEventComplete != null)
+				else if (PuzzlePlayManager.OnHunterSkillEventComplete != null)
 				{
-					InGamePlayManager.HunterSkillEventComplete();
+					PuzzlePlayManager.OnHunterSkillEventComplete();
 				}
 				Use_Hunter_Skill(hunter);
 			}
@@ -1440,12 +1440,12 @@ public class BattleController : MonoBehaviour
 					if (Monster_Arr[i].MonsterTarget)
 					{
 						Monster_Arr[i].SetMonsterTargeting(_istarget: false);
-						InGamePlayManager.MonsterUnTargeting();
+						PuzzlePlayManager.MonsterUnTargeting();
 					}
 					else
 					{
 						Monster_Arr[i].SetMonsterTargeting(_istarget: true);
-						InGamePlayManager.MonsterTargeting(Monster_Arr[i]);
+						PuzzlePlayManager.MonsterTargeting(Monster_Arr[i]);
 					}
 				}
 				else
@@ -1464,6 +1464,6 @@ public class BattleController : MonoBehaviour
 
 	private void OnDisable()
 	{
-		InGamePlayManager.TouchBeginEvent = (Action<Vector3, RaycastHit2D>)Delegate.Remove(InGamePlayManager.TouchBeginEvent, new Action<Vector3, RaycastHit2D>(OnTouchBeginEvent));
+		PuzzlePlayManager.OnTouchBegin = (Action<Vector3, RaycastHit2D>)Delegate.Remove(PuzzlePlayManager.OnTouchBegin, new Action<Vector3, RaycastHit2D>(OnTouchBeginEvent));
 	}
 }

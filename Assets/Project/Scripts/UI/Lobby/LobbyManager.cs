@@ -747,7 +747,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		{
 			lobbyPopupBase2.Hide();
 		}
-		GameInfo.inGamePlayData.inGameType = InGameType.Stage;
+		GameInfo.inGamePlayData.inGameType = PuzzleInGameType.Stage;
 		GameInfo.inGamePlayData.star2ClearTurn = GameDataManager.GetLevelIndexDbData(levelIndex).star2;
 		GameInfo.inGamePlayData.star3ClearTurn = GameDataManager.GetLevelIndexDbData(levelIndex).star3;
 		GameInfo.inGamePlayData.matchTime = GameDataManager.GetGameConfigData(ConfigDataType.TurnTimeTotal);
@@ -833,7 +833,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		{
 			lobbyPopupBase2.Hide();
 		}
-		GameInfo.inGamePlayData.inGameType = InGameType.Arena;
+		GameInfo.inGamePlayData.inGameType = PuzzleInGameType.Arena;
 		GameInfo.inGamePlayData.matchTime = GameDataManager.GetGameConfigData(ConfigDataType.TurnTimeTotal);
 		GameInfo.inGamePlayData.matchTimeBonus = GameDataManager.GetGameConfigData(ConfigDataType.TurnTimeBonus);
 		GameInfo.inGamePlayData.matchTimeRatio = GameDataManager.GetGameConfigData(ConfigDataType.TurnTimeRatio);
@@ -1061,11 +1061,11 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		GameInfo.inGamePlayData.dicActiveBoostItem.Clear();
 		switch (GameInfo.inGamePlayData.inGameType)
 		{
-		case InGameType.Stage:
+		case PuzzleInGameType.Stage:
 			SoundController.BGM_Stop(MusicSoundType.IngameBGM);
 			SoundController.BGM_Stop(MusicSoundType.InGameDragonBgm);
 			break;
-		case InGameType.Arena:
+		case PuzzleInGameType.Arena:
 			SoundController.BGM_Stop(MusicSoundType.ArenaBGM);
 			break;
 		}
@@ -1073,7 +1073,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		TutorialManager.CheckTutorial();
 		CheckChestLock();
 		
-		if (GameInfo.inGamePlayData.inGameType == InGameType.Arena)
+		if (GameInfo.inGamePlayData.inGameType == PuzzleInGameType.Arena)
 		{
 			arenaLobby.Show();
 		}

@@ -20,7 +20,7 @@ public class GameInfo
 
 	public static UserPlayData userPlayData = new UserPlayData();
 
-	public static InGamePlayData inGamePlayData = new InGamePlayData();
+	public static PuzzlePlayData inGamePlayData = new PuzzlePlayData();
 
 	public static SHOP_PACKAGE_LIST_DATA arenaPackageData;
 

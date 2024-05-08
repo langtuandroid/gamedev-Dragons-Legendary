@@ -48,8 +48,8 @@ public class BattleLose : MonoBehaviour
 			resultItemData.itemMultiply = _data.rewardArenaPoint;
 			resultItemData.itemName = GameDataManager.GetItemListData(resultItemData.itemIdx).itemName;
 			resultItemData.itemAmount = GameInfo.userData.GetItemCount(resultItemData.itemIdx);
-			InGameResultItem component = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<InGameResultItem>();
-			component.Show(resultItemData);
+			PuzzleResultItem component = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
+			component.OpenMenu(resultItemData);
 		}
 	}
 
@@ -68,8 +68,8 @@ public class BattleLose : MonoBehaviour
 			resultItemData.itemMultiply = GameInfo.userPlayData.chestKey;
 			resultItemData.itemName = GameDataManager.GetItemListData(resultItemData.itemIdx).itemName;
 			resultItemData.itemAmount = GameInfo.userData.GetItemCount(resultItemData.itemIdx);
-			InGameResultItem component = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<InGameResultItem>();
-			component.Show(resultItemData);
+			PuzzleResultItem component = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
+			component.OpenMenu(resultItemData);
 		}
 		REWARDITEM[] rewardMonsterItem = resultData.rewardMonsterItem;
 		foreach (REWARDITEM rEWARDITEM in rewardMonsterItem)
@@ -79,16 +79,16 @@ public class BattleLose : MonoBehaviour
 			resultItemData2.itemMultiply = rEWARDITEM.count;
 			resultItemData2.itemName = GameDataManager.GetItemListData(resultItemData2.itemIdx).itemName;
 			resultItemData2.itemAmount = GameInfo.userData.GetItemCount(resultItemData2.itemIdx);
-			InGameResultItem component2 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<InGameResultItem>();
-			component2.Show(resultItemData2);
+			PuzzleResultItem component2 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
+			component2.OpenMenu(resultItemData2);
 		}
 		ResultItemData resultItemData3 = new ResultItemData();
 		resultItemData3.itemIdx = 50032;
 		resultItemData3.itemMultiply = resultData.rewardCoin;
 		resultItemData3.itemName = GameDataManager.GetItemListData(resultItemData3.itemIdx).itemName;
 		resultItemData3.itemAmount = GameInfo.userData.GetItemCount(resultItemData3.itemIdx);
-		InGameResultItem component3 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<InGameResultItem>();
-		component3.Show(resultItemData3);
+		PuzzleResultItem component3 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
+		component3.OpenMenu(resultItemData3);
 		scrollLoot.horizontalNormalizedPosition = 0f;
 	}
 
@@ -103,7 +103,7 @@ public class BattleLose : MonoBehaviour
 	public void OnClickConfirm()
 	{
 		SoundController.EffectSound_Play(EffectSoundType.ButtonClick);
-		InGamePlayManager.CallGameLoseEvent();
+		PuzzlePlayManager.LoseGameEvent();
 		GameDataManager.MoveScene(SceneType.Lobby);
 	}
 }

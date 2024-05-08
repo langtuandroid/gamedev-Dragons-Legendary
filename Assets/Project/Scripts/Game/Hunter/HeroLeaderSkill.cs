@@ -66,7 +66,7 @@ public class HeroLeaderSkill : MonoBehaviour
 			}
 			num += (int)((float)num * (float)(_leaderskillDbData.leaderSkillIncreaseValue / 100));
 			UnityEngine.Debug.Log("**************** heal = " + num);
-			InGamePlayManager.Heal(num);
+			PuzzlePlayManager.HealHeroes(num);
 		}
 	}
 
@@ -75,10 +75,10 @@ public class HeroLeaderSkill : MonoBehaviour
 		if (_leaderSkillIdx != 0 && _leaderskillDbData.leaderskillType == 5)
 		{
 			float num = 0f;
-			num = 100f * (prevHp / (float)InGamePlayManager.GetHunterTotalHP());
+			num = 100f * (prevHp / (float)PuzzlePlayManager.GetTotalHp());
 			if (num >= (float)_leaderskillDbData.leaderskillRequirement)
 			{
-				InGamePlayManager.Heal(1);
+				PuzzlePlayManager.HealHeroes(1);
 			}
 		}
 	}

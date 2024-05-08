@@ -26,7 +26,7 @@ public class Pause : MonoBehaviour
 	public void Init()
 	{
 		base.gameObject.SetActive(value: true);
-		InGamePlayManager.TouchLock();
+		PuzzlePlayManager.LockTouch();
 		SettingOption();
 	}
 
@@ -66,7 +66,7 @@ public class Pause : MonoBehaviour
 
 	private void OnGameEndConnectComplete(GAME_END_RESULT _result)
 	{
-		InGamePlayManager.CallGameLoseEvent();
+		PuzzlePlayManager.LoseGameEvent();
 		GameDataManager.MoveScene(SceneType.Lobby);
 	}
 
@@ -102,11 +102,11 @@ public class Pause : MonoBehaviour
 			GamePreferenceManager.SetIsMusicSound(isOnOff: false);
 			switch (GameInfo.inGamePlayData.inGameType)
 			{
-			case InGameType.Stage:
+			case PuzzleInGameType.Stage:
 				SoundController.BGM_Stop(MusicSoundType.IngameBGM);
 				SoundController.BGM_Stop(MusicSoundType.InGameDragonBgm);
 				break;
-			case InGameType.Arena:
+			case PuzzleInGameType.Arena:
 				SoundController.BGM_Stop(MusicSoundType.ArenaBGM);
 				break;
 			}
@@ -117,7 +117,7 @@ public class Pause : MonoBehaviour
 		GamePreferenceManager.SetIsMusicSound(isOnOff: true);
 		switch (GameInfo.inGamePlayData.inGameType)
 		{
-		case InGameType.Stage:
+		case PuzzleInGameType.Stage:
 			if (GameInfo.inGamePlayData.isDragon == 0)
 			{
 				SoundController.BGM_Play(MusicSoundType.IngameBGM);
@@ -127,7 +127,7 @@ public class Pause : MonoBehaviour
 				SoundController.BGM_Play(MusicSoundType.InGameDragonBgm);
 			}
 			break;
-		case InGameType.Arena:
+		case PuzzleInGameType.Arena:
 			SoundController.BGM_Play(MusicSoundType.ArenaBGM);
 			break;
 		}
@@ -152,7 +152,7 @@ public class Pause : MonoBehaviour
 
 	public void Click_Continue()
 	{
-		InGamePlayManager.TouchActive();
+		PuzzlePlayManager.ActivateTouch();
 		SoundController.EffectSound_Play(EffectSoundType.ButtonClick);
 		base.gameObject.SetActive(value: false);
 	}
@@ -171,11 +171,11 @@ public class Pause : MonoBehaviour
 
 	public void Click_Really_Quit_Quit()
 	{
-		InGamePlayManager.GameQuit();
+		PuzzlePlayManager.GameQuit();
 		SoundController.EffectSound_Play(EffectSoundType.ButtonClick);
 		switch (GameInfo.inGamePlayData.inGameType)
 		{
-		case InGameType.Stage:
+		case PuzzleInGameType.Stage:
 		{
 			int[] array = new int[GameInfo.userPlayData.wave - 1];
 			for (int i = 0; i < array.Length; i++)
@@ -185,7 +185,7 @@ public class Pause : MonoBehaviour
 			Protocol_Set.Protocol_game_end_Req(GameInfo.inGamePlayData.levelIdx, GameInfo.userPlayData.gameKey, 0, 2, GameInfo.userPlayData.turn, GameInfo.userPlayData.chestKey, GameInfo.userPlayData.listMonsterClear, array, OnGameEndConnectComplete);
 			break;
 		}
-		case InGameType.Arena:
+		case PuzzleInGameType.Arena:
 			Protocol_Set.Protocol_arena_game_end_Req(GameInfo.inGamePlayData.arenaLevelData.levelIdx, GameInfo.userPlayData.gameKey, 0, 2, GameInfo.userPlayData.wave, OnArenaGameEndComplete);
 			break;
 		}

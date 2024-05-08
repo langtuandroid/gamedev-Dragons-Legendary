@@ -175,7 +175,7 @@ public class PuzzleController : MonoBehaviour
 			secondBlock.DeSelect(out secondBlock);
 		}
 		isTouchControl = false;
-		InGamePlayManager.StartAttackBlock();
+		PuzzlePlayManager.BlockAttacl();
 		StartMatch();
 		CancelHintBlock();
 	}
@@ -196,9 +196,9 @@ public class PuzzleController : MonoBehaviour
 
 	public void GameOver()
 	{
-		InGamePlayManager.TouchBeginEvent = (Action<Vector3, RaycastHit2D>)Delegate.Remove(InGamePlayManager.TouchBeginEvent, new Action<Vector3, RaycastHit2D>(OnTouchBeginEvent));
-		InGamePlayManager.TouchMoveEvent = (Action<Vector3>)Delegate.Remove(InGamePlayManager.TouchMoveEvent, new Action<Vector3>(OnTouchMoveEvent));
-		InGamePlayManager.TouchEndEvent = (Action<Vector3>)Delegate.Remove(InGamePlayManager.TouchEndEvent, new Action<Vector3>(OnTouchEndEvent));
+		PuzzlePlayManager.OnTouchBegin = (Action<Vector3, RaycastHit2D>)Delegate.Remove(PuzzlePlayManager.OnTouchBegin, new Action<Vector3, RaycastHit2D>(OnTouchBeginEvent));
+		PuzzlePlayManager.OnTouchMove = (Action<Vector3>)Delegate.Remove(PuzzlePlayManager.OnTouchMove, new Action<Vector3>(OnTouchMoveEvent));
+		PuzzlePlayManager.OnTouchEnd = (Action<Vector3>)Delegate.Remove(PuzzlePlayManager.OnTouchEnd, new Action<Vector3>(OnTouchEndEvent));
 		for (int i = 0; i < width; i++)
 		{
 			for (int j = 0; j < height; j++)
@@ -211,9 +211,9 @@ public class PuzzleController : MonoBehaviour
 	public void GameContinue()
 	{
 		isTouchControl = true;
-		InGamePlayManager.TouchBeginEvent = (Action<Vector3, RaycastHit2D>)Delegate.Combine(InGamePlayManager.TouchBeginEvent, new Action<Vector3, RaycastHit2D>(OnTouchBeginEvent));
-		InGamePlayManager.TouchMoveEvent = (Action<Vector3>)Delegate.Combine(InGamePlayManager.TouchMoveEvent, new Action<Vector3>(OnTouchMoveEvent));
-		InGamePlayManager.TouchEndEvent = (Action<Vector3>)Delegate.Combine(InGamePlayManager.TouchEndEvent, new Action<Vector3>(OnTouchEndEvent));
+		PuzzlePlayManager.OnTouchBegin = (Action<Vector3, RaycastHit2D>)Delegate.Combine(PuzzlePlayManager.OnTouchBegin, new Action<Vector3, RaycastHit2D>(OnTouchBeginEvent));
+		PuzzlePlayManager.OnTouchMove = (Action<Vector3>)Delegate.Combine(PuzzlePlayManager.OnTouchMove, new Action<Vector3>(OnTouchMoveEvent));
+		PuzzlePlayManager.OnTouchEnd = (Action<Vector3>)Delegate.Combine(PuzzlePlayManager.OnTouchEnd, new Action<Vector3>(OnTouchEndEvent));
 		for (int i = 0; i < width; i++)
 		{
 			for (int j = 0; j < height; j++)
@@ -393,7 +393,7 @@ public class PuzzleController : MonoBehaviour
 	private void CheckBlockType()
 	{
 		int[,] levelBlock = Pallete.GetLevelBlock((Pallete.LevelBlockType)GameInfo.inGamePlayData.levelIdx);
-		if (levelBlock != null && !GameInfo.isForceRandomBlockPattern && GameInfo.inGamePlayData.inGameType == InGameType.Stage)
+		if (levelBlock != null && !GameInfo.isForceRandomBlockPattern && GameInfo.inGamePlayData.inGameType == PuzzleInGameType.Stage)
 		{
 			ShowLevelBlockType(levelBlock);
 		}
@@ -417,9 +417,9 @@ public class PuzzleController : MonoBehaviour
 
 	private void RegisterTouchEvent()
 	{
-		InGamePlayManager.TouchBeginEvent = (Action<Vector3, RaycastHit2D>)Delegate.Combine(InGamePlayManager.TouchBeginEvent, new Action<Vector3, RaycastHit2D>(OnTouchBeginEvent));
-		InGamePlayManager.TouchMoveEvent = (Action<Vector3>)Delegate.Combine(InGamePlayManager.TouchMoveEvent, new Action<Vector3>(OnTouchMoveEvent));
-		InGamePlayManager.TouchEndEvent = (Action<Vector3>)Delegate.Combine(InGamePlayManager.TouchEndEvent, new Action<Vector3>(OnTouchEndEvent));
+		PuzzlePlayManager.OnTouchBegin = (Action<Vector3, RaycastHit2D>)Delegate.Combine(PuzzlePlayManager.OnTouchBegin, new Action<Vector3, RaycastHit2D>(OnTouchBeginEvent));
+		PuzzlePlayManager.OnTouchMove = (Action<Vector3>)Delegate.Combine(PuzzlePlayManager.OnTouchMove, new Action<Vector3>(OnTouchMoveEvent));
+		PuzzlePlayManager.OnTouchEnd = (Action<Vector3>)Delegate.Combine(PuzzlePlayManager.OnTouchEnd, new Action<Vector3>(OnTouchEndEvent));
 	}
 
 	private void AllBlockRandomType(bool isExceptionPass = false)
@@ -631,10 +631,10 @@ public class PuzzleController : MonoBehaviour
 		bool matchedB = FindMatchAtBlock(b);
 		if (!matchedA && !matchedB)
 		{
-			if (InGamePlayManager.MatchTimerState || InGamePlayManager.MatchTimeEndState)
+			if (PuzzlePlayManager.MatchTimerState || PuzzlePlayManager.MatchTimeEndState)
 			{
 				CancelHintBlock();
-				InGamePlayManager.CancelMatchTimer();
+				PuzzlePlayManager.CancelTimer();
 			}
 			else
 			{
@@ -657,13 +657,13 @@ public class PuzzleController : MonoBehaviour
 			if (matchList.Count != 0)
 			{
 				MatchProcess();
-				if (!InGamePlayManager.MatchTimerState && !InGamePlayManager.MatchActive)
+				if (!PuzzlePlayManager.MatchTimerState && !PuzzlePlayManager.MatchActive)
 				{
-					InGamePlayManager.StartMatchTimer();
+					PuzzlePlayManager.StartTimer();
 				}
 				else
 				{
-					InGamePlayManager.AddMatchTime();
+					PuzzlePlayManager.AddTime();
 				}
 			}
 			if (GameInfo.inGamePlayData.dicActiveBoostItem.ContainsKey(3))
@@ -777,8 +777,8 @@ public class PuzzleController : MonoBehaviour
 
 	private IEnumerator ProcessShuffle()
 	{
-		InGamePlayManager.PuzzleControlLock();
-		InGamePlayManager.ShowShuffleUI();
+		PuzzlePlayManager.LockController();
+		PuzzlePlayManager.ShowShuffleUI();
 		Vector3 shufflePosition = arrBlock[3, 2].transform.position;
 		for (int i = 0; i < width; i++)
 		{
@@ -803,8 +803,8 @@ public class PuzzleController : MonoBehaviour
 			}
 		}
 		yield return new WaitForSeconds(0.3f);
-		InGamePlayManager.PuzzleControlStart();
-		InGamePlayManager.HideShuffleUI();
+		PuzzlePlayManager.ControllerStart();
+		PuzzlePlayManager.HideShuffleUI();
 	}
 
 	private void ShowHintBlock()
@@ -845,7 +845,7 @@ public class PuzzleController : MonoBehaviour
 		CheckHint();
 		if (hintBlock == null)
 		{
-			if (!InGamePlayManager.MatchTimerState && !InGamePlayManager.MatchActive)
+			if (!PuzzlePlayManager.MatchTimerState && !PuzzlePlayManager.MatchActive)
 			{
 				Shuffle();
 			}
@@ -1489,9 +1489,9 @@ public class PuzzleController : MonoBehaviour
 			{
 				SoundController.EffectSound_Play(EffectSoundType.HealDestroy);
 			}
-			else if (InGamePlayManager.GetHunterPosition(item.Type) != null)
+			else if (PuzzlePlayManager.HunterPos(item.Type) != null)
 			{
-				Vector3[] hunterPosition = InGamePlayManager.GetHunterPosition(item.Type);
+				Vector3[] hunterPosition = PuzzlePlayManager.HunterPos(item.Type);
 				for (int i = 0; i < hunterPosition.Length; i++)
 				{
 					Vector2 vector = hunterPosition[i];
@@ -1511,13 +1511,13 @@ public class PuzzleController : MonoBehaviour
 		}
 		if (listBlock.Count > 0)
 		{
-			InGamePlayManager.StartBlockAttackEffect();
+			PuzzlePlayManager.BlockAttackEffect();
 			SoundController.EffectSound_Play(EffectSoundType.BlockDestroy);
 		}
 		yield return new WaitForSeconds(0.2f);
 		if (listBlock.Count > 0)
 		{
-			InGamePlayManager.AddAttackBlock(listBlock[0].Type, listBlock.Count);
+			PuzzlePlayManager.AddBlock(listBlock[0].Type, listBlock.Count);
 		}
 	}
 
@@ -1615,7 +1615,7 @@ public class PuzzleController : MonoBehaviour
 		if (!CheckSpecialBlock())
 		{
 			StopMatchDownProcess();
-			InGamePlayManager.AttackBlockComplete();
+			PuzzlePlayManager.CompleteBlock();
 		}
 	}
 
@@ -1772,13 +1772,13 @@ public class PuzzleController : MonoBehaviour
 		{
 			UnityEngine.Debug.Log("OnBlockMoveComplete :: " + isMatchEndProcess);
 			MatchProcess();
-			if (!isMatchEndProcess && InGamePlayManager.MatchActive)
+			if (!isMatchEndProcess && PuzzlePlayManager.MatchActive)
 			{
 				StartCoroutine(CheckContinueProcessMatchReady());
 			}
-			if (!InGamePlayManager.MatchActive)
+			if (!PuzzlePlayManager.MatchActive)
 			{
-				InGamePlayManager.StartMatchTimer();
+				PuzzlePlayManager.StartTimer();
 			}
 		}
 	}

@@ -465,8 +465,8 @@ public class GameDataManager : GameObjectSingleton<GameDataManager>
 		if (GameInfo.userData.userInfo.oldUserYn == "y")
 		{
 			GameObjectSingleton<GameDataManager>.Inst.goInGameRule.SetActive(value: true);
-			InGamePlayManager.TouchLock();
-			InGamePlayManager.PuzzleControlLock();
+			PuzzlePlayManager.LockTouch();
+			PuzzlePlayManager.LockController();
 			GameInfo.userData.userInfo.oldUserYn = "n";
 		}
 	}
@@ -613,8 +613,8 @@ public class GameDataManager : GameObjectSingleton<GameDataManager>
 	public void HideInGameNewRule()
 	{
 		goInGameRule.SetActive(value: false);
-		InGamePlayManager.TouchActive();
-		InGamePlayManager.PuzzleControlStart();
+		PuzzlePlayManager.ActivateTouch();
+		PuzzlePlayManager.ControllerStart();
 	}
 
 	protected override void Awake()

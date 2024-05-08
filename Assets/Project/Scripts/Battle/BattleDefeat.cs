@@ -26,12 +26,12 @@ public class BattleDefeat : MonoBehaviour
 	{
 		switch (GameInfo.inGamePlayData.inGameType)
 		{
-		case InGameType.Stage:
+		case PuzzleInGameType.Stage:
 			base.gameObject.SetActive(value: true);
 			ShowItem();
 			timerCoroutine = StartCoroutine(ContinueTimer());
 			break;
-		case InGameType.Arena:
+		case PuzzleInGameType.Arena:
 			textChallengeCost.text = $"{GameDataManager.GetGameConfigData(ConfigDataType.Arena_continue_jewel)}";
 			Protocol_Set.Protocol_arena_game_end_Req(GameInfo.inGamePlayData.arenaLevelData.levelIdx, GameInfo.userPlayData.gameKey, 0, 1, GameInfo.userPlayData.wave - 1, ShowArenaItem);
 			break;
@@ -40,8 +40,8 @@ public class BattleDefeat : MonoBehaviour
 
 	public void Hide()
 	{
-		InGameResultItem[] componentsInChildren = trItemResult.GetComponentsInChildren<InGameResultItem>();
-		foreach (InGameResultItem inGameResultItem in componentsInChildren)
+		PuzzleResultItem[] componentsInChildren = trItemResult.GetComponentsInChildren<PuzzleResultItem>();
+		foreach (PuzzleResultItem inGameResultItem in componentsInChildren)
 		{
 			MWPoolManager.DeSpawn("Puzzle", inGameResultItem.transform);
 		}
@@ -52,11 +52,11 @@ public class BattleDefeat : MonoBehaviour
 	{
 		switch (GameInfo.inGamePlayData.inGameType)
 		{
-		case InGameType.Stage:
+		case PuzzleInGameType.Stage:
 			SoundController.BGM_Stop(MusicSoundType.IngameBGM);
 			SoundController.BGM_Stop(MusicSoundType.InGameDragonBgm);
 			break;
-		case InGameType.Arena:
+		case PuzzleInGameType.Arena:
 			SoundController.BGM_Stop(MusicSoundType.ArenaBGM);
 			break;
 		}
@@ -68,15 +68,15 @@ public class BattleDefeat : MonoBehaviour
 		resultItemData.itemMultiply = levelIndexDbData.rewardFixCount;
 		resultItemData.itemName = GameDataManager.GetItemListData(resultItemData.itemIdx).itemName;
 		resultItemData.itemAmount = GameInfo.userData.GetItemCount(resultItemData.itemIdx);
-		InGameResultItem component = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<InGameResultItem>();
-		component.Show(resultItemData);
+		PuzzleResultItem component = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
+		component.OpenMenu(resultItemData);
 		ResultItemData resultItemData2 = new ResultItemData();
 		resultItemData2.itemIdx = 50040;
 		resultItemData2.itemMultiply = levelIndexDbData.getExp;
 		resultItemData2.itemName = GameDataManager.GetItemListData(resultItemData2.itemIdx).itemName;
 		resultItemData2.itemAmount = GameInfo.userData.GetItemCount(resultItemData2.itemIdx);
-		InGameResultItem component2 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<InGameResultItem>();
-		component2.Show(resultItemData2);
+		PuzzleResultItem component2 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
+		component2.OpenMenu(resultItemData2);
 		scrollLoot.horizontalNormalizedPosition = 0f;
 	}
 
@@ -89,8 +89,8 @@ public class BattleDefeat : MonoBehaviour
 		resultItemData.itemMultiply = _data.rewardExp;
 		resultItemData.itemName = GameDataManager.GetItemListData(resultItemData.itemIdx).itemName;
 		resultItemData.itemAmount = GameInfo.userData.GetItemCount(resultItemData.itemIdx);
-		InGameResultItem component = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<InGameResultItem>();
-		component.Show(resultItemData);
+		PuzzleResultItem component = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
+		component.OpenMenu(resultItemData);
 		int itemIdx = 50044;
 		if (_data.chestType == 2)
 		{
@@ -101,14 +101,14 @@ public class BattleDefeat : MonoBehaviour
 		resultItemData2.itemMultiply = 1;
 		resultItemData2.itemName = GameDataManager.GetItemListData(resultItemData2.itemIdx).itemName;
 		resultItemData2.itemAmount = GameInfo.userData.GetItemCount(resultItemData2.itemIdx);
-		InGameResultItem component2 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<InGameResultItem>();
-		component2.Show(resultItemData2);
+		PuzzleResultItem component2 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
+		component2.OpenMenu(resultItemData2);
 		timerCoroutine = StartCoroutine(ContinueTimer());
 	}
 
 	private void OnGameContinueConnectComplete()
 	{
-		InGamePlayManager.GameContinue();
+		PuzzlePlayManager.GameContinue();
 	}
 
 	private void ContinueTimerSet()
@@ -135,24 +135,24 @@ public class BattleDefeat : MonoBehaviour
 		StopCoroutine(timerCoroutine);
 		switch (GameInfo.inGamePlayData.inGameType)
 		{
-		case InGameType.Stage:
+		case PuzzleInGameType.Stage:
 			if (GameInfo.userData.userInfo.jewel >= 10)
 			{
 				Protocol_Set.Protocol_game_continue_Req(OnGameContinueConnectComplete);
 			}
 			else
 			{
-				InGamePlayManager.NotEnoughJewel(ContinueTimerSet);
+				PuzzlePlayManager.NotEnoughJewel(ContinueTimerSet);
 			}
 			break;
-		case InGameType.Arena:
+		case PuzzleInGameType.Arena:
 			if (GameInfo.userData.userInfo.jewel >= GameDataManager.GetGameConfigData(ConfigDataType.Arena_continue_jewel))
 			{
 				Protocol_Set.Protocol_arena_game_continue_Req(OnGameContinueConnectComplete);
 			}
 			else
 			{
-				InGamePlayManager.NotEnoughJewel(ContinueTimerSet);
+				PuzzlePlayManager.NotEnoughJewel(ContinueTimerSet);
 			}
 			break;
 		}
@@ -165,11 +165,11 @@ public class BattleDefeat : MonoBehaviour
 		Hide();
 		switch (GameInfo.inGamePlayData.inGameType)
 		{
-		case InGameType.Stage:
-			InGamePlayManager.ShowLoseResult();
+		case PuzzleInGameType.Stage:
+			PuzzlePlayManager.LoseResult();
 			break;
-		case InGameType.Arena:
-			InGamePlayManager.ShowArenaLoseResult(resultArenaData);
+		case PuzzleInGameType.Arena:
+			PuzzlePlayManager.ArenaLoseResult(resultArenaData);
 			break;
 		}
 		SoundController.EffectSound_Play(EffectSoundType.ButtonClick);

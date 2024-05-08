@@ -154,7 +154,7 @@ public class BattleReward : MonoBehaviour
 
 	private void GetItemList()
 	{
-		if (InGamePlayManager.BattleRewardTutorial == null)
+		if (PuzzlePlayManager.OnBattleRewardTutorial == null)
 		{
 			UnityEngine.Debug.Log("Tutorial After 11");
 			Protocol_Set.Protocol_chest_collect_Req(4, GetItemListResponse);
@@ -238,7 +238,7 @@ public class BattleReward : MonoBehaviour
 					resultItem_Arr[i].GetChild(0).GetComponent<Image>().color = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
 					MWPoolManager.DeSpawn("Item", resultItem_Arr[i].GetChild(0));
 				}
-				if (InGamePlayManager.BattleRewardTutorial != null)
+				if (PuzzlePlayManager.OnBattleRewardTutorial != null)
 				{
 					Tutorial_Change_Item(chestListDbData_Idx[i]);
 				}
@@ -258,10 +258,10 @@ public class BattleReward : MonoBehaviour
 				Protocol_Set.Protocol_chest_req_reward_Req(chestListDbDataList[chestListDbData_Idx[i]].probIdx, isPickMore);
 				isPickMore = false;
 				open_chestlist_idx.Add(chestListDbData_Idx[i]);
-				InGamePlayManager.BattleRewardOpenEvent();
-				if (InGamePlayManager.BattleRewardTutorial != null)
+				PuzzlePlayManager.BattleRewardOpenEvent();
+				if (PuzzlePlayManager.OnBattleRewardTutorial != null)
 				{
-					InGamePlayManager.BattleRewardTutorialEvent();
+					PuzzlePlayManager.BattleRewardTutorialEvent();
 				}
 			}
 			else if (!isOpenItem_Arr[i])
@@ -376,10 +376,10 @@ public class BattleReward : MonoBehaviour
 
 	private void CollectItemResponse()
 	{
-		InGamePlayManager.BattleRewardOpenEvent();
-		if (InGamePlayManager.BattleRewardTutorial != null)
+		PuzzlePlayManager.BattleRewardOpenEvent();
+		if (PuzzlePlayManager.OnBattleRewardTutorial != null)
 		{
-			InGamePlayManager.BattleRewardTutorialEvent();
+			PuzzlePlayManager.BattleRewardTutorialEvent();
 		}
 	}
 
