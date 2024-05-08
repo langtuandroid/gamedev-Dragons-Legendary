@@ -82,7 +82,7 @@ public class Hero : HeroBase
 		if (_stunEff != null)
 		{
 			UnityEngine.Debug.Log("Return Stun !");
-			MWPoolManager.DeSpawn("Effect", _stunEff);
+			MasterPoolManager.ReturnToPool("Effect", _stunEff);
 			_stunEff = null;
 		}
 		OnHanterAttack = null;
@@ -150,7 +150,7 @@ public class Hero : HeroBase
 	public void SetMonsterHP_Gauge()
 	{
 		Transform transform = null;
-		transform = MWPoolManager.Spawn("Effect", "Fx_hit01", null, 1.5f);
+		transform = MasterPoolManager.SpawnObject("Effect", "Fx_hit01", null, 1.5f);
 		transform.position = _attackMonster.HitAnchor;
 		_attackMonster.SetMonsterHP_Gauge(_attackDamage);
 		GameUtil.Check_Property_Damage_UI(this, _attackMonster, _attackDamage);
@@ -237,19 +237,19 @@ public class Hero : HeroBase
 		switch (_heroInfo.Hunter.color)
 		{
 		case 0:
-			skillEff = MWPoolManager.Spawn("Skill", "FX_Blue_skill", null, 1f);
+			skillEff = MasterPoolManager.SpawnObject("Skill", "FX_Blue_skill", null, 1f);
 			break;
 		case 1:
-			skillEff = MWPoolManager.Spawn("Skill", "FX_Green_skill", null, 1f);
+			skillEff = MasterPoolManager.SpawnObject("Skill", "FX_Green_skill", null, 1f);
 			break;
 		case 3:
-			skillEff = MWPoolManager.Spawn("Skill", "FX_Red_skill", null, 1f);
+			skillEff = MasterPoolManager.SpawnObject("Skill", "FX_Red_skill", null, 1f);
 			break;
 		case 4:
-			skillEff = MWPoolManager.Spawn("Skill", "FX_Yellow_skill", null, 1f);
+			skillEff = MasterPoolManager.SpawnObject("Skill", "FX_Yellow_skill", null, 1f);
 			break;
 		case 2:
-			skillEff = MWPoolManager.Spawn("Skill", "FX_Purple_skill", null, 1f);
+			skillEff = MasterPoolManager.SpawnObject("Skill", "FX_Purple_skill", null, 1f);
 			break;
 		}
 		SoundController.HunterSkillCutPlay(_heroInfo.Hunter.hunterIdx);
@@ -317,7 +317,7 @@ public class Hero : HeroBase
 				GameUtil.Check_Property_Damage(this, _monster[i], _damage);
 				_monster[i].SetMonsterHP(_damage);
 			}
-			_eff[attackcount] = MWPoolManager.Spawn("Effect", "Skill_" + _heroInfo.Skill.skillIdx, null, 1.5f);
+			_eff[attackcount] = MasterPoolManager.SpawnObject("Effect", "Skill_" + _heroInfo.Skill.skillIdx, null, 1.5f);
 			if (_range == HunterSkillRange.SINGLE)
 			{
 				_eff[attackcount].position = _monster[0].SkillHitAnchor;
@@ -366,10 +366,10 @@ public class Hero : HeroBase
 		if (_stunEff != null)
 		{
 			UnityEngine.Debug.Log("Return Stun !");
-			MWPoolManager.DeSpawn("Effect", _stunEff);
+			MasterPoolManager.ReturnToPool("Effect", _stunEff);
 			_stunEff = null;
 		}
-		_stunEff = MWPoolManager.Spawn("Effect", "FX_stun_hunter", base.transform);
+		_stunEff = MasterPoolManager.SpawnObject("Effect", "FX_stun_hunter", base.transform);
 		_stunEff.position = base.transform.position;
 		_isHunterStun = true;
 		_isHunterStunClearCount = 1;
@@ -390,7 +390,7 @@ public class Hero : HeroBase
 		if (_stunEff != null)
 		{
 			UnityEngine.Debug.Log("Return Stun !");
-			MWPoolManager.DeSpawn("Effect", _stunEff);
+			MasterPoolManager.ReturnToPool("Effect", _stunEff);
 			_stunEff = null;
 		}
 	}

@@ -37,7 +37,7 @@ public class ArenaEventEnd : LobbyPopupBase
 		if (rewardInfoData.rewardYn == "y")
 		{
 			base.Open();
-			textLevel.text = string.Format(MWLocalize.GetData("arena_lobby_text_03"), "<color=#FCF13E>" + rewardInfoData.arenaLevel + "</color>/10");
+			textLevel.text = string.Format(MasterLocalize.GetData("arena_lobby_text_03"), "<color=#FCF13E>" + rewardInfoData.arenaLevel + "</color>/10");
 			textGetPoint.text = $"+{rewardInfoData.arenaPoint}";
 			textNextPoint.text = $"{rewardInfoData.nextArenaPoint}";
 		}

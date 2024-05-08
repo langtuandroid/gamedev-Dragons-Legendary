@@ -32,18 +32,18 @@ public class ArenaShopItem : MonoBehaviour
 		data = _data;
 		if (item_Img != null)
 		{
-			MWPoolManager.DeSpawn("Item", item_Img);
+			MasterPoolManager.ReturnToPool("Item", item_Img);
 		}
 		soldOut.gameObject.SetActive(value: false);
 		item_Price.gameObject.SetActive(value: true);
 		item_Icon.gameObject.SetActive(value: true);
 		if (data.chestHunter > 0)
 		{
-			item_Img = MWPoolManager.Spawn("Item", "Item_" + data.chestHunter, item_Img_tr);
+			item_Img = MasterPoolManager.SpawnObject("Item", "Item_" + data.chestHunter, item_Img_tr);
 		}
 		else
 		{
-			item_Img = MWPoolManager.Spawn("Item", "Item_" + data.itemIdx, item_Img_tr);
+			item_Img = MasterPoolManager.SpawnObject("Item", "Item_" + data.itemIdx, item_Img_tr);
 		}
 		if (data.soldOutYn.Equals("n"))
 		{
@@ -56,7 +56,7 @@ public class ArenaShopItem : MonoBehaviour
 			item_Icon.gameObject.SetActive(value: false);
 			item_Price.text = GameUtil.InsertCommaInt(data.costArenaPoint);
 		}
-		item_Name.text = MWLocalize.GetData(data.itemName);
+		item_Name.text = MasterLocalize.GetData(data.itemName);
 		item_Amount.text = "x" + GameUtil.InsertCommaInt(data.itemN);
 	}
 

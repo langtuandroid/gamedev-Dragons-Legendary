@@ -49,10 +49,10 @@ public class UserLevelUp : GameObjectSingleton<UserLevelUp>
 		level = userLevelData.level;
 		textUserLevel.text = $"{userLevelData.level}";
 		textExp.text = $"<color=#FCF13E>{GameInfo.userData.userInfo.exp}</color>/{userLevelData.exp}";
-		textAttackBonus.text = string.Format(MWLocalize.GetData("popup_level_up_attack_bonus"), (int)Mathf.Round((userLevelData.attackBonusAll - userLevelData2.attackBonusAll) * 100f));
-		textStaminaMax.text = string.Format(MWLocalize.GetData("popup_level_up_stamina_max"), userLevelData.maxEnergy - userLevelData2.maxEnergy);
-		textJewel.text = string.Format(MWLocalize.GetData("popup_level_up_jewel"), GameDataManager.GetGameConfigData(ConfigDataType.User_levelup_get_jewel));
-		textKey.text = string.Format(MWLocalize.GetData("popup_level_up_key"), GameDataManager.GetGameConfigData(ConfigDataType.User_levelup_get_key));
+		textAttackBonus.text = string.Format(MasterLocalize.GetData("popup_level_up_attack_bonus"), (int)Mathf.Round((userLevelData.attackBonusAll - userLevelData2.attackBonusAll) * 100f));
+		textStaminaMax.text = string.Format(MasterLocalize.GetData("popup_level_up_stamina_max"), userLevelData.maxEnergy - userLevelData2.maxEnergy);
+		textJewel.text = string.Format(MasterLocalize.GetData("popup_level_up_jewel"), GameDataManager.GetGameConfigData(ConfigDataType.User_levelup_get_jewel));
+		textKey.text = string.Format(MasterLocalize.GetData("popup_level_up_key"), GameDataManager.GetGameConfigData(ConfigDataType.User_levelup_get_key));
 		Vector2 sizeDelta = rtExpGauge.sizeDelta;
 		sizeDelta.x = (float)(GameInfo.userData.userInfo.exp / userLevelData.exp) * 444f;
 		rtExpGauge.sizeDelta = sizeDelta;

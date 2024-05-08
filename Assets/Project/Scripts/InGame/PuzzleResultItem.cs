@@ -24,9 +24,9 @@ public class PuzzleResultItem : MonoBehaviour
 	{
 		ClearItems();
 		_resultData = data;
-		_trResultItem = MWPoolManager.Spawn("Item", $"Item_{data.itemIdx}", _itemParent);
+		_trResultItem = MasterPoolManager.SpawnObject("Item", $"Item_{data.itemIdx}", _itemParent);
 		_trResultItem.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-		_textItemName.text = MWLocalize.GetData(data.itemName);
+		_textItemName.text = MasterLocalize.GetData(data.itemName);
 		_textItemMultiply.text = $"X{data.itemMultiply}";
 		_textItemAmount.text = $"{data.itemAmount}";
 	}
@@ -40,7 +40,7 @@ public class PuzzleResultItem : MonoBehaviour
 	{
 		if (_trResultItem != null)
 		{
-			MWPoolManager.DeSpawn("Item", _trResultItem);
+			MasterPoolManager.ReturnToPool("Item", _trResultItem);
 			_trResultItem = null;
 		}
 	}

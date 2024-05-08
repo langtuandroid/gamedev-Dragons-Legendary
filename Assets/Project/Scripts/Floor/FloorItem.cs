@@ -204,11 +204,11 @@ public class FloorItem : MonoBehaviour
 		floorData = _data;
 		typeKey = floorData.storeIdx.ToString();
 		produceData = GameDataManager.GetStoreProduceData(floorData.storeIdx, floorData.storeTier);
-		textFloorName.text = MWLocalize.GetData(GameDataManager.GetStoreData(floorData.storeIdx).storeName);
-		textBadgeName.text = MWLocalize.GetData(GameDataManager.GetItemListData(produceData.spi).itemName);
-		trBadge = MWPoolManager.Spawn("Item", $"Item_{produceData.spi}", trBadgeAnchor);
+		textFloorName.text = MasterLocalize.GetData(GameDataManager.GetStoreData(floorData.storeIdx).storeName);
+		textBadgeName.text = MasterLocalize.GetData(GameDataManager.GetItemListData(produceData.spi).itemName);
+		trBadge = MasterPoolManager.SpawnObject("Item", $"Item_{produceData.spi}", trBadgeAnchor);
 		trBadge.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-		trUserGetBadge = MWPoolManager.Spawn("Item", $"Item_{produceData.spi}", trUserGetBadgeAnchor);
+		trUserGetBadge = MasterPoolManager.SpawnObject("Item", $"Item_{produceData.spi}", trUserGetBadgeAnchor);
 		trUserGetBadge.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 		animControl.Init();
 		FloorAnimControl floorAnimControl = animControl;
@@ -233,19 +233,19 @@ public class FloorItem : MonoBehaviour
 		if (trFloorTestAnchor != null && storePrefabName != string.Empty)
 		{
 			trFloorTestAnchor.gameObject.SetActive(value: true);
-			trFloor = MWPoolManager.Spawn("Lobby", storePrefabName);
+			trFloor = MasterPoolManager.SpawnObject("Lobby", storePrefabName);
 		}
 		if (trRequireItem == null)
 		{
-			trRequireItem = MWPoolManager.Spawn("Item", $"Item_{produceData.snip1Type}", trRequireItemAnchor);
+			trRequireItem = MasterPoolManager.SpawnObject("Item", $"Item_{produceData.snip1Type}", trRequireItemAnchor);
 		}
 		if (trGaugeBadge == null)
 		{
-			trGaugeBadge = MWPoolManager.Spawn("Item", $"Item_{produceData.spi}", trGaugeBadgeAnchor);
+			trGaugeBadge = MasterPoolManager.SpawnObject("Item", $"Item_{produceData.spi}", trGaugeBadgeAnchor);
 		}
 		if (trOwnBadge == null)
 		{
-			trOwnBadge = MWPoolManager.Spawn("Item", $"Item_{produceData.spi}", trOwnBadgeAnchor);
+			trOwnBadge = MasterPoolManager.SpawnObject("Item", $"Item_{produceData.spi}", trOwnBadgeAnchor);
 			trOwnBadge.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 		}
 		RefreshFloorState();
@@ -288,9 +288,9 @@ public class FloorItem : MonoBehaviour
 	{
 		goLock.SetActive(value: true);
 		goProduceCompleteEffect.SetActive(value: false);
-		textLockMessage.text = string.Format(MWLocalize.GetData("common_text_clear_chapter"), id);
-		textFloorNameLock.text = MWLocalize.GetData(GameDataManager.GetStoreData(produceData.storeIdx).storeName);
-		textFloorLock.text = MWLocalize.GetData("common_text_locked");
+		textLockMessage.text = string.Format(MasterLocalize.GetData("common_text_clear_chapter"), id);
+		textFloorNameLock.text = MasterLocalize.GetData(GameDataManager.GetStoreData(produceData.storeIdx).storeName);
+		textFloorLock.text = MasterLocalize.GetData("common_text_locked");
 	}
 
 	public void Refresh(UserFloorData _data)
@@ -447,7 +447,7 @@ public class FloorItem : MonoBehaviour
 			ClearUpgradeNotice();
 			if (CheckStoreUpgrade())
 			{
-				trUpgradeNotice = MWPoolManager.Spawn("Lobby", "Notice_Upgrade", trUpgradeNoticeAnchor);
+				trUpgradeNotice = MasterPoolManager.SpawnObject("Lobby", "Notice_Upgrade", trUpgradeNoticeAnchor);
 			}
 		}
 	}
@@ -456,7 +456,7 @@ public class FloorItem : MonoBehaviour
 	{
 		if (trUpgradeNotice != null)
 		{
-			MWPoolManager.DeSpawn("Lobby", trUpgradeNotice);
+			MasterPoolManager.ReturnToPool("Lobby", trUpgradeNotice);
 			trUpgradeNotice = null;
 		}
 	}
@@ -579,7 +579,7 @@ public class FloorItem : MonoBehaviour
 		for (int i = 0; i < expCount; i++)
 		{
 			float num = UnityEngine.Random.Range(-0.2f, -0.1f);
-			Transform transform = MWPoolManager.Spawn("Effect", "FX_Exp_get", null, 1.2f + num + 0.4f);
+			Transform transform = MasterPoolManager.SpawnObject("Effect", "FX_Exp_get", null, 1.2f + num + 0.4f);
 			transform.localScale = new Vector2(0.12f, 0.12f);
 			transform.position = btnCollect.transform.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), 0f);
 			GameObject gameObject = transform.gameObject;
@@ -593,7 +593,7 @@ public class FloorItem : MonoBehaviour
 		for (int j = 0; j < coinCount; j++)
 		{
 			float num2 = UnityEngine.Random.Range(-0.2f, -0.1f);
-			Transform transform2 = MWPoolManager.Spawn("Effect", "FX_Coin_get", null, 1.2f + num2 + 0.4f);
+			Transform transform2 = MasterPoolManager.SpawnObject("Effect", "FX_Coin_get", null, 1.2f + num2 + 0.4f);
 			transform2.localScale = new Vector2(0.12f, 0.12f);
 			transform2.position = btnCollect.transform.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), 0f);
 			GameObject gameObject3 = transform2.gameObject;
@@ -738,7 +738,7 @@ public class FloorItem : MonoBehaviour
 	{
 		if (trFloor != null)
 		{
-			MWPoolManager.DeSpawn("Lobby", trFloor);
+			MasterPoolManager.ReturnToPool("Lobby", trFloor);
 			trFloor = null;
 		}
 		LocalTimeCheckManager.OnTimeTick = (Action<string, float>)Delegate.Remove(LocalTimeCheckManager.OnTimeTick, new Action<string, float>(OnTimeTickEvent));
@@ -761,27 +761,27 @@ public class FloorItem : MonoBehaviour
 		}
 		if (trBadge != null)
 		{
-			MWPoolManager.DeSpawn("Item", trBadge);
+			MasterPoolManager.ReturnToPool("Item", trBadge);
 			trBadge = null;
 		}
 		if (trUserGetBadge != null)
 		{
-			MWPoolManager.DeSpawn("Item", trUserGetBadge);
+			MasterPoolManager.ReturnToPool("Item", trUserGetBadge);
 			trUserGetBadge = null;
 		}
 		if (trRequireItem != null)
 		{
-			MWPoolManager.DeSpawn("Item", trRequireItem);
+			MasterPoolManager.ReturnToPool("Item", trRequireItem);
 			trRequireItem = null;
 		}
 		if (trGaugeBadge != null)
 		{
-			MWPoolManager.DeSpawn("Item", trGaugeBadge);
+			MasterPoolManager.ReturnToPool("Item", trGaugeBadge);
 			trGaugeBadge = null;
 		}
 		if (trOwnBadge != null)
 		{
-			MWPoolManager.DeSpawn("Item", trOwnBadge);
+			MasterPoolManager.ReturnToPool("Item", trOwnBadge);
 			trOwnBadge = null;
 		}
 		ClearUpgradeNotice();

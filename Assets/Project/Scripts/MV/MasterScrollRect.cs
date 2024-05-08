@@ -3,11 +3,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MWScrollRect : ScrollRect
+public class MasterScrollRect : ScrollRect
 {
-	private bool routeToParent;
+	private bool _parentRotation;
 
-	private void DoForParents<T>(Action<T> action) where T : IEventSystemHandler
+	private void ParentsDo<T>(Action<T> action) where T : IEventSystemHandler
 	{
 		Transform parent = base.transform.parent;
 		while (parent != null)
@@ -26,7 +26,7 @@ public class MWScrollRect : ScrollRect
 
 	public override void OnInitializePotentialDrag(PointerEventData eventData)
 	{
-		DoForParents(delegate(IInitializePotentialDragHandler parent)
+		ParentsDo(delegate(IInitializePotentialDragHandler parent)
 		{
 			parent.OnInitializePotentialDrag(eventData);
 		});
@@ -35,9 +35,9 @@ public class MWScrollRect : ScrollRect
 
 	public override void OnDrag(PointerEventData eventData)
 	{
-		if (routeToParent)
+		if (_parentRotation)
 		{
-			DoForParents(delegate(IDragHandler parent)
+			ParentsDo(delegate(IDragHandler parent)
 			{
 				parent.OnDrag(eventData);
 			});
@@ -57,7 +57,7 @@ public class MWScrollRect : ScrollRect
 			Vector2 delta2 = eventData.delta;
 			if (num > Math.Abs(delta2.y))
 			{
-				routeToParent = true;
+				_parentRotation = true;
 				goto IL_00ad;
 			}
 		}
@@ -68,16 +68,16 @@ public class MWScrollRect : ScrollRect
 			Vector2 delta4 = eventData.delta;
 			if (num2 < Math.Abs(delta4.y))
 			{
-				routeToParent = true;
+				_parentRotation = true;
 				goto IL_00ad;
 			}
 		}
-		routeToParent = false;
+		_parentRotation = false;
 		goto IL_00ad;
 		IL_00ad:
-		if (routeToParent)
+		if (_parentRotation)
 		{
-			DoForParents(delegate(IBeginDragHandler parent)
+			ParentsDo(delegate(IBeginDragHandler parent)
 			{
 				parent.OnBeginDrag(eventData);
 			});
@@ -90,9 +90,9 @@ public class MWScrollRect : ScrollRect
 
 	public override void OnEndDrag(PointerEventData eventData)
 	{
-		if (routeToParent)
+		if (_parentRotation)
 		{
-			DoForParents(delegate(IEndDragHandler parent)
+			ParentsDo(delegate(IEndDragHandler parent)
 			{
 				parent.OnEndDrag(eventData);
 			});
@@ -101,6 +101,6 @@ public class MWScrollRect : ScrollRect
 		{
 			base.OnEndDrag(eventData);
 		}
-		routeToParent = false;
+		_parentRotation = false;
 	}
 }

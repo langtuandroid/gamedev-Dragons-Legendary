@@ -55,7 +55,7 @@ public class DailyBonusItem : MonoBehaviour
 			textDayCnt.text = $"{daySeven}";
 			if (itemData.type == "hunter")
 			{
-				textItemDescription.text = MWLocalize.GetData(itemData.bonusText);
+				textItemDescription.text = MasterLocalize.GetData(itemData.bonusText);
 			}
 			else
 			{
@@ -66,7 +66,7 @@ public class DailyBonusItem : MonoBehaviour
 			{
 				goAcceptCheck.SetActive(itemData.accepted == "y");
 			}
-			trDailyItem = MWPoolManager.Spawn("Item", GetItemPrefabName(itemData.type), trItemAnchor);
+			trDailyItem = MasterPoolManager.SpawnObject("Item", GetItemPrefabName(itemData.type), trItemAnchor);
 		}
 	}
 
@@ -95,7 +95,7 @@ public class DailyBonusItem : MonoBehaviour
 	{
 		if (trDailyItem != null)
 		{
-			MWPoolManager.DeSpawn("Item", trDailyItem);
+			MasterPoolManager.ReturnToPool("Item", trDailyItem);
 			trDailyItem = null;
 		}
 	}

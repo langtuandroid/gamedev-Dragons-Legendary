@@ -290,7 +290,7 @@ public class BattleController : MonoBehaviour
 		Transform transform = null;
 		for (int i = 0; i < Hunter_Arr.Length; i++)
 		{
-			transform = MWPoolManager.Spawn("Effect", "FX_Heal", Hunter_Arr[i].transform, 2f);
+			transform = MasterPoolManager.SpawnObject("Effect", "FX_Heal", Hunter_Arr[i].transform, 2f);
 		}
 	}
 
@@ -312,12 +312,12 @@ public class BattleController : MonoBehaviour
 			Transform transform2 = null;
 			if (GameInfo.inGamePlayData.inGameType == PuzzleInGameType.Stage)
 			{
-				transform2 = MWPoolManager.Spawn("Effect", "Fx_CoinDrop", null, 2f);
+				transform2 = MasterPoolManager.SpawnObject("Effect", "Fx_CoinDrop", null, 2f);
 				SoundController.EffectSound_Play(EffectSoundType.GetCoinIngame);
 			}
 			else
 			{
-				transform2 = MWPoolManager.Spawn("Effect", "Fx_PointDrop", null, 2f);
+				transform2 = MasterPoolManager.SpawnObject("Effect", "Fx_PointDrop", null, 2f);
 				SoundController.EffectSound_Play(EffectSoundType.GetArenaPoint);
 			}
 			transform2.position = transform.position;
@@ -536,7 +536,7 @@ public class BattleController : MonoBehaviour
 	private void Set_BG(int _level)
 	{
 		Transform transform = null;
-		transform = ((GameInfo.inGamePlayData.inGameType != 0) ? MWPoolManager.Spawn("Stage", "BG_Arena") : ((levelData.isDragon != 0) ? MWPoolManager.Spawn("Stage", "BG_Dragon") : MWPoolManager.Spawn("Stage", "BG_" + _level)));
+		transform = ((GameInfo.inGamePlayData.inGameType != 0) ? MasterPoolManager.SpawnObject("Stage", "BG_Arena") : ((levelData.isDragon != 0) ? MasterPoolManager.SpawnObject("Stage", "BG_Dragon") : MasterPoolManager.SpawnObject("Stage", "BG_" + _level)));
 		transform.SetParent(BG_Tr);
 		transform.localPosition = Vector3.zero;
 		BG_Anim = transform.GetComponent<Animator>();
@@ -611,7 +611,7 @@ public class BattleController : MonoBehaviour
 			{
 				hunterLeaderSkill.SetSkill(hunterInfo.Stat.hunterLeaderSkill);
 			}
-			transform2 = MWPoolManager.Spawn("Hunter", hunterInfo.Hunter.hunterIdx.ToString());
+			transform2 = MasterPoolManager.SpawnObject("Hunter", hunterInfo.Hunter.hunterIdx.ToString());
 			if (!transform2.gameObject.activeSelf)
 			{
 				transform2.gameObject.SetActive(value: true);
@@ -619,7 +619,7 @@ public class BattleController : MonoBehaviour
 			transform2.SetParent(Hunter_Character_Pos_Arr[i]);
 			transform2.localPosition = Vector3.zero;
 			transform2.localScale = Vector3.one;
-			transform = MWPoolManager.Spawn("Hunter", "Hunter_" + hunterInfo.Hunter.hunterIdx);
+			transform = MasterPoolManager.SpawnObject("Hunter", "Hunter_" + hunterInfo.Hunter.hunterIdx);
 			transform.SetParent(Hunter_Pos_Arr[i]);
 			transform.localPosition = Vector3.zero;
 			transform.localScale = Vector3.one;
@@ -644,7 +644,7 @@ public class BattleController : MonoBehaviour
 			{
 				hunterLeaderSkill.SetSkill(hunterInfo.Stat.hunterLeaderSkill);
 			}
-			transform2 = MWPoolManager.Spawn("Hunter", hunterInfo.Hunter.hunterIdx.ToString());
+			transform2 = MasterPoolManager.SpawnObject("Hunter", hunterInfo.Hunter.hunterIdx.ToString());
 			if (!transform2.gameObject.activeSelf)
 			{
 				transform2.gameObject.SetActive(value: true);
@@ -652,7 +652,7 @@ public class BattleController : MonoBehaviour
 			transform2.SetParent(Hunter_Character_Pos_Arr[i]);
 			transform2.localPosition = Vector3.zero;
 			transform2.localScale = Vector3.one;
-			transform = MWPoolManager.Spawn("Hunter", "Hunter_" + hunterInfo.Hunter.hunterIdx);
+			transform = MasterPoolManager.SpawnObject("Hunter", "Hunter_" + hunterInfo.Hunter.hunterIdx);
 			transform.SetParent(Hunter_Pos_Arr[i]);
 			transform.localPosition = Vector3.zero;
 			transform.localScale = Vector3.one;
@@ -694,7 +694,7 @@ public class BattleController : MonoBehaviour
 		{
 			for (int i = 0; i < Monster_Arr.Length; i++)
 			{
-				MWPoolManager.DeSpawn("Monster", Monster_Arr[i].transform);
+				MasterPoolManager.ReturnToPool("Monster", Monster_Arr[i].transform);
 			}
 			Monster_Arr = null;
 		}
@@ -703,7 +703,7 @@ public class BattleController : MonoBehaviour
 		{
 			Transform transform = null;
 			Transform transform2 = null;
-			transform = MWPoolManager.Spawn("Monster", levelData.dicMonsterStatData[_wave][j].mMonsterIdx.ToString());
+			transform = MasterPoolManager.SpawnObject("Monster", levelData.dicMonsterStatData[_wave][j].mMonsterIdx.ToString());
 			Monster_Arr[j] = transform.GetComponent<Monster>();
 			int monsterSettingTurn = 0;
 			int monster_DropItem = 0;
@@ -729,7 +729,7 @@ public class BattleController : MonoBehaviour
 			Monster_Arr[j].Init(monsterSettingTurn, monster_DropItem, levelData.dicMonsterStatData[_wave][j], j);
 			transform.SetParent(Monster_Pos_Arr[j]);
 			transform.localPosition = Vector3.zero;
-			transform2 = MWPoolManager.Spawn("Effect", "FX_Summon01", null, 1f);
+			transform2 = MasterPoolManager.SpawnObject("Effect", "FX_Summon01", null, 1f);
 			transform2.position = transform.position;
 			if (GameInfo.inGamePlayData.inGameType == PuzzleInGameType.Stage)
 			{
@@ -1262,19 +1262,19 @@ public class BattleController : MonoBehaviour
 		switch (_type)
 		{
 		case HeroType.RED:
-			result = MWPoolManager.Spawn("Effect", "Fx_Puzzle_red_attack", null, 0.5f);
+			result = MasterPoolManager.SpawnObject("Effect", "Fx_Puzzle_red_attack", null, 0.5f);
 			break;
 		case HeroType.GREEN:
-			result = MWPoolManager.Spawn("Effect", "Fx_Puzzle_green_attack", null, 0.5f);
+			result = MasterPoolManager.SpawnObject("Effect", "Fx_Puzzle_green_attack", null, 0.5f);
 			break;
 		case HeroType.YELLOW:
-			result = MWPoolManager.Spawn("Effect", "Fx_Puzzle_yellow_attack", null, 0.5f);
+			result = MasterPoolManager.SpawnObject("Effect", "Fx_Puzzle_yellow_attack", null, 0.5f);
 			break;
 		case HeroType.PURPLE:
-			result = MWPoolManager.Spawn("Effect", "Fx_Puzzle_purple_attack", null, 0.5f);
+			result = MasterPoolManager.SpawnObject("Effect", "Fx_Puzzle_purple_attack", null, 0.5f);
 			break;
 		case HeroType.BLUE:
-			result = MWPoolManager.Spawn("Effect", "Fx_Puzzle_blue_attack", null, 0.5f);
+			result = MasterPoolManager.SpawnObject("Effect", "Fx_Puzzle_blue_attack", null, 0.5f);
 			break;
 		}
 		return result;
@@ -1355,7 +1355,7 @@ public class BattleController : MonoBehaviour
 
 	private IEnumerator MonsterSkillUse(Monster _monster)
 	{
-		Transform _eff_skill_cut = MWPoolManager.Spawn("Skill", "FX_monsterskill_" + _monster.MonsterSkill.mSkillType, null, 1f);
+		Transform _eff_skill_cut = MasterPoolManager.SpawnObject("Skill", "FX_monsterskill_" + _monster.MonsterSkill.mSkillType, null, 1f);
 		_eff_skill_cut.position = Vector3.zero;
 		yield return new WaitForSeconds(1f / GameInfo.inGameBattleSpeedRate);
 		_monster.SetCharacterAnim(Anim_Type.ATTACK_MONSTER, SetAttackToHunter(), Monster_Attack_End_Check);
@@ -1370,7 +1370,7 @@ public class BattleController : MonoBehaviour
 				if (Monster_Arr[i].MonsterHP > 0)
 				{
 					Monster_Arr[i].AddMonsterHP(healHP);
-					Transform _eff_skill = MWPoolManager.Spawn("Effect", "FX_Heal", Monster_Arr[i].transform, 2f);
+					Transform _eff_skill = MasterPoolManager.SpawnObject("Effect", "FX_Heal", Monster_Arr[i].transform, 2f);
 					_eff_skill.position = Monster_Arr[i].transform.position;
 				}
 			}

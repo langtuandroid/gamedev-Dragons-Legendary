@@ -199,8 +199,8 @@ public class PuzzleUI : MonoBehaviour
 
 	public void ClearTurnInfo()
 	{
-		_textStar2TurnClear.text = string.Format("{0} {1}", GameInfo.inGamePlayData.star2ClearTurn, MWLocalize.GetData("common_text_turns"));
-		_textStar3TurnClear.text = string.Format("{0} {1}", GameInfo.inGamePlayData.star3ClearTurn, MWLocalize.GetData("common_text_turns"));
+		_textStar2TurnClear.text = string.Format("{0} {1}", GameInfo.inGamePlayData.star2ClearTurn, MasterLocalize.GetData("common_text_turns"));
+		_textStar3TurnClear.text = string.Format("{0} {1}", GameInfo.inGamePlayData.star3ClearTurn, MasterLocalize.GetData("common_text_turns"));
 		_goStar2failureLine.SetActive(value: false);
 		_goStar3failureLine.SetActive(value: false);
 	}
@@ -396,7 +396,7 @@ public class PuzzleUI : MonoBehaviour
 		{
 			if (!_dicComboMultiply.ContainsKey(hunterIdx))
 			{
-				ComboMultiply component = MWPoolManager.Spawn("Effect", "Text_HunterAttackMultiply", _trEffectAnchor).GetComponent<ComboMultiply>();
+				ComboMultiply component = MasterPoolManager.SpawnObject("Effect", "Text_HunterAttackMultiply", _trEffectAnchor).GetComponent<ComboMultiply>();
 				_dicComboMultiply.Add(hunterIdx, component);
 			}
 			_dicComboMultiply[hunterIdx].ShowCombo(hunterColor, combo, position + new Vector3(0f, 0.8f, 0f));
@@ -407,7 +407,7 @@ public class PuzzleUI : MonoBehaviour
 	{
 		if (!_dicHunterAttackUI.ContainsKey(hunterIdx))
 		{
-			HeroAttackUI component = MWPoolManager.Spawn("Effect", "Text_HunterAttackDamage", _trEffectAnchor).GetComponent<HeroAttackUI>();
+			HeroAttackUI component = MasterPoolManager.SpawnObject("Effect", "Text_HunterAttackDamage", _trEffectAnchor).GetComponent<HeroAttackUI>();
 			_dicHunterAttackUI.Add(hunterIdx, component);
 		}
 		_dicHunterAttackUI[hunterIdx].ShowAttack(attack, hunterColor, position);
@@ -415,7 +415,7 @@ public class PuzzleUI : MonoBehaviour
 
 	public void ShowMonsterDamage(MonsterDamageUI.MonsterDamageType type, int damage, Vector3 position)
 	{
-		MonsterDamageUI component = MWPoolManager.Spawn("Effect", "Text_MonsterDamage", _trEffectAnchor).GetComponent<MonsterDamageUI>();
+		MonsterDamageUI component = MasterPoolManager.SpawnObject("Effect", "Text_MonsterDamage", _trEffectAnchor).GetComponent<MonsterDamageUI>();
 		component.ShowDamageUI(type, damage, position);
 	}
 
@@ -529,7 +529,7 @@ public class PuzzleUI : MonoBehaviour
 			}
 			if (!(text == string.Empty))
 			{
-				Transform transform = MWPoolManager.Spawn("Effect", text, _trEffectAnchor);
+				Transform transform = MasterPoolManager.SpawnObject("Effect", text, _trEffectAnchor);
 				transform.position = new Vector3(_position.x - 0.19f, _position.y + 0.19f, _position.z);
 				transform.GetComponent<Text>().text = $"{_buff}x";
 			}

@@ -154,8 +154,8 @@ public class Block : MonoBehaviour
 			blockType = type;
 			pattern = Pallete.GetPattern(blockType);
 			srBlock.sprite = pattern.GetSprite();
-			trSelect = MWPoolManager.Spawn("Puzzle", string.Format("{0}{1}", "Block_select_", type.ToString()), trSelectAnchor);
-			trMatch = MWPoolManager.Spawn("Puzzle", string.Format("{0}{1}", "Block_chain_", type.ToString()), trMatchAnchor);
+			trSelect = MasterPoolManager.SpawnObject("Puzzle", string.Format("{0}{1}", "Block_select_", type.ToString()), trSelectAnchor);
+			trMatch = MasterPoolManager.SpawnObject("Puzzle", string.Format("{0}{1}", "Block_chain_", type.ToString()), trMatchAnchor);
 		}
 	}
 
@@ -165,8 +165,8 @@ public class Block : MonoBehaviour
 		pattern = Pallete.GetRandomPattern();
 		blockType = pattern.type;
 		srBlock.sprite = pattern.GetSprite();
-		trSelect = MWPoolManager.Spawn("Puzzle", string.Format("{0}{1}", "Block_select_", blockType.ToString()), trSelectAnchor);
-		trMatch = MWPoolManager.Spawn("Puzzle", string.Format("{0}{1}", "Block_chain_", blockType.ToString()), trMatchAnchor);
+		trSelect = MasterPoolManager.SpawnObject("Puzzle", string.Format("{0}{1}", "Block_select_", blockType.ToString()), trSelectAnchor);
+		trMatch = MasterPoolManager.SpawnObject("Puzzle", string.Format("{0}{1}", "Block_chain_", blockType.ToString()), trMatchAnchor);
 	}
 
 	public void On()
@@ -201,7 +201,7 @@ public class Block : MonoBehaviour
 			specialBlockData.state = SpecialBlockState.Wait;
 			srBlock.sprite = pattern.GetSpecialSprite(chainCount - 1);
 			LeanTween.scale(base.gameObject, specialBlockPingPongScale, 142f / (339f * (float)Math.PI)).setLoopPingPong(1).setEase(LeanTweenType.linear);
-			trSpecialStanby = MWPoolManager.Spawn("Puzzle", Pallete.GetSpecialStanbyName(blockType), base.transform);
+			trSpecialStanby = MasterPoolManager.SpawnObject("Puzzle", Pallete.GetSpecialStanbyName(blockType), base.transform);
 		}
 	}
 
@@ -538,13 +538,13 @@ public class Block : MonoBehaviour
 		if ((bool)trSelect)
 		{
 			trSelect.SetParent(null);
-			MWPoolManager.DeSpawn("Puzzle", trSelect);
+			MasterPoolManager.ReturnToPool("Puzzle", trSelect);
 			trSelect = null;
 		}
 		if ((bool)trMatch)
 		{
 			trMatch.SetParent(null);
-			MWPoolManager.DeSpawn("Puzzle", trMatch);
+			MasterPoolManager.ReturnToPool("Puzzle", trMatch);
 			trMatch = null;
 		}
 	}
@@ -553,7 +553,7 @@ public class Block : MonoBehaviour
 	{
 		if (trSpecialStanby != null)
 		{
-			MWPoolManager.DeSpawn("Puzzle", trSpecialStanby);
+			MasterPoolManager.ReturnToPool("Puzzle", trSpecialStanby);
 			trSpecialStanby = null;
 		}
 	}

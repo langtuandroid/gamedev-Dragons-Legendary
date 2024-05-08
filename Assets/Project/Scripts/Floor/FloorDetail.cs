@@ -98,12 +98,12 @@ public class FloorDetail : LobbyPopupBase
 		string text = $"{timeSpan.Hours:D2}:{timeSpan.Minutes:D2}";
 		textStoreDuration.text = text;
 		textStoreEarnings.text = $"{produceData.getCoin}";
-		textUserOwnBadge.text = string.Format("{0} {1}", MWLocalize.GetData("common_text_you_have"), GameInfo.userData.GetItemCount(GameDataManager.GetStoreData(produceData.storeIdx).spi));
+		textUserOwnBadge.text = string.Format("{0} {1}", MasterLocalize.GetData("common_text_you_have"), GameInfo.userData.GetItemCount(GameDataManager.GetStoreData(produceData.storeIdx).spi));
 		textStoreBadge.text = $"{userFloorData.operatingRatio}/{GameDataManager.GetGameConfigData(ConfigDataType.StoreGetbadgeCycle)}";
-		textFloorName.text = MWLocalize.GetData(GameDataManager.GetStoreData(produceData.storeIdx).storeName);
+		textFloorName.text = MasterLocalize.GetData(GameDataManager.GetStoreData(produceData.storeIdx).storeName);
 		imageTitle.sprite = GameDataManager.GetFloorTitleSprite(LobbyManager.OpenChapterFloorId);
-		trToOpenItem = MWPoolManager.Spawn("Item", $"Item_{produceData.snip1Type}", trToOpenItemAnchor);
-		trBadge = MWPoolManager.Spawn("Item", $"Item_{produceData.spi}", trBadgeAnchor);
+		trToOpenItem = MasterPoolManager.SpawnObject("Item", $"Item_{produceData.snip1Type}", trToOpenItemAnchor);
+		trBadge = MasterPoolManager.SpawnObject("Item", $"Item_{produceData.spi}", trBadgeAnchor);
 		textGetBadgeCount.text = $"X{produceData.spiN}";
 		for (int i = 0; i < arrGoLevelStar.Length; i++)
 		{
@@ -138,12 +138,12 @@ public class FloorDetail : LobbyPopupBase
 	{
 		if (trBadge != null)
 		{
-			MWPoolManager.DeSpawn("Item", trBadge);
+			MasterPoolManager.ReturnToPool("Item", trBadge);
 			trBadge = null;
 		}
 		if (trToOpenItem != null)
 		{
-			MWPoolManager.DeSpawn("Item", trToOpenItem);
+			MasterPoolManager.ReturnToPool("Item", trToOpenItem);
 			trToOpenItem = null;
 		}
 	}

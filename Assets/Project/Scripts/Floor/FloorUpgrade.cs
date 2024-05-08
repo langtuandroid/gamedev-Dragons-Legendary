@@ -113,7 +113,7 @@ public class FloorUpgrade : LobbyPopupBase
 		{
 			arrGoLevelStar[i].SetActive(i <= userFloorData.storeTier);
 		}
-		textStoreName.text = MWLocalize.GetData(GameDataManager.GetStoreData(currentProduceStoreData.storeIdx).storeName);
+		textStoreName.text = MasterLocalize.GetData(GameDataManager.GetStoreData(currentProduceStoreData.storeIdx).storeName);
 		textCurrentReward.text = $"x{currentProduceStoreData.spiN}";
 		textNextReward.text = $"x{nextProduceStoreData.spiN}";
 		textCurrentEarnings.text = $"{currentProduceStoreData.getCoin}";
@@ -135,12 +135,12 @@ public class FloorUpgrade : LobbyPopupBase
 
 	private void ShowDiscription()
 	{
-		textDiscription.text = string.Format(MWLocalize.GetData("popup_store_upgrade_text_1"), MWLocalize.GetData(GameDataManager.GetItemListData(nextProduceStoreData.spi).itemName), nextProduceStoreData.spiN);
+		textDiscription.text = string.Format(MasterLocalize.GetData("popup_store_upgrade_text_1"), MasterLocalize.GetData(GameDataManager.GetItemListData(nextProduceStoreData.spi).itemName), nextProduceStoreData.spiN);
 	}
 
 	private void ShowRequireItem()
 	{
-		requiredCoinCell = MWPoolManager.Spawn("Grow", "cell_coin", trRequireItemAnchor).GetComponent<RequiredItem_Cell>();
+		requiredCoinCell = MasterPoolManager.SpawnObject("Grow", "cell_coin", trRequireItemAnchor).GetComponent<RequiredItem_Cell>();
 		requiredCoinCell.SetItemImg(50032);
 		if (GameInfo.userData.userInfo.coin < upgradeStoreData.needCoin)
 		{
@@ -155,7 +155,7 @@ public class FloorUpgrade : LobbyPopupBase
 		listRequireItemData = GetRequireItemData();
 		foreach (UpgradeRequireItemData listRequireItemDatum in listRequireItemData)
 		{
-			RequiredItem_Cell component = MWPoolManager.Spawn("Grow", "cell_token", trRequireItemAnchor).GetComponent<RequiredItem_Cell>();
+			RequiredItem_Cell component = MasterPoolManager.SpawnObject("Grow", "cell_token", trRequireItemAnchor).GetComponent<RequiredItem_Cell>();
 			component.SetItemImg(listRequireItemDatum.itemIdx);
 			component.SetCostText(GetItemStateText(GameInfo.userData.GetItemCount(listRequireItemDatum.itemIdx), listRequireItemDatum.itemCount));
 		}
@@ -234,7 +234,7 @@ public class FloorUpgrade : LobbyPopupBase
 		RequiredItem_Cell[] componentsInChildren = trRequireItemAnchor.GetComponentsInChildren<RequiredItem_Cell>();
 		foreach (RequiredItem_Cell requiredItem_Cell in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Grow", requiredItem_Cell.transform);
+			MasterPoolManager.ReturnToPool("Grow", requiredItem_Cell.transform);
 		}
 		Init();
 	}
@@ -291,7 +291,7 @@ public class FloorUpgrade : LobbyPopupBase
 		RequiredItem_Cell[] componentsInChildren = trRequireItemAnchor.GetComponentsInChildren<RequiredItem_Cell>();
 		foreach (RequiredItem_Cell requiredItem_Cell in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Grow", requiredItem_Cell.transform);
+			MasterPoolManager.ReturnToPool("Grow", requiredItem_Cell.transform);
 		}
 		GameDataManager.ChangeUserData = (Action)Delegate.Remove(GameDataManager.ChangeUserData, new Action(OnUserDataChangeEvent));
 		NotEnouchCoin.CallBuyCoin = null;

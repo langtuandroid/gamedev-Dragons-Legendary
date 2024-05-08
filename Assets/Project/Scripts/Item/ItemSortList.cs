@@ -49,7 +49,7 @@ public class ItemSortList : LobbyPopupBase
 		{
 			if (trTitleItem != null)
 			{
-				MWPoolManager.DeSpawn("Item", trTitleItem);
+				MasterPoolManager.ReturnToPool("Item", trTitleItem);
 				trTitleItem = null;
 			}
 			ShowTitleItemInfo();
@@ -65,9 +65,9 @@ public class ItemSortList : LobbyPopupBase
 
 	private void ShowTitleItemInfo()
 	{
-		textUserOwnItemCount.text = string.Format("{0} <color=#FCF13E>{1}</color>", MWLocalize.GetData("common_text_you_have"), GameInfo.userData.GetItemCount(itemIdx));
-		textTitleItemName.text = MWLocalize.GetData(GameDataManager.GetItemListData(itemIdx).itemName);
-		trTitleItem = MWPoolManager.Spawn("Item", $"Item_{itemIdx}", trTitleItemAnchor);
+		textUserOwnItemCount.text = string.Format("{0} <color=#FCF13E>{1}</color>", MasterLocalize.GetData("common_text_you_have"), GameInfo.userData.GetItemCount(itemIdx));
+		textTitleItemName.text = MasterLocalize.GetData(GameDataManager.GetItemListData(itemIdx).itemName);
+		trTitleItem = MasterPoolManager.SpawnObject("Item", $"Item_{itemIdx}", trTitleItemAnchor);
 	}
 
 	private void ShowSortItemLevelList()
@@ -77,7 +77,7 @@ public class ItemSortList : LobbyPopupBase
 		UserStageState[] userStageState = GameInfo.userData.userStageState;
 		foreach (UserStageState userStageState2 in userStageState)
 		{
-			LevelGameStage component = MWPoolManager.Spawn("Lobby", "Cell_stage", trListAnchor).GetComponent<LevelGameStage>();
+			LevelGameStage component = MasterPoolManager.SpawnObject("Lobby", "Cell_stage", trListAnchor).GetComponent<LevelGameStage>();
 			component.transform.localScale = Vector3.one;
 			component.ChangeSetData(userStageState2.stage);
 			UserChapterState[] chapterList = userStageState2.chapterList;
@@ -93,7 +93,7 @@ public class ItemSortList : LobbyPopupBase
 					LevelGameDbData levelIndexDbData = GameDataManager.GetLevelIndexDbData(userLevelState.levelIdx);
 					if (levelIndexDbData.rewardFixItem == itemIdx)
 					{
-						LevelGameBlock component2 = MWPoolManager.Spawn("Lobby", "Cell_level", trListAnchor).GetComponent<LevelGameBlock>();
+						LevelGameBlock component2 = MasterPoolManager.SpawnObject("Lobby", "Cell_level", trListAnchor).GetComponent<LevelGameBlock>();
 						component2.transform.localScale = Vector3.one;
 						component2.SetData(levelIndexDbData);
 						component2.PlaceStars(GameDataManager.GetLevelStarCount(levelIndexDbData.stage, levelIndexDbData.chapter, levelIndexDbData.level));
@@ -105,7 +105,7 @@ public class ItemSortList : LobbyPopupBase
 						{
 							if (dicWaveDbDatum.Value.dropM1 == itemIdx || dicWaveDbDatum.Value.dropM2 == itemIdx || dicWaveDbDatum.Value.dropM3 == itemIdx || dicWaveDbDatum.Value.dropM4 == itemIdx)
 							{
-								LevelGameBlock component3 = MWPoolManager.Spawn("Lobby", "Cell_level", trListAnchor).GetComponent<LevelGameBlock>();
+								LevelGameBlock component3 = MasterPoolManager.SpawnObject("Lobby", "Cell_level", trListAnchor).GetComponent<LevelGameBlock>();
 								component3.transform.localScale = Vector3.one;
 								component3.SetData(levelIndexDbData);
 								component3.PlaceStars(GameDataManager.GetLevelStarCount(levelIndexDbData.stage, levelIndexDbData.chapter, levelIndexDbData.level));
@@ -122,13 +122,13 @@ public class ItemSortList : LobbyPopupBase
 			LevelGameStage[] componentsInChildren = trListAnchor.GetComponentsInChildren<LevelGameStage>();
 			foreach (LevelGameStage levelStage in componentsInChildren)
 			{
-				MWPoolManager.DeSpawn("Lobby", levelStage.transform);
+				MasterPoolManager.ReturnToPool("Lobby", levelStage.transform);
 			}
 			foreach (KeyValuePair<int, StageDbData> dicStageDbDatum in GameDataManager.GetDicStageDbData())
 			{
 				if (!dicStageDbDatum.Value.stageLock)
 				{
-					LevelGameStage component4 = MWPoolManager.Spawn("Lobby", "Cell_stage", trListAnchor).GetComponent<LevelGameStage>();
+					LevelGameStage component4 = MasterPoolManager.SpawnObject("Lobby", "Cell_stage", trListAnchor).GetComponent<LevelGameStage>();
 					component4.transform.localScale = Vector3.one;
 					component4.ChangeSetData(dicStageDbDatum.Value.stageIdx);
 					foreach (KeyValuePair<int, ChapterDbData> dicChapterDbDatum in GameDataManager.GetDicChapterDbData(dicStageDbDatum.Value.stageIdx))
@@ -137,7 +137,7 @@ public class ItemSortList : LobbyPopupBase
 						{
 							if (levelListDbDatum.rewardFixItem == itemIdx)
 							{
-								LevelGameBlock component5 = MWPoolManager.Spawn("Lobby", "Cell_level", trListAnchor).GetComponent<LevelGameBlock>();
+								LevelGameBlock component5 = MasterPoolManager.SpawnObject("Lobby", "Cell_level", trListAnchor).GetComponent<LevelGameBlock>();
 								component5.transform.localScale = Vector3.one;
 								component5.SetData(levelListDbDatum);
 								component5.PlaceStars(GameDataManager.GetLevelStarCount(levelListDbDatum.stage, levelListDbDatum.chapter, levelListDbDatum.level));
@@ -149,7 +149,7 @@ public class ItemSortList : LobbyPopupBase
 								{
 									if (dicWaveDbDatum2.Value.dropM1 == itemIdx || dicWaveDbDatum2.Value.dropM2 == itemIdx || dicWaveDbDatum2.Value.dropM3 == itemIdx || dicWaveDbDatum2.Value.dropM4 == itemIdx)
 									{
-										LevelGameBlock component6 = MWPoolManager.Spawn("Lobby", "Cell_level", trListAnchor).GetComponent<LevelGameBlock>();
+										LevelGameBlock component6 = MasterPoolManager.SpawnObject("Lobby", "Cell_level", trListAnchor).GetComponent<LevelGameBlock>();
 										component6.transform.localScale = Vector3.one;
 										component6.SetData(levelListDbDatum);
 										component6.PlaceStars(GameDataManager.GetLevelStarCount(levelListDbDatum.stage, levelListDbDatum.chapter, levelListDbDatum.level));
@@ -160,7 +160,7 @@ public class ItemSortList : LobbyPopupBase
 							}
 						}
 					}
-					MWPoolManager.DeSpawn("Lobby", component4.transform);
+					MasterPoolManager.ReturnToPool("Lobby", component4.transform);
 				}
 			}
 			DespawnAll();
@@ -176,16 +176,16 @@ public class ItemSortList : LobbyPopupBase
 		LevelGameBlock[] componentsInChildren = trListAnchor.GetComponentsInChildren<LevelGameBlock>();
 		foreach (LevelGameBlock levelCell in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Lobby", levelCell.transform);
+			MasterPoolManager.ReturnToPool("Lobby", levelCell.transform);
 		}
 		LevelGameStage[] componentsInChildren2 = trListAnchor.GetComponentsInChildren<LevelGameStage>();
 		foreach (LevelGameStage levelStage in componentsInChildren2)
 		{
-			MWPoolManager.DeSpawn("Lobby", levelStage.transform);
+			MasterPoolManager.ReturnToPool("Lobby", levelStage.transform);
 		}
 		if (trTitleItem != null)
 		{
-			MWPoolManager.DeSpawn("Item", trTitleItem);
+			MasterPoolManager.ReturnToPool("Item", trTitleItem);
 			trTitleItem = null;
 		}
 	}

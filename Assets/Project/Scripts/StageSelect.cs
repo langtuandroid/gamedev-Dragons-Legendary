@@ -53,7 +53,7 @@ public class StageSelect : LobbyPopupBase
 		{
 			StageCell stageCell2 = stageCell;
 			stageCell2.SelectStageEvent = (Action<int>)Delegate.Remove(stageCell2.SelectStageEvent, new Action<int>(OnSelectStage));
-			MWPoolManager.DeSpawn("Lobby", stageCell.transform);
+			MasterPoolManager.ReturnToPool("Lobby", stageCell.transform);
 		}
 	}
 
@@ -69,7 +69,7 @@ public class StageSelect : LobbyPopupBase
 		listStageCell.Clear();
 		foreach (KeyValuePair<int, StageDbData> dicStageDbDatum in GameDataManager.GetDicStageDbData())
 		{
-			StageCell component = MWPoolManager.Spawn("Lobby", "StgCell", trContent).GetComponent<StageCell>();
+			StageCell component = MasterPoolManager.SpawnObject("Lobby", "StgCell", trContent).GetComponent<StageCell>();
 			component.transform.localPosition = Vector3.zero;
 			component.transform.localScale = Vector3.one;
 			component.SetStageId(dicStageDbDatum.Value.stageIdx);

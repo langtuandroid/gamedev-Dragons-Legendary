@@ -52,14 +52,14 @@ public class ArenaShop : LobbyPopupBase
 		int childCount = arenaList_Tr.childCount;
 		for (int i = 0; i < childCount; i++)
 		{
-			MWPoolManager.DeSpawn("Lobby", arenaList_Tr.GetChild(0));
+			MasterPoolManager.ReturnToPool("Lobby", arenaList_Tr.GetChild(0));
 		}
 		if (store_Info.Length > 0)
 		{
 			for (int j = 0; j < store_Info.Length; j++)
 			{
 				ArenaShopItem arenaShopItem = null;
-				arenaShopItem = MWPoolManager.Spawn("Lobby", "ArenaShopItem", arenaList_Tr).GetComponent<ArenaShopItem>();
+				arenaShopItem = MasterPoolManager.SpawnObject("Lobby", "ArenaShopItem", arenaList_Tr).GetComponent<ArenaShopItem>();
 				arenaShopItem.transform.localPosition = Vector3.zero;
 				arenaShopItem.transform.localScale = Vector3.one;
 				arenaShopItem.Init(store_Info[j]);

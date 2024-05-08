@@ -90,7 +90,7 @@ public class HeroPromotion : LobbyPopupBase
 			hunterRequiredItemListtr.GetComponentsInChildren<RequiredItem_Cell>();
 		foreach (RequiredItem_Cell requiredItem_Cell in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Grow", requiredItem_Cell.transform);
+			MasterPoolManager.ReturnToPool("Grow", requiredItem_Cell.transform);
 		}
 
 		_isPromotionCondition1 = true;
@@ -103,30 +103,30 @@ public class HeroPromotion : LobbyPopupBase
 			this._hunterInfo.Hunter.maxTier, this._hunterInfo.Stat.hunterTier);
 		if (hunter_Character != null)
 		{
-			MWPoolManager.DeSpawn("Hunter", hunter_Character.transform);
+			MasterPoolManager.ReturnToPool("Hunter", hunter_Character.transform);
 			hunter_Character = null;
 		}
 
 		switch (_hunterInfo.Hunter.color)
 		{
 			case 0:
-				hunter_Character = MWPoolManager.Spawn("Hunter", "HunterPhotoBg_B", hunterCharactertr)
+				hunter_Character = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg_B", hunterCharactertr)
 					.GetComponent<HeroColor>();
 				break;
 			case 1:
-				hunter_Character = MWPoolManager.Spawn("Hunter", "HunterPhotoBg_G", hunterCharactertr)
+				hunter_Character = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg_G", hunterCharactertr)
 					.GetComponent<HeroColor>();
 				break;
 			case 2:
-				hunter_Character = MWPoolManager.Spawn("Hunter", "HunterPhotoBg_P", hunterCharactertr)
+				hunter_Character = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg_P", hunterCharactertr)
 					.GetComponent<HeroColor>();
 				break;
 			case 3:
-				hunter_Character = MWPoolManager.Spawn("Hunter", "HunterPhotoBg_R", hunterCharactertr)
+				hunter_Character = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg_R", hunterCharactertr)
 					.GetComponent<HeroColor>();
 				break;
 			case 4:
-				hunter_Character = MWPoolManager.Spawn("Hunter", "HunterPhotoBg_Y", hunterCharactertr)
+				hunter_Character = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg_Y", hunterCharactertr)
 					.GetComponent<HeroColor>();
 				break;
 		}
@@ -135,7 +135,7 @@ public class HeroPromotion : LobbyPopupBase
 		hunter_Character.transform.localPosition = new Vector3(0f, 70f, 0f);
 		hunter_Character.transform.localScale = new Vector3(1f, 1f, 1f);
 		hunter_Character.Construct(_hunterInfo);
-		hunter_Level_Origin.text = string.Format(MWLocalize.GetData("common_text_max_level"),
+		hunter_Level_Origin.text = string.Format(MasterLocalize.GetData("common_text_max_level"),
 			(this._hunterInfo.Stat.hunterTier * 20).ToString());
 		hunter_Level_After.text = ((this._hunterInfo.Stat.hunterTier + 1) * 20).ToString();
 		SetStars();
@@ -206,7 +206,7 @@ public class HeroPromotion : LobbyPopupBase
 			_requiredItemCell4 = SetRequiredItemSet(4);
 		}
 
-		_requiredCoinCell = MWPoolManager.Spawn("Grow", "cell_coin", hunterRequiredItemListtr)
+		_requiredCoinCell = MasterPoolManager.SpawnObject("Grow", "cell_coin", hunterRequiredItemListtr)
 			.GetComponent<RequiredItem_Cell>();
 		_requiredCoinCell.transform.localScale = Vector3.one;
 		_requiredCoinCell.transform.SetAsLastSibling();
@@ -221,7 +221,7 @@ public class HeroPromotion : LobbyPopupBase
 			_requiredCoinCell.SetClickType(ItemClickType.None);
 		}
 
-		_levelCell = MWPoolManager.Spawn("Grow", "cell_badge", hunterRequiredItemListtr)
+		_levelCell = MasterPoolManager.SpawnObject("Grow", "cell_badge", hunterRequiredItemListtr)
 			.GetComponent<RequiredItem_Cell>();
 		_levelCell.transform.localScale = Vector3.one;
 		_levelCell.transform.SetAsFirstSibling();
@@ -232,7 +232,7 @@ public class HeroPromotion : LobbyPopupBase
 	private RequiredItem_Cell SetRequiredItemSet(int _idx)
 	{
 		RequiredItem_Cell requiredItem_Cell = null;
-		requiredItem_Cell = MWPoolManager.Spawn("Grow", "cell_badge", hunterRequiredItemListtr)
+		requiredItem_Cell = MasterPoolManager.SpawnObject("Grow", "cell_badge", hunterRequiredItemListtr)
 			.GetComponent<RequiredItem_Cell>();
 		requiredItem_Cell.transform.localScale = Vector3.one;
 		requiredItem_Cell.transform.SetAsLastSibling();
@@ -403,7 +403,7 @@ public class HeroPromotion : LobbyPopupBase
 			hunterRequiredItemListtr.GetComponentsInChildren<RequiredItem_Cell>();
 		foreach (RequiredItem_Cell requiredItem_Cell in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Grow", requiredItem_Cell.transform);
+			MasterPoolManager.ReturnToPool("Grow", requiredItem_Cell.transform);
 		}
 	}
 }

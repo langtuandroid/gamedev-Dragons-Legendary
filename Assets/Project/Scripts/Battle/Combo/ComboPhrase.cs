@@ -63,7 +63,7 @@ public class ComboPhrase : MonoBehaviour
 			currentCombo = _combo;
 			textCombo.gameObject.SetActive(value: true);
 			textCombo.gameObject.transform.localScale = Vector3.one;
-			textCombo.text = string.Format("<color=#FCF13E>{0}</color> {1}!", _combo, MWLocalize.GetData("ingame_play_text_combo"));
+			textCombo.text = string.Format("<color=#FCF13E>{0}</color> {1}!", _combo, MasterLocalize.GetData("ingame_play_text_combo"));
 			LeanTween.scale(textCombo.gameObject, pingPongScale, 0.2f).setLoopPingPong(1).setEase(LeanTweenType.linear);
 			switch (currentCombo)
 			{
@@ -103,17 +103,17 @@ public class ComboPhrase : MonoBehaviour
 			{
 			case ComboWordType.Lv1:
 				textWordLevel1.gameObject.SetActive(value: true);
-				textWordLevel1.text = MWLocalize.GetData(sArrWordLevel1[Random.Range(0, sArrWordLevel1.Length)]);
+				textWordLevel1.text = MasterLocalize.GetData(sArrWordLevel1[Random.Range(0, sArrWordLevel1.Length)]);
 				LeanTween.scale(textWordLevel1.gameObject, pingPongScale, 0.2f).setLoopPingPong(1).setEase(LeanTweenType.linear);
 				break;
 			case ComboWordType.Lv2:
 				textWordLevel2.gameObject.SetActive(value: true);
-				textWordLevel2.text = MWLocalize.GetData(sArrWordLevel2[Random.Range(0, sArrWordLevel2.Length)]);
+				textWordLevel2.text = MasterLocalize.GetData(sArrWordLevel2[Random.Range(0, sArrWordLevel2.Length)]);
 				LeanTween.scale(textWordLevel2.gameObject, pingPongScale, 0.2f).setLoopPingPong(1).setEase(LeanTweenType.linear);
 				break;
 			case ComboWordType.Lv3:
 				textWordLevel3.gameObject.SetActive(value: true);
-				textWordLevel3.text = MWLocalize.GetData(sArrWordLevel3[Random.Range(0, sArrWordLevel3.Length)]);
+				textWordLevel3.text = MasterLocalize.GetData(sArrWordLevel3[Random.Range(0, sArrWordLevel3.Length)]);
 				LeanTween.scale(textWordLevel3.gameObject, pingPongScale, 0.2f).setLoopPingPong(1).setEase(LeanTweenType.linear);
 				break;
 			}

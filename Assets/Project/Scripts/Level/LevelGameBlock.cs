@@ -77,7 +77,7 @@ public class LevelGameBlock : MonoBehaviour
 		if (_userLevelState != null)
 		{
 			_trRewardItemAnchor.gameObject.SetActive(value: true);
-			_trRewardItem = MWPoolManager.Spawn("Item", $"Item_{_levelDbData.rewardFixItem}", _trRewardItemAnchor);
+			_trRewardItem = MasterPoolManager.SpawnObject("Item", $"Item_{_levelDbData.rewardFixItem}", _trRewardItemAnchor);
 		}
 		else
 		{
@@ -100,13 +100,13 @@ public class LevelGameBlock : MonoBehaviour
 		Transform[] componentsInChildren = _trRewardItemAnchor.GetComponentsInChildren<Transform>(includeInactive: true);
 		foreach (Transform trObj in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Item", trObj);
+			MasterPoolManager.ReturnToPool("Item", trObj);
 		}
 		_trRewardItem = null;
 		if (_userLevelState != null)
 		{
 			_trRewardItemAnchor.gameObject.SetActive(value: true);
-			_trRewardItem = MWPoolManager.Spawn("Item", $"Item_{_levelDbData.rewardFixItem}", _trRewardItemAnchor);
+			_trRewardItem = MasterPoolManager.SpawnObject("Item", $"Item_{_levelDbData.rewardFixItem}", _trRewardItemAnchor);
 		}
 		else
 		{
@@ -142,7 +142,7 @@ public class LevelGameBlock : MonoBehaviour
 	{
 		if (_trRewardItem != null)
 		{
-			MWPoolManager.DeSpawn("Item", _trRewardItem);
+			MasterPoolManager.ReturnToPool("Item", _trRewardItem);
 			_trRewardItem = null;
 		}
 	}

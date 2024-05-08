@@ -52,7 +52,7 @@ public class ArenaTicketNone : LobbyPopupBase
 	{
 		btnJewel.enabled = false;
 		btnCancel.enabled = false;
-		Transform trExpEffect = MWPoolManager.Spawn("Effect", "FX_ArenaTicket", null, 1.6f);
+		Transform trExpEffect = MasterPoolManager.SpawnObject("Effect", "FX_ArenaTicket", null, 1.6f);
 		trExpEffect.localScale = new Vector2(0.12f, 0.12f);
 		trExpEffect.position = trJewelStartPos.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), 0f);
 		GameObject gameObject = trExpEffect.gameObject;

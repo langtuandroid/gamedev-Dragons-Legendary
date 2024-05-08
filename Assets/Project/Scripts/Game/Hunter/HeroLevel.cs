@@ -168,7 +168,7 @@ public class HeroLevel : LobbyPopupBase
 		RequiredItem_Cell[] componentsInChildren = _heroRequiredItemListtr.GetComponentsInChildren<RequiredItem_Cell>();
 		foreach (RequiredItem_Cell requiredItem_Cell in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Grow", requiredItem_Cell.transform);
+			MasterPoolManager.ReturnToPool("Grow", requiredItem_Cell.transform);
 		}
 		_isLevelUpCondition1 = true;
 		_isLevelUpCondition2 = true;
@@ -179,25 +179,25 @@ public class HeroLevel : LobbyPopupBase
 		_hunterLevelDbData = GameDataManager.GetHunterLevelData(_hunterInfoOrigin.Hunter.hunterIdx, _hunterInfoOrigin.Stat.hunterLevel, _hunterInfoOrigin.Stat.hunterTier);
 		if (_hunterCharacter != null)
 		{
-			MWPoolManager.DeSpawn("Hunter", _hunterCharacter.transform);
+			MasterPoolManager.ReturnToPool("Hunter", _hunterCharacter.transform);
 			_hunterCharacter = null;
 		}
 		switch (_hunterInfo.Hunter.color)
 		{
 		case 0:
-			_hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg_B", _heroCharactertr).GetComponent<HeroColor>();
+			_hunterCharacter = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg_B", _heroCharactertr).GetComponent<HeroColor>();
 			break;
 		case 1:
-			_hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg_G", _heroCharactertr).GetComponent<HeroColor>();
+			_hunterCharacter = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg_G", _heroCharactertr).GetComponent<HeroColor>();
 			break;
 		case 2:
-			_hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg_P", _heroCharactertr).GetComponent<HeroColor>();
+			_hunterCharacter = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg_P", _heroCharactertr).GetComponent<HeroColor>();
 			break;
 		case 3:
-			_hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg_R", _heroCharactertr).GetComponent<HeroColor>();
+			_hunterCharacter = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg_R", _heroCharactertr).GetComponent<HeroColor>();
 			break;
 		case 4:
-			_hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg_Y", _heroCharactertr).GetComponent<HeroColor>();
+			_hunterCharacter = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg_Y", _heroCharactertr).GetComponent<HeroColor>();
 			break;
 		}
 		_hunterCharacter.transform.SetAsFirstSibling();
@@ -231,10 +231,10 @@ public class HeroLevel : LobbyPopupBase
 	private void SetData()
 	{
 		_hunterInfoAfter = GetHunterInfo();
-		_heroLevelOrigin.text = MWLocalize.GetData("common_text_level") + _currentLevel;
+		_heroLevelOrigin.text = MasterLocalize.GetData("common_text_level") + _currentLevel;
 		if (CheckLevel())
 		{
-			_heroLevelAfter.text = _targetLevel.ToString() + MWLocalize.GetData("common_text_max");
+			_heroLevelAfter.text = _targetLevel.ToString() + MasterLocalize.GetData("common_text_max");
 		}
 		else
 		{
@@ -252,7 +252,7 @@ public class HeroLevel : LobbyPopupBase
 		_targetRecovery = (int)GameUtil.GetHunterReinForceHeal(_hunterInfoAfter.Stat.hunterRecovery, GameDataManager.HasUserHunterEnchant(_hunterInfoAfter.Hunter.hunterIdx));
 		_heroRecoveryOrigin.text = GameUtil.InsertCommaInt(_currentRecovery);
 		_heroRecoveryAfter.text = GameUtil.InsertCommaInt(_targetRecovery);
-		_levelUpBtnText.text = MWLocalize.GetData("common_text_level") + " x" + (_targetLevel - _currentLevel).ToString();
+		_levelUpBtnText.text = MasterLocalize.GetData("common_text_level") + " x" + (_targetLevel - _currentLevel).ToString();
 	}
 
 	private void LevelUpResponse()
@@ -285,12 +285,12 @@ public class HeroLevel : LobbyPopupBase
 
 	private void SetRequiredItem()
 	{
-		_requiredItemCell = MWPoolManager.Spawn("Grow", "cell_token", _heroRequiredItemListtr).GetComponent<RequiredItem_Cell>();
+		_requiredItemCell = MasterPoolManager.SpawnObject("Grow", "cell_token", _heroRequiredItemListtr).GetComponent<RequiredItem_Cell>();
 		_requiredItemCell.transform.localScale = Vector3.one;
 		_requiredItemCell.transform.SetAsFirstSibling();
 		_requiredItemCell.SetItemImg(_hunterLevelDbData.hnil);
 		_requiredItemCell.SetCostText(SetCostTextToken());
-		_requiredCoinCell = MWPoolManager.Spawn("Grow", "cell_coin", _heroRequiredItemListtr).GetComponent<RequiredItem_Cell>();
+		_requiredCoinCell = MasterPoolManager.SpawnObject("Grow", "cell_coin", _heroRequiredItemListtr).GetComponent<RequiredItem_Cell>();
 		_requiredCoinCell.transform.localScale = Vector3.one;
 		_requiredCoinCell.transform.SetAsLastSibling();
 		_requiredCoinCell.SetCostText(SetCostTextCoin());
@@ -396,7 +396,7 @@ public class HeroLevel : LobbyPopupBase
 		RequiredItem_Cell[] componentsInChildren = _heroRequiredItemListtr.GetComponentsInChildren<RequiredItem_Cell>();
 		foreach (RequiredItem_Cell requiredItem_Cell in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Grow", requiredItem_Cell.transform);
+			MasterPoolManager.ReturnToPool("Grow", requiredItem_Cell.transform);
 		}
 		NotEnouchCoin.CallBuyCoin = null;
 	}

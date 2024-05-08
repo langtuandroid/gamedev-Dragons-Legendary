@@ -203,11 +203,11 @@ public class HeroCard : MonoBehaviour, IPointerClickHandler, IEventSystemHandler
 		{
 			_noticeIcon.GetChild(0).localPosition = Vector3.zero;
 			_noticeIcon.GetChild(0).localScale = Vector3.one;
-			MWPoolManager.DeSpawn("Lobby", _noticeIcon.GetChild(0));
+			MasterPoolManager.ReturnToPool("Lobby", _noticeIcon.GetChild(0));
 		}
 		if ((HunterInfo.Stat.hunterTier < HunterInfo.Hunter.maxTier || HunterInfo.Stat.hunterLevel < HunterInfo.Stat.hunterTier * 20) && CheckAlert())
 		{
-			Transform transform = MWPoolManager.Spawn("Lobby", "Notice_Green", _noticeIcon);
+			Transform transform = MasterPoolManager.SpawnObject("Lobby", "Notice_Green", _noticeIcon);
 			transform.localPosition = Vector3.zero;
 			transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
 		}

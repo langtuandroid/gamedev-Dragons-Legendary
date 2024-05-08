@@ -53,7 +53,7 @@ public class ComboMultiply : MonoBehaviour
 			comboDuration -= 0.02f;
 		}
 		yield return new WaitForSeconds(comboDuration * 2f + 0.2f);
-		MWPoolManager.DeSpawn("Effect", trCombo);
+		MasterPoolManager.ReturnToPool("Effect", trCombo);
 		comboDuration = 0.24f;
 	}
 

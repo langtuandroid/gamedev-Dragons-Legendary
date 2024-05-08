@@ -1152,7 +1152,7 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 		}
 		dataReader.Close();
 		dataReader = null;
-		MWLocalize.SetDicData(dictionary);
+		MasterLocalize.DicData(dictionary);
 		UnityEngine.Debug.Log("LocalDb Read - dicLocalizeData :: " + dictionary.Count);
 	}
 

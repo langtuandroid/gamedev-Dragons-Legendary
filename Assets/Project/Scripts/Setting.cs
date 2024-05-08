@@ -132,7 +132,7 @@ public class Setting : LobbyPopupBase
 
 	private void SettingOsLogin()
 	{
-		if (MWPlatformService.LoginState)
+		if (MasterPlatformService.LoginState)
 		{
 			apple.gameObject.SetActive(value: false);
 			android.gameObject.SetActive(value: false);
@@ -162,23 +162,23 @@ public class Setting : LobbyPopupBase
 		}
 		dropdownList = new List<string>();
 		language.ClearOptions();
-		if (MWLocalize.GetLanguage == 0)
+		if (MasterLocalize.GetLanguage == 0)
 		{
-			dropdownList.Add(MWLocalize.GetData("popup_setting_text_korean"));
-			dropdownList.Add(MWLocalize.GetData("popup_setting_text_english"));
-			dropdownList.Add(MWLocalize.GetData("popup_setting_text_russian"));
+			dropdownList.Add(MasterLocalize.GetData("popup_setting_text_korean"));
+			dropdownList.Add(MasterLocalize.GetData("popup_setting_text_english"));
+			dropdownList.Add(MasterLocalize.GetData("popup_setting_text_russian"));
 		}
-		else if (MWLocalize.GetLanguage == 1)
+		else if (MasterLocalize.GetLanguage == 1)
 		{
-			dropdownList.Add(MWLocalize.GetData("popup_setting_text_korean"));
-			dropdownList.Add(MWLocalize.GetData("popup_setting_text_english"));
-			dropdownList.Add(MWLocalize.GetData("popup_setting_text_russian"));
+			dropdownList.Add(MasterLocalize.GetData("popup_setting_text_korean"));
+			dropdownList.Add(MasterLocalize.GetData("popup_setting_text_english"));
+			dropdownList.Add(MasterLocalize.GetData("popup_setting_text_russian"));
 		}
 		else
 		{
-			dropdownList.Add(MWLocalize.GetData("popup_setting_text_korean"));
-			dropdownList.Add(MWLocalize.GetData("popup_setting_text_english"));
-			dropdownList.Add(MWLocalize.GetData("popup_setting_text_russian"));
+			dropdownList.Add(MasterLocalize.GetData("popup_setting_text_korean"));
+			dropdownList.Add(MasterLocalize.GetData("popup_setting_text_english"));
+			dropdownList.Add(MasterLocalize.GetData("popup_setting_text_russian"));
 		}
 		language.AddOptions(dropdownList);
 	}
@@ -259,17 +259,17 @@ public class Setting : LobbyPopupBase
 		switch (_idx)
 		{
 		case 1:
-			MWLocalize.SetLanguege(1);
+			MasterLocalize.ChangeLanguage(1);
 			GameInfo.CURRENTLANGUAGE = Language_Type.English;
 			GamePreferenceManager.SetLanguage(Language_Type.English);
 			break;
 		case 0:
-			MWLocalize.SetLanguege(0);
+			MasterLocalize.ChangeLanguage(0);
 			GameInfo.CURRENTLANGUAGE = Language_Type.Korean;
 			GamePreferenceManager.SetLanguage(Language_Type.Korean);
 			break;
 		case 2:
-			MWLocalize.SetLanguege(2);
+			MasterLocalize.ChangeLanguage(2);
 			GameInfo.CURRENTLANGUAGE = Language_Type.Russian;
 			GamePreferenceManager.SetLanguage(Language_Type.Russian);
 			break;

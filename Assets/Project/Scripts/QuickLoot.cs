@@ -126,8 +126,8 @@ public class QuickLoot : LobbyPopupBase
 		base.Open();
 		levelIndex = index;
 		levelData = GameDataManager.GetLevelIndexDbData(levelIndex);
-		textStageName.text = MWLocalize.GetData(GameDataManager.GetDicStageDbData()[GameInfo.inGamePlayData.stage].stageName);
-		textChapterLevel.text = string.Format("{0} {1} - {2} {3}", MWLocalize.GetData("common_text_chapter"), GameInfo.inGamePlayData.chapter, MWLocalize.GetData("common_text_level"), GameInfo.inGamePlayData.level);
+		textStageName.text = MasterLocalize.GetData(GameDataManager.GetDicStageDbData()[GameInfo.inGamePlayData.stage].stageName);
+		textChapterLevel.text = string.Format("{0} {1} - {2} {3}", MasterLocalize.GetData("common_text_chapter"), GameInfo.inGamePlayData.chapter, MasterLocalize.GetData("common_text_level"), GameInfo.inGamePlayData.level);
 		textPlayCost.text = $"{GameDataManager.GetLevelIndexDbData(GameInfo.inGamePlayData.levelIdx).energyCost}";
 		imageStagePreview.sprite = GameDataManager.GetStagePreviewSprite(GameInfo.inGamePlayData.stage - 1);
 		typeKey = $"Stage_{GameInfo.inGamePlayData.stage}_Level_{GameInfo.inGamePlayData.level}";
@@ -181,7 +181,7 @@ public class QuickLoot : LobbyPopupBase
 	private void ShowQuickLootResult()
 	{
 		DespawnAll();
-		Transform transform = MWPoolManager.Spawn("Effect", "FX_Quickroot", null, 3f);
+		Transform transform = MasterPoolManager.SpawnObject("Effect", "FX_Quickroot", null, 3f);
 		transform.position = Vector3.zero;
 		SoundController.EffectSound_Play(EffectSoundType.OpenChapter);
 		userLevelState = GameInfo.userData.GetUserLevelState(levelData.stage - 1, levelData.chapter - 1, levelData.levelIdx);
@@ -222,12 +222,12 @@ public class QuickLoot : LobbyPopupBase
 		foreach (ItemInfoUI itemInfoUI in array)
 		{
 			itemInfoUI.Clear();
-			MWPoolManager.DeSpawn("Lobby", itemInfoUI.transform);
+			MasterPoolManager.ReturnToPool("Lobby", itemInfoUI.transform);
 		}
 		foreach (KeyValuePair<int, int> levelMonster in GameUtil.GetLevelMonsterList(levelIndex))
 		{
 			UnityEngine.Debug.Log("ShowMonsterList ::: " + levelMonster.Key);
-			Transform transform = MWPoolManager.Spawn("Lobby", "QuickLootMonster", trMonsterListParent);
+			Transform transform = MasterPoolManager.SpawnObject("Lobby", "QuickLootMonster", trMonsterListParent);
 			transform.GetComponent<ItemInfoUI>().Show("Info", $"UI_monster_{levelMonster.Key}", levelMonster.Value);
 		}
 	}
@@ -239,7 +239,7 @@ public class QuickLoot : LobbyPopupBase
 		{
 			if (!GameUtil.CheckUserInfoItem(rEWARDITEM.itemIdx))
 			{
-				Transform transform = MWPoolManager.Spawn("Lobby", "QuickLootItem", trItemListParent);
+				Transform transform = MasterPoolManager.SpawnObject("Lobby", "QuickLootItem", trItemListParent);
 				transform.GetComponent<ItemInfoUI>().Show("Item", $"Item_{rEWARDITEM.itemIdx}", rEWARDITEM.count);
 			}
 		}
@@ -255,7 +255,7 @@ public class QuickLoot : LobbyPopupBase
 			resultItemData.itemMultiply = chestKeyCount;
 			resultItemData.itemName = GameDataManager.GetItemListData(resultItemData.itemIdx).itemName;
 			resultItemData.itemAmount = GameInfo.userData.GetItemCount(resultItemData.itemIdx);
-			PuzzleResultItem component = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trLootsAnchor).GetComponent<PuzzleResultItem>();
+			PuzzleResultItem component = MasterPoolManager.SpawnObject("Puzzle", "InGameResultItem", trLootsAnchor).GetComponent<PuzzleResultItem>();
 			component.OpenMenu(resultItemData);
 		}
 		ResultItemData resultItemData2 = new ResultItemData();
@@ -263,7 +263,7 @@ public class QuickLoot : LobbyPopupBase
 		resultItemData2.itemMultiply = quickLootData.result.rewardExp;
 		resultItemData2.itemName = GameDataManager.GetItemListData(resultItemData2.itemIdx).itemName;
 		resultItemData2.itemAmount = GameInfo.userData.GetItemCount(resultItemData2.itemIdx);
-		PuzzleResultItem component2 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trLootsAnchor).GetComponent<PuzzleResultItem>();
+		PuzzleResultItem component2 = MasterPoolManager.SpawnObject("Puzzle", "InGameResultItem", trLootsAnchor).GetComponent<PuzzleResultItem>();
 		component2.OpenMenu(resultItemData2);
 		REWARDITEM[] rewardMonsterItem = quickLootData.result.rewardMonsterItem;
 		foreach (REWARDITEM rEWARDITEM in rewardMonsterItem)
@@ -275,7 +275,7 @@ public class QuickLoot : LobbyPopupBase
 				resultItemData3.itemMultiply = rEWARDITEM.count;
 				resultItemData3.itemName = GameDataManager.GetItemListData(resultItemData3.itemIdx).itemName;
 				resultItemData3.itemAmount = GameInfo.userData.GetItemCount(resultItemData3.itemIdx);
-				PuzzleResultItem component3 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trLootsAnchor).GetComponent<PuzzleResultItem>();
+				PuzzleResultItem component3 = MasterPoolManager.SpawnObject("Puzzle", "InGameResultItem", trLootsAnchor).GetComponent<PuzzleResultItem>();
 				component3.OpenMenu(resultItemData3);
 			}
 		}
@@ -284,7 +284,7 @@ public class QuickLoot : LobbyPopupBase
 		resultItemData4.itemMultiply = quickLootData.result.rewardChest[0].chestItemN;
 		resultItemData4.itemName = GameDataManager.GetItemListData(resultItemData4.itemIdx).itemName;
 		resultItemData4.itemAmount = GameInfo.userData.GetItemCount(resultItemData4.itemIdx);
-		PuzzleResultItem component4 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trLootsAnchor).GetComponent<PuzzleResultItem>();
+		PuzzleResultItem component4 = MasterPoolManager.SpawnObject("Puzzle", "InGameResultItem", trLootsAnchor).GetComponent<PuzzleResultItem>();
 		component4.OpenMenu(resultItemData4);
 		scrollLoot.horizontalNormalizedPosition = 0f;
 	}
@@ -293,7 +293,7 @@ public class QuickLoot : LobbyPopupBase
 	{
 		if (trRewardItem == null)
 		{
-			trRewardItem = MWPoolManager.Spawn("Item", $"Item_{GameDataManager.GetLevelIndexDbData(levelIndex).rewardFixItem}", trItemAnchor);
+			trRewardItem = MasterPoolManager.SpawnObject("Item", $"Item_{GameDataManager.GetLevelIndexDbData(levelIndex).rewardFixItem}", trItemAnchor);
 		}
 		textRewardFixCount.text = $"x{GameDataManager.GetLevelIndexDbData(levelIndex).rewardFixCount}";
 	}
@@ -303,7 +303,7 @@ public class QuickLoot : LobbyPopupBase
 		RemoveHunterCard();
 		if (trRewardItem != null)
 		{
-			MWPoolManager.DeSpawn("Item", trRewardItem);
+			MasterPoolManager.ReturnToPool("Item", trRewardItem);
 			trRewardItem = null;
 		}
 		ItemInfoUI[] componentsInChildren = trItemListParent.GetComponentsInChildren<ItemInfoUI>();
@@ -311,21 +311,21 @@ public class QuickLoot : LobbyPopupBase
 		foreach (ItemInfoUI itemInfoUI in array)
 		{
 			itemInfoUI.Clear();
-			MWPoolManager.DeSpawn("Lobby", itemInfoUI.transform);
+			MasterPoolManager.ReturnToPool("Lobby", itemInfoUI.transform);
 		}
 		componentsInChildren = trMonsterListParent.GetComponentsInChildren<ItemInfoUI>();
 		ItemInfoUI[] array2 = componentsInChildren;
 		foreach (ItemInfoUI itemInfoUI2 in array2)
 		{
 			itemInfoUI2.Clear();
-			MWPoolManager.DeSpawn("Lobby", itemInfoUI2.transform);
+			MasterPoolManager.ReturnToPool("Lobby", itemInfoUI2.transform);
 		}
 		PuzzleResultItem[] componentsInChildren2 = trLootsAnchor.GetComponentsInChildren<PuzzleResultItem>();
 		PuzzleResultItem[] array3 = componentsInChildren2;
 		foreach (PuzzleResultItem inGameResultItem in array3)
 		{
 			inGameResultItem.ClearItems();
-			MWPoolManager.DeSpawn("Puzzle", inGameResultItem.transform);
+			MasterPoolManager.ReturnToPool("Puzzle", inGameResultItem.transform);
 		}
 	}
 
@@ -392,7 +392,7 @@ public class QuickLoot : LobbyPopupBase
 		HeroCard[] componentsInChildren = trHunterCardParent.GetComponentsInChildren<HeroCard>();
 		foreach (HeroCard hunterCard in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Hunter", hunterCard.transform);
+			MasterPoolManager.ReturnToPool("Hunter", hunterCard.transform);
 		}
 	}
 
@@ -400,7 +400,7 @@ public class QuickLoot : LobbyPopupBase
 	{
 		for (int i = 0; i < GameInfo.userData.huntersUseInfo.Length; i++)
 		{
-			HeroCard component = MWPoolManager.Spawn("Hunter", "HunterCard_" + GameInfo.userData.huntersUseInfo[i].hunterIdx, trHunterCardParent).GetComponent<HeroCard>();
+			HeroCard component = MasterPoolManager.SpawnObject("Hunter", "HunterCard_" + GameInfo.userData.huntersUseInfo[i].hunterIdx, trHunterCardParent).GetComponent<HeroCard>();
 			component.Construct(HerocardType.Levelplay, GameDataManager.GetHunterInfo(GameInfo.userData.huntersUseInfo[i].hunterIdx, GameInfo.userData.huntersUseInfo[i].hunterLevel, GameInfo.userData.huntersUseInfo[i].hunterTier), _isOwn: true, _isArena: false);
 			component.HeroIdx = i;
 			component.IsUseHero = true;
@@ -410,11 +410,11 @@ public class QuickLoot : LobbyPopupBase
 			{
 				if (component.HunterInfo.Stat.hunterLeaderSkill == 0)
 				{
-					leaderSkill_Text.text = string.Format(MWLocalize.GetData("Popup_hunter_leaderskill_02"));
+					leaderSkill_Text.text = string.Format(MasterLocalize.GetData("Popup_hunter_leaderskill_02"));
 				}
 				else
 				{
-					leaderSkill_Text.text = string.Format(MWLocalize.GetData(GameDataManager.GetHunterLeaderSkillData(component.HunterInfo.Stat.hunterLeaderSkill).leaderSkillDescription));
+					leaderSkill_Text.text = string.Format(MasterLocalize.GetData(GameDataManager.GetHunterLeaderSkillData(component.HunterInfo.Stat.hunterLeaderSkill).leaderSkillDescription));
 				}
 			}
 		}
@@ -432,9 +432,9 @@ public class QuickLoot : LobbyPopupBase
 			totalAttack_current += (int)GameUtil.GetHunterReinForceAttack(hunterInfo.Stat.hunterAttack, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx));
 			totalRecovery_current += (int)GameUtil.GetHunterReinForceHeal(hunterInfo.Stat.hunterRecovery, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx));
 		}
-		totalHealth_Text.text = "<color=#ffffff>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_health"), StatTranslate(totalHealth_current)) + "</color>";
-		totalAttack_Text.text = "<color=#ffffff>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_attack"), StatTranslate(totalAttack_current)) + "</color>";
-		totalRecovery_Text.text = "<color=#ffffff>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_recovery"), StatTranslate(totalRecovery_current)) + "</color>";
+		totalHealth_Text.text = "<color=#ffffff>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_health"), StatTranslate(totalHealth_current)) + "</color>";
+		totalAttack_Text.text = "<color=#ffffff>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_attack"), StatTranslate(totalAttack_current)) + "</color>";
+		totalRecovery_Text.text = "<color=#ffffff>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_recovery"), StatTranslate(totalRecovery_current)) + "</color>";
 	}
 
 	private string StatTranslate(float _stat)

@@ -49,7 +49,7 @@ public class SpeedUpCollect : LobbyPopupBase
 		{
 			num = 1f;
 		}
-		textRemainDuration.text = string.Format(MWLocalize.GetData("popup_lack_of_time_title"), Mathf.Floor(num));
+		textRemainDuration.text = string.Format(MasterLocalize.GetData("popup_lack_of_time_title"), Mathf.Floor(num));
 		textGetCoin.text = $"{getCoin:#,###}";
 		textNeedJewel.text = $"{needJewel}";
 	}

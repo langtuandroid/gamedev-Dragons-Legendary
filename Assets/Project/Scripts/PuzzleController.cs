@@ -326,7 +326,7 @@ public class PuzzleController : MonoBehaviour
 				if (block.Type == _from)
 				{
 					block.SetPattern(_to);
-					Transform transform = MWPoolManager.Spawn("Effect", "Skill_" + _skillIdx, null, 1.5f);
+					Transform transform = MasterPoolManager.SpawnObject("Effect", "Skill_" + _skillIdx, null, 1.5f);
 					transform.position = block.transform.position;
 				}
 			}
@@ -360,7 +360,7 @@ public class PuzzleController : MonoBehaviour
 		{
 			for (int j = 0; j < height; j++)
 			{
-				Transform transform = MWPoolManager.Spawn("Puzzle", "Block");
+				Transform transform = MasterPoolManager.SpawnObject("Puzzle", "Block");
 				transform.parent = trController;
 				transform.gameObject.name = "Block";
 				transform.localPosition = new Vector2((float)i * 1.02f, (float)j * 1.02f);
@@ -1495,14 +1495,14 @@ public class PuzzleController : MonoBehaviour
 				for (int i = 0; i < hunterPosition.Length; i++)
 				{
 					Vector2 vector = hunterPosition[i];
-					Transform transform = MWPoolManager.Spawn("Effect", Pallete.ConvertBlockEffect(item.Type), trController, 0.7f);
+					Transform transform = MasterPoolManager.SpawnObject("Effect", Pallete.ConvertBlockEffect(item.Type), trController, 0.7f);
 					transform.position = item.transform.position;
 					LeanTween.moveX(transform.gameObject, vector.x, 0.2f).setEaseInCirc();
 					LeanTween.moveY(transform.gameObject, vector.y, 0.2f);
 				}
 				if (item.HasSpecialPosition)
 				{
-					Transform transform2 = MWPoolManager.Spawn("Effect", Pallete.ConvertBlockEffect(item.Type), trController, 0.2f);
+					Transform transform2 = MasterPoolManager.SpawnObject("Effect", Pallete.ConvertBlockEffect(item.Type), trController, 0.2f);
 					transform2.position = item.transform.position;
 					LeanTween.move(transform2.gameObject, item.SpecialBlockPositon, 0.2f).setEaseOutCubic();
 					item.SetSpecialPosition(Vector3.zero);
@@ -1912,7 +1912,7 @@ public class PuzzleController : MonoBehaviour
 	private IEnumerator ProcessChangeSpecialBlock(Block _block, int _count)
 	{
 		isTouchControl = false;
-		Transform trChangeEffect = MWPoolManager.Spawn("Effect", "FX_Special_block", null, 0.3f, isSpeedProcess: false);
+		Transform trChangeEffect = MasterPoolManager.SpawnObject("Effect", "FX_Special_block", null, 0.3f, isSpeedProcess: false);
 		trChangeEffect.position = _block.transform.position;
 		SoundController.HunterSkillSound(25024);
 		yield return new WaitForSeconds(0.3f);

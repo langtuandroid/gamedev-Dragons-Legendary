@@ -220,12 +220,12 @@ public class ArenaLobby : LobbyPopupBase
 		ArenaLevelCell[] componentsInChildren = trLevelCellParent.GetComponentsInChildren<ArenaLevelCell>(includeInactive: true);
 		foreach (ArenaLevelCell arenaLevelCell in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Lobby", arenaLevelCell.transform);
+			MasterPoolManager.ReturnToPool("Lobby", arenaLevelCell.transform);
 		}
 		Monster[] componentsInChildren2 = trHunterSpawnAnchor.GetComponentsInChildren<Monster>(includeInactive: true);
 		foreach (Monster monster in componentsInChildren2)
 		{
-			MWPoolManager.DeSpawn("Monster", monster.transform);
+			MasterPoolManager.ReturnToPool("Monster", monster.transform);
 		}
 		topUI.RefreshData();
 		switch (state)
@@ -237,13 +237,13 @@ public class ArenaLobby : LobbyPopupBase
 			goEndContent.SetActive(value: false);
 			textEndTimer.gameObject.SetActive(value: true);
 			UnityEngine.Debug.Log("# :: " + infoDataResult.arenaInfo.color);
-			string data = MWLocalize.GetData(GameDataManager.GetHunterColorName(infoDataResult.arenaInfo.color).colorOccupation);
+			string data = MasterLocalize.GetData(GameDataManager.GetHunterColorName(infoDataResult.arenaInfo.color).colorOccupation);
 			textColorBuff.text = $"{data} X{infoDataResult.arenaInfo.color_buff}";
-			string data2 = MWLocalize.GetData(GameDataManager.GetHunterTribeName(infoDataResult.arenaInfo.tribe));
+			string data2 = MasterLocalize.GetData(GameDataManager.GetHunterTribeName(infoDataResult.arenaInfo.tribe));
 			textTribeBuff.text = $"{data2} X{infoDataResult.arenaInfo.tribe_buff}";
 			timeSpan = TimeSpan.FromSeconds(infoDataResult.arenaInfo.endRemainTime);
 			string arg = $"{timeSpan.Hours + timeSpan.Days * 24}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
-			textEndTimer.text = string.Format("{0} {1}", MWLocalize.GetData("arena_lobby_text_01"), arg);
+			textEndTimer.text = string.Format("{0} {1}", MasterLocalize.GetData("arena_lobby_text_01"), arg);
 			LocalTimeCheckManager.AddTimer("ArenaOpenEndTime", infoDataResult.arenaInfo.endRemainTime);
 			for (int k = 0; k < arrGoColorBuff.Length; k++)
 			{
@@ -264,11 +264,11 @@ public class ArenaLobby : LobbyPopupBase
 			textEndTimer.gameObject.SetActive(value: false);
 			if (infoDataResult.userArenaInfo.arenaLevel > 0)
 			{
-				textLastLevel.text = string.Format(MWLocalize.GetData("arena_lobby_text_03"), infoDataResult.userArenaInfo.arenaLevel);
+				textLastLevel.text = string.Format(MasterLocalize.GetData("arena_lobby_text_03"), infoDataResult.userArenaInfo.arenaLevel);
 			}
 			else
 			{
-				textLastLevel.text = MWLocalize.GetData("arena_lobby_text_08");
+				textLastLevel.text = MasterLocalize.GetData("arena_lobby_text_08");
 			}
 			ShowReOpenTimer(infoDataResult.arenaInfo.nextOpenRemainTime);
 			LocalTimeCheckManager.AddTimer("ArenaReOpenTime", infoDataResult.arenaInfo.nextOpenRemainTime);
@@ -288,7 +288,7 @@ public class ArenaLobby : LobbyPopupBase
 		int num = -1;
 		for (int i = 0; i < infoDataResult.arenaLevelList.Length; i++)
 		{
-			ArenaLevelCell component = MWPoolManager.Spawn("Lobby", "Cell_Arena", trLevelCellParent).GetComponent<ArenaLevelCell>();
+			ArenaLevelCell component = MasterPoolManager.SpawnObject("Lobby", "Cell_Arena", trLevelCellParent).GetComponent<ArenaLevelCell>();
 			UnityEngine.Debug.Log("i :: " + i + ", cell :: " + component);
 			component.Init(infoDataResult.arenaLevelList[i]);
 			if (infoDataResult.arenaLevelList[i].passYn == "today")
@@ -322,7 +322,7 @@ public class ArenaLobby : LobbyPopupBase
 		}
 		for (int i = 0; i < infoDataResult.lastWaveMonsterList.Length; i++)
 		{
-			Monster component = MWPoolManager.Spawn("Monster", $"{GameDataManager.GetMonsterStatData(infoDataResult.lastWaveMonsterList[i]).mMonsterIdx}").GetComponent<Monster>();
+			Monster component = MasterPoolManager.SpawnObject("Monster", $"{GameDataManager.GetMonsterStatData(infoDataResult.lastWaveMonsterList[i]).mMonsterIdx}").GetComponent<Monster>();
 			component.MonsterAnim.GetComponent<MeshRenderer>().sortingOrder = 1;
 			component.MonsterUIOnOff(_onoff: false);
 			component.transform.position = trHunterSpawnAnchor.position;
@@ -355,7 +355,7 @@ public class ArenaLobby : LobbyPopupBase
 			float num = Mathf.Floor(second);
 			TimeSpan timeSpan = TimeSpan.FromSeconds(num);
 			string arg = $"{timeSpan.Hours + timeSpan.Days * 24}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
-			textEndTimer.text = string.Format("{0} {1}", MWLocalize.GetData("arena_lobby_text_01"), arg);
+			textEndTimer.text = string.Format("{0} {1}", MasterLocalize.GetData("arena_lobby_text_01"), arg);
 		}
 		else if (type == "ArenaReOpenTime")
 		{
@@ -390,7 +390,7 @@ public class ArenaLobby : LobbyPopupBase
 		ArenaLevelCell[] componentsInChildren = trLevelCellParent.GetComponentsInChildren<ArenaLevelCell>(includeInactive: true);
 		foreach (ArenaLevelCell arenaLevelCell in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Lobby", arenaLevelCell.transform);
+			MasterPoolManager.ReturnToPool("Lobby", arenaLevelCell.transform);
 		}
 		RemoveHunter();
 		Init();
@@ -407,7 +407,7 @@ public class ArenaLobby : LobbyPopupBase
 	{
 		foreach (Transform item in listLastHunter)
 		{
-			MWPoolManager.DeSpawn("Monster", item);
+			MasterPoolManager.ReturnToPool("Monster", item);
 		}
 		listLastHunter.Clear();
 	}
@@ -450,7 +450,7 @@ public class ArenaLobby : LobbyPopupBase
 		ArenaLevelCell[] componentsInChildren = trLevelCellParent.GetComponentsInChildren<ArenaLevelCell>(includeInactive: true);
 		foreach (ArenaLevelCell arenaLevelCell in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Lobby", arenaLevelCell.transform);
+			MasterPoolManager.ReturnToPool("Lobby", arenaLevelCell.transform);
 		}
 		RemoveHunter();
 		topUI.Hide();

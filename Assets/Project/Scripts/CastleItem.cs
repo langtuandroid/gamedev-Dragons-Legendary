@@ -39,14 +39,14 @@ public class CastleItem : MonoBehaviour
 	public void ShowNotice()
 	{
 		ClearNotice();
-		trInGameNotice = MWPoolManager.Spawn("Lobby", "Notice_Red", trNoticeAnchor);
+		trInGameNotice = MasterPoolManager.SpawnObject("Lobby", "Notice_Red", trNoticeAnchor);
 	}
 
 	public void ClearNotice()
 	{
 		if (trInGameNotice != null)
 		{
-			MWPoolManager.DeSpawn("Lobby", trInGameNotice);
+			MasterPoolManager.ReturnToPool("Lobby", trInGameNotice);
 			trInGameNotice = null;
 		}
 	}

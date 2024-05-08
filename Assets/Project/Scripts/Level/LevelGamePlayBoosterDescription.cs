@@ -39,29 +39,29 @@ public class LevelGamePlayBoosterDescription : MonoBehaviour
 		int childCount = _boostIcon1.childCount;
 		for (int i = 0; i < childCount; i++)
 		{
-			MWPoolManager.DeSpawn("Item", _boostIcon1.GetChild(0).transform);
+			MasterPoolManager.ReturnToPool("Item", _boostIcon1.GetChild(0).transform);
 		}
 		childCount = _boostIcon2.childCount;
 		for (int j = 0; j < childCount; j++)
 		{
-			MWPoolManager.DeSpawn("Item", _boostIcon2.GetChild(0).transform);
+			MasterPoolManager.ReturnToPool("Item", _boostIcon2.GetChild(0).transform);
 		}
 		childCount = _boostIcon3.childCount;
 		for (int k = 0; k < childCount; k++)
 		{
-			MWPoolManager.DeSpawn("Item", _boostIcon3.GetChild(0).transform);
+			MasterPoolManager.ReturnToPool("Item", _boostIcon3.GetChild(0).transform);
 		}
 	}
 
 	private void CreateBoosterIcon()
 	{
-		Transform transform = MWPoolManager.Spawn("Item", "Booster" + _boostType[0], _boostIcon1);
-		transform = MWPoolManager.Spawn("Item", "Booster" + _boostType[1], _boostIcon2);
-		transform = MWPoolManager.Spawn("Item", "Booster" + _boostType[2], _boostIcon3);
+		Transform transform = MasterPoolManager.SpawnObject("Item", "Booster" + _boostType[0], _boostIcon1);
+		transform = MasterPoolManager.SpawnObject("Item", "Booster" + _boostType[1], _boostIcon2);
+		transform = MasterPoolManager.SpawnObject("Item", "Booster" + _boostType[2], _boostIcon3);
 		transform = null;
-		_boostExplain1.text = MWLocalize.GetData(GameDataManager.GetBoostItemData(_boostType[0]).boosterExplain);
-		_boostDescription2.text = MWLocalize.GetData(GameDataManager.GetBoostItemData(_boostType[1]).boosterExplain);
-		boostDescription3.text = MWLocalize.GetData(GameDataManager.GetBoostItemData(_boostType[2]).boosterExplain);
+		_boostExplain1.text = MasterLocalize.GetData(GameDataManager.GetBoostItemData(_boostType[0]).boosterExplain);
+		_boostDescription2.text = MasterLocalize.GetData(GameDataManager.GetBoostItemData(_boostType[1]).boosterExplain);
+		boostDescription3.text = MasterLocalize.GetData(GameDataManager.GetBoostItemData(_boostType[2]).boosterExplain);
 	}
 
 	public void OnClickDescription()

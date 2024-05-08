@@ -135,39 +135,39 @@ public class HeroView : LobbyPopupBase
 		this._isOwn = _isOwn;
 		if (_hunterCharacter != null)
 		{
-			MWPoolManager.DeSpawn("Hunter", _hunterCharacter.transform);
+			MasterPoolManager.ReturnToPool("Hunter", _hunterCharacter.transform);
 			_hunterCharacter = null;
 		}
 		switch (_hunterInfo.Hunter.color)
 		{
 		case 0:
 			SetHunterColorIcon(0);
-			_hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg_B", _hunterCharactertr).GetComponent<HeroColor>();
+			_hunterCharacter = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg_B", _hunterCharactertr).GetComponent<HeroColor>();
 			break;
 		case 1:
 			SetHunterColorIcon(1);
-			_hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg_G", _hunterCharactertr).GetComponent<HeroColor>();
+			_hunterCharacter = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg_G", _hunterCharactertr).GetComponent<HeroColor>();
 			break;
 		case 2:
 			SetHunterColorIcon(2);
-			_hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg_P", _hunterCharactertr).GetComponent<HeroColor>();
+			_hunterCharacter = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg_P", _hunterCharactertr).GetComponent<HeroColor>();
 			break;
 		case 3:
 			SetHunterColorIcon(3);
-			_hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg_R", _hunterCharactertr).GetComponent<HeroColor>();
+			_hunterCharacter = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg_R", _hunterCharactertr).GetComponent<HeroColor>();
 			break;
 		case 4:
 			SetHunterColorIcon(4);
-			_hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg_Y", _hunterCharactertr).GetComponent<HeroColor>();
+			_hunterCharacter = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg_Y", _hunterCharactertr).GetComponent<HeroColor>();
 			break;
 		}
 		_hunterCharacter.transform.SetAsFirstSibling();
 		_hunterCharacter.transform.localPosition = new Vector3(-155f, 0f, 0f);
 		_hunterCharacter.transform.localScale = Vector3.one;
 		_hunterCharacter.Construct(_hunterInfo);
-		_hunterTitle.text = MWLocalize.GetData(GameDataManager.GetHunterTribeName(_hunterInfo.Hunter.hunterTribe)) + " / " + MWLocalize.GetData(_hunterInfo.Hunter.hunterClass);
-		_hunterLevel.text = MWLocalize.GetData("common_text_level") + _hunterInfo.Stat.hunterLevel + " / " + _hunterInfo.Stat.hunterTier * 20;
-		_hunterName.text = MWLocalize.GetData(_hunterInfo.Hunter.hunterName);
+		_hunterTitle.text = MasterLocalize.GetData(GameDataManager.GetHunterTribeName(_hunterInfo.Hunter.hunterTribe)) + " / " + MasterLocalize.GetData(_hunterInfo.Hunter.hunterClass);
+		_hunterLevel.text = MasterLocalize.GetData("common_text_level") + _hunterInfo.Stat.hunterLevel + " / " + _hunterInfo.Stat.hunterTier * 20;
+		_hunterName.text = MasterLocalize.GetData(_hunterInfo.Hunter.hunterName);
 		if (this._isOwn)
 		{
 			UnityEngine.Debug.Log("&&&&&&&&&&&&&&&&&&&&&&& check 11 = " + _hunterInfo.Hunter.hunterIdx);
@@ -184,15 +184,15 @@ public class HeroView : LobbyPopupBase
 			_heroRecovery.text = GameUtil.InsertCommaInt((int)GameUtil.GetHunterReinForceHeal(_hunterInfo.Stat.hunterRecovery, 1));
 			_heroEnchant.text = "x1";
 		}
-		_heroHunterSkill.text = MWLocalize.GetData(_hunterInfo.Skill.skillName);
-		_heroHunterSkillExplain.text = string.Format(MWLocalize.GetData("Hunter_skill_text_" + _hunterInfo.Skill.skillIdx), _hunterInfo.Skill.multiple);
+		_heroHunterSkill.text = MasterLocalize.GetData(_hunterInfo.Skill.skillName);
+		_heroHunterSkillExplain.text = string.Format(MasterLocalize.GetData("Hunter_skill_text_" + _hunterInfo.Skill.skillIdx), _hunterInfo.Skill.multiple);
 		if (_hunterInfo.Stat.hunterLeaderSkill == 0)
 		{
-			_heroHunterLeaderSkillExplain.text = MWLocalize.GetData("Popup_hunter_leaderskill_02");
+			_heroHunterLeaderSkillExplain.text = MasterLocalize.GetData("Popup_hunter_leaderskill_02");
 		}
 		else
 		{
-			_heroHunterLeaderSkillExplain.text = MWLocalize.GetData(GameDataManager.GetHunterLeaderSkillData(_hunterInfo.Stat.hunterLeaderSkill).leaderSkillDescription);
+			_heroHunterLeaderSkillExplain.text = MasterLocalize.GetData(GameDataManager.GetHunterLeaderSkillData(_hunterInfo.Stat.hunterLeaderSkill).leaderSkillDescription);
 		}
 		SettingsButton();
 		if (GameDataManager.HasUserHunterNew(this._hunterInfo.Hunter.hunterIdx))
@@ -251,11 +251,11 @@ public class HeroView : LobbyPopupBase
 			_notHave.gameObject.SetActive(value: true);
 			if (_hunterInfo.Hunter.hunterIdx == 20501 || _hunterInfo.Hunter.hunterIdx == 20502 || _hunterInfo.Hunter.hunterIdx == 20503 || _hunterInfo.Hunter.hunterIdx == 20504 || _hunterInfo.Hunter.hunterIdx == 20505)
 			{
-				_heroHunterGetText.text = string.Format(MWLocalize.GetData("popup_hunter_text_13"));
+				_heroHunterGetText.text = string.Format(MasterLocalize.GetData("popup_hunter_text_13"));
 			}
 			else
 			{
-				_heroHunterGetText.text = string.Format(MWLocalize.GetData("popup_hunter_text_12"));
+				_heroHunterGetText.text = string.Format(MasterLocalize.GetData("popup_hunter_text_12"));
 			}
 			return;
 		}

@@ -19,10 +19,10 @@ public class RequiredItem_Cell : MonoBehaviour
 	{
 		if (Item_Img != null)
 		{
-			MWPoolManager.DeSpawn("Item", Item_Img);
+			MasterPoolManager.ReturnToPool("Item", Item_Img);
 			Item_Img = null;
 		}
-		Item_Img = MWPoolManager.Spawn("Item", "Item_" + _idx, base.transform);
+		Item_Img = MasterPoolManager.SpawnObject("Item", "Item_" + _idx, base.transform);
 		Item_Img.SetAsFirstSibling();
 		if (size == Vector3.zero)
 		{

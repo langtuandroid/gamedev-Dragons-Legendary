@@ -60,7 +60,7 @@ public class LevelGameSelect : LobbyPopupBase
 		foreach (ChapterBox chapterBox in componentsInChildren)
 		{
 			chapterBox.Clear();
-			MWPoolManager.DeSpawn("Lobby", chapterBox.transform);
+			MasterPoolManager.ReturnToPool("Lobby", chapterBox.transform);
 		}
 	}
 
@@ -75,7 +75,7 @@ public class LevelGameSelect : LobbyPopupBase
 
 	private void Construct()
 	{
-		_textStageName.text = $"- {MWLocalize.GetData(GameDataManager.GetDicStageDbData()[_stageId].stageName)} -";
+		_textStageName.text = $"- {MasterLocalize.GetData(GameDataManager.GetDicStageDbData()[_stageId].stageName)} -";
 		Vector2 sizeDelta = _trContent.GetComponent<RectTransform>().sizeDelta;
 		sizeDelta.x = GameDataManager.GetDicChapterDbData(_stageId).Count * 720;
 		_trContent.GetComponent<RectTransform>().sizeDelta = sizeDelta;
@@ -84,7 +84,7 @@ public class LevelGameSelect : LobbyPopupBase
 		_pageToggle.SetPage(0);
 		foreach (KeyValuePair<int, ChapterDbData> dicChapterDbDatum in GameDataManager.GetDicChapterDbData(_stageId))
 		{
-			ChapterBox component = MWPoolManager.Spawn("Lobby", "ChapterBox", _trContent).GetComponent<ChapterBox>();
+			ChapterBox component = MasterPoolManager.SpawnObject("Lobby", "ChapterBox", _trContent).GetComponent<ChapterBox>();
 			component.transform.localScale = Vector3.one;
 			component.SetData(dicChapterDbDatum.Value);
 			if (dicChapterDbDatum.Value.stage > GameInfo.userData.userStageState.Length || dicChapterDbDatum.Value.chapter > GameInfo.userData.userStageState[dicChapterDbDatum.Value.stage - 1].chapterList.Length)

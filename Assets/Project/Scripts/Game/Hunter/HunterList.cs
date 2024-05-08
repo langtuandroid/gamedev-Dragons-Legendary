@@ -98,7 +98,7 @@ public class HunterList : LobbyPopupBase
 		HeroCard[] componentsInChildren = trHunterContent.GetComponentsInChildren<HeroCard>();
 		foreach (HeroCard hunterCard in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Hunter", hunterCard.transform);
+			MasterPoolManager.ReturnToPool("Hunter", hunterCard.transform);
 		}
 	}
 
@@ -125,7 +125,7 @@ public class HunterList : LobbyPopupBase
 		HeroCard[] componentsInChildren = trHunterContent.GetComponentsInChildren<HeroCard>();
 		foreach (HeroCard hunterCard in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Hunter", hunterCard.transform);
+			MasterPoolManager.ReturnToPool("Hunter", hunterCard.transform);
 		}
 		HunterCard_Spawn();
 	}
@@ -284,11 +284,11 @@ public class HunterList : LobbyPopupBase
 		HeroCard[] componentsInChildren = trMyDeckHunterCardParent.GetComponentsInChildren<HeroCard>();
 		foreach (HeroCard hunterCard in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Hunter", hunterCard.transform);
+			MasterPoolManager.ReturnToPool("Hunter", hunterCard.transform);
 		}
 		for (int j = 0; j < GameInfo.userData.huntersUseInfo.Length; j++)
 		{
-			HeroCard component = MWPoolManager.Spawn("Hunter", "HunterCard_" + GameInfo.userData.huntersUseInfo[j].hunterIdx, trMyDeckHunterCardParent).GetComponent<HeroCard>();
+			HeroCard component = MasterPoolManager.SpawnObject("Hunter", "HunterCard_" + GameInfo.userData.huntersUseInfo[j].hunterIdx, trMyDeckHunterCardParent).GetComponent<HeroCard>();
 			component.Construct(HerocardType.Levelplay, GameDataManager.GetHunterInfo(GameInfo.userData.huntersUseInfo[j].hunterIdx, GameInfo.userData.huntersUseInfo[j].hunterLevel, GameInfo.userData.huntersUseInfo[j].hunterTier), _isOwn: true, _isArena: false);
 			component.HeroIdx = j;
 			component.IsUseHero = true;
@@ -298,11 +298,11 @@ public class HunterList : LobbyPopupBase
 			{
 				if (component.HunterInfo.Stat.hunterLeaderSkill == 0)
 				{
-					leaderSkill_Text.text = string.Format(MWLocalize.GetData("Popup_hunter_leaderskill_02"));
+					leaderSkill_Text.text = string.Format(MasterLocalize.GetData("Popup_hunter_leaderskill_02"));
 				}
 				else
 				{
-					leaderSkill_Text.text = string.Format(MWLocalize.GetData(GameDataManager.GetHunterLeaderSkillData(component.HunterInfo.Stat.hunterLeaderSkill).leaderSkillDescription));
+					leaderSkill_Text.text = string.Format(MasterLocalize.GetData(GameDataManager.GetHunterLeaderSkillData(component.HunterInfo.Stat.hunterLeaderSkill).leaderSkillDescription));
 				}
 			}
 		}
@@ -320,14 +320,14 @@ public class HunterList : LobbyPopupBase
 			totalAttack_current += (int)GameUtil.GetHunterReinForceAttack(hunterInfo.Stat.hunterAttack, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx));
 			totalRecovery_current += (int)GameUtil.GetHunterReinForceHeal(hunterInfo.Stat.hunterRecovery, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx));
 		}
-		totalHealth_Text.text = "<color=#ffffff>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_health"), StatTranslate(totalHealth_current)) + "</color>";
-		totalAttack_Text.text = "<color=#ffffff>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_attack"), StatTranslate(totalAttack_current)) + "</color>";
-		totalRecovery_Text.text = "<color=#ffffff>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_recovery"), StatTranslate(totalRecovery_current)) + "</color>";
+		totalHealth_Text.text = "<color=#ffffff>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_health"), StatTranslate(totalHealth_current)) + "</color>";
+		totalAttack_Text.text = "<color=#ffffff>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_attack"), StatTranslate(totalAttack_current)) + "</color>";
+		totalRecovery_Text.text = "<color=#ffffff>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_recovery"), StatTranslate(totalRecovery_current)) + "</color>";
 	}
 
 	private void SetHunterCount()
 	{
-		hunterCount_Text.text = string.Format(MWLocalize.GetData("popup_hunter_text_10")) + " " + Hunter_Own_List.Count + " / " + (Hunter_Own_List.Count + Hunter_NotOwn_List.Count);
+		hunterCount_Text.text = string.Format(MasterLocalize.GetData("popup_hunter_text_10")) + " " + Hunter_Own_List.Count + " / " + (Hunter_Own_List.Count + Hunter_NotOwn_List.Count);
 	}
 
 	private string StatTranslate(float _stat)
@@ -364,11 +364,11 @@ public class HunterList : LobbyPopupBase
 		}
 		dropdownList = new List<string>();
 		sortDropdown.ClearOptions();
-		dropdownList.Add(MWLocalize.GetData("popup_hunter_text_2"));
-		dropdownList.Add(MWLocalize.GetData("popup_hunter_text_5"));
-		dropdownList.Add(MWLocalize.GetData("popup_hunter_text_3"));
-		dropdownList.Add(MWLocalize.GetData("popup_hunter_text_class"));
-		dropdownList.Add(MWLocalize.GetData("popup_hunter_text_element"));
+		dropdownList.Add(MasterLocalize.GetData("popup_hunter_text_2"));
+		dropdownList.Add(MasterLocalize.GetData("popup_hunter_text_5"));
+		dropdownList.Add(MasterLocalize.GetData("popup_hunter_text_3"));
+		dropdownList.Add(MasterLocalize.GetData("popup_hunter_text_class"));
+		dropdownList.Add(MasterLocalize.GetData("popup_hunter_text_element"));
 		sortDropdown.AddOptions(dropdownList);
 	}
 
@@ -378,7 +378,7 @@ public class HunterList : LobbyPopupBase
 		int childCount = trHunterContent.childCount;
 		for (int i = 0; i < childCount; i++)
 		{
-			MWPoolManager.DeSpawn("Hunter", trHunterContent.GetChild(0).transform);
+			MasterPoolManager.ReturnToPool("Hunter", trHunterContent.GetChild(0).transform);
 		}
 		for (int j = 0; j < GameInfo.userData.huntersUseInfo.Length; j++)
 		{
@@ -444,7 +444,7 @@ public class HunterList : LobbyPopupBase
 	{
 		for (int i = 0; i < Hunter_Own_List.Count; i++)
 		{
-			HeroCard component = MWPoolManager.Spawn("Hunter", "HunterCard_" + Hunter_Own_List[i].Stat.hunterIdx, trHunterContent).GetComponent<HeroCard>();
+			HeroCard component = MasterPoolManager.SpawnObject("Hunter", "HunterCard_" + Hunter_Own_List[i].Stat.hunterIdx, trHunterContent).GetComponent<HeroCard>();
 			component.Construct(HerocardType.Hunterlist, GameDataManager.GetHunterInfo(Hunter_Own_List[i].Stat.hunterIdx, Hunter_Own_List[i].Stat.hunterLevel, Hunter_Own_List[i].Stat.hunterTier), _isOwn: true, _isArena: false);
 			component.HeroIdx = i;
 			component.transform.localPosition = Vector3.zero;
@@ -456,7 +456,7 @@ public class HunterList : LobbyPopupBase
 		}
 		for (int j = 0; j < Hunter_NotOwn_List.Count; j++)
 		{
-			HeroCard component2 = MWPoolManager.Spawn("Hunter", "HunterCard_" + Hunter_NotOwn_List[j].Stat.hunterIdx, trHunterContent).GetComponent<HeroCard>();
+			HeroCard component2 = MasterPoolManager.SpawnObject("Hunter", "HunterCard_" + Hunter_NotOwn_List[j].Stat.hunterIdx, trHunterContent).GetComponent<HeroCard>();
 			component2.Construct(HerocardType.Hunterlist, GameDataManager.GetHunterInfo(Hunter_NotOwn_List[j].Stat.hunterIdx, Hunter_NotOwn_List[j].Hunter.maxTier * 20, Hunter_NotOwn_List[j].Hunter.maxTier), _isOwn: false, _isArena: false);
 			component2.HeroIdx = j;
 			component2.transform.localPosition = Vector3.zero;

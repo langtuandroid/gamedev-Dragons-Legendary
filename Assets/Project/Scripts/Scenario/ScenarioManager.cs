@@ -133,7 +133,7 @@ public class ScenarioManager : GameObjectSingleton<ScenarioManager>
 				goDimmed.SetActive(value: false);
 				trBgAnchor.gameObject.SetActive(value: true);
 				ClearBg();
-				trBg = MWPoolManager.Spawn("Scenario", GetBgName(activeBgName), null, -1f, isSpeedProcess: false, isScaleChange: false);
+				trBg = MasterPoolManager.SpawnObject("Scenario", GetBgName(activeBgName), null, -1f, isSpeedProcess: false, isScaleChange: false);
 			}
 			else
 			{
@@ -162,7 +162,7 @@ public class ScenarioManager : GameObjectSingleton<ScenarioManager>
 	{
 		if (trBg != null)
 		{
-			MWPoolManager.DeSpawn("Scenario", trBg);
+			MasterPoolManager.ReturnToPool("Scenario", trBg);
 			trBg = null;
 		}
 	}

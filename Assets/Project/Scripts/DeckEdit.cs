@@ -114,20 +114,20 @@ public class DeckEdit : LobbyPopupBase
 		HeroCard[] componentsInChildren = trOwnHunterContent.GetComponentsInChildren<HeroCard>();
 		foreach (HeroCard hunterCard in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Hunter", hunterCard.transform);
+			MasterPoolManager.ReturnToPool("Hunter", hunterCard.transform);
 		}
 		HeroCard[] componentsInChildren2 = trUseHunterContent.GetComponentsInChildren<HeroCard>();
 		foreach (HeroCard hunterCard2 in componentsInChildren2)
 		{
-			MWPoolManager.DeSpawn("Hunter", hunterCard2.transform);
+			MasterPoolManager.ReturnToPool("Hunter", hunterCard2.transform);
 		}
 		if (huntercardChange1 != null)
 		{
-			MWPoolManager.DeSpawn("Effect", huntercardChange1);
+			MasterPoolManager.ReturnToPool("Effect", huntercardChange1);
 		}
 		if (huntercardChange2 != null)
 		{
-			MWPoolManager.DeSpawn("Effect", huntercardChange2);
+			MasterPoolManager.ReturnToPool("Effect", huntercardChange2);
 		}
 	}
 
@@ -168,7 +168,7 @@ public class DeckEdit : LobbyPopupBase
 		huntercardSelect.gameObject.SetActive(value: false);
 		for (int l = 0; l < GameInfo.userData.huntersOwnInfo.Length; l++)
 		{
-			HeroCard component = MWPoolManager.Spawn("Hunter", "HunterCard_" + GameInfo.userData.huntersOwnInfo[l].hunterIdx, trOwnHunterContent).GetComponent<HeroCard>();
+			HeroCard component = MasterPoolManager.SpawnObject("Hunter", "HunterCard_" + GameInfo.userData.huntersOwnInfo[l].hunterIdx, trOwnHunterContent).GetComponent<HeroCard>();
 			if (hunterListType == HanterListType.Normal)
 			{
 				component.Construct(HerocardType.Deck, GameDataManager.GetHunterInfo(GameInfo.userData.huntersOwnInfo[l].hunterIdx, GameInfo.userData.huntersOwnInfo[l].hunterLevel, GameInfo.userData.huntersOwnInfo[l].hunterTier), _isOwn: true, _isArena: false);
@@ -188,7 +188,7 @@ public class DeckEdit : LobbyPopupBase
 		{
 			for (int m = 0; m < GameInfo.userData.huntersUseInfo.Length; m++)
 			{
-				HeroCard component2 = MWPoolManager.Spawn("Hunter", "HunterCard_" + GameInfo.userData.huntersUseInfo[m].hunterIdx, trUseHunterContent).GetComponent<HeroCard>();
+				HeroCard component2 = MasterPoolManager.SpawnObject("Hunter", "HunterCard_" + GameInfo.userData.huntersUseInfo[m].hunterIdx, trUseHunterContent).GetComponent<HeroCard>();
 				component2.Construct(HerocardType.Deck, GameDataManager.GetHunterInfo(GameInfo.userData.huntersUseInfo[m].hunterIdx, GameInfo.userData.huntersUseInfo[m].hunterLevel, GameInfo.userData.huntersUseInfo[m].hunterTier), _isOwn: true, _isArena: false);
 				component2.HeroIdx = m;
 				component2.IsUseHero = true;
@@ -200,11 +200,11 @@ public class DeckEdit : LobbyPopupBase
 				{
 					if (component2.HunterInfo.Stat.hunterLeaderSkill == 0)
 					{
-						leaderSkill_Text.text = string.Format(MWLocalize.GetData("Popup_hunter_leaderskill_02"));
+						leaderSkill_Text.text = string.Format(MasterLocalize.GetData("Popup_hunter_leaderskill_02"));
 					}
 					else
 					{
-						leaderSkill_Text.text = string.Format(MWLocalize.GetData(GameDataManager.GetHunterLeaderSkillData(component2.HunterInfo.Stat.hunterLeaderSkill).leaderSkillDescription));
+						leaderSkill_Text.text = string.Format(MasterLocalize.GetData(GameDataManager.GetHunterLeaderSkillData(component2.HunterInfo.Stat.hunterLeaderSkill).leaderSkillDescription));
 					}
 				}
 				if (LobbyManager.OpenDeckEdit != null)
@@ -224,7 +224,7 @@ public class DeckEdit : LobbyPopupBase
 		{
 			for (int n = 0; n < GameInfo.userData.huntersArenaUseInfo.Length; n++)
 			{
-				HeroCard component3 = MWPoolManager.Spawn("Hunter", "HunterCard_" + GameInfo.userData.huntersArenaUseInfo[n].hunterIdx, trUseHunterContent).GetComponent<HeroCard>();
+				HeroCard component3 = MasterPoolManager.SpawnObject("Hunter", "HunterCard_" + GameInfo.userData.huntersArenaUseInfo[n].hunterIdx, trUseHunterContent).GetComponent<HeroCard>();
 				component3.Construct(HerocardType.Deck, GameDataManager.GetHunterInfo(GameInfo.userData.huntersArenaUseInfo[n].hunterIdx, GameInfo.userData.huntersArenaUseInfo[n].hunterLevel, GameInfo.userData.huntersArenaUseInfo[n].hunterTier), _isOwn: true, _isArena: true);
 				component3.HeroIdx = n;
 				component3.IsUseHero = true;
@@ -236,11 +236,11 @@ public class DeckEdit : LobbyPopupBase
 				{
 					if (component3.HunterInfo.Stat.hunterLeaderSkill == 0)
 					{
-						leaderSkill_Text.text = string.Format(MWLocalize.GetData("Popup_hunter_leaderskill_02"));
+						leaderSkill_Text.text = string.Format(MasterLocalize.GetData("Popup_hunter_leaderskill_02"));
 					}
 					else
 					{
-						leaderSkill_Text.text = string.Format(MWLocalize.GetData(GameDataManager.GetHunterLeaderSkillData(component3.HunterInfo.Stat.hunterLeaderSkill).leaderSkillDescription));
+						leaderSkill_Text.text = string.Format(MasterLocalize.GetData(GameDataManager.GetHunterLeaderSkillData(component3.HunterInfo.Stat.hunterLeaderSkill).leaderSkillDescription));
 					}
 				}
 				if (LobbyManager.OpenDeckEdit != null)
@@ -319,52 +319,52 @@ public class DeckEdit : LobbyPopupBase
 		}
 		if (_isInit)
 		{
-			totalHealth_Text.text = "<color=#ffffff>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_health"), StatTranslate(totalHealth_current)) + "</color>";
-			totalAttack_Text.text = "<color=#ffffff>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_attack"), StatTranslate(totalAttack_current)) + "</color>";
-			totalRecovery_Text.text = "<color=#ffffff>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_recovery"), StatTranslate(totalRecovery_current)) + "</color>";
+			totalHealth_Text.text = "<color=#ffffff>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_health"), StatTranslate(totalHealth_current)) + "</color>";
+			totalAttack_Text.text = "<color=#ffffff>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_attack"), StatTranslate(totalAttack_current)) + "</color>";
+			totalRecovery_Text.text = "<color=#ffffff>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_recovery"), StatTranslate(totalRecovery_current)) + "</color>";
 			return;
 		}
 		if (totalHealth_current < totalHealth_after)
 		{
 			healthArrow_Up.SetActive(value: true);
-			totalHealth_Text.text = "<color=#19c6ff>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_health"), StatTranslate(totalHealth_after)) + "</color>";
+			totalHealth_Text.text = "<color=#19c6ff>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_health"), StatTranslate(totalHealth_after)) + "</color>";
 		}
 		else if (totalHealth_current > totalHealth_after)
 		{
 			healthArrow_Down.SetActive(value: true);
-			totalHealth_Text.text = "<color=#ff0000>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_health"), StatTranslate(totalHealth_after)) + "</color>";
+			totalHealth_Text.text = "<color=#ff0000>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_health"), StatTranslate(totalHealth_after)) + "</color>";
 		}
 		else
 		{
-			totalHealth_Text.text = "<color=#ffffff>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_health"), StatTranslate(totalHealth_after)) + "</color>";
+			totalHealth_Text.text = "<color=#ffffff>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_health"), StatTranslate(totalHealth_after)) + "</color>";
 		}
 		if (totalAttack_current < totalAttack_after)
 		{
 			attackArrow_Up.SetActive(value: true);
-			totalAttack_Text.text = "<color=#19c6ff>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_attack"), StatTranslate(totalAttack_after)) + "</color>";
+			totalAttack_Text.text = "<color=#19c6ff>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_attack"), StatTranslate(totalAttack_after)) + "</color>";
 		}
 		else if (totalAttack_current > totalAttack_after)
 		{
 			attackArrow_Down.SetActive(value: true);
-			totalAttack_Text.text = "<color=#ff0000>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_attack"), StatTranslate(totalAttack_after)) + "</color>";
+			totalAttack_Text.text = "<color=#ff0000>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_attack"), StatTranslate(totalAttack_after)) + "</color>";
 		}
 		else
 		{
-			totalAttack_Text.text = "<color=#ffffff>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_attack"), StatTranslate(totalAttack_after)) + "</color>";
+			totalAttack_Text.text = "<color=#ffffff>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_attack"), StatTranslate(totalAttack_after)) + "</color>";
 		}
 		if (totalRecovery_current < totalRecovery_after)
 		{
 			recoveryArrow_Up.SetActive(value: true);
-			totalRecovery_Text.text = "<color=#19c6ff>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_recovery"), StatTranslate(totalRecovery_after)) + "</color>";
+			totalRecovery_Text.text = "<color=#19c6ff>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_recovery"), StatTranslate(totalRecovery_after)) + "</color>";
 		}
 		else if (totalRecovery_current > totalRecovery_after)
 		{
 			recoveryArrow_Down.SetActive(value: true);
-			totalRecovery_Text.text = "<color=#ff0000>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_recovery"), StatTranslate(totalRecovery_after)) + "</color>";
+			totalRecovery_Text.text = "<color=#ff0000>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_recovery"), StatTranslate(totalRecovery_after)) + "</color>";
 		}
 		else
 		{
-			totalRecovery_Text.text = "<color=#ffffff>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_recovery"), StatTranslate(totalRecovery_after)) + "</color>";
+			totalRecovery_Text.text = "<color=#ffffff>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_recovery"), StatTranslate(totalRecovery_after)) + "</color>";
 		}
 	}
 
@@ -512,9 +512,9 @@ public class DeckEdit : LobbyPopupBase
 		SelectHunter_1.ChangeStatus(_isUseToUse);
 		SelectHunter_2.ChangeStatus(_isUseToUse);
 		huntercardSelect.gameObject.SetActive(value: false);
-		huntercardChange1 = MWPoolManager.Spawn("Effect", "FX_cha_select_02", SelectHunter_1.transform, 1f);
+		huntercardChange1 = MasterPoolManager.SpawnObject("Effect", "FX_cha_select_02", SelectHunter_1.transform, 1f);
 		huntercardChange1.localPosition = Vector3.zero;
-		huntercardChange2 = MWPoolManager.Spawn("Effect", "FX_cha_select_02", SelectHunter_2.transform, 1f);
+		huntercardChange2 = MasterPoolManager.SpawnObject("Effect", "FX_cha_select_02", SelectHunter_2.transform, 1f);
 		huntercardChange2.localPosition = Vector3.zero;
 		SoundController.EffectSound_Play(EffectSoundType.HunterSwitching);
 		SelectHunter_1 = null;
@@ -523,20 +523,20 @@ public class DeckEdit : LobbyPopupBase
 		{
 			if (GameDataManager.GetHunterInfo(GameInfo.userData.huntersUseInfo[0].hunterIdx, GameInfo.userData.huntersUseInfo[0].hunterLevel, GameInfo.userData.huntersUseInfo[0].hunterTier).Stat.hunterLeaderSkill == 0)
 			{
-				leaderSkill_Text.text = string.Format(MWLocalize.GetData("Popup_hunter_leaderskill_02"));
+				leaderSkill_Text.text = string.Format(MasterLocalize.GetData("Popup_hunter_leaderskill_02"));
 			}
 			else
 			{
-				leaderSkill_Text.text = string.Format(MWLocalize.GetData(GameDataManager.GetHunterLeaderSkillData(GameDataManager.GetHunterInfo(GameInfo.userData.huntersUseInfo[0].hunterIdx, GameInfo.userData.huntersUseInfo[0].hunterLevel, GameInfo.userData.huntersUseInfo[0].hunterTier).Stat.hunterLeaderSkill).leaderSkillDescription));
+				leaderSkill_Text.text = string.Format(MasterLocalize.GetData(GameDataManager.GetHunterLeaderSkillData(GameDataManager.GetHunterInfo(GameInfo.userData.huntersUseInfo[0].hunterIdx, GameInfo.userData.huntersUseInfo[0].hunterLevel, GameInfo.userData.huntersUseInfo[0].hunterTier).Stat.hunterLeaderSkill).leaderSkillDescription));
 			}
 		}
 		else if (GameDataManager.GetHunterInfo(GameInfo.userData.huntersArenaUseInfo[0].hunterIdx, GameInfo.userData.huntersArenaUseInfo[0].hunterLevel, GameInfo.userData.huntersArenaUseInfo[0].hunterTier).Stat.hunterLeaderSkill == 0)
 		{
-			leaderSkill_Text.text = string.Format(MWLocalize.GetData("Popup_hunter_leaderskill_02"));
+			leaderSkill_Text.text = string.Format(MasterLocalize.GetData("Popup_hunter_leaderskill_02"));
 		}
 		else
 		{
-			leaderSkill_Text.text = string.Format(MWLocalize.GetData(GameDataManager.GetHunterLeaderSkillData(GameDataManager.GetHunterInfo(GameInfo.userData.huntersArenaUseInfo[0].hunterIdx, GameInfo.userData.huntersArenaUseInfo[0].hunterLevel, GameInfo.userData.huntersArenaUseInfo[0].hunterTier).Stat.hunterLeaderSkill).leaderSkillDescription));
+			leaderSkill_Text.text = string.Format(MasterLocalize.GetData(GameDataManager.GetHunterLeaderSkillData(GameDataManager.GetHunterInfo(GameInfo.userData.huntersArenaUseInfo[0].hunterIdx, GameInfo.userData.huntersArenaUseInfo[0].hunterLevel, GameInfo.userData.huntersArenaUseInfo[0].hunterTier).Stat.hunterLeaderSkill).leaderSkillDescription));
 		}
 	}
 

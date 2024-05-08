@@ -24,7 +24,7 @@ public class Monster_Anim : MonoBehaviour
 		UnityEngine.Debug.Log("monster.MonsterCurrentDamage = " + monster.MonsterCurrentDamage);
 		SoundController.Monster_Play(monster.MonsterInfo.mIdx);
 		Transform transform = null;
-		transform = MWPoolManager.Spawn("Effect", "Fx_Damage_hit", null, 0.5f);
+		transform = MasterPoolManager.SpawnObject("Effect", "Fx_Damage_hit", null, 0.5f);
 		transform.position = PuzzlePlayManager.DamagePosition;
 		monster.SetAttackHunterDamageAnim();
 		PuzzlePlayManager.Damage(monster.MonsterCurrentDamage);

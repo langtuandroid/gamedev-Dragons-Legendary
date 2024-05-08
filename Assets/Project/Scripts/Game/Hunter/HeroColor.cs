@@ -26,10 +26,10 @@ public class HeroColor : MonoBehaviour
     {
         if (_hunterCharacter != null)
         {
-            MWPoolManager.DeSpawn("Hunter", _hunterCharacter);
+            MasterPoolManager.ReturnToPool("Hunter", _hunterCharacter);
             _hunterCharacter = null;
         }
-        _hunterCharacter = MWPoolManager.Spawn("Hunter", _heroInfo.Hunter.hunterIdx.ToString(), _hunterPos);
+        _hunterCharacter = MasterPoolManager.SpawnObject("Hunter", _heroInfo.Hunter.hunterIdx.ToString(), _hunterPos);
         SetImage();
         _hunterCharacter.gameObject.SetActive(value: true);
         if (_heroInfo.Hunter.hunterSize == 3)

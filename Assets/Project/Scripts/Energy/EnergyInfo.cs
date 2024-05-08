@@ -88,7 +88,7 @@ public class EnergyInfo : LobbyPopupBase
 		{
 			SoundController.EffectSound_Play(EffectSoundType.GetEnergy);
 			float num = UnityEngine.Random.Range(-0.2f, -0.1f);
-			Transform transform = MWPoolManager.Spawn("Effect", "FX_Energy_get", null, 1.2f + num + 0.4f);
+			Transform transform = MasterPoolManager.SpawnObject("Effect", "FX_Energy_get", null, 1.2f + num + 0.4f);
 			transform.position = trStart.position + new Vector3(UnityEngine.Random.Range(-0.5f, 0.5f), UnityEngine.Random.Range(-0.5f, 0.5f), 0f);
 			GameObject gameObject = transform.gameObject;
 			Vector3 userEnergyPosition = LobbyManager.UserEnergyPosition;

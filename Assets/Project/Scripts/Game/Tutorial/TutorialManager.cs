@@ -446,7 +446,7 @@ public class TutorialManager : GameObjectSingleton<TutorialManager>
 	{
 		if (GameObjectSingleton<TutorialManager>.Inst.trHand != null)
 		{
-			MWPoolManager.DeSpawn("Tutorial", GameObjectSingleton<TutorialManager>.Inst.trHand);
+			MasterPoolManager.ReturnToPool("Tutorial", GameObjectSingleton<TutorialManager>.Inst.trHand);
 			GameObjectSingleton<TutorialManager>.Inst.trHand = null;
 		}
 	}
@@ -454,7 +454,7 @@ public class TutorialManager : GameObjectSingleton<TutorialManager>
 	private IEnumerator ProcessShowHandDelay(Transform _trTarget, Vector3 _addPosition)
 	{
 		yield return null;
-		GameObjectSingleton<TutorialManager>.Inst.trHand = MWPoolManager.Spawn("Tutorial", "Tutorial_Hand");
+		GameObjectSingleton<TutorialManager>.Inst.trHand = MasterPoolManager.SpawnObject("Tutorial", "Tutorial_Hand");
 		GameObjectSingleton<TutorialManager>.Inst.trHand.position = _trTarget.position + _addPosition;
 		GameObjectSingleton<TutorialManager>.Inst.trHand.GetComponent<TutorialHand>().ShowHandDown();
 	}

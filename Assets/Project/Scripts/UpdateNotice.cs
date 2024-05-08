@@ -15,8 +15,8 @@ public class UpdateNotice : MonoBehaviour
 	{
 		base.gameObject.SetActive(value: true);
 		resultData = _resultData;
-		textUpdateTitle.text = MWLocalize.GetData(_resultData.title);
-		textUpdtateMessage.text = MWLocalize.GetData(_resultData.message);
+		textUpdateTitle.text = MasterLocalize.GetData(_resultData.title);
+		textUpdtateMessage.text = MasterLocalize.GetData(_resultData.message);
 		SoundController.EffectSound_Play(EffectSoundType.OpenPopup);
 	}
 

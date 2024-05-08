@@ -147,14 +147,14 @@ public class ValueShopBuy : LobbyPopupBase
 		buyWealth.gameObject.SetActive(value: false);
 		if (item_Img != null)
 		{
-			MWPoolManager.DeSpawn("Item", item_Img);
+			MasterPoolManager.ReturnToPool("Item", item_Img);
 			item_Img = null;
 		}
-		item_Img = MWPoolManager.Spawn("Item", "Item_" + shopDailyDbData.itemIdx, item_Img_Tr);
-		item_Name.text = MWLocalize.GetData(shopDailyDbData.itemName);
-		item_Owned.text = string.Format(MWLocalize.GetData("common_text_owned"), GameInfo.userData.GetItemCount(shopDailyDbData.itemIdx).ToString());
+		item_Img = MasterPoolManager.SpawnObject("Item", "Item_" + shopDailyDbData.itemIdx, item_Img_Tr);
+		item_Name.text = MasterLocalize.GetData(shopDailyDbData.itemName);
+		item_Owned.text = string.Format(MasterLocalize.GetData("common_text_owned"), GameInfo.userData.GetItemCount(shopDailyDbData.itemIdx).ToString());
 		item_BuyCount.text = "x" + buy_Count;
-		item_Left.text = string.Format(shopDailyDbData.left.ToString(), MWLocalize.GetData("popup_level_text_2"));
+		item_Left.text = string.Format(shopDailyDbData.left.ToString(), MasterLocalize.GetData("popup_level_text_2"));
 		total_Price = shopDailyDbData.resultPrice;
 		Check_Coin_Enough();
 	}

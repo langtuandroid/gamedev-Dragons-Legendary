@@ -84,7 +84,7 @@ public class BattleReward : MonoBehaviour
 		{
 			if (alreadyFound_List[i].childCount > 0)
 			{
-				MWPoolManager.DeSpawn("Item", alreadyFound_List[i].GetChild(0));
+				MasterPoolManager.ReturnToPool("Item", alreadyFound_List[i].GetChild(0));
 			}
 		}
 		for (int j = 0; j < isOpenItem_Arr.Length; j++)
@@ -236,19 +236,19 @@ public class BattleReward : MonoBehaviour
 				if (resultItem_Arr[i].childCount > 1)
 				{
 					resultItem_Arr[i].GetChild(0).GetComponent<Image>().color = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
-					MWPoolManager.DeSpawn("Item", resultItem_Arr[i].GetChild(0));
+					MasterPoolManager.ReturnToPool("Item", resultItem_Arr[i].GetChild(0));
 				}
 				if (PuzzlePlayManager.OnBattleRewardTutorial != null)
 				{
 					Tutorial_Change_Item(chestListDbData_Idx[i]);
 				}
 				Transform transform = null;
-				transform = MWPoolManager.Spawn("Effect", "FX_RewardBox", resultItem_Arr[i], 2f);
+				transform = MasterPoolManager.SpawnObject("Effect", "FX_RewardBox", resultItem_Arr[i], 2f);
 				transform.localPosition = Vector3.zero;
 				transform.localScale = Vector3.one;
 				resultItem_Arr[i].gameObject.SetActive(value: true);
 				Transform transform2 = null;
-				transform2 = MWPoolManager.Spawn("Item", "Item_" + chestListDbDataList[chestListDbData_Idx[i]].chestItem, resultItem_Arr[i]);
+				transform2 = MasterPoolManager.SpawnObject("Item", "Item_" + chestListDbDataList[chestListDbData_Idx[i]].chestItem, resultItem_Arr[i]);
 				transform2.SetAsFirstSibling();
 				resultItem_Arr[i].GetChild(1).GetComponent<Text>().text = "x" + chestListDbDataList[chestListDbData_Idx[i]].chestItemN;
 				transform2.localPosition = Vector3.zero;
@@ -269,11 +269,11 @@ public class BattleReward : MonoBehaviour
 				if (resultItem_Arr[i].childCount > 1)
 				{
 					resultItem_Arr[i].GetChild(0).GetComponent<Image>().color = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
-					MWPoolManager.DeSpawn("Item", resultItem_Arr[i].GetChild(0));
+					MasterPoolManager.ReturnToPool("Item", resultItem_Arr[i].GetChild(0));
 				}
 				resultItem_Arr[i].gameObject.SetActive(value: true);
 				Transform transform3 = null;
-				transform3 = MWPoolManager.Spawn("Item", "Item_" + chestListDbDataList[chestListDbData_Idx[i]].chestItem, resultItem_Arr[i]);
+				transform3 = MasterPoolManager.SpawnObject("Item", "Item_" + chestListDbDataList[chestListDbData_Idx[i]].chestItem, resultItem_Arr[i]);
 				transform3.SetAsFirstSibling();
 				resultItem_Arr[i].GetChild(1).GetComponent<Text>().text = "x" + chestListDbDataList[chestListDbData_Idx[i]].chestItemN;
 				transform3.localPosition = Vector3.zero;
@@ -284,7 +284,7 @@ public class BattleReward : MonoBehaviour
 			{
 				if (resultItem_Arr[i].childCount > 1)
 				{
-					MWPoolManager.DeSpawn("Item", resultItem_Arr[i].GetChild(0));
+					MasterPoolManager.ReturnToPool("Item", resultItem_Arr[i].GetChild(0));
 				}
 				resultItem_Arr[i].gameObject.SetActive(value: false);
 			}
@@ -407,7 +407,7 @@ public class BattleReward : MonoBehaviour
 			if (!isOpenItem_Arr[i] && resultItem_Arr[i].childCount > 0)
 			{
 				resultItem_Arr[i].GetChild(0).GetComponent<Image>().color = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
-				MWPoolManager.DeSpawn("Item", resultItem_Arr[i].GetChild(0));
+				MasterPoolManager.ReturnToPool("Item", resultItem_Arr[i].GetChild(0));
 			}
 		}
 		for (int j = 0; j < resultItem_Arr.Length; j++)
@@ -417,12 +417,12 @@ public class BattleReward : MonoBehaviour
 				resultItem_Arr[j].GetChild(k).gameObject.SetActive(value: false);
 			}
 		}
-		MWPoolManager.DeSpawnPoolAll("Puzzle");
-		MWPoolManager.DeSpawnPoolAll("Hunter");
-		MWPoolManager.DeSpawnPoolAll("Monster");
-		MWPoolManager.DeSpawnPoolAll("Effect");
-		MWPoolManager.DeSpawnPoolAll("Stage");
-		MWPoolManager.DeSpawnPoolAll("Item");
+		MasterPoolManager.ReturnToPoolAll("Puzzle");
+		MasterPoolManager.ReturnToPoolAll("Hunter");
+		MasterPoolManager.ReturnToPoolAll("Monster");
+		MasterPoolManager.ReturnToPoolAll("Effect");
+		MasterPoolManager.ReturnToPoolAll("Stage");
+		MasterPoolManager.ReturnToPoolAll("Item");
 		GameDataManager.MoveScene(SceneType.Lobby);
 	}
 

@@ -100,7 +100,7 @@ public class ChapterBox : MonoBehaviour
 		LevelGameBlock[] componentsInChildren = trContent.GetComponentsInChildren<LevelGameBlock>();
 		foreach (LevelGameBlock levelCell in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Lobby", levelCell.transform);
+			MasterPoolManager.ReturnToPool("Lobby", levelCell.transform);
 		}
 	}
 
@@ -119,14 +119,14 @@ public class ChapterBox : MonoBehaviour
 		goOpen.SetActive(value: false);
 		goLockParent.SetActive(value: false);
 		btnReward.enabled = false;
-		textChapterName.text = MWLocalize.GetData(chapterDbData.chapterName);
+		textChapterName.text = MasterLocalize.GetData(chapterDbData.chapterName);
 		listLevelDbData = GameDataManager.GetLevelListDbData(chapterDbData.stage, chapterDbData.chapter);
 		textRequireStarLock.text = $"{GameDataManager.GetUserClearStarCount()}/{chapterDbData.ocStar}";
 		textRequireStarOpen.text = $"{GameDataManager.GetUserClearStarCount()}/{chapterDbData.ocStar}";
 		for (int i = 0; i < listLevelDbData.Count; i++)
 		{
 			LevelGameDbData levelDbData = listLevelDbData[i];
-			LevelGameBlock component = MWPoolManager.Spawn("Lobby", "Cell_level", trContent).GetComponent<LevelGameBlock>();
+			LevelGameBlock component = MasterPoolManager.SpawnObject("Lobby", "Cell_level", trContent).GetComponent<LevelGameBlock>();
 			component.transform.localScale = Vector3.one;
 			component.SetData(levelDbData);
 			component.PlaceStars(GameDataManager.GetLevelStarCount(levelDbData.stage, levelDbData.chapter, levelDbData.level));
@@ -194,7 +194,7 @@ public class ChapterBox : MonoBehaviour
 		goLock.SetActive(value: false);
 		goLockParent.SetActive(value: false);
 		goRewardObj.SetActive(value: true);
-		Transform transform = MWPoolManager.Spawn("Effect", "FX_Quickroot", null, 3f);
+		Transform transform = MasterPoolManager.SpawnObject("Effect", "FX_Quickroot", null, 3f);
 		transform.position = Vector3.zero;
 		SoundController.EffectSound_Play(EffectSoundType.OpenChapter);
 	}
@@ -211,7 +211,7 @@ public class ChapterBox : MonoBehaviour
 		for (int i = 0; i < jewelCount; i++)
 		{
 			float num = UnityEngine.Random.Range(-0.2f, -0.1f);
-			Transform transform = MWPoolManager.Spawn("Effect", "FX_jewel_get", null, 1.2f + num + 0.4f);
+			Transform transform = MasterPoolManager.SpawnObject("Effect", "FX_jewel_get", null, 1.2f + num + 0.4f);
 			transform.position = goRewardEffect.transform.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), 0f);
 			GameObject gameObject = transform.gameObject;
 			Vector3 userJewelPosition = LobbyManager.UserJewelPosition;

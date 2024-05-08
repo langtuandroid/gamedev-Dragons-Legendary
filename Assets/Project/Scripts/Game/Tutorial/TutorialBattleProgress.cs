@@ -188,7 +188,7 @@ public class TutorialBattleProgress : MonoBehaviour
 	private void ShowHandBlock(int _x, int _y, bool isBottom)
 	{
 		ClearHand();
-		trHand = MWPoolManager.Spawn("Tutorial", "Tutorial_Hand");
+		trHand = MasterPoolManager.SpawnObject("Tutorial", "Tutorial_Hand");
 		trHand.position = PuzzlePlayManager.BlockPositions(_x, _y);
 		if (isBottom)
 		{
@@ -198,7 +198,7 @@ public class TutorialBattleProgress : MonoBehaviour
 		{
 			trHand.GetComponent<TutorialHand>().ShowHandDiagonalAnim();
 		}
-		trBlockTile = MWPoolManager.Spawn("Tutorial", "Tutorial_Tile");
+		trBlockTile = MasterPoolManager.SpawnObject("Tutorial", "Tutorial_Tile");
 		trBlockTile.position = PuzzlePlayManager.BlockPositions(_x, _y);
 	}
 
@@ -206,12 +206,12 @@ public class TutorialBattleProgress : MonoBehaviour
 	{
 		if (trHand != null)
 		{
-			MWPoolManager.DeSpawn("Tutorial", trHand);
+			MasterPoolManager.ReturnToPool("Tutorial", trHand);
 			trHand = null;
 		}
 		if (trBlockTile != null)
 		{
-			MWPoolManager.DeSpawn("Tutorial", trBlockTile);
+			MasterPoolManager.ReturnToPool("Tutorial", trBlockTile);
 			trBlockTile = null;
 		}
 	}

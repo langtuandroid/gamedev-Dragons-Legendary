@@ -55,14 +55,14 @@ public class LevelGamePlayBoosterItem : MonoBehaviour
 		_boosterDeselected.gameObject.SetActive(value: true);
 		for (int i = 0; i < _boosterIcon.childCount; i++)
 		{
-			MWPoolManager.DeSpawn("Item", _boosterIcon.GetChild(0).transform);
+			MasterPoolManager.ReturnToPool("Item", _boosterIcon.GetChild(0).transform);
 		}
 		_boosterCheck.gameObject.SetActive(value: false);
 	}
 
 	private void ConfigureBoosterItem()
 	{
-		Transform transform = MWPoolManager.Spawn("Item", "Booster" + _itemType, _boosterIcon);
+		Transform transform = MasterPoolManager.SpawnObject("Item", "Booster" + _itemType, _boosterIcon);
 		_boosterData = GameDataManager.GetBoostItemData(_itemType);
 		if (_boosterData.costType == -1)
 		{
@@ -76,7 +76,7 @@ public class LevelGamePlayBoosterItem : MonoBehaviour
 			_boosterJewel.gameObject.SetActive(value: true);
 			_boosterCost.text = _boosterData.costCount.ToString();
 		}
-		_boosterName.text = MWLocalize.GetData(_boosterData.boosterName);
+		_boosterName.text = MasterLocalize.GetData(_boosterData.boosterName);
 	}
 
 	private void VideoBoostItem()

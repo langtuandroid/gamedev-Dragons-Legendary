@@ -38,7 +38,7 @@ public class RewardResult : LobbyPopupBase
 	{
 		foreach (ChestListDbData data in _arrData)
 		{
-			ChestResultItem component = MWPoolManager.Spawn("Item", "Item02", trItemAnchor).GetComponent<ChestResultItem>();
+			ChestResultItem component = MasterPoolManager.SpawnObject("Item", "Item02", trItemAnchor).GetComponent<ChestResultItem>();
 			component.Init(data);
 			component.transform.localPosition = Vector3.zero;
 			component.transform.localScale = Vector3.one;
@@ -59,7 +59,7 @@ public class RewardResult : LobbyPopupBase
 		ChestResultItem[] componentsInChildren = trItemAnchor.GetComponentsInChildren<ChestResultItem>(includeInactive: true);
 		foreach (ChestResultItem chestResultItem in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Item", chestResultItem.transform);
+			MasterPoolManager.ReturnToPool("Item", chestResultItem.transform);
 		}
 	}
 }

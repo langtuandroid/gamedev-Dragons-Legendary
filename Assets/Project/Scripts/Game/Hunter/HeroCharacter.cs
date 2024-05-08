@@ -50,7 +50,7 @@ public class HeroCharacter : MonoBehaviour
 	public void SetEffect()
 	{
 		Transform transform = null;
-		transform = MWPoolManager.Spawn("Effect", "FX_Summon02", null, 1f);
+		transform = MasterPoolManager.SpawnObject("Effect", "FX_Summon02", null, 1f);
 		transform.position = base.transform.position;
 	}
 

@@ -86,7 +86,7 @@ public class BannerStartPack : MonoBehaviour
 		for (int i = 0; i < jewelCount; i++)
 		{
 			float num = UnityEngine.Random.Range(-0.2f, -0.1f);
-			Transform transform = MWPoolManager.Spawn("Effect", "FX_jewel_get", null, 1.2f + num + 0.4f);
+			Transform transform = MasterPoolManager.SpawnObject("Effect", "FX_jewel_get", null, 1.2f + num + 0.4f);
 			transform.localScale = Vector3.one;
 			transform.position = trJewelItem.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), 0f);
 			GameObject gameObject = transform.gameObject;
@@ -100,7 +100,7 @@ public class BannerStartPack : MonoBehaviour
 		for (int j = 0; j < coinCount; j++)
 		{
 			float num2 = UnityEngine.Random.Range(-0.2f, -0.1f);
-			Transform transform2 = MWPoolManager.Spawn("Effect", "FX_Coin_get", null, 1.2f + num2 + 0.4f);
+			Transform transform2 = MasterPoolManager.SpawnObject("Effect", "FX_Coin_get", null, 1.2f + num2 + 0.4f);
 			transform2.localScale = new Vector2(0.12f, 0.12f);
 			transform2.position = trCoinItem.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), 0f);
 			GameObject gameObject3 = transform2.gameObject;

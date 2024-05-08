@@ -35,7 +35,7 @@ public class FloorController : MonoBehaviour
 	{
 		stageId = id;
 		officeFloor.SetOffice($"Floor_office{stageId + 1}");
-		textFloorControlName.text = MWLocalize.GetData(GameDataManager.GetDicStageDbData()[stageId + 1].castleName);
+		textFloorControlName.text = MasterLocalize.GetData(GameDataManager.GetDicStageDbData()[stageId + 1].castleName);
 		SortFloorList();
 		List<StoreDbData> storeListForStage = GameDataManager.GetStoreListForStage(stageId + 1);
 		for (int i = 0; i < listFloorItem.Count; i++)

@@ -29,14 +29,14 @@ public class ChestProbability : MonoBehaviour
 
 	private void SetLocalize()
 	{
-		freeChest_L_Explain.text = MWLocalize.GetData("item_type_name_resource") + "\n" + MWLocalize.GetData("item_type_name_token") + "\n" + MWLocalize.GetData("item_type_name_jewel");
-		woodenChest_L_Explain.text = MWLocalize.GetData("item_type_name_resource") + "\n" + MWLocalize.GetData("item_type_name_token") + "\n" + MWLocalize.GetData("item_type_name_jewel");
-		MysteriousChest_L_Explain.text = MWLocalize.GetData("item_type_name_resource") + "\n" + MWLocalize.GetData("item_type_name_token") + "\n" + MWLocalize.GetData("item_type_name_jewel");
-		dungeonChest_L_Explain.text = MWLocalize.GetData("item_type_name_resource") + "\n" + MWLocalize.GetData("item_type_name_token") + "\n" + MWLocalize.GetData("item_type_name_jewel");
-		freeChest_R_Explain.text = MWLocalize.GetData("item_type_name_stamina") + "\n" + MWLocalize.GetData("item_type_name_coin") + "\n" + MWLocalize.GetData("item_type_name_key");
-		woodenChest_R_Explain.text = MWLocalize.GetData("item_type_name_stamina") + "\n" + MWLocalize.GetData("item_type_name_coin") + "\n" + MWLocalize.GetData("item_type_name_hunter");
-		MysteriousChest_R_Explain.text = MWLocalize.GetData("item_type_name_stamina") + "\n" + MWLocalize.GetData("item_type_name_hunter");
-		dungeonChest_R_Explain.text = MWLocalize.GetData("item_type_name_stamina") + "\n" + MWLocalize.GetData("item_type_name_coin") + "\n" + MWLocalize.GetData("item_type_name_key") + "\n" + MWLocalize.GetData("item_type_name_exp");
+		freeChest_L_Explain.text = MasterLocalize.GetData("item_type_name_resource") + "\n" + MasterLocalize.GetData("item_type_name_token") + "\n" + MasterLocalize.GetData("item_type_name_jewel");
+		woodenChest_L_Explain.text = MasterLocalize.GetData("item_type_name_resource") + "\n" + MasterLocalize.GetData("item_type_name_token") + "\n" + MasterLocalize.GetData("item_type_name_jewel");
+		MysteriousChest_L_Explain.text = MasterLocalize.GetData("item_type_name_resource") + "\n" + MasterLocalize.GetData("item_type_name_token") + "\n" + MasterLocalize.GetData("item_type_name_jewel");
+		dungeonChest_L_Explain.text = MasterLocalize.GetData("item_type_name_resource") + "\n" + MasterLocalize.GetData("item_type_name_token") + "\n" + MasterLocalize.GetData("item_type_name_jewel");
+		freeChest_R_Explain.text = MasterLocalize.GetData("item_type_name_stamina") + "\n" + MasterLocalize.GetData("item_type_name_coin") + "\n" + MasterLocalize.GetData("item_type_name_key");
+		woodenChest_R_Explain.text = MasterLocalize.GetData("item_type_name_stamina") + "\n" + MasterLocalize.GetData("item_type_name_coin") + "\n" + MasterLocalize.GetData("item_type_name_hunter");
+		MysteriousChest_R_Explain.text = MasterLocalize.GetData("item_type_name_stamina") + "\n" + MasterLocalize.GetData("item_type_name_hunter");
+		dungeonChest_R_Explain.text = MasterLocalize.GetData("item_type_name_stamina") + "\n" + MasterLocalize.GetData("item_type_name_coin") + "\n" + MasterLocalize.GetData("item_type_name_key") + "\n" + MasterLocalize.GetData("item_type_name_exp");
 	}
 
 	private void Start()

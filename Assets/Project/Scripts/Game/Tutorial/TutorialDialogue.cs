@@ -48,7 +48,7 @@ public class TutorialDialogue : MonoBehaviour
 			break;
 		}
 		rtDialogue.anchoredPosition = dialoguePosition;
-		textDialogue.text = MWLocalize.GetData(message);
+		textDialogue.text = MasterLocalize.GetData(message);
 		goMerlin.SetActive(isMerlin);
 		goKnight.SetActive(!isMerlin);
 	}

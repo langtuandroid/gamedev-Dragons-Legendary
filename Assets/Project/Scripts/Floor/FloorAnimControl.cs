@@ -144,7 +144,7 @@ public class FloorAnimControl : MonoBehaviour
 		StartCoroutine(ProcessShowUserOwnItem());
 		goTouchCollect.SetActive(value: false);
 		UnityEngine.Debug.Log("OnClickResult :: " + GameInfo.userData.GetItemCount(itemIdx));
-		textOwnItemCount.text = string.Format(MWLocalize.GetData("common_text_owned"), GameInfo.userData.GetItemCount(itemIdx));
+		textOwnItemCount.text = string.Format(MasterLocalize.GetData("common_text_owned"), GameInfo.userData.GetItemCount(itemIdx));
 		LobbyManager.StoreBadgeCollect();
 		SoundController.EffectSound_Play(EffectSoundType.GetMedal);
 	}

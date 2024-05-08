@@ -497,8 +497,8 @@ public class PuzzlePlayManager : GameObjectSingleton<PuzzlePlayManager>
 
 	public void OnClickForcePassWave()
 	{
-		MWPoolManager.DeSpawnPoolAll("Monster");
-		MWPoolManager.DeSpawnPoolAll("Effect");
+		MasterPoolManager.ReturnToPoolAll("Monster");
+		MasterPoolManager.ReturnToPoolAll("Effect");
 		_battleController.ForceWaveClear();
 	}
 

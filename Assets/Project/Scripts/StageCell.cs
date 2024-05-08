@@ -51,12 +51,12 @@ public class StageCell : MonoBehaviour
 	public void SetStageName(string stageName)
 	{
 		UnityEngine.Debug.Log("SetStageName - " + stageName);
-		textStageName.text = MWLocalize.GetData(stageName);
+		textStageName.text = MasterLocalize.GetData(stageName);
 	}
 
 	public void SetStageClearRate(int rate)
 	{
-		textStageClearRate.text = string.Format(MWLocalize.GetData("stage_clear_completeion_rate_text"), rate);
+		textStageClearRate.text = string.Format(MasterLocalize.GetData("stage_clear_completeion_rate_text"), rate);
 	}
 
 	public void Lock()

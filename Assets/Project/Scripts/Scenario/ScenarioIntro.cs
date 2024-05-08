@@ -38,7 +38,7 @@ public class ScenarioIntro : MonoBehaviour
 		StopMessageCoroutine();
 		isMessageFlow = false;
 		goNextArrow.SetActive(value: true);
-		textIntroMessage.text = MWLocalize.GetData(scenarioDbData.text);
+		textIntroMessage.text = MasterLocalize.GetData(scenarioDbData.text);
 	}
 
 	private IEnumerator ProcessShowMessage()
@@ -47,7 +47,7 @@ public class ScenarioIntro : MonoBehaviour
 		isMessageFlow = true;
 		goNextArrow.SetActive(value: false);
 		int activeCount = 1;
-		string strMessage = MWLocalize.GetData(scenarioDbData.text);
+		string strMessage = MasterLocalize.GetData(scenarioDbData.text);
 		SoundController.EffectSound_Play(EffectSoundType.DialogueText);
 		while (activeCount < strMessage.Length)
 		{

@@ -120,7 +120,7 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 		jSONObject2.AddField("sType", GameObjectSingleton<Protocol_Set>.Inst.GetPlatformType());
 		jSONObject2.AddField("sUid", GameInfo.sUid);
 		//jSONObject2.AddField("deviceId", MWPlatformService.GetUniqueDeviceId());
-		jSONObject2.AddField("deviceId",MWPlatformService.GetUniqueDeviceId() + 1); //TODO MWPlatformService.GetUniqueDeviceId()
+		jSONObject2.AddField("deviceId",MasterPlatformService.GetUniqueDeviceId() + 1); //TODO MWPlatformService.GetUniqueDeviceId()
 		switch (BuildSet.CurrentPlatformType)
 		{
 			case PlatformType.aos:
@@ -3684,7 +3684,7 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 	{
 		if (isSuccess)
 		{
-			GameInfo.sUid = MWPlatformService.UserId;
+			GameInfo.sUid = MasterPlatformService.UserId;
 			PlayerPrefs.SetString("SocialLogin", "y");
 		}
 		else if (PlayerPrefs.GetString("SocialLogin") == "y")

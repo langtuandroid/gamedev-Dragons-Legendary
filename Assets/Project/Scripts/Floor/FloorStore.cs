@@ -47,7 +47,7 @@ public class FloorStore : MonoBehaviour
 
 	public void ShowUnLockEffect()
 	{
-		MWPoolManager.Spawn("Effect", "FX_floor_unlock", base.transform, 8f);
+		MasterPoolManager.SpawnObject("Effect", "FX_floor_unlock", base.transform, 8f);
 	}
 
 	public void Show()

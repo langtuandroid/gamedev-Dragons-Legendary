@@ -86,7 +86,7 @@ public class SaleArenaPack : LobbyPopupBase
 		for (int i = 0; i < jewelCount; i++)
 		{
 			float num = UnityEngine.Random.Range(-0.2f, -0.1f);
-			Transform transform = MWPoolManager.Spawn("Effect", "FX_jewel_get", null, 1.2f + num + 0.4f);
+			Transform transform = MasterPoolManager.SpawnObject("Effect", "FX_jewel_get", null, 1.2f + num + 0.4f);
 			transform.position = btnPurchase.transform.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), 0f);
 			GameObject gameObject = transform.gameObject;
 			Vector3 userJewelPosition = LobbyManager.UserJewelPosition;
@@ -99,7 +99,7 @@ public class SaleArenaPack : LobbyPopupBase
 		for (int j = 0; j < ticketCount; j++)
 		{
 			float num2 = UnityEngine.Random.Range(-0.2f, -0.1f);
-			Transform transform2 = MWPoolManager.Spawn("Effect", "FX_ArenaTicket", null, 1.2f + num2 + 0.4f);
+			Transform transform2 = MasterPoolManager.SpawnObject("Effect", "FX_ArenaTicket", null, 1.2f + num2 + 0.4f);
 			transform2.localScale = new Vector2(0.12f, 0.12f);
 			transform2.position = btnPurchase.transform.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), 0f);
 			GameObject gameObject3 = transform2.gameObject;

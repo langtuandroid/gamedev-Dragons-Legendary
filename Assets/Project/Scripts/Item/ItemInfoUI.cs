@@ -16,7 +16,7 @@ public class ItemInfoUI : MonoBehaviour
 	public void Show(string poolName, string spawnName, int count)
 	{
 		spawnPoolName = poolName;
-		trSpawnItem = MWPoolManager.Spawn(spawnPoolName, spawnName, trIconAnchor);
+		trSpawnItem = MasterPoolManager.SpawnObject(spawnPoolName, spawnName, trIconAnchor);
 		textItemCount.text = $"X{count}";
 	}
 
@@ -24,7 +24,7 @@ public class ItemInfoUI : MonoBehaviour
 	{
 		if (trSpawnItem != null)
 		{
-			MWPoolManager.DeSpawn(spawnPoolName, trSpawnItem);
+			MasterPoolManager.ReturnToPool(spawnPoolName, trSpawnItem);
 			trSpawnItem = null;
 		}
 	}

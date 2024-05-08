@@ -231,14 +231,14 @@ public class ValueShop : LobbyPopupBase
 		int childCount = dailyList_Tr.childCount;
 		for (int i = 0; i < childCount; i++)
 		{
-			MWPoolManager.DeSpawn("Item", dailyList_Tr.GetChild(0));
+			MasterPoolManager.ReturnToPool("Item", dailyList_Tr.GetChild(0));
 		}
 		if (GameInfo.userData.userDailyItemList.dailyShopInfo.dailyShopList.Length > 0)
 		{
 			for (int j = 0; j < GameInfo.userData.userDailyItemList.dailyShopInfo.dailyShopList.Length; j++)
 			{
 				DailyItem dailyItem = null;
-				dailyItem = MWPoolManager.Spawn("Item", "DailyItem", dailyList_Tr).GetComponent<DailyItem>();
+				dailyItem = MasterPoolManager.SpawnObject("Item", "DailyItem", dailyList_Tr).GetComponent<DailyItem>();
 				dailyItem.transform.localPosition = Vector3.zero;
 				dailyItem.transform.localScale = Vector3.one;
 				dailyItem.Init(GameInfo.userData.userDailyItemList.dailyShopInfo.dailyShopList[j], this);
@@ -294,7 +294,7 @@ public class ValueShop : LobbyPopupBase
 			currentSecond -= Time.time - timeStamp;
 			TimeSpan ts = TimeSpan.FromSeconds(currentSecond);
 			string minSec = $"{ts.Hours:D2}:{ts.Minutes:D2}:{ts.Seconds:D2}";
-			textShopDailyTimer.text = string.Format(MWLocalize.GetData("shop_daily_text_1"), minSec);
+			textShopDailyTimer.text = string.Format(MasterLocalize.GetData("shop_daily_text_1"), minSec);
 			flowDuration = shopDailyRefreshDuration - currentSecond;
 		}
 		StopAllCoroutines();

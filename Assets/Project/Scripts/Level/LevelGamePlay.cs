@@ -85,11 +85,11 @@ public class LevelGamePlay : LobbyPopupBase
 		GameUtil.SetUseHunterList();
 		GameUtil.SetOwnHunterList(HanterListType.Normal);
 		_levelIndex = index;
-		_textStageName.text = MWLocalize.GetData(GameDataManager.GetDicStageDbData()[GameInfo.inGamePlayData.stage].stageName);
-		_textChapterLevel.text = string.Format("{0} {1} - {2} {3}", MWLocalize.GetData("common_text_chapter"), GameInfo.inGamePlayData.chapter, MWLocalize.GetData("common_text_level"), GameInfo.inGamePlayData.level);
+		_textStageName.text = MasterLocalize.GetData(GameDataManager.GetDicStageDbData()[GameInfo.inGamePlayData.stage].stageName);
+		_textChapterLevel.text = string.Format("{0} {1} - {2} {3}", MasterLocalize.GetData("common_text_chapter"), GameInfo.inGamePlayData.chapter, MasterLocalize.GetData("common_text_level"), GameInfo.inGamePlayData.level);
 		_textPlayCost.text = $"{GameDataManager.GetLevelIndexDbData(GameInfo.inGamePlayData.levelIdx).energyCost}";
 		_imageStagePreview.sprite = GameDataManager.GetStagePreviewSprite(GameInfo.inGamePlayData.stage - 1);
-		_trRewardItem = MWPoolManager.Spawn("Item", $"Item_{GameDataManager.GetLevelIndexDbData(_levelIndex).rewardFixItem}", _trRewardItemAnchor);
+		_trRewardItem = MasterPoolManager.SpawnObject("Item", $"Item_{GameDataManager.GetLevelIndexDbData(_levelIndex).rewardFixItem}", _trRewardItemAnchor);
 		_textRewardFixCount.text = $"x{GameDataManager.GetLevelIndexDbData(_levelIndex).rewardFixCount}";
 		_levelData = GameDataManager.GetLevelIndexDbData(_levelIndex);
 		GameInfo.userData.GetUserLevelState(_levelData.stage - 1, _levelData.chapter - 1, _levelData.levelIdx);
@@ -141,7 +141,7 @@ public class LevelGamePlay : LobbyPopupBase
 		for (int i = 0; i < GameInfo.userData.huntersUseInfo.Length; i++)
 		{
 			Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-			HeroCard component = MWPoolManager.Spawn("Hunter", "HunterCard_" + GameInfo.userData.huntersUseInfo[i].hunterIdx, _trHunterCardParent).GetComponent<HeroCard>();
+			HeroCard component = MasterPoolManager.SpawnObject("Hunter", "HunterCard_" + GameInfo.userData.huntersUseInfo[i].hunterIdx, _trHunterCardParent).GetComponent<HeroCard>();
 			component.Construct(HerocardType.Levelplay, GameDataManager.GetHunterInfo(GameInfo.userData.huntersUseInfo[i].hunterIdx, GameInfo.userData.huntersUseInfo[i].hunterLevel, GameInfo.userData.huntersUseInfo[i].hunterTier), _isOwn: true, _isArena: false);
 			component.HeroIdx = i;
 			component.IsUseHero = true;
@@ -151,11 +151,11 @@ public class LevelGamePlay : LobbyPopupBase
 			{
 				if (component.HunterInfo.Stat.hunterLeaderSkill == 0)
 				{
-					_leaderSkillText.text = string.Format(MWLocalize.GetData("Popup_hunter_leaderskill_02"));
+					_leaderSkillText.text = string.Format(MasterLocalize.GetData("Popup_hunter_leaderskill_02"));
 				}
 				else
 				{
-					_leaderSkillText.text = string.Format(MWLocalize.GetData(GameDataManager.GetHunterLeaderSkillData(component.HunterInfo.Stat.hunterLeaderSkill).leaderSkillDescription));
+					_leaderSkillText.text = string.Format(MasterLocalize.GetData(GameDataManager.GetHunterLeaderSkillData(component.HunterInfo.Stat.hunterLeaderSkill).leaderSkillDescription));
 				}
 			}
 		}
@@ -166,7 +166,7 @@ public class LevelGamePlay : LobbyPopupBase
 		HeroCard[] componentsInChildren = _trHunterCardParent.GetComponentsInChildren<HeroCard>();
 		foreach (HeroCard hunterCard in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Hunter", hunterCard.transform);
+			MasterPoolManager.ReturnToPool("Hunter", hunterCard.transform);
 		}
 	}
 
@@ -191,7 +191,7 @@ public class LevelGamePlay : LobbyPopupBase
 		SpawnMonster();
 		foreach (KeyValuePair<int, int> levelMonster in GameUtil.GetLevelMonsterList(_levelIndex))
 		{
-			Transform transform = MWPoolManager.Spawn("Lobby", "QuickLootMonster", _trMonsterListAnchor);
+			Transform transform = MasterPoolManager.SpawnObject("Lobby", "QuickLootMonster", _trMonsterListAnchor);
 			transform.GetComponent<ItemInfoUI>().Show("Info", $"UI_monster_{levelMonster.Key}", levelMonster.Value);
 		}
 	}
@@ -200,7 +200,7 @@ public class LevelGamePlay : LobbyPopupBase
 	{
 		if (_trRewardItem != null)
 		{
-			MWPoolManager.DeSpawn("Item", _trRewardItem);
+			MasterPoolManager.ReturnToPool("Item", _trRewardItem);
 			_trRewardItem = null;
 		}
 		ItemInfoUI[] componentsInChildren = _trMonsterListAnchor.GetComponentsInChildren<ItemInfoUI>();
@@ -208,7 +208,7 @@ public class LevelGamePlay : LobbyPopupBase
 		foreach (ItemInfoUI itemInfoUI in array)
 		{
 			itemInfoUI.Clear();
-			MWPoolManager.DeSpawn("Lobby", itemInfoUI.transform);
+			MasterPoolManager.ReturnToPool("Lobby", itemInfoUI.transform);
 		}
 		LobbyManager.GotoInGame(_levelIndex);
 	}
@@ -225,9 +225,9 @@ public class LevelGamePlay : LobbyPopupBase
 			_totalAttackCurrent += (int)GameUtil.GetHunterReinForceAttack(hunterInfo.Stat.hunterAttack, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx));
 			_totalRecoveryCurrent += (int)GameUtil.GetHunterReinForceHeal(hunterInfo.Stat.hunterRecovery, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx));
 		}
-		_totalHealthText.text = "<color=#ffffff>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_health"), Translate(_totalHealthCurrent)) + "</color>";
-		_totalAttackText.text = "<color=#ffffff>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_attack"), Translate(_totalAttackCurrent)) + "</color>";
-		_totalRecoveryText.text = "<color=#ffffff>" + string.Format(MWLocalize.GetData("popup_ingame_level_text_recovery"), Translate(_totalRecoveryCurrent)) + "</color>";
+		_totalHealthText.text = "<color=#ffffff>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_health"), Translate(_totalHealthCurrent)) + "</color>";
+		_totalAttackText.text = "<color=#ffffff>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_attack"), Translate(_totalAttackCurrent)) + "</color>";
+		_totalRecoveryText.text = "<color=#ffffff>" + string.Format(MasterLocalize.GetData("popup_ingame_level_text_recovery"), Translate(_totalRecoveryCurrent)) + "</color>";
 	}
 
 	private void ActivateBoosters()
@@ -336,7 +336,7 @@ public class LevelGamePlay : LobbyPopupBase
 	{
 		if (_trRewardItem != null)
 		{
-			MWPoolManager.DeSpawn("Item", _trRewardItem);
+			MasterPoolManager.ReturnToPool("Item", _trRewardItem);
 			_trRewardItem = null;
 		}
 		ItemInfoUI[] componentsInChildren = _trMonsterListAnchor.GetComponentsInChildren<ItemInfoUI>();
@@ -344,7 +344,7 @@ public class LevelGamePlay : LobbyPopupBase
 		foreach (ItemInfoUI itemInfoUI in array)
 		{
 			itemInfoUI.Clear();
-			MWPoolManager.DeSpawn("Lobby", itemInfoUI.transform);
+			MasterPoolManager.ReturnToPool("Lobby", itemInfoUI.transform);
 		}
 		DeleteCard();
 	}

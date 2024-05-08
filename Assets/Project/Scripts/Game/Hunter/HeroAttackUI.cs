@@ -44,7 +44,7 @@ public class HeroAttackUI : MonoBehaviour
 	{
 		_isAttackStart = false;
 		StopCountCoroutine();
-		MWPoolManager.DeSpawn("Effect", _trUI);
+		MasterPoolManager.ReturnToPool("Effect", _trUI);
 	}
 
 	private void StopCountCoroutine()

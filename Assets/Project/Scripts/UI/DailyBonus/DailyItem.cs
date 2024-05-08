@@ -41,18 +41,18 @@ public class DailyItem : MonoBehaviour
 		data = _data;
 		if (item_Img != null)
 		{
-			MWPoolManager.DeSpawn("Item", item_Img);
+			MasterPoolManager.ReturnToPool("Item", item_Img);
 		}
 		soldOut.gameObject.SetActive(value: false);
 		item_Price.gameObject.SetActive(value: true);
 		item_Icon.gameObject.SetActive(value: true);
-		item_Img = MWPoolManager.Spawn("Item", "Item_" + data.itemIdx, item_Img_tr);
-		item_Name.text = MWLocalize.GetData(data.itemName);
+		item_Img = MasterPoolManager.SpawnObject("Item", "Item_" + data.itemIdx, item_Img_tr);
+		item_Name.text = MasterLocalize.GetData(data.itemName);
 		if (data.left < 0)
 		{
 			data.left = 0;
 		}
-		item_Left.text = string.Format(MWLocalize.GetData("shop_daily_text_3"), data.left.ToString());
+		item_Left.text = string.Format(MasterLocalize.GetData("shop_daily_text_3"), data.left.ToString());
 		if (data.left > 0)
 		{
 			item_Price.text = GameUtil.InsertCommaInt(data.resultPrice);
@@ -63,8 +63,8 @@ public class DailyItem : MonoBehaviour
 			item_Price.gameObject.SetActive(value: false);
 			item_Icon.gameObject.SetActive(value: false);
 		}
-		item_Owned.text = string.Format(MWLocalize.GetData("common_text_owned"), GameInfo.userData.GetItemCount(data.itemIdx).ToString());
-		item_Type.text = MWLocalize.GetData(GameDataManager.GetItemListData(data.itemIdx).itemType);
+		item_Owned.text = string.Format(MasterLocalize.GetData("common_text_owned"), GameInfo.userData.GetItemCount(data.itemIdx).ToString());
+		item_Type.text = MasterLocalize.GetData(GameDataManager.GetItemListData(data.itemIdx).itemType);
 		valueShop = _valueShop;
 		valueShop.valueShopState = ValueShopType.Daily;
 	}

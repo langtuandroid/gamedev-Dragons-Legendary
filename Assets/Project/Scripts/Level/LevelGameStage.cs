@@ -13,6 +13,6 @@ public class LevelGameStage : MonoBehaviour
 	public void ChangeSetData(int stageIdx)
 	{
 		_imageStage.sprite = GameDataManager.GetStageCellSprite(stageIdx - 1);
-		_textStageName.text = MWLocalize.GetData(GameDataManager.GetDicStageDbData()[stageIdx].stageName);
+		_textStageName.text = MasterLocalize.GetData(GameDataManager.GetDicStageDbData()[stageIdx].stageName);
 	}
 }

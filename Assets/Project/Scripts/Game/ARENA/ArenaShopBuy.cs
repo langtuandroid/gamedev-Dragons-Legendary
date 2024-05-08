@@ -54,18 +54,18 @@ public class ArenaShopBuy : LobbyPopupBase
 	{
 		if (item_Img != null)
 		{
-			MWPoolManager.DeSpawn("Item", item_Img);
+			MasterPoolManager.ReturnToPool("Item", item_Img);
 			item_Img = null;
 		}
 		if (key.chestHunter > 0)
 		{
-			item_Img = MWPoolManager.Spawn("Item", "Item_" + key.chestHunter, item_Img_Tr);
+			item_Img = MasterPoolManager.SpawnObject("Item", "Item_" + key.chestHunter, item_Img_Tr);
 		}
 		else
 		{
-			item_Img = MWPoolManager.Spawn("Item", "Item_" + key.itemIdx, item_Img_Tr);
+			item_Img = MasterPoolManager.SpawnObject("Item", "Item_" + key.itemIdx, item_Img_Tr);
 		}
-		item_Name.text = MWLocalize.GetData(key.itemName);
+		item_Name.text = MasterLocalize.GetData(key.itemName);
 		item_Owned.gameObject.SetActive(value: true);
 		if (key.chestHunter > 0)
 		{
@@ -73,7 +73,7 @@ public class ArenaShopBuy : LobbyPopupBase
 		}
 		else
 		{
-			item_Owned.text = string.Format(MWLocalize.GetData("common_text_owned"), GameInfo.userData.GetItemCount(key.itemIdx).ToString());
+			item_Owned.text = string.Format(MasterLocalize.GetData("common_text_owned"), GameInfo.userData.GetItemCount(key.itemIdx).ToString());
 		}
 		total_Price = key.costArenaPoint;
 		Check_Coin_Enough();

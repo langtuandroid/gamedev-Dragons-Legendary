@@ -52,7 +52,7 @@ public class LobbyBottomUI : MonoBehaviour
 		SetShopNotice(isShow: false);
 		if (trArenaNotice != null)
 		{
-			MWPoolManager.DeSpawn("Lobby", trArenaNotice);
+			MasterPoolManager.ReturnToPool("Lobby", trArenaNotice);
 			trArenaNotice = null;
 		}
 	}
@@ -61,12 +61,12 @@ public class LobbyBottomUI : MonoBehaviour
 	{
 		if (trHunterNotice != null)
 		{
-			MWPoolManager.DeSpawn("Lobby", trHunterNotice);
+			MasterPoolManager.ReturnToPool("Lobby", trHunterNotice);
 			trHunterNotice = null;
 		}
 		if (isShow)
 		{
-			trHunterNotice = MWPoolManager.Spawn("Lobby", "Notice_Green", trHunterNoticeAnchor);
+			trHunterNotice = MasterPoolManager.SpawnObject("Lobby", "Notice_Green", trHunterNoticeAnchor);
 		}
 	}
 
@@ -74,12 +74,12 @@ public class LobbyBottomUI : MonoBehaviour
 	{
 		if (trChestNotice != null)
 		{
-			MWPoolManager.DeSpawn("Lobby", trChestNotice);
+			MasterPoolManager.ReturnToPool("Lobby", trChestNotice);
 			trChestNotice = null;
 		}
 		if (isShow)
 		{
-			trChestNotice = MWPoolManager.Spawn("Lobby", "Notice_Red", trChestNoticeAnchor);
+			trChestNotice = MasterPoolManager.SpawnObject("Lobby", "Notice_Red", trChestNoticeAnchor);
 		}
 	}
 
@@ -87,12 +87,12 @@ public class LobbyBottomUI : MonoBehaviour
 	{
 		if (trShopNotice != null)
 		{
-			MWPoolManager.DeSpawn("Lobby", trShopNotice);
+			MasterPoolManager.ReturnToPool("Lobby", trShopNotice);
 			trShopNotice = null;
 		}
 		if (isShow && GameInfo.userData.userInfo.level > 2)
 		{
-			trShopNotice = MWPoolManager.Spawn("Lobby", "Notice_Red", trShopNoticeAnchor);
+			trShopNotice = MasterPoolManager.SpawnObject("Lobby", "Notice_Red", trShopNoticeAnchor);
 		}
 	}
 
@@ -102,12 +102,12 @@ public class LobbyBottomUI : MonoBehaviour
 		{
 			if (trArenaNotice != null)
 			{
-				MWPoolManager.DeSpawn("Lobby", trArenaNotice);
+				MasterPoolManager.ReturnToPool("Lobby", trArenaNotice);
 				trArenaNotice = null;
 			}
 			if (GameInfo.userData.userInfo.arenaAlarmYn == "y" && GameInfo.userData.userInfo.arenaTicket > 0)
 			{
-				trArenaNotice = MWPoolManager.Spawn("Lobby", "Notice_Red", trArenaNoticeAnchor);
+				trArenaNotice = MasterPoolManager.SpawnObject("Lobby", "Notice_Red", trArenaNoticeAnchor);
 			}
 		}
 	}
@@ -119,7 +119,7 @@ public class LobbyBottomUI : MonoBehaviour
 		SetShopNotice(isShow: false);
 		if (trArenaNotice != null)
 		{
-			MWPoolManager.DeSpawn("Lobby", trArenaNotice);
+			MasterPoolManager.ReturnToPool("Lobby", trArenaNotice);
 			trArenaNotice = null;
 		}
 	}

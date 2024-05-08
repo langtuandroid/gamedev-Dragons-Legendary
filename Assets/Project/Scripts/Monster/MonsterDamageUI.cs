@@ -70,7 +70,7 @@ public class MonsterDamageUI : MonoBehaviour
 		LeanTween.colorText(CurrentTextDamage.GetComponent<RectTransform>(), textColor, 0.6f).setEaseOutCubic();
 		yield return new WaitForSeconds(0.6f);
 		StopAllCoroutines();
-		MWPoolManager.DeSpawn("Effect", base.transform);
+		MasterPoolManager.ReturnToPool("Effect", base.transform);
 	}
 
 	private void Awake()

@@ -37,7 +37,7 @@ public class ArenaLevelCell : MonoBehaviour
 		arenaLevelData = _data;
 		goChestSmall.SetActive(_data.chestType == 1);
 		goChestBig.SetActive(_data.chestType == 2);
-		textStage.text = string.Format(MWLocalize.GetData("arena_lobby_text_03"), _data.levelIdx);
+		textStage.text = string.Format(MasterLocalize.GetData("arena_lobby_text_03"), _data.levelIdx);
 		textTicketCost.text = $"{_data.costTicket}";
 		switch (_data.passYn)
 		{

@@ -136,7 +136,7 @@ public class Monster : Monster_Base
 		monster_Stat = _monster_Data;
 		if (stunEff != null)
 		{
-			MWPoolManager.DeSpawn("Effect", stunEff);
+			MasterPoolManager.ReturnToPool("Effect", stunEff);
 			stunEff = null;
 		}
 		monster_Info = GameDataManager.GetMonsterData(monster_Stat.mIdx);
@@ -182,7 +182,7 @@ public class Monster : Monster_Base
 		{
 			if (stunEff != null)
 			{
-				MWPoolManager.DeSpawn("Effect", stunEff);
+				MasterPoolManager.ReturnToPool("Effect", stunEff);
 				stunEff = null;
 			}
 			isStun = false;
@@ -332,12 +332,12 @@ public class Monster : Monster_Base
 	{
 		if (stunEff != null)
 		{
-			MWPoolManager.DeSpawn("Effect", stunEff);
+			MasterPoolManager.ReturnToPool("Effect", stunEff);
 			stunEff = null;
 		}
 		UnityEngine.Debug.Log("***********STUN 22");
 		SoundController.EffectSound_Play(EffectSoundType.MonsterStun);
-		stunEff = MWPoolManager.Spawn("Effect", "FX_stun", base.transform);
+		stunEff = MasterPoolManager.SpawnObject("Effect", "FX_stun", base.transform);
 		if (GameInfo.inGamePlayData.isDragon == 0)
 		{
 			Transform transform = stunEff;
@@ -356,7 +356,7 @@ public class Monster : Monster_Base
 	{
 		if (stunEff != null)
 		{
-			MWPoolManager.DeSpawn("Effect", stunEff);
+			MasterPoolManager.ReturnToPool("Effect", stunEff);
 			stunEff = null;
 			isStun = false;
 		}
@@ -470,13 +470,13 @@ public class Monster : Monster_Base
 		ClearStun();
 		if (GameInfo.inGamePlayData.inGameType == PuzzleInGameType.Stage)
 		{
-			transform = MWPoolManager.Spawn("Effect", "Fx_ItemDrop", null, 2f);
+			transform = MasterPoolManager.SpawnObject("Effect", "Fx_ItemDrop", null, 2f);
 			transform.position = base.transform.position;
 			SoundController.EffectSound_Play(EffectSoundType.MonsterItemDrop);
 			num = UnityEngine.Random.Range(1, 101);
 			if (num <= GameDataManager.GetGameConfigData(ConfigDataType.DropKey) && GameInfo.inGamePlayData.levelIdx > 4)
 			{
-				transform2 = MWPoolManager.Spawn("Effect", "Fx_KeyDrop", null, 2f);
+				transform2 = MasterPoolManager.SpawnObject("Effect", "Fx_KeyDrop", null, 2f);
 				transform2.position = base.transform.position;
 				GameInfo.userPlayData.AddChestKey();
 				SoundController.EffectSound_Play(EffectSoundType.GetKeyIngame);
@@ -539,12 +539,12 @@ public class Monster : Monster_Base
 	private IEnumerator DragonFireBall()
 	{
 		yield return new WaitForSeconds(0.7f / GameInfo.inGameBattleSpeedRate);
-		Transform _eff_ball = MWPoolManager.Spawn("Effect", "Skill_Dragon_fireball", null, 0.2f / GameInfo.inGameBattleSpeedRate);
+		Transform _eff_ball = MasterPoolManager.SpawnObject("Effect", "Skill_Dragon_fireball", null, 0.2f / GameInfo.inGameBattleSpeedRate);
 		_eff_ball.position = dragonSkillAnchor.position;
 		LeanTween.moveX(_eff_ball.gameObject, -2.5f, 0.2f / GameInfo.inGameBattleSpeedRate).setEaseInQuint();
 		LeanTween.moveY(_eff_ball.gameObject, 1.5f, 0.2f / GameInfo.inGameBattleSpeedRate).setEaseInQuint();
 		yield return new WaitForSeconds(0.2f / GameInfo.inGameBattleSpeedRate);
-		Transform _eff_hit = MWPoolManager.Spawn("Effect", "Skill_Dragon", null, 1f);
+		Transform _eff_hit = MasterPoolManager.SpawnObject("Effect", "Skill_Dragon", null, 1f);
 		_eff_hit.position = Vector3.zero;
 	}
 

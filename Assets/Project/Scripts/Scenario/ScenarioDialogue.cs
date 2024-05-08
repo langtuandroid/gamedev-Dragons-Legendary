@@ -91,19 +91,19 @@ public class ScenarioDialogue : MonoBehaviour
 		goNextArrow.SetActive(value: true);
 		StopMessageCoroutine();
 		isMessageFlow = false;
-		textMessage.text = MWLocalize.GetData(scenarioDbData.text);
+		textMessage.text = MasterLocalize.GetData(scenarioDbData.text);
 	}
 
 	public void Clear()
 	{
 		if (trLeftChar != null)
 		{
-			MWPoolManager.DeSpawn("Scenario", trLeftChar);
+			MasterPoolManager.ReturnToPool("Scenario", trLeftChar);
 			trLeftChar = null;
 		}
 		if (trRightChar != null)
 		{
-			MWPoolManager.DeSpawn("Scenario", trRightChar);
+			MasterPoolManager.ReturnToPool("Scenario", trRightChar);
 			trRightChar = null;
 		}
 		activeCharacterName = string.Empty;
@@ -112,7 +112,7 @@ public class ScenarioDialogue : MonoBehaviour
 
 	private void ShowLeft()
 	{
-		if (!(MWLocalize.GetData(scenarioDbData.characterName) == activeCharacterName))
+		if (!(MasterLocalize.GetData(scenarioDbData.characterName) == activeCharacterName))
 		{
 			if (trLeftChar != null)
 			{
@@ -124,14 +124,14 @@ public class ScenarioDialogue : MonoBehaviour
 			}
 			goLeftName.SetActive(value: true);
 			goRightName.SetActive(value: false);
-			activeCharacterName = MWLocalize.GetData(scenarioDbData.characterName);
+			activeCharacterName = MasterLocalize.GetData(scenarioDbData.characterName);
 			textLeftName.text = activeCharacterName;
 			flipScale = goFrontFlipBg.transform.localScale;
 			flipScale.x = -1f;
 			goFrontFlipBg.transform.localScale = flipScale;
 			if (trLeftChar != null)
 			{
-				MWPoolManager.DeSpawn("Scenario", trLeftChar);
+				MasterPoolManager.ReturnToPool("Scenario", trLeftChar);
 				trLeftChar = null;
 			}
 			if (trRightChar != null)
@@ -143,7 +143,7 @@ public class ScenarioDialogue : MonoBehaviour
 			string characterName = GetCharacterName(scenarioDbData.characterName);
 			if (characterName != string.Empty)
 			{
-				trLeftChar = MWPoolManager.Spawn("Scenario", GetCharacterName(scenarioDbData.characterName), trLeftCharacterAnchor);
+				trLeftChar = MasterPoolManager.SpawnObject("Scenario", GetCharacterName(scenarioDbData.characterName), trLeftCharacterAnchor);
 				trLeftChar.GetComponent<ScenarioCharacter>().Talk();
 				LeanTween.moveLocalX(trLeftChar.gameObject, 0.25f, 0.2f).setEaseOutCubic();
 				LeanTween.scale(trLeftChar.gameObject, new Vector3(1.8f, 1.8f), 0.2f).setEaseOutCubic();
@@ -153,7 +153,7 @@ public class ScenarioDialogue : MonoBehaviour
 
 	private void ShowRight()
 	{
-		if (!(MWLocalize.GetData(scenarioDbData.characterName) == activeCharacterName))
+		if (!(MasterLocalize.GetData(scenarioDbData.characterName) == activeCharacterName))
 		{
 			if (trLeftChar != null)
 			{
@@ -165,14 +165,14 @@ public class ScenarioDialogue : MonoBehaviour
 			}
 			goLeftName.SetActive(value: false);
 			goRightName.SetActive(value: true);
-			activeCharacterName = MWLocalize.GetData(scenarioDbData.characterName);
+			activeCharacterName = MasterLocalize.GetData(scenarioDbData.characterName);
 			textRightName.text = activeCharacterName;
 			flipScale = goFrontFlipBg.transform.localScale;
 			flipScale.x = 1f;
 			goFrontFlipBg.transform.localScale = flipScale;
 			if (trRightChar != null)
 			{
-				MWPoolManager.DeSpawn("Scenario", trRightChar);
+				MasterPoolManager.ReturnToPool("Scenario", trRightChar);
 				trRightChar = null;
 			}
 			if (trLeftChar != null)
@@ -184,7 +184,7 @@ public class ScenarioDialogue : MonoBehaviour
 			string characterName = GetCharacterName(scenarioDbData.characterName);
 			if (characterName != string.Empty)
 			{
-				trRightChar = MWPoolManager.Spawn("Scenario", GetCharacterName(scenarioDbData.characterName), trRightCharacterAnchor);
+				trRightChar = MasterPoolManager.SpawnObject("Scenario", GetCharacterName(scenarioDbData.characterName), trRightCharacterAnchor);
 				trRightChar.GetComponent<ScenarioCharacter>().Talk();
 				LeanTween.moveLocalX(trRightChar.gameObject, 0.25f, 0.2f).setEaseOutCubic();
 				LeanTween.scale(trRightChar.gameObject, new Vector3(1.8f, 1.8f), 0.2f).setEaseOutCubic();
@@ -198,7 +198,7 @@ public class ScenarioDialogue : MonoBehaviour
 		isMessageFlow = true;
 		goNextArrow.SetActive(value: false);
 		int activeCount = 1;
-		string strMessage = MWLocalize.GetData(scenarioDbData.text);
+		string strMessage = MasterLocalize.GetData(scenarioDbData.text);
 		SoundController.EffectSound_Play(EffectSoundType.DialogueText);
 		while (activeCount < strMessage.Length)
 		{

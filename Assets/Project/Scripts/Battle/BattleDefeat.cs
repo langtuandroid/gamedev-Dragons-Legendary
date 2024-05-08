@@ -43,7 +43,7 @@ public class BattleDefeat : MonoBehaviour
 		PuzzleResultItem[] componentsInChildren = trItemResult.GetComponentsInChildren<PuzzleResultItem>();
 		foreach (PuzzleResultItem inGameResultItem in componentsInChildren)
 		{
-			MWPoolManager.DeSpawn("Puzzle", inGameResultItem.transform);
+			MasterPoolManager.ReturnToPool("Puzzle", inGameResultItem.transform);
 		}
 		base.gameObject.SetActive(value: false);
 	}
@@ -68,14 +68,14 @@ public class BattleDefeat : MonoBehaviour
 		resultItemData.itemMultiply = levelIndexDbData.rewardFixCount;
 		resultItemData.itemName = GameDataManager.GetItemListData(resultItemData.itemIdx).itemName;
 		resultItemData.itemAmount = GameInfo.userData.GetItemCount(resultItemData.itemIdx);
-		PuzzleResultItem component = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
+		PuzzleResultItem component = MasterPoolManager.SpawnObject("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
 		component.OpenMenu(resultItemData);
 		ResultItemData resultItemData2 = new ResultItemData();
 		resultItemData2.itemIdx = 50040;
 		resultItemData2.itemMultiply = levelIndexDbData.getExp;
 		resultItemData2.itemName = GameDataManager.GetItemListData(resultItemData2.itemIdx).itemName;
 		resultItemData2.itemAmount = GameInfo.userData.GetItemCount(resultItemData2.itemIdx);
-		PuzzleResultItem component2 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
+		PuzzleResultItem component2 = MasterPoolManager.SpawnObject("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
 		component2.OpenMenu(resultItemData2);
 		scrollLoot.horizontalNormalizedPosition = 0f;
 	}
@@ -89,7 +89,7 @@ public class BattleDefeat : MonoBehaviour
 		resultItemData.itemMultiply = _data.rewardExp;
 		resultItemData.itemName = GameDataManager.GetItemListData(resultItemData.itemIdx).itemName;
 		resultItemData.itemAmount = GameInfo.userData.GetItemCount(resultItemData.itemIdx);
-		PuzzleResultItem component = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
+		PuzzleResultItem component = MasterPoolManager.SpawnObject("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
 		component.OpenMenu(resultItemData);
 		int itemIdx = 50044;
 		if (_data.chestType == 2)
@@ -101,7 +101,7 @@ public class BattleDefeat : MonoBehaviour
 		resultItemData2.itemMultiply = 1;
 		resultItemData2.itemName = GameDataManager.GetItemListData(resultItemData2.itemIdx).itemName;
 		resultItemData2.itemAmount = GameInfo.userData.GetItemCount(resultItemData2.itemIdx);
-		PuzzleResultItem component2 = MWPoolManager.Spawn("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
+		PuzzleResultItem component2 = MasterPoolManager.SpawnObject("Puzzle", "InGameResultItem", trItemResult).GetComponent<PuzzleResultItem>();
 		component2.OpenMenu(resultItemData2);
 		timerCoroutine = StartCoroutine(ContinueTimer());
 	}

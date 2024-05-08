@@ -551,17 +551,17 @@ public class GameDataManager : GameObjectSingleton<GameDataManager>
 
 	private IEnumerator LoadSceneProgress(SceneType type)
 	{
-		MWPoolManager.DeSpawnPoolAll("Skill");
-		MWPoolManager.DeSpawnPoolAll("Effect");
-		MWPoolManager.DeSpawnPoolAll("Monster");
-		MWPoolManager.DeSpawnPoolAll("Hunter");
-		MWPoolManager.DeSpawnPoolAll("Puzzle");
-		MWPoolManager.DeSpawnPoolAll("Stage");
-		MWPoolManager.DeSpawnPoolAll("Grow");
-		MWPoolManager.DeSpawnPoolAll("Info");
-		MWPoolManager.DeSpawnPoolAll("Item");
-		MWPoolManager.DeSpawnPoolAll("Scenario");
-		MWPoolManager.DeSpawnPoolAll("Lobby");
+		MasterPoolManager.ReturnToPoolAll("Skill");
+		MasterPoolManager.ReturnToPoolAll("Effect");
+		MasterPoolManager.ReturnToPoolAll("Monster");
+		MasterPoolManager.ReturnToPoolAll("Hunter");
+		MasterPoolManager.ReturnToPoolAll("Puzzle");
+		MasterPoolManager.ReturnToPoolAll("Stage");
+		MasterPoolManager.ReturnToPoolAll("Grow");
+		MasterPoolManager.ReturnToPoolAll("Info");
+		MasterPoolManager.ReturnToPoolAll("Item");
+		MasterPoolManager.ReturnToPoolAll("Scenario");
+		MasterPoolManager.ReturnToPoolAll("Lobby");
 		goSceneLoading.SetActive(value: true);
 		if (type == SceneType.Lobby)
 		{

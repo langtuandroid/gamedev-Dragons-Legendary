@@ -9,7 +9,7 @@ public class FloorOffice : MonoBehaviour
 
 	public void SetOffice(string _officeName)
 	{
-		trOffice = MWPoolManager.Spawn("Lobby", _officeName);
+		trOffice = MasterPoolManager.SpawnObject("Lobby", _officeName);
 	}
 
 	public void SyncOffice()
@@ -24,7 +24,7 @@ public class FloorOffice : MonoBehaviour
 	{
 		if (trOffice != null)
 		{
-			MWPoolManager.DeSpawn("Lobby", trOffice);
+			MasterPoolManager.ReturnToPool("Lobby", trOffice);
 			trOffice = null;
 		}
 	}

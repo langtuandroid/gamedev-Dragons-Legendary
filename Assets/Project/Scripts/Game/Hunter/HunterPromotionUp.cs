@@ -83,7 +83,7 @@ public class HunterPromotionUp : LobbyPopupBase
     {
         _hunterCharacter.gameObject.SetActive(value: true);
         Transform transform = null;
-        transform = MWPoolManager.Spawn("Effect", "FX_Boom", base.transform, 2f);
+        transform = MasterPoolManager.SpawnObject("Effect", "FX_Boom", base.transform, 2f);
         transform.SetAsLastSibling();
         _promotionEffect.gameObject.SetActive(value: false);
     }
@@ -93,25 +93,25 @@ public class HunterPromotionUp : LobbyPopupBase
         heroInfo = _hunterInfo;
         if (_promotionEffect != null)
         {
-            MWPoolManager.DeSpawn("Hunter", _promotionEffect.transform);
+            MasterPoolManager.ReturnToPool("Hunter", _promotionEffect.transform);
             _promotionEffect = null;
         }
         switch (heroInfo.Hunter.color)
         {
             case 0:
-                _promotionEffect = MWPoolManager.Spawn("Effect", "FX_PromotionUp_Blue", base.transform).GetComponent<PromotionEffect>();
+                _promotionEffect = MasterPoolManager.SpawnObject("Effect", "FX_PromotionUp_Blue", base.transform).GetComponent<PromotionEffect>();
                 break;
             case 1:
-                _promotionEffect = MWPoolManager.Spawn("Effect", "FX_PromotionUp_Green", base.transform).GetComponent<PromotionEffect>();
+                _promotionEffect = MasterPoolManager.SpawnObject("Effect", "FX_PromotionUp_Green", base.transform).GetComponent<PromotionEffect>();
                 break;
             case 2:
-                _promotionEffect = MWPoolManager.Spawn("Effect", "FX_PromotionUp_Purple", base.transform).GetComponent<PromotionEffect>();
+                _promotionEffect = MasterPoolManager.SpawnObject("Effect", "FX_PromotionUp_Purple", base.transform).GetComponent<PromotionEffect>();
                 break;
             case 3:
-                _promotionEffect = MWPoolManager.Spawn("Effect", "FX_PromotionUp_Red", base.transform).GetComponent<PromotionEffect>();
+                _promotionEffect = MasterPoolManager.SpawnObject("Effect", "FX_PromotionUp_Red", base.transform).GetComponent<PromotionEffect>();
                 break;
             case 4:
-                _promotionEffect = MWPoolManager.Spawn("Effect", "FX_PromotionUp_Yellow", base.transform).GetComponent<PromotionEffect>();
+                _promotionEffect = MasterPoolManager.SpawnObject("Effect", "FX_PromotionUp_Yellow", base.transform).GetComponent<PromotionEffect>();
                 break;
         }
         _promotionUpCharacterPos = _promotionEffect.PromotionUP_Character_Pos;
@@ -135,25 +135,25 @@ public class HunterPromotionUp : LobbyPopupBase
         
         if (_hunterCharacter != null)
         {
-            MWPoolManager.DeSpawn("Hunter", _hunterCharacter.transform);
+            MasterPoolManager.ReturnToPool("Hunter", _hunterCharacter.transform);
             _hunterCharacter = null;
         }
         switch (heroInfo.Hunter.color)
         {
             case 0:
-                _hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg2_B2", _hunterCharactertr).GetComponent<HeroColor>();
+                _hunterCharacter = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg2_B2", _hunterCharactertr).GetComponent<HeroColor>();
                 break;
             case 1:
-                _hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg2_G", _hunterCharactertr).GetComponent<HeroColor>();
+                _hunterCharacter = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg2_G", _hunterCharactertr).GetComponent<HeroColor>();
                 break;
             case 2:
-                _hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg2_P", _hunterCharactertr).GetComponent<HeroColor>();
+                _hunterCharacter = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg2_P", _hunterCharactertr).GetComponent<HeroColor>();
                 break;
             case 3:
-                _hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg2_R", _hunterCharactertr).GetComponent<HeroColor>();
+                _hunterCharacter = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg2_R", _hunterCharactertr).GetComponent<HeroColor>();
                 break;
             case 4:
-                _hunterCharacter = MWPoolManager.Spawn("Hunter", "HunterPhotoBg2_Y", _hunterCharactertr).GetComponent<HeroColor>();
+                _hunterCharacter = MasterPoolManager.SpawnObject("Hunter", "HunterPhotoBg2_Y", _hunterCharactertr).GetComponent<HeroColor>();
                 break;
         }
         _hunterCharacter.transform.SetAsFirstSibling();
@@ -188,10 +188,10 @@ public class HunterPromotionUp : LobbyPopupBase
         _promotionEffect.gameObject.SetActive(value: true);
         if (_promotionUpCharacter != null)
         {
-            MWPoolManager.DeSpawn("Hunter", _promotionUpCharacter);
+            MasterPoolManager.ReturnToPool("Hunter", _promotionUpCharacter);
             _promotionUpCharacter = null;
         }
-        _promotionUpCharacter = MWPoolManager.Spawn("Hunter", heroInfo.Hunter.hunterIdx.ToString(), _promotionUpCharacterPos);
+        _promotionUpCharacter = MasterPoolManager.SpawnObject("Hunter", heroInfo.Hunter.hunterIdx.ToString(), _promotionUpCharacterPos);
         _promotionUpCharacter.gameObject.SetActive(value: true);
         SetHunterImg();
         if (heroInfo.Hunter.hunterSize == 3)
@@ -278,10 +278,10 @@ public class HunterPromotionUp : LobbyPopupBase
         UnityEngine.Debug.Log("this.hunterInfo.Hunter.hunterIdx = " + this.heroInfo.Hunter.hunterIdx);
         UnityEngine.Debug.Log("this.hunterInfo.Stat.hunterLevel-1 = " + (this.heroInfo.Stat.hunterLevel - 1));
         HunterInfo hunterInfo = GameDataManager.GetHunterInfo(this.heroInfo.Hunter.hunterIdx, this.heroInfo.Stat.hunterLevel, this.heroInfo.Stat.hunterTier - 1);
-        _hunterMaxLevelBefore.text = string.Format(MWLocalize.GetData("common_text_max_level"), ((this.heroInfo.Stat.hunterTier - 1) * 20).ToString());
+        _hunterMaxLevelBefore.text = string.Format(MasterLocalize.GetData("common_text_max_level"), ((this.heroInfo.Stat.hunterTier - 1) * 20).ToString());
         _hunterMaxLevelAfter.text = (this.heroInfo.Stat.hunterTier * 20).ToString();
-        _hunterName.text = MWLocalize.GetData(this.heroInfo.Hunter.hunterName);
-        _heroLevel.text = MWLocalize.GetData("common_text_level") + this.heroInfo.Stat.hunterLevel.ToString();
+        _hunterName.text = MasterLocalize.GetData(this.heroInfo.Hunter.hunterName);
+        _heroLevel.text = MasterLocalize.GetData("common_text_level") + this.heroInfo.Stat.hunterLevel.ToString();
         _heroHpBefore.text = GameUtil.InsertCommaInt((int)GameUtil.GetHunterReinForceHP(hunterInfo.Stat.hunterHp, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx)));
         _heroHpAfter.text = GameUtil.InsertCommaInt((int)GameUtil.GetHunterReinForceHP(this.heroInfo.Stat.hunterHp, GameDataManager.HasUserHunterEnchant(this.heroInfo.Hunter.hunterIdx)));
         _heroAttackBefore.text = GameUtil.InsertCommaInt((int)GameUtil.GetHunterReinForceAttack(hunterInfo.Stat.hunterAttack, GameDataManager.HasUserHunterEnchant(hunterInfo.Hunter.hunterIdx)));

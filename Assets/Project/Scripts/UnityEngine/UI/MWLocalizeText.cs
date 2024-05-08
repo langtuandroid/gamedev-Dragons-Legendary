@@ -9,12 +9,12 @@ namespace UnityEngine.UI
 
 		private void OnLocalizedChange()
 		{
-			if (MWLocalize.GameFont != null)
+			if (MasterLocalize.GameFont != null)
 			{
-				base.font = MWLocalize.GameFont;
+				base.font = MasterLocalize.GameFont;
 				if (localizedId != string.Empty)
 				{
-					text = MWLocalize.GetData(localizedId);
+					text = MasterLocalize.GetData(localizedId);
 				}
 			}
 		}

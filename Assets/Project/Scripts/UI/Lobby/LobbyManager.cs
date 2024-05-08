@@ -1123,7 +1123,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		UserFloorStage[] userFloorState = GameInfo.userData.userFloorState;
 		for (int i = 0; i < userFloorState.Length; i++)
 		{
-			FloorController component = MWPoolManager.Spawn("Lobby", "Floor Scroll View2", trFloorStageContent).GetComponent<FloorController>();
+			FloorController component = MasterPoolManager.SpawnObject("Lobby", "Floor Scroll View2", trFloorStageContent).GetComponent<FloorController>();
 			component.Init(i);
 			FloorController floorController = component;
 			floorController.StartStoreOpen = (Action)Delegate.Combine(floorController.StartStoreOpen, new Action(OnStartStoreOpen));
@@ -1691,7 +1691,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 			if (GameInfo.userData.userFloorState[i].isOpen)
 			{
 				MoveCastle(i);
-				Transform transform = MWPoolManager.Spawn("Effect", "FX_castle_unlock", null, 5f);
+				Transform transform = MasterPoolManager.SpawnObject("Effect", "FX_castle_unlock", null, 5f);
 				transform.position = Vector3.zero;
 				transform.localScale = Vector3.one;
 			}
@@ -1796,7 +1796,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		for (int i = 0; i < expCount; i++)
 		{
 			float num = UnityEngine.Random.Range(-0.2f, -0.1f);
-			Transform transform = MWPoolManager.Spawn("Effect", "FX_Exp_get", null, 1.2f + num + 0.4f);
+			Transform transform = MasterPoolManager.SpawnObject("Effect", "FX_Exp_get", null, 1.2f + num + 0.4f);
 			transform.localScale = new Vector2(0.12f, 0.12f);
 			transform.position = _pos + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), 0f);
 			GameObject gameObject = transform.gameObject;
@@ -1817,7 +1817,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		for (int i = 0; i < coinCount; i++)
 		{
 			float num = UnityEngine.Random.Range(-0.2f, -0.1f);
-			Transform transform = MWPoolManager.Spawn("Effect", "FX_Coin_get", null, 1.2f + num + 0.4f);
+			Transform transform = MasterPoolManager.SpawnObject("Effect", "FX_Coin_get", null, 1.2f + num + 0.4f);
 			transform.localScale = new Vector2(0.12f, 0.12f);
 			transform.position = _pos + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), 0f);
 			GameObject gameObject = transform.gameObject;
@@ -1838,7 +1838,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		for (int i = 0; i < jewelCount; i++)
 		{
 			float num = UnityEngine.Random.Range(-0.2f, -0.1f);
-			Transform transform = MWPoolManager.Spawn("Effect", "FX_jewel_get", null, 1.2f + num + 0.4f);
+			Transform transform = MasterPoolManager.SpawnObject("Effect", "FX_jewel_get", null, 1.2f + num + 0.4f);
 			transform.localScale = new Vector2(0.12f, 0.12f);
 			transform.position = _pos + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), 0f);
 			GameObject gameObject = transform.gameObject;

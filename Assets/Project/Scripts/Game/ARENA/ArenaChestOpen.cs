@@ -124,7 +124,7 @@ public class ArenaChestOpen : MonoBehaviour
 			int childCount = chestResult_tr.childCount;
 			for (int i = 0; i < childCount; i++)
 			{
-				MWPoolManager.DeSpawn("Item", chestResult_tr.GetChild(0));
+				MasterPoolManager.ReturnToPool("Item", chestResult_tr.GetChild(0));
 			}
 			for (int j = 0; j < chestListDbData.Length; j++)
 			{
@@ -185,10 +185,10 @@ public class ArenaChestOpen : MonoBehaviour
 	{
 		if (hunterCard != null)
 		{
-			MWPoolManager.DeSpawn("Hunter", hunterCard.transform);
+			MasterPoolManager.ReturnToPool("Hunter", hunterCard.transform);
 			hunterCard = null;
 		}
-		hunterCard = MWPoolManager.Spawn("Hunter", "HunterCard_" + chestListDbData[_idx].chestHunter, hunterCard_tr).GetComponent<HeroCard>();
+		hunterCard = MasterPoolManager.SpawnObject("Hunter", "HunterCard_" + chestListDbData[_idx].chestHunter, hunterCard_tr).GetComponent<HeroCard>();
 		hunterCard.Construct(HerocardType.Chestopen, GameDataManager.GetHunterInfo(chestListDbData[_idx].chestHunter, chestListDbData[_idx].hunterLevel, chestListDbData[_idx].hunterTier), _isOwn: true, _isArena: false);
 		hunterCard.HeroIdx = 0;
 		hunterCard.transform.localPosition = Vector3.zero;
@@ -196,24 +196,24 @@ public class ArenaChestOpen : MonoBehaviour
 		UnityEngine.Debug.Log("Set HunterCard AnchoredPosition !!");
 		hunterCard.transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(175f, -145f);
 		hunterCard.transform.SetSiblingIndex(1);
-		hunterName_Text.text = MWLocalize.GetData(GameDataManager.GetHunterInfo(chestListDbData[_idx].chestHunter, 1, 1).Hunter.hunterName);
+		hunterName_Text.text = MasterLocalize.GetData(GameDataManager.GetHunterInfo(chestListDbData[_idx].chestHunter, 1, 1).Hunter.hunterName);
 	}
 
 	private void CardOpen_Setting_Item(int _idx)
 	{
 		if (itemImg != null)
 		{
-			MWPoolManager.DeSpawn("Item", itemImg);
+			MasterPoolManager.ReturnToPool("Item", itemImg);
 			itemImg = null;
 		}
-		itemImg = MWPoolManager.Spawn("Item", "Item_" + chestListDbData[_idx].chestItem, itemImg_tr);
+		itemImg = MasterPoolManager.SpawnObject("Item", "Item_" + chestListDbData[_idx].chestItem, itemImg_tr);
 		itemImg.transform.localPosition = Vector3.zero;
 		itemImg.transform.localScale = Vector3.one;
 		itemImg.transform.SetAsFirstSibling();
 		itemCount_Text.text = "x" + chestListDbData[_idx].chestItemN.ToString();
-		itemName_Text.text = MWLocalize.GetData(GameDataManager.GetItemListData(chestListDbData[_idx].chestItem).itemName);
-		itemType_Text.text = MWLocalize.GetData(GameDataManager.GetItemListData(chestListDbData[_idx].chestItem).itemType);
-		itemYouHave_Text.text = MWLocalize.GetData("common_text_you_have") + GameInfo.userData.GetItemCount(chestListDbData[_idx].chestItem).ToString();
+		itemName_Text.text = MasterLocalize.GetData(GameDataManager.GetItemListData(chestListDbData[_idx].chestItem).itemName);
+		itemType_Text.text = MasterLocalize.GetData(GameDataManager.GetItemListData(chestListDbData[_idx].chestItem).itemType);
+		itemYouHave_Text.text = MasterLocalize.GetData("common_text_you_have") + GameInfo.userData.GetItemCount(chestListDbData[_idx].chestItem).ToString();
 	}
 
 	private void CardResult_Setting(ChestListDbData _data)
@@ -229,7 +229,7 @@ public class ArenaChestOpen : MonoBehaviour
 		}
 		if (!flag)
 		{
-			ArenaChestResultItem component = MWPoolManager.Spawn("Item", "Item03", chestResult_tr).GetComponent<ArenaChestResultItem>();
+			ArenaChestResultItem component = MasterPoolManager.SpawnObject("Item", "Item03", chestResult_tr).GetComponent<ArenaChestResultItem>();
 			component.Init(_data, new Vector3(1.2f, 1.2f, 1.2f));
 			component.transform.localPosition = Vector3.zero;
 			component.transform.localScale = Vector3.one;
@@ -260,12 +260,12 @@ public class ArenaChestOpen : MonoBehaviour
 	public void Click_CardResult_OK_BT()
 	{
 		SoundController.EffectSound_Play(EffectSoundType.ButtonClick);
-		MWPoolManager.DeSpawnPoolAll("Puzzle");
-		MWPoolManager.DeSpawnPoolAll("Hunter");
-		MWPoolManager.DeSpawnPoolAll("Monster");
-		MWPoolManager.DeSpawnPoolAll("Effect");
-		MWPoolManager.DeSpawnPoolAll("Stage");
-		MWPoolManager.DeSpawnPoolAll("Item");
+		MasterPoolManager.ReturnToPoolAll("Puzzle");
+		MasterPoolManager.ReturnToPoolAll("Hunter");
+		MasterPoolManager.ReturnToPoolAll("Monster");
+		MasterPoolManager.ReturnToPoolAll("Effect");
+		MasterPoolManager.ReturnToPoolAll("Stage");
+		MasterPoolManager.ReturnToPoolAll("Item");
 		GameDataManager.MoveScene(SceneType.Lobby);
 	}
 
@@ -278,7 +278,7 @@ public class ArenaChestOpen : MonoBehaviour
 			int childCount = chestResult_tr.childCount;
 			for (int i = 0; i < childCount; i++)
 			{
-				MWPoolManager.DeSpawn("Item", chestResult_tr.GetChild(0));
+				MasterPoolManager.ReturnToPool("Item", chestResult_tr.GetChild(0));
 			}
 			for (int j = 0; j < chestListDbData.Length; j++)
 			{

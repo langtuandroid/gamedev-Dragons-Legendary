@@ -60,7 +60,7 @@ public class LevelGameBooster : MonoBehaviour
 		int childCount = _boosterItemList.childCount;
 		for (int i = 0; i < childCount; i++)
 		{
-			MWPoolManager.DeSpawn("Item", _boosterItemList.GetChild(0).transform);
+			MasterPoolManager.ReturnToPool("Item", _boosterItemList.GetChild(0).transform);
 		}
 	}
 
@@ -69,7 +69,7 @@ public class LevelGameBooster : MonoBehaviour
 		LevelGamePlayBoosterItem levelPlay_BoosterItem = null;
 		for (int i = 0; i < 3; i++)
 		{
-			levelPlay_BoosterItem = MWPoolManager.Spawn("Item", "BoosterFrame", _boosterItemList).GetComponent<LevelGamePlayBoosterItem>();
+			levelPlay_BoosterItem = MasterPoolManager.SpawnObject("Item", "BoosterFrame", _boosterItemList).GetComponent<LevelGamePlayBoosterItem>();
 			levelPlay_BoosterItem.Construct(_itemType[i]);
 		}
 	}
