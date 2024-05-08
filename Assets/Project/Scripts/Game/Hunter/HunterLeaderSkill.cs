@@ -55,7 +55,7 @@ public class HunterLeaderSkill : MonoBehaviour
 		return ChangeColorDamage(_damage, _color);
 	}
 
-	public void CheckLeaderSkillHealSetting(Hunter[] _hunterList)
+	public void CheckLeaderSkillHealSetting(Hero[] _hunterList)
 	{
 		if (leaderSkillIdx != 0 && leaderskillDbData.leaderskillType == 4)
 		{

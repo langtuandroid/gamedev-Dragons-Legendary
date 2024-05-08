@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SkillEffect_Anim : MonoBehaviour
 {
-	public Hunter hunter;
+	public Hero hunter;
 
 	public Monster[] monster;
 
@@ -18,7 +18,7 @@ public class SkillEffect_Anim : MonoBehaviour
 		InGamePlayManager.ShakeCamera();
 	}
 
-	public void SetMonster(Hunter _hunter, Monster[] _monster, int _damage)
+	public void SetMonster(Hero _hunter, Monster[] _monster, int _damage)
 	{
 		hunter = _hunter;
 		monster = _monster;

@@ -250,7 +250,7 @@ public static class GameUtil
 		return (int)Mathf.Ceil(f);
 	}
 
-	public static int Check_Property_Damage(Hunter _hunter, Monster _monster, int _damage)
+	public static int Check_Property_Damage(Hero _hunter, Monster _monster, int _damage)
 	{
 		float num = 1.3f;
 		float num2 = 0.7f;
@@ -277,7 +277,7 @@ public static class GameUtil
 		return result;
 	}
 
-	public static void Check_Property_Damage_UI(Hunter _hunter, Monster _monster, int _damage)
+	public static void Check_Property_Damage_UI(Hero _hunter, Monster _monster, int _damage)
 	{
 		switch (_hunter.HunterInfo.Hunter.color)
 		{

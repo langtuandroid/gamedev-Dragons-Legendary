@@ -26,7 +26,7 @@ public class BattleController : MonoBehaviour
 	private Transform[] Hunter_Pos_Arr;
 
 	[SerializeField]
-	private Hunter[] Hunter_Arr;
+	private Hero[] Hunter_Arr;
 
 	[SerializeField]
 	private Transform Hunter_Character_Pos_Set;
@@ -463,7 +463,7 @@ public class BattleController : MonoBehaviour
 		return null;
 	}
 
-	public void UseHunterSkillForTutorial(Hunter hunter)
+	public void UseHunterSkillForTutorial(Hero hunter)
 	{
 		if (InGamePlayManager.HunterSkillEventComplete != null)
 		{
@@ -601,7 +601,7 @@ public class BattleController : MonoBehaviour
 	private void SetStageHunter()
 	{
 		int num = 0;
-		Hunter_Arr = new Hunter[GameInfo.userData.huntersUseInfo.Length];
+		Hunter_Arr = new Hero[GameInfo.userData.huntersUseInfo.Length];
 		for (int i = 0; i < GameInfo.userData.huntersUseInfo.Length; i++)
 		{
 			Transform transform = null;
@@ -624,7 +624,7 @@ public class BattleController : MonoBehaviour
 			transform.SetParent(Hunter_Pos_Arr[i]);
 			transform.localPosition = Vector3.zero;
 			transform.localScale = Vector3.one;
-			Hunter_Arr[i] = transform.GetComponent<Hunter>();
+			Hunter_Arr[i] = transform.GetComponent<Hero>();
 			Hunter_Arr[i].Init(i, transform2.GetComponent<HunterCharacter>(), hunterLeaderSkill, hunterLeaderSkill.CheckLeaderSkillStatSetting(hunterInfo));
 			num += (int)GameUtil.GetHunterReinForceHP(Hunter_Arr[i].HunterInfo.Stat.hunterHp + Hunter_Arr[i].HunterInfo.leaderSkillHp, GameDataManager.HasUserHunterEnchant(Hunter_Arr[i].HunterInfo.Hunter.hunterIdx));
 		}
@@ -634,7 +634,7 @@ public class BattleController : MonoBehaviour
 	private void SetArenaHunter()
 	{
 		int num = 0;
-		Hunter_Arr = new Hunter[GameInfo.userData.huntersArenaUseInfo.Length];
+		Hunter_Arr = new Hero[GameInfo.userData.huntersArenaUseInfo.Length];
 		for (int i = 0; i < GameInfo.userData.huntersArenaUseInfo.Length; i++)
 		{
 			Transform transform = null;
@@ -657,7 +657,7 @@ public class BattleController : MonoBehaviour
 			transform.SetParent(Hunter_Pos_Arr[i]);
 			transform.localPosition = Vector3.zero;
 			transform.localScale = Vector3.one;
-			Hunter_Arr[i] = transform.GetComponent<Hunter>();
+			Hunter_Arr[i] = transform.GetComponent<Hero>();
 			Hunter_Arr[i].Init(i, transform2.GetComponent<HunterCharacter>(), hunterLeaderSkill, hunterLeaderSkill.CheckLeaderSkillStatSetting(hunterInfo));
 			num += (int)GameUtil.GetHunterReinForceHP(Hunter_Arr[i].HunterInfo.Stat.hunterHp + Hunter_Arr[i].HunterInfo.leaderSkillHp, GameDataManager.HasUserHunterEnchant(Hunter_Arr[i].HunterInfo.Hunter.hunterIdx));
 			UnityEngine.Debug.Log("GameInfo.inGamePlayData.inGameType = " + GameInfo.inGamePlayData.inGameType);
@@ -1099,7 +1099,7 @@ public class BattleController : MonoBehaviour
 		InGamePlayManager.StartMonsterTurn();
 	}
 
-	private void Use_Hunter_Skill(Hunter _hunter)
+	private void Use_Hunter_Skill(Hero _hunter)
 	{
 		Set_State(BATTLE_STATE.USERSKILL);
 		InGamePlayManager.PuzzleControlLock();
@@ -1396,7 +1396,7 @@ public class BattleController : MonoBehaviour
 		_monster.SetMonsterAttackTurnRefresh();
 	}
 
-	private Hunter SetAttackToHunter()
+	private Hero SetAttackToHunter()
 	{
 		int num = 0;
 		num = UnityEngine.Random.Range(0, Hunter_Arr.Length);
@@ -1411,8 +1411,8 @@ public class BattleController : MonoBehaviour
 			{
 				return;
 			}
-			Hunter hunter = null;
-			hunter = hit.collider.GetComponent<Hunter>();
+			Hero hunter = null;
+			hunter = hit.collider.GetComponent<Hero>();
 			if (hunter.IsHunter_Skill_Available && !hunter.IsHunterStun)
 			{
 				if (GameInfo.inGamePlayData.level < 4)

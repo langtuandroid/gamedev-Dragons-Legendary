@@ -8,7 +8,7 @@ public class HunterCharacter : MonoBehaviour
 	private Animator hunterAnim;
 
 	[SerializeField]
-	private Hunter hunter;
+	private Hero hunter;
 
 	[SerializeField]
 	private Vector3 origin_Pos;
@@ -27,7 +27,7 @@ public class HunterCharacter : MonoBehaviour
 
     public Vector3 AttackAnchor => attackAnchor.position;
 
-	public Hunter Hunter => hunter;
+	public Hero Hunter => hunter;
 
 	public bool IsTweening => isTweening;
 
@@ -36,7 +36,7 @@ public class HunterCharacter : MonoBehaviour
         if (hunterAnim == null) hunterAnim = GetComponentInChildren<Animator>();
     }
 
-    public void HunterSkillInit(Hunter _hunter)
+    public void HunterSkillInit(Hero _hunter)
 	{
 		if (hunter != null)
 		{
@@ -45,7 +45,7 @@ public class HunterCharacter : MonoBehaviour
 		SetHunterCharacterTier(_hunter);
 	}
 
-	public void Init(Hunter _hunter)
+	public void Init(Hero _hunter)
 	{
 		if (hunter != null)
 		{
@@ -62,7 +62,7 @@ public class HunterCharacter : MonoBehaviour
 		transform.position = base.transform.position;
 	}
 
-	private void SetHunterCharacterTier(Hunter _hunter)
+	private void SetHunterCharacterTier(Hero _hunter)
 	{
 		switch (_hunter.HunterInfo.Stat.hunterTier)
 		{

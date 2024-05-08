@@ -260,7 +260,7 @@ public class TutorialIntro : MonoBehaviour
 
 	public void OnClickHunterSkill()
 	{
-		InGamePlayManager.UseHunterSkillForTutorial(trUserSkillHunter.GetComponent<Hunter>());
+		InGamePlayManager.UseHunterSkillForTutorial(trUserSkillHunter.GetComponent<Hero>());
 		goHunterSkillButton.SetActive(value: false);
 	}
 }

@@ -2,12 +2,10 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Hunter : Hunter_Base
+public class Hero : Hunter_Base
 {
-	private Action<int, int> OnCallback_Hunter_Attack;
-
-	private Action<int> OnCallback_Combo_Eff;
-
+	private Action<int, int> OnHanterAttack;
+	private Action<int> OnComboEffect;
 	private Action OnCallback_Skill_End;
 
 	private Action OnCallback_CharacterAttack_End;
@@ -121,8 +119,8 @@ public class Hunter : Hunter_Base
 			MWPoolManager.DeSpawn("Effect", stunEff);
 			stunEff = null;
 		}
-		OnCallback_Hunter_Attack = null;
-		OnCallback_Combo_Eff = null;
+		OnHanterAttack = null;
+		OnComboEffect = null;
 		OnCallback_Skill_End = null;
 		hunter_Block_Count = 0;
 		hunter_Total_Damage = 0;
@@ -261,9 +259,9 @@ public class Hunter : Hunter_Base
 
 	public void Attack_Start(Action<int, int> _OnCallback)
 	{
-		OnCallback_Hunter_Attack = _OnCallback;
-		OnCallback_Hunter_Attack(hunter_Total_Damage, hunter_Arr_Idx);
-		OnCallback_Hunter_Attack = null;
+		OnHanterAttack = _OnCallback;
+		OnHanterAttack(hunter_Total_Damage, hunter_Arr_Idx);
+		OnHanterAttack = null;
 	}
 
 	public IEnumerator Use_Hunter_Skill(HunterSkillRange _range, Monster[] _monster, Action _OnCallback)
@@ -457,7 +455,7 @@ public class Hunter : Hunter_Base
 
 	private IEnumerator Add_Combo_Effect(int _combo, int _color, int _lastAttackIdx, Action<int> _OnCallBack)
 	{
-		OnCallback_Combo_Eff = _OnCallBack;
+		OnComboEffect = _OnCallBack;
 		yield return null;
 		if (_combo > 0 && hunter_Total_Damage > 0)
 		{
@@ -489,8 +487,8 @@ public class Hunter : Hunter_Base
 			hunter_Total_Damage = hunterLeaderSkill.CheckLeaderSkillColorSetting(_color, hunter_Total_Damage);
 			InGamePlayManager.AddHunterAttack(hunter_Total_Damage, hunter_Info.Hunter.color, base.transform.position, hunter_Info.Hunter.hunterIdx);
 		}
-		OnCallback_Combo_Eff(hunter_Arr_Idx);
-		OnCallback_Combo_Eff = null;
+		OnComboEffect(hunter_Arr_Idx);
+		OnComboEffect = null;
 	}
 
 	private void SetHunterFace()

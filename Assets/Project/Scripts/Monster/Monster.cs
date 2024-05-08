@@ -83,7 +83,7 @@ public class Monster : Monster_Base
 
 	private int origin_Depth;
 
-	private Hunter attack_Hunter;
+	private Hero attack_Hunter;
 
 	private Action OnCallback_CharacterAttack_End;
 
@@ -397,7 +397,7 @@ public class Monster : Monster_Base
 		}
 	}
 
-	public void SetCharacterAnim(Anim_Type _type, Hunter _hunter, Action _onCallBack)
+	public void SetCharacterAnim(Anim_Type _type, Hero _hunter, Action _onCallBack)
 	{
 		if (!(_hunter == null))
 		{
@@ -484,7 +484,7 @@ public class Monster : Monster_Base
 		}
 	}
 
-	private IEnumerator SetCharacterAnim_Coroutine(Hunter _hunter)
+	private IEnumerator SetCharacterAnim_Coroutine(Hero _hunter)
 	{
 		if (monster_Info.motionType == 1)
 		{

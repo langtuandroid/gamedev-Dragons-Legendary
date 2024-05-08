@@ -14,9 +14,9 @@ public class HunterSkillEffect : MonoBehaviour
 	[SerializeField]
 	private Transform hunterSkillText;
 
-	private Hunter hunter;
+	private Hero hunter;
 
-	public void Init(Hunter _hunter)
+	public void Init(Hero _hunter)
 	{
 		hunter = _hunter;
 		SetHunter();

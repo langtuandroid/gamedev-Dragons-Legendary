@@ -608,7 +608,7 @@ public class InGamePlayManager : GameObjectSingleton<InGamePlayManager>
 		}
 	}
 
-	public static void UseHunterSkillForTutorial(Hunter hunter)
+	public static void UseHunterSkillForTutorial(Hero hunter)
 	{
 		GameObjectSingleton<InGamePlayManager>.Inst.battleController.UseHunterSkillForTutorial(hunter);
 	}

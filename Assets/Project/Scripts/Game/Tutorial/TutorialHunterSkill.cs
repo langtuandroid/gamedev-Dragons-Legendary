@@ -50,6 +50,6 @@ public class TutorialHunterSkill : MonoBehaviour
 
 	public void UseHunterSkillForTutorial()
 	{
-		InGamePlayManager.UseHunterSkillForTutorial(userSkillHunter.GetComponent<Hunter>());
+		InGamePlayManager.UseHunterSkillForTutorial(userSkillHunter.GetComponent<Hero>());
 	}
 }
