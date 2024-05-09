@@ -50,7 +50,7 @@ public class LobbyTopUI : MonoBehaviour
 
 	private Vector2 expGaugeOffsetMax;
 
-	[SerializeField] private EnergyTimeChecker timeChecker;
+	[SerializeField] private StaminaTimeChecker timeChecker;
 
 	public Vector3 UserLevelPosition => trUserLevel.position;
 
@@ -62,7 +62,7 @@ public class LobbyTopUI : MonoBehaviour
 
 	public void Init()
 	{
-		timeChecker.Init();
+		timeChecker.Construct();
 	}
 
 	public void RefreshData(bool isCount = false)
@@ -103,7 +103,7 @@ public class LobbyTopUI : MonoBehaviour
 			expGaugeOffsetMax.x = (float)GameInfo.userData.userInfo.exp / (float)userLevelData.exp * 134f;
 			rtExpGauge.offsetMax = expGaugeOffsetMax;
 		}
-		timeChecker.Refresh();
+		timeChecker.Reload();
 	}
 
 	public void Show()
@@ -118,7 +118,7 @@ public class LobbyTopUI : MonoBehaviour
 
 	public void Exit()
 	{
-		timeChecker.Exit();
+		timeChecker.Remove();
 	}
 
 	private void OnTimeTickEvent(string type, float second)
@@ -170,7 +170,7 @@ public class LobbyTopUI : MonoBehaviour
 
 	private void Awake()
 	{
-		timeChecker = base.gameObject.GetComponent<EnergyTimeChecker>();
+		timeChecker = base.gameObject.GetComponent<StaminaTimeChecker>();
 	}
 
 	private void OnDestroy()

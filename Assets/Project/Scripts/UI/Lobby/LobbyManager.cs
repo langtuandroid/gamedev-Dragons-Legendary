@@ -139,7 +139,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	private LevelGameInfo userLevelInfo;
 
 	[SerializeField]
-	private EnergyInfo userEnergyInfo;
+	private StaminaInfo userEnergyInfo;
 
 	[SerializeField]
 	private LootSortList itemSortList;
@@ -1030,7 +1030,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		liftDetail.OnCloseEvent = OnFloorDetailGoBackEvent;
 		floorUpgrade.OnBackEvent = OnFloorUpgradeGoBackEvent;
 		userLevelInfo.OnGoBackEvent = OnUserLevelInfoGoBackEvent;
-		userEnergyInfo.GoBackEvent = OnUserEnergyInfoGoBackEvent;
+		userEnergyInfo.OnStaminaClose = OnUserEnergyInfoGoBackEvent;
 		itemSortList.OnBackEvent = OnItemSortListGoBackEvent;
 		notEnoughCoin.GoBackEvent = OnNotEnoughCoinGoBackEvent;
 		notEnoughJewel.GoBackEvent = OnNotEnoughJewelGoBackEvent;
