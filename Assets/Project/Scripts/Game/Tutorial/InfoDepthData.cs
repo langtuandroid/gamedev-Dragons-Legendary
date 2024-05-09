@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TutorialDepthData
+public class InfoDepthData
 {
 	public SpriteRenderer srObject;
 

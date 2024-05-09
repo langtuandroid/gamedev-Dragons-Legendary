@@ -1,4 +1,4 @@
-public class TutorialDbData
+public class InfoDbData
 {
 	public int sidex;
 

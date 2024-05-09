@@ -100,7 +100,7 @@ public class LevelGamePlay : LobbyPopupBase
 		SetAllHunters();
 		SaveEditDeck();
 		UnityEngine.Debug.Log("Tutorial LeaderSkill = " + _levelIndex);
-		TutorialManager.CheckHunterDeckTutorial();
+		InfoManager.DeckTutorial();
 		
 		if (LobbyManager.OpenDeckEdit != null && _levelIndex == 13)
 		{

@@ -1416,7 +1416,7 @@ public class BattleController : MonoBehaviour
 			{
 				if (GameInfo.inGamePlayData.level < 4)
 				{
-					TutorialManager.HunterSkillTutorialForceClear();
+					InfoManager.HunterSkillClear();
 				}
 				else if (PuzzlePlayManager.OnHunterSkillEventComplete != null)
 				{

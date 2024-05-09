@@ -102,7 +102,7 @@ public class SoundObject : RegisteredComponent
 		internal set => _sumItemMain = value;
 	}
 
-	public AudioChannelType Chanel
+	public SoundChannelType Chanel
 	{
 		get;
 		internal set;
@@ -139,7 +139,7 @@ public class SoundObject : RegisteredComponent
 			if (audioController != null)
 			{
 				num *= audioController.VolumeValue;
-				if (audioController.IsMuted && Chanel == AudioChannelType.Default)
+				if (audioController.IsMuted && Chanel == SoundChannelType.Default)
 				{
 					num = 0f;
 				}
@@ -672,7 +672,7 @@ public class SoundObject : RegisteredComponent
 				}
 				if (_isPlaulistTrack && (bool)SingletonMonoBehaviour<AudioController>.DoesInstanceExist())
 				{
-					SingletonMonoBehaviour<AudioController>.Instance._NotifyPlaylistTrackCompleteleyPlayed(this);
+					SingletonMonoBehaviour<AudioController>.Instance.NotifyPlayListTrack(this);
 				}
 				if (flag3)
 				{
@@ -692,7 +692,7 @@ public class SoundObject : RegisteredComponent
 					{
 						if ((bool)SingletonMonoBehaviour<AudioController>.DoesInstanceExist())
 						{
-							SingletonMonoBehaviour<AudioController>.Instance._NotifyPlaylistTrackCompleteleyPlayed(this);
+							SingletonMonoBehaviour<AudioController>.Instance.NotifyPlayListTrack(this);
 						}
 					}
 					else

@@ -191,13 +191,13 @@ public class ArenaLobby : LobbyPopupBase
 		GameUtil.SetOwnHunterList(HanterListType.Arena);
 		RefreshData();
 		LobbyManager.ShowArenaEventEnd(infoDataResult.rewardInfo);
-		TutorialManager.CheckArenaLobbyEnter();
+		InfoManager.ArenaEnterCheck();
 		ShowArenaSalePack();
 	}
 
 	private void ShowArenaSalePack()
 	{
-		if (!TutorialManager.DialogState)
+		if (!InfoManager.DialogState)
 		{
 			if (GameInfo.isShowArenaSalePack)
 			{

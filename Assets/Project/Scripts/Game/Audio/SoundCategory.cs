@@ -61,7 +61,7 @@ public class SoundCategory
 			{
 				if (AudioController != null)
 				{
-					_parentCategory = AudioController._GetCategory(_parentCategoryName);
+					_parentCategory = AudioController.ChangeCategory(_parentCategoryName);
 				}
 				else
 				{
@@ -178,7 +178,7 @@ public class SoundCategory
 
 	private void SaveVolumeChange()
 	{
-		List<SoundObject> playingAudioObjects = AudioController.GetPlayingAudioObjects();
+		List<SoundObject> playingAudioObjects = AudioController.GetObjectByIndex();
 		for (int i = 0; i < playingAudioObjects.Count; i++)
 		{
 			SoundObject audioObject = playingAudioObjects[i];

@@ -68,7 +68,7 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 
 	private Dictionary<int, BoostItemDbData> dicBoostItemDbData = new Dictionary<int, BoostItemDbData>();
 
-	private Dictionary<int, Dictionary<int, TutorialDbData>> dicTutorialDbData = new Dictionary<int, Dictionary<int, TutorialDbData>>();
+	private Dictionary<int, Dictionary<int, InfoDbData>> dicTutorialDbData = new Dictionary<int, Dictionary<int, InfoDbData>>();
 
 	private Dictionary<int, Dictionary<int, ScenarioDbData>> dicScenarioDbData = new Dictionary<int, Dictionary<int, ScenarioDbData>>();
 
@@ -263,7 +263,7 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 		return dicShopJewelDbData;
 	}
 
-	public Dictionary<int, Dictionary<int, TutorialDbData>> GetDicTutorialData()
+	public Dictionary<int, Dictionary<int, InfoDbData>> GetDicTutorialData()
 	{
 		return dicTutorialDbData;
 	}
@@ -1115,7 +1115,7 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 		dicTutorialDbData.Clear();
 		while (dataReader.Read())
 		{
-			TutorialDbData tutorialDbData = new TutorialDbData();
+			InfoDbData tutorialDbData = new InfoDbData();
 			tutorialDbData.sidex = dataReader.GetInt32(0);
 			tutorialDbData.seq = dataReader.GetInt32(1);
 			tutorialDbData.type = dataReader.GetString(2);
@@ -1126,7 +1126,7 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 			tutorialDbData.TutoMessage = dataReader.GetString(7);
 			if (!dicTutorialDbData.ContainsKey(tutorialDbData.sidex))
 			{
-				dicTutorialDbData.Add(tutorialDbData.sidex, new Dictionary<int, TutorialDbData>());
+				dicTutorialDbData.Add(tutorialDbData.sidex, new Dictionary<int, InfoDbData>());
 			}
 			dicTutorialDbData[tutorialDbData.sidex].Add(tutorialDbData.seq, tutorialDbData);
 		}

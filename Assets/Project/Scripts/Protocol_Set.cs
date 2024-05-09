@@ -1267,7 +1267,7 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 			{
 				UnityEngine.Debug.Log("@LOG Protocol_Set Protocol_user_get_tutorial_Res :: " + array.Length);
 				UnityEngine.Debug.Log("@LOG Protocol_Set Protocol_user_get_tutorial_Res ::: " + array[0].result);
-				TutorialManager.SetTutorialData(array[0].result);
+				InfoManager.ConfgureData(array[0].result);
 				GameDataManager.StartGame();
 				if (onCallBack_Default != null)
 				{

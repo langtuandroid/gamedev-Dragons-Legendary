@@ -226,7 +226,7 @@ public class GameDataManager : GameObjectSingleton<GameDataManager>
 		return GameObjectSingleton<GameDataManager>.Inst.localDB.GetUserLevelData(userLevel);
 	}
 
-	public static Dictionary<int, Dictionary<int, TutorialDbData>> GetDicTutorialDbData()
+	public static Dictionary<int, Dictionary<int, InfoDbData>> GetDicTutorialDbData()
 	{
 		return GameObjectSingleton<GameDataManager>.Inst.localDB.GetDicTutorialData();
 	}
@@ -512,19 +512,19 @@ public class GameDataManager : GameObjectSingleton<GameDataManager>
 
 	public static void StartGame()
 	{
-		if (LoadScenarioIntroShow(1) && TutorialManager.Intro)
+		if (LoadScenarioIntroShow(1) && InfoManager.Intro)
 		{
 			HideSceneLoading();
 			ScenarioManager.EndScenarioEvent = GameObjectSingleton<GameDataManager>.Inst.OnEndScenarioEvent;
 			ScenarioManager.Show(1);
 		}
-		else if (LoadScenarioIntroShow(2) && TutorialManager.SIdx == 1)
+		else if (LoadScenarioIntroShow(2) && InfoManager.ID == 1)
 		{
 			HideSceneLoading();
 			ScenarioManager.EndScenarioEvent = GameObjectSingleton<GameDataManager>.Inst.OnEndScenarioEvent;
 			ScenarioManager.Show(2);
 		}
-		else if (LoadScenarioIntroShow(3) && TutorialManager.SIdx == 1)
+		else if (LoadScenarioIntroShow(3) && InfoManager.ID == 1)
 		{
 			HideSceneLoading();
 			ScenarioManager.EndScenarioEvent = GameObjectSingleton<GameDataManager>.Inst.OnEndScenarioEvent;

@@ -192,7 +192,7 @@ public class BattleReward : MonoBehaviour
 
 	private void SetResultState()
 	{
-		TutorialManager.CheckBattleReward();
+		InfoManager.RewardButtle();
 		pick_Tr.gameObject.SetActive(value: false);
 		result_Tr.gameObject.SetActive(value: true);
 		SoundController.EffectSound_Play(EffectSoundType.ChestBoxIdle);

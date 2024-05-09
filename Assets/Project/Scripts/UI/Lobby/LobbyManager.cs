@@ -809,7 +809,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		if (GameInfo.inGamePlayData.stage > 0)
 		{
 			UserLevelState userLevelState = GameInfo.userData.GetUserLevelState(GameInfo.inGamePlayData.stage - 1, GameInfo.inGamePlayData.chapter - 1, GameInfo.inGamePlayData.level);
-			if (!TutorialManager.Intro && GameInfo.inGamePlayData.isShowScenario && userLevelState != null && userLevelState.starCount > 0)
+			if (!InfoManager.Intro && GameInfo.inGamePlayData.isShowScenario && userLevelState != null && userLevelState.starCount > 0)
 			{
 				GameDataManager.SaveScenarioInGameShow(levelIndex);
 				GameInfo.inGamePlayData.isShowScenario = false;
@@ -1070,16 +1070,16 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 			break;
 		}
 		SoundController.BGM_Play(MusicSoundType.LobbyBGM);
-		TutorialManager.CheckTutorial();
+		InfoManager.LookTutorial();
 		CheckChestLock();
 		
 		if (GameInfo.inGamePlayData.inGameType == PuzzleInGameType.Arena)
 		{
 			arenaLobby.Open();
 		}
-		if (!TutorialManager.Intro)
+		if (!InfoManager.Intro)
 		{
-			if (!TutorialManager.DialogState && !TutorialManager.ProgressTutorial)
+			if (!InfoManager.DialogState && !InfoManager.CurrentProgress)
 			{
 				ShowDailyBonus();
 			}

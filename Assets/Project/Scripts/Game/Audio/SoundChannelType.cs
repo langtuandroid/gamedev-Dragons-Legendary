@@ -1,4 +1,4 @@
-public enum AudioChannelType
+public enum SoundChannelType
 {
 	Default,
 	Music,

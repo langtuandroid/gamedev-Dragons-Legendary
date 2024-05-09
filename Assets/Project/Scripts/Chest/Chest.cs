@@ -181,11 +181,11 @@ public class Chest : LobbyPopupBase
 		}
 		if (LobbyManager.OpenChestOpenResult != null)
 		{
-			TutorialManager.SaveTutorial(5, 1);
+			InfoManager.SaveAllData(5, 1);
 		}
 		if (LobbyManager.OpenChestOpenEnchant != null)
 		{
-			TutorialManager.SaveTutorial(13, 1);
+			InfoManager.SaveAllData(13, 1);
 		}
 		LobbyManager.CallUserData(Refresh_Chest);
 		GetChestItemList(ChestType.Mysterious, _item);

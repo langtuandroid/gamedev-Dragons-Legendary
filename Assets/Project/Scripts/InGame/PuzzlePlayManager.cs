@@ -115,7 +115,7 @@ public class PuzzlePlayManager : GameObjectSingleton<PuzzlePlayManager>
 	public static void ThisTurn(int turn)
 	{
 		Debug.Log("CurrentTurn");
-		TutorialManager.CheckInGameUserTurn();
+		InfoManager.IsGamerTurn();
 		GameInfo.userPlayData.turn = turn;
 		Inst._uiController.UpdateTurn(turn);
 	}
@@ -424,9 +424,9 @@ public class PuzzlePlayManager : GameObjectSingleton<PuzzlePlayManager>
 		{
 			return;
 		}
-		if (TutorialManager.Intro)
+		if (InfoManager.Intro)
 		{
-			TutorialManager.ShowTutorial();
+			InfoManager.OpenTutorial();
 		}
 		else if (GameInfo.inGamePlayData.inGameType == PuzzleInGameType.Stage)
 		{
@@ -643,7 +643,7 @@ public class PuzzlePlayManager : GameObjectSingleton<PuzzlePlayManager>
 		if (GameInfo.isDirectBattleReward)
 		{
 			Inst._uiController.ClearResultShow();
-			TutorialManager.CheckInGameUserTurn();
+			InfoManager.IsGamerTurn();
 		}
 		else
 		{
@@ -733,7 +733,7 @@ public class PuzzlePlayManager : GameObjectSingleton<PuzzlePlayManager>
 		{
 			return false;
 		}
-		if (GameInfo.inGamePlayData.isShowScenario && !TutorialManager.Intro && GameInfo.inGamePlayData.isDragon == 1)
+		if (GameInfo.inGamePlayData.isShowScenario && !InfoManager.Intro && GameInfo.inGamePlayData.isDragon == 1)
 		{
 			ScenarioManager.EndScenarioEvent = OnScenarioEnd;
 			ScenarioManager.ShowInGame(GameInfo.inGamePlayData.levelIdx);
@@ -774,7 +774,7 @@ public class PuzzlePlayManager : GameObjectSingleton<PuzzlePlayManager>
 
 	private void Update()
 	{
-		if (TutorialManager.DialogState || !_isTouchState)
+		if (InfoManager.DialogState || !_isTouchState)
 		{
 			return;
 		}

@@ -1,4 +1,4 @@
-public enum TutorialType
+public enum InfoType
 {
 	None = -1,
 	Intro,

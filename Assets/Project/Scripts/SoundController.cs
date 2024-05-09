@@ -5,25 +5,25 @@ public static class SoundController
 		switch (_type)
 		{
 		case MusicSoundType.LobbyBGM:
-			if (GameInfo.IS_MUSIC_SOUND && !AudioController.IsPlaying("bgm_lobby"))
+			if (GameInfo.IS_MUSIC_SOUND && !AudioController.CheckPlay("bgm_lobby"))
 			{
 				AudioController.PlayAudio("bgm_lobby");
 			}
 			break;
 		case MusicSoundType.IngameBGM:
-			if (GameInfo.IS_MUSIC_SOUND && !AudioController.IsPlaying("bgm_ingame"))
+			if (GameInfo.IS_MUSIC_SOUND && !AudioController.CheckPlay("bgm_ingame"))
 			{
 				AudioController.PlayAudio("bgm_ingame");
 			}
 			break;
 		case MusicSoundType.ArenaBGM:
-			if (GameInfo.IS_MUSIC_SOUND && !AudioController.IsPlaying("bgm_arena"))
+			if (GameInfo.IS_MUSIC_SOUND && !AudioController.CheckPlay("bgm_arena"))
 			{
 				AudioController.PlayAudio("bgm_arena");
 			}
 			break;
 		case MusicSoundType.InGameDragonBgm:
-			if (GameInfo.IS_MUSIC_SOUND && !AudioController.IsPlaying("bgm_dragon"))
+			if (GameInfo.IS_MUSIC_SOUND && !AudioController.CheckPlay("bgm_dragon"))
 			{
 				AudioController.PlayAudio("bgm_dragon");
 			}
