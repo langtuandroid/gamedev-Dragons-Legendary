@@ -108,11 +108,11 @@ public class HeroLevel : LobbyPopupBase
 			_requiredCoinCell.SetCostText(SetCostTextCoin());
 			if (GameInfo.userData.userInfo.coin < _totalCoin)
 			{
-				_requiredCoinCell.SetClickType(ItemClickType.Coin, _totalCoin - GameInfo.userData.userInfo.coin);
+				_requiredCoinCell.SetClickType(LootClickType.Coin, _totalCoin - GameInfo.userData.userInfo.coin);
 			}
 			else
 			{
-				_requiredCoinCell.SetClickType(ItemClickType.None);
+				_requiredCoinCell.SetClickType(LootClickType.None);
 			}
 		}
 	}
@@ -127,11 +127,11 @@ public class HeroLevel : LobbyPopupBase
 			_requiredCoinCell.SetCostText(SetCostTextCoin());
 			if (GameInfo.userData.userInfo.coin < _totalCoin)
 			{
-				_requiredCoinCell.SetClickType(ItemClickType.Coin, _totalCoin - GameInfo.userData.userInfo.coin);
+				_requiredCoinCell.SetClickType(LootClickType.Coin, _totalCoin - GameInfo.userData.userInfo.coin);
 			}
 			else
 			{
-				_requiredCoinCell.SetClickType(ItemClickType.None);
+				_requiredCoinCell.SetClickType(LootClickType.None);
 			}
 		}
 	}
@@ -296,11 +296,11 @@ public class HeroLevel : LobbyPopupBase
 		_requiredCoinCell.SetCostText(SetCostTextCoin());
 		if (GameInfo.userData.userInfo.coin < _hunterLevelDbData.needCoin)
 		{
-			_requiredCoinCell.SetClickType(ItemClickType.Coin, _hunterLevelDbData.needCoin - GameInfo.userData.userInfo.coin);
+			_requiredCoinCell.SetClickType(LootClickType.Coin, _hunterLevelDbData.needCoin - GameInfo.userData.userInfo.coin);
 		}
 		else
 		{
-			_requiredCoinCell.SetClickType(ItemClickType.None);
+			_requiredCoinCell.SetClickType(LootClickType.None);
 		}
 	}
 
@@ -373,11 +373,11 @@ public class HeroLevel : LobbyPopupBase
 		_requiredCoinCell.SetCostText(SetCostTextCoin());
 		if (GameInfo.userData.userInfo.coin < _totalCoin)
 		{
-			_requiredCoinCell.SetClickType(ItemClickType.Coin, _totalCoin - GameInfo.userData.userInfo.coin);
+			_requiredCoinCell.SetClickType(LootClickType.Coin, _totalCoin - GameInfo.userData.userInfo.coin);
 		}
 		else
 		{
-			_requiredCoinCell.SetClickType(ItemClickType.None);
+			_requiredCoinCell.SetClickType(LootClickType.None);
 		}
 	}
 

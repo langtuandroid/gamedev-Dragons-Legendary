@@ -47,7 +47,6 @@ public class EnergyInfo : LobbyPopupBase
 
 	private void Init()
 	{
-		AnalyticsManager.RewardPromptAppEnvent("get_energy");
 		textChargeEnergyForJewel.text = $"{GameDataManager.GetGameConfigData(ConfigDataType.EnergyPackEnergyNumber)}";
 		textChargePurchaseJewel.text = $"{GameDataManager.GetGameConfigData(ConfigDataType.EnergyPackPriceJewel)}";
 		textChargeEnergyForAds.text = $"{GameInfo.chargeEnergyAdsValue}";

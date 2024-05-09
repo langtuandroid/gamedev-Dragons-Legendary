@@ -26,14 +26,6 @@ public class JSONObject : IEnumerable
 
 	public delegate void GetFieldResponse(JSONObject obj);
 
-	private const int MAX_DEPTH = 100;
-
-	private const string INFINITY = "\"INFINITY\"";
-
-	private const string NEGINFINITY = "\"NEGINFINITY\"";
-
-	private const string NaN = "\"NaN\"";
-
 	public static readonly char[] WHITESPACE = new char[6]
 	{
 		' ',

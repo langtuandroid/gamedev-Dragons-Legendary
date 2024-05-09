@@ -197,7 +197,7 @@ public class ArenaLevelPlay : LobbyPopupBase
 		foreach (ARENA_MONSTER_DATA aRENA_MONSTER_DATA in monsterList)
 		{
 			Transform transform = MasterPoolManager.SpawnObject("Lobby", "QuickLootMonster", trMonsterListAnchor);
-			transform.GetComponent<ItemInfoUI>().Show("Info", $"UI_monster_{aRENA_MONSTER_DATA.uiImage}", aRENA_MONSTER_DATA.count);
+			transform.GetComponent<LootInfoUI>().Open("Info", $"UI_monster_{aRENA_MONSTER_DATA.uiImage}", aRENA_MONSTER_DATA.count);
 		}
 	}
 
@@ -316,11 +316,11 @@ public class ArenaLevelPlay : LobbyPopupBase
 			MasterPoolManager.ReturnToPool("Item", trRewardItem);
 			trRewardItem = null;
 		}
-		ItemInfoUI[] componentsInChildren = trMonsterListAnchor.GetComponentsInChildren<ItemInfoUI>();
-		ItemInfoUI[] array = componentsInChildren;
-		foreach (ItemInfoUI itemInfoUI in array)
+		LootInfoUI[] componentsInChildren = trMonsterListAnchor.GetComponentsInChildren<LootInfoUI>();
+		LootInfoUI[] array = componentsInChildren;
+		foreach (LootInfoUI itemInfoUI in array)
 		{
-			itemInfoUI.Clear();
+			itemInfoUI.Remove();
 			MasterPoolManager.ReturnToPool("Lobby", itemInfoUI.transform);
 		}
 		RemoveHunterCard();

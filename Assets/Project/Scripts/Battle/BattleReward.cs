@@ -76,7 +76,6 @@ public class BattleReward : MonoBehaviour
 
 	public void Init()
 	{
-		AnalyticsManager.RewardPromptAppEnvent("battle_reward_pick_more");
 		base.gameObject.SetActive(value: true);
 		pickCount = 0;
 		GetItemList();

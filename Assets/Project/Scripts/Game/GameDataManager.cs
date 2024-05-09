@@ -186,7 +186,7 @@ public class GameDataManager : GameObjectSingleton<GameDataManager>
 		return GameObjectSingleton<GameDataManager>.Inst.localDB.GetStoreUpgradeData(storeIdx, storeTier);
 	}
 
-	public static ItemListDbData GetItemListData(int itemIdx)
+	public static LootListDbData GetItemListData(int itemIdx)
 	{
 		return GameObjectSingleton<GameDataManager>.Inst.localDB.GetItemListData(itemIdx);
 	}

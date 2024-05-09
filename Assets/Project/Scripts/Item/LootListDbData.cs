@@ -1,4 +1,4 @@
-public class ItemListDbData
+public class LootListDbData
 {
 	public int itemIdx;
 

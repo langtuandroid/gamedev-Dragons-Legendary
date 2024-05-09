@@ -192,7 +192,7 @@ public class LevelGamePlay : LobbyPopupBase
 		foreach (KeyValuePair<int, int> levelMonster in GameUtil.GetLevelMonsterList(_levelIndex))
 		{
 			Transform transform = MasterPoolManager.SpawnObject("Lobby", "QuickLootMonster", _trMonsterListAnchor);
-			transform.GetComponent<ItemInfoUI>().Show("Info", $"UI_monster_{levelMonster.Key}", levelMonster.Value);
+			transform.GetComponent<LootInfoUI>().Open("Info", $"UI_monster_{levelMonster.Key}", levelMonster.Value);
 		}
 	}
 
@@ -203,11 +203,11 @@ public class LevelGamePlay : LobbyPopupBase
 			MasterPoolManager.ReturnToPool("Item", _trRewardItem);
 			_trRewardItem = null;
 		}
-		ItemInfoUI[] componentsInChildren = _trMonsterListAnchor.GetComponentsInChildren<ItemInfoUI>();
-		ItemInfoUI[] array = componentsInChildren;
-		foreach (ItemInfoUI itemInfoUI in array)
+		LootInfoUI[] componentsInChildren = _trMonsterListAnchor.GetComponentsInChildren<LootInfoUI>();
+		LootInfoUI[] array = componentsInChildren;
+		foreach (LootInfoUI itemInfoUI in array)
 		{
-			itemInfoUI.Clear();
+			itemInfoUI.Remove();
 			MasterPoolManager.ReturnToPool("Lobby", itemInfoUI.transform);
 		}
 		LobbyManager.GotoInGame(_levelIndex);
@@ -339,11 +339,11 @@ public class LevelGamePlay : LobbyPopupBase
 			MasterPoolManager.ReturnToPool("Item", _trRewardItem);
 			_trRewardItem = null;
 		}
-		ItemInfoUI[] componentsInChildren = _trMonsterListAnchor.GetComponentsInChildren<ItemInfoUI>();
-		ItemInfoUI[] array = componentsInChildren;
-		foreach (ItemInfoUI itemInfoUI in array)
+		LootInfoUI[] componentsInChildren = _trMonsterListAnchor.GetComponentsInChildren<LootInfoUI>();
+		LootInfoUI[] array = componentsInChildren;
+		foreach (LootInfoUI itemInfoUI in array)
 		{
-			itemInfoUI.Clear();
+			itemInfoUI.Remove();
 			MasterPoolManager.ReturnToPool("Lobby", itemInfoUI.transform);
 		}
 		DeleteCard();

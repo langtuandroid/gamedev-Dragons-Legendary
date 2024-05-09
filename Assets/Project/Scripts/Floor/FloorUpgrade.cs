@@ -145,12 +145,12 @@ public class FloorUpgrade : LobbyPopupBase
 		if (GameInfo.userData.userInfo.coin < upgradeStoreData.needCoin)
 		{
 			requiredCoinCell.SetCostText($"<color=red>{upgradeStoreData.needCoin}</color>");
-			requiredCoinCell.SetClickType(ItemClickType.Coin, upgradeStoreData.needCoin - GameInfo.userData.userInfo.coin);
+			requiredCoinCell.SetClickType(LootClickType.Coin, upgradeStoreData.needCoin - GameInfo.userData.userInfo.coin);
 		}
 		else
 		{
 			requiredCoinCell.SetCostText($"{upgradeStoreData.needCoin}");
-			requiredCoinCell.SetClickType(ItemClickType.None);
+			requiredCoinCell.SetClickType(LootClickType.None);
 		}
 		listRequireItemData = GetRequireItemData();
 		foreach (UpgradeRequireItemData listRequireItemDatum in listRequireItemData)
@@ -259,12 +259,12 @@ public class FloorUpgrade : LobbyPopupBase
 		if (GameInfo.userData.userInfo.coin < upgradeStoreData.needCoin)
 		{
 			requiredCoinCell.SetCostText($"<color=red>{upgradeStoreData.needCoin}</color>");
-			requiredCoinCell.SetClickType(ItemClickType.Coin, upgradeStoreData.needCoin - GameInfo.userData.userInfo.coin);
+			requiredCoinCell.SetClickType(LootClickType.Coin, upgradeStoreData.needCoin - GameInfo.userData.userInfo.coin);
 		}
 		else
 		{
 			requiredCoinCell.SetCostText($"{upgradeStoreData.needCoin}");
-			requiredCoinCell.SetClickType(ItemClickType.None);
+			requiredCoinCell.SetClickType(LootClickType.None);
 		}
 	}
 

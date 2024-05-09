@@ -283,7 +283,6 @@ public class ValueShopBuy : LobbyPopupBase
 
 	private void OnBuyProductComplete()
 	{
-		AnalyticsManager.InAppPurchaseAppEnvent(purchase_args);
 		LobbyManager.ShowValueShop_Refresh();
 		OnClickGoBack();
 		SoundController.EffectSound_Play(EffectSoundType.GetJewel);

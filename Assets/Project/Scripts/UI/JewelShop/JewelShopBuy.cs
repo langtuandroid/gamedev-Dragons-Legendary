@@ -76,7 +76,6 @@ public class JewelShopBuy : MonoBehaviour
 
 	private void OnBuyProductComplete()
 	{
-		AnalyticsManager.InAppPurchaseAppEnvent(purchase_args);
 		PuzzlePlayManager.CloseJewelShop();
 		base.gameObject.SetActive(value: false);
 	}

@@ -83,23 +83,23 @@ public class LevelGameInfo : LobbyPopupBase
 			RequiredItem_Cell component = MasterPoolManager.SpawnObject("Grow", "cell_token", _trItemListAnchor).GetComponent<RequiredItem_Cell>();
 			component.SetItemImg(50034, _levelInfoItemSize);
 			component.SetCostText(MasterLocalize.GetData("common_text_2max"));
-			component.SetClickType(ItemClickType.None);
+			component.SetClickType(LootClickType.None);
 			RequiredItem_Cell component2 = MasterPoolManager.SpawnObject("Grow", "cell_token", _trItemListAnchor).GetComponent<RequiredItem_Cell>();
 			component2.SetItemImg(50034, _levelInfoItemSize);
 			component2.SetCostText(MasterLocalize.GetData("common_text_refill"));
-			component2.SetClickType(ItemClickType.None);
+			component2.SetClickType(LootClickType.None);
 			RequiredItem_Cell component3 = MasterPoolManager.SpawnObject("Grow", "cell_token", _trItemListAnchor).GetComponent<RequiredItem_Cell>();
 			component3.SetItemImg(50031, _levelInfoItemSize);
 			component3.SetCostText(MasterLocalize.GetData("common_text_20jewel"));
-			component3.SetClickType(ItemClickType.None);
+			component3.SetClickType(LootClickType.None);
 			RequiredItem_Cell component4 = MasterPoolManager.SpawnObject("Grow", "cell_token", _trItemListAnchor).GetComponent<RequiredItem_Cell>();
 			component4.SetItemImg(50033, _levelInfoItemSize);
 			component4.SetCostText(MasterLocalize.GetData("common_text_1key"));
-			component4.SetClickType(ItemClickType.None);
+			component4.SetClickType(LootClickType.None);
 			RequiredItem_Cell component5 = MasterPoolManager.SpawnObject("Grow", "cell_token", _trItemListAnchor).GetComponent<RequiredItem_Cell>();
 			component5.SetItemImg(50042, _levelInfoItemSize);
 			component5.SetCostText(MasterLocalize.GetData("common_text_5percent"));
-			component5.SetClickType(ItemClickType.None);
+			component5.SetClickType(LootClickType.None);
 		}
 	}
 

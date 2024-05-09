@@ -217,18 +217,18 @@ public class QuickLoot : LobbyPopupBase
 	private void ShowMonsterList()
 	{
 		ShowMonster();
-		ItemInfoUI[] componentsInChildren = trMonsterListParent.GetComponentsInChildren<ItemInfoUI>();
-		ItemInfoUI[] array = componentsInChildren;
-		foreach (ItemInfoUI itemInfoUI in array)
+		LootInfoUI[] componentsInChildren = trMonsterListParent.GetComponentsInChildren<LootInfoUI>();
+		LootInfoUI[] array = componentsInChildren;
+		foreach (LootInfoUI itemInfoUI in array)
 		{
-			itemInfoUI.Clear();
+			itemInfoUI.Remove();
 			MasterPoolManager.ReturnToPool("Lobby", itemInfoUI.transform);
 		}
 		foreach (KeyValuePair<int, int> levelMonster in GameUtil.GetLevelMonsterList(levelIndex))
 		{
 			UnityEngine.Debug.Log("ShowMonsterList ::: " + levelMonster.Key);
 			Transform transform = MasterPoolManager.SpawnObject("Lobby", "QuickLootMonster", trMonsterListParent);
-			transform.GetComponent<ItemInfoUI>().Show("Info", $"UI_monster_{levelMonster.Key}", levelMonster.Value);
+			transform.GetComponent<LootInfoUI>().Open("Info", $"UI_monster_{levelMonster.Key}", levelMonster.Value);
 		}
 	}
 
@@ -240,7 +240,7 @@ public class QuickLoot : LobbyPopupBase
 			if (!GameUtil.CheckUserInfoItem(rEWARDITEM.itemIdx))
 			{
 				Transform transform = MasterPoolManager.SpawnObject("Lobby", "QuickLootItem", trItemListParent);
-				transform.GetComponent<ItemInfoUI>().Show("Item", $"Item_{rEWARDITEM.itemIdx}", rEWARDITEM.count);
+				transform.GetComponent<LootInfoUI>().Open("Item", $"Item_{rEWARDITEM.itemIdx}", rEWARDITEM.count);
 			}
 		}
 		goItemListCount.SetActive(trItemListParent.childCount == 0);
@@ -306,18 +306,18 @@ public class QuickLoot : LobbyPopupBase
 			MasterPoolManager.ReturnToPool("Item", trRewardItem);
 			trRewardItem = null;
 		}
-		ItemInfoUI[] componentsInChildren = trItemListParent.GetComponentsInChildren<ItemInfoUI>();
-		ItemInfoUI[] array = componentsInChildren;
-		foreach (ItemInfoUI itemInfoUI in array)
+		LootInfoUI[] componentsInChildren = trItemListParent.GetComponentsInChildren<LootInfoUI>();
+		LootInfoUI[] array = componentsInChildren;
+		foreach (LootInfoUI itemInfoUI in array)
 		{
-			itemInfoUI.Clear();
+			itemInfoUI.Remove();
 			MasterPoolManager.ReturnToPool("Lobby", itemInfoUI.transform);
 		}
-		componentsInChildren = trMonsterListParent.GetComponentsInChildren<ItemInfoUI>();
-		ItemInfoUI[] array2 = componentsInChildren;
-		foreach (ItemInfoUI itemInfoUI2 in array2)
+		componentsInChildren = trMonsterListParent.GetComponentsInChildren<LootInfoUI>();
+		LootInfoUI[] array2 = componentsInChildren;
+		foreach (LootInfoUI itemInfoUI2 in array2)
 		{
-			itemInfoUI2.Clear();
+			itemInfoUI2.Remove();
 			MasterPoolManager.ReturnToPool("Lobby", itemInfoUI2.transform);
 		}
 		PuzzleResultItem[] componentsInChildren2 = trLootsAnchor.GetComponentsInChildren<PuzzleResultItem>();

@@ -142,7 +142,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	private EnergyInfo userEnergyInfo;
 
 	[SerializeField]
-	private ItemSortList itemSortList;
+	private LootSortList itemSortList;
 
 	[SerializeField]
 	private NotEnouchCoin notEnoughCoin;
@@ -573,7 +573,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		UnityEngine.Debug.Log("!!!!");
 		if (!GameObjectSingleton<LobbyManager>.Inst.itemSortList.gameObject.activeSelf)
 		{
-			GameObjectSingleton<LobbyManager>.Inst.itemSortList.Show(itemIdx, isWaveItemSort);
+			GameObjectSingleton<LobbyManager>.Inst.itemSortList.Open(itemIdx, isWaveItemSort);
 		}
 	}
 
@@ -1031,7 +1031,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		floorUpgrade.GoBackEvent = OnFloorUpgradeGoBackEvent;
 		userLevelInfo.OnGoBackEvent = OnUserLevelInfoGoBackEvent;
 		userEnergyInfo.GoBackEvent = OnUserEnergyInfoGoBackEvent;
-		itemSortList.GoBackEvent = OnItemSortListGoBackEvent;
+		itemSortList.OnBackEvent = OnItemSortListGoBackEvent;
 		notEnoughCoin.GoBackEvent = OnNotEnoughCoinGoBackEvent;
 		notEnoughJewel.GoBackEvent = OnNotEnoughJewelGoBackEvent;
 		speedUpCollect.GoBackEvent = OnSpeedUpCollectGoBackEvent;
@@ -1446,7 +1446,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		CheckFloorLocalPush();
 		if (itemSortList.gameObject.activeSelf)
 		{
-			itemSortList.Refresh();
+			itemSortList.Reload();
 		}
 		if (levelSelect.gameObject.activeSelf)
 		{

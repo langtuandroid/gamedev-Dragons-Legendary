@@ -213,12 +213,12 @@ public class HeroPromotion : LobbyPopupBase
 		_requiredCoinCell.SetCostText(SetCoinsText());
 		if (GameInfo.userData.userInfo.coin < _hunterPromotionDb.needCoin)
 		{
-			_requiredCoinCell.SetClickType(ItemClickType.Coin,
+			_requiredCoinCell.SetClickType(LootClickType.Coin,
 				_hunterPromotionDb.needCoin - GameInfo.userData.userInfo.coin);
 		}
 		else
 		{
-			_requiredCoinCell.SetClickType(ItemClickType.None);
+			_requiredCoinCell.SetClickType(LootClickType.None);
 		}
 
 		_levelCell = MasterPoolManager.SpawnObject("Grow", "cell_badge", hunterRequiredItemListtr)
@@ -372,12 +372,12 @@ public class HeroPromotion : LobbyPopupBase
 		_requiredCoinCell.SetCostText(SetCoinsText());
 		if (GameInfo.userData.userInfo.coin < _hunterPromotionDb.needCoin)
 		{
-			_requiredCoinCell.SetClickType(ItemClickType.Coin,
+			_requiredCoinCell.SetClickType(LootClickType.Coin,
 				_hunterPromotionDb.needCoin - GameInfo.userData.userInfo.coin);
 		}
 		else
 		{
-			_requiredCoinCell.SetClickType(ItemClickType.None);
+			_requiredCoinCell.SetClickType(LootClickType.None);
 		}
 
 		if (GameInfo.userData.userInfo.coin > _hunterPromotionDb.needCoin)

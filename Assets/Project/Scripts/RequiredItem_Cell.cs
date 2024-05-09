@@ -11,7 +11,7 @@ public class RequiredItem_Cell : MonoBehaviour
 
 	private int lackCoin;
 
-	private ItemClickType clickType = ItemClickType.Item;
+	private LootClickType clickType = LootClickType.Loot;
 
 	private int itemIdx;
 
@@ -33,7 +33,7 @@ public class RequiredItem_Cell : MonoBehaviour
 			Item_Img.localScale = size;
 		}
 		itemIdx = _idx;
-		clickType = ItemClickType.Item;
+		clickType = LootClickType.Loot;
 	}
 
 	public void SetCostText(string _str)
@@ -41,11 +41,11 @@ public class RequiredItem_Cell : MonoBehaviour
 		SetCostText_Setting(_str);
 	}
 
-	public void SetClickType(ItemClickType type, int _coin = 1)
+	public void SetClickType(LootClickType type, int _coin = 1)
 	{
 		UnityEngine.Debug.Log("SetClickType :: " + type);
 		clickType = type;
-		if (clickType == ItemClickType.Coin)
+		if (clickType == LootClickType.Coin)
 		{
 			lackCoin = _coin;
 		}
@@ -56,7 +56,7 @@ public class RequiredItem_Cell : MonoBehaviour
 		UnityEngine.Debug.Log("OnClickItemSortList - " + clickType);
 		switch (clickType)
 		{
-		case ItemClickType.Item:
+		case LootClickType.Loot:
 			if (GameDataManager.GetItemListData(itemIdx).itemType == "Badge")
 			{
 				LobbyManager.MoveToBadgeFloor(itemIdx);
@@ -66,7 +66,7 @@ public class RequiredItem_Cell : MonoBehaviour
 				LobbyManager.ShowItemSortList(itemIdx);
 			}
 			break;
-		case ItemClickType.Coin:
+		case LootClickType.Coin:
 			LobbyManager.ShowNotEnoughCoin(lackCoin);
 			break;
 		}

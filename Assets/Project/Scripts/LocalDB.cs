@@ -52,9 +52,9 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 
 	private Dictionary<int, Dictionary<int, StoreUpgradeDbData>> dicStoreUpgradeDbData = new Dictionary<int, Dictionary<int, StoreUpgradeDbData>>();
 
-	private Dictionary<int, ItemListDbData> dicItemListDbData = new Dictionary<int, ItemListDbData>();
+	private Dictionary<int, LootListDbData> dicItemListDbData = new Dictionary<int, LootListDbData>();
 
-	private Dictionary<int, ItemTypeDbData> dicItemTypeDbData = new Dictionary<int, ItemTypeDbData>();
+	private Dictionary<int, LootTypeDbData> dicItemTypeDbData = new Dictionary<int, LootTypeDbData>();
 
 	private Dictionary<int, ChestDbData> dicChestDbData = new Dictionary<int, ChestDbData>();
 
@@ -223,7 +223,7 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 		return dicStoreUpgradeDbData[storeIdx][storeTier];
 	}
 
-	public ItemListDbData GetItemListData(int itemIdx)
+	public LootListDbData GetItemListData(int itemIdx)
 	{
 		return dicItemListDbData[itemIdx];
 	}
@@ -897,7 +897,7 @@ public class LocalDB : GameObjectSingleton<LocalDB>
 		dicItemListDbData.Clear();
 		while (dataReader.Read())
 		{
-			ItemListDbData itemListDbData = new ItemListDbData();
+			LootListDbData itemListDbData = new LootListDbData();
 			itemListDbData.itemIdx = dataReader.GetInt32(0);
 			itemListDbData.itemName = dataReader.GetString(1);
 			itemListDbData.itemRarity = dataReader.GetInt32(2);

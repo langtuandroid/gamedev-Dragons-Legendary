@@ -1,83 +1,84 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class ItemSortList : LobbyPopupBase
+public class LootSortList : LobbyPopupBase
 {
-	public Action GoBackEvent;
+	public Action OnBackEvent;
 
-	[SerializeField]
-	private Transform trTitleItemAnchor;
+	[FormerlySerializedAs("trTitleItemAnchor")] [SerializeField]
+	private Transform _titleItemTransform;
 
-	[SerializeField]
-	private Transform trListAnchor;
+	[FormerlySerializedAs("trListAnchor")] [SerializeField]
+	private Transform _listAnchor;
 
-	[SerializeField]
-	private Text textUserOwnItemCount;
+	[FormerlySerializedAs("textUserOwnItemCount")] [SerializeField]
+	private Text _textOwnItem;
 
-	[SerializeField]
-	private Text textTitleItemName;
+	[FormerlySerializedAs("textTitleItemName")] [SerializeField]
+	private Text _textTitle;
 
-	[SerializeField]
-	private ScrollRect scrollRect;
+	[FormerlySerializedAs("scrollRect")] [SerializeField]
+	private ScrollRect _scrollRect;
 
-	private int itemIdx;
+	private int _itemIdx;
 
-	private bool isWaveItemSort;
+	private bool _waveSort;
 
-	private Transform trTitleItem;
+	private Transform _itemTitle;
 
-	public void Show(int _itemIdx, bool _isWaveSort = false)
+	public void Open(int _itemIdx, bool _isWaveSort = false)
 	{
 		UnityEngine.Debug.Log("_itemIdx :: " + _itemIdx);
-		itemIdx = _itemIdx;
-		isWaveItemSort = _isWaveSort;
+		this._itemIdx = _itemIdx;
+		_waveSort = _isWaveSort;
 		LobbyManager.HideHunterLobby();
 		base.Open();
-		Init();
+		Construct();
 	}
 
-	public void Refresh()
+	public void Reload()
 	{
-		LevelGameBlock[] componentsInChildren = trListAnchor.GetComponentsInChildren<LevelGameBlock>();
+		LevelGameBlock[] componentsInChildren = _listAnchor.GetComponentsInChildren<LevelGameBlock>();
 		foreach (LevelGameBlock levelCell in componentsInChildren)
 		{
 			levelCell.Reset();
 		}
-		if (itemIdx > 0)
+		if (_itemIdx > 0)
 		{
-			if (trTitleItem != null)
+			if (_itemTitle != null)
 			{
-				MasterPoolManager.ReturnToPool("Item", trTitleItem);
-				trTitleItem = null;
+				MasterPoolManager.ReturnToPool("Item", _itemTitle);
+				_itemTitle = null;
 			}
-			ShowTitleItemInfo();
+			TitleItemShow();
 		}
 	}
 
-	private void Init()
+	private void Construct()
 	{
-		DespawnAll();
-		ShowTitleItemInfo();
-		ShowSortItemLevelList();
+		ClearAllLoot();
+		TitleItemShow();
+		SortListItem();
 	}
 
-	private void ShowTitleItemInfo()
+	private void TitleItemShow()
 	{
-		textUserOwnItemCount.text = string.Format("{0} <color=#FCF13E>{1}</color>", MasterLocalize.GetData("common_text_you_have"), GameInfo.userData.GetItemCount(itemIdx));
-		textTitleItemName.text = MasterLocalize.GetData(GameDataManager.GetItemListData(itemIdx).itemName);
-		trTitleItem = MasterPoolManager.SpawnObject("Item", $"Item_{itemIdx}", trTitleItemAnchor);
+		_textOwnItem.text = string.Format("{0} <color=#FCF13E>{1}</color>", MasterLocalize.GetData("common_text_you_have"), GameInfo.userData.GetItemCount(_itemIdx));
+		_textTitle.text = MasterLocalize.GetData(GameDataManager.GetItemListData(_itemIdx).itemName);
+		_itemTitle = MasterPoolManager.SpawnObject("Item", $"Item_{_itemIdx}", _titleItemTransform);
 	}
 
-	private void ShowSortItemLevelList()
+	private void SortListItem()
 	{
-		scrollRect.verticalNormalizedPosition = 0f;
+		_scrollRect.verticalNormalizedPosition = 0f;
 		int num = 0;
 		UserStageState[] userStageState = GameInfo.userData.userStageState;
 		foreach (UserStageState userStageState2 in userStageState)
 		{
-			LevelGameStage component = MasterPoolManager.SpawnObject("Lobby", "Cell_stage", trListAnchor).GetComponent<LevelGameStage>();
+			LevelGameStage component = MasterPoolManager.SpawnObject("Lobby", "Cell_stage", _listAnchor).GetComponent<LevelGameStage>();
 			component.transform.localScale = Vector3.one;
 			component.ChangeSetData(userStageState2.stage);
 			UserChapterState[] chapterList = userStageState2.chapterList;
@@ -91,21 +92,21 @@ public class ItemSortList : LobbyPopupBase
 				foreach (UserLevelState userLevelState in levelList)
 				{
 					LevelGameDbData levelIndexDbData = GameDataManager.GetLevelIndexDbData(userLevelState.levelIdx);
-					if (levelIndexDbData.rewardFixItem == itemIdx)
+					if (levelIndexDbData.rewardFixItem == _itemIdx)
 					{
-						LevelGameBlock component2 = MasterPoolManager.SpawnObject("Lobby", "Cell_level", trListAnchor).GetComponent<LevelGameBlock>();
+						LevelGameBlock component2 = MasterPoolManager.SpawnObject("Lobby", "Cell_level", _listAnchor).GetComponent<LevelGameBlock>();
 						component2.transform.localScale = Vector3.one;
 						component2.SetData(levelIndexDbData);
 						component2.PlaceStars(GameDataManager.GetLevelStarCount(levelIndexDbData.stage, levelIndexDbData.chapter, levelIndexDbData.level));
 						num++;
 					}
-					else if (isWaveItemSort)
+					else if (_waveSort)
 					{
 						foreach (KeyValuePair<int, WaveDbData> dicWaveDbDatum in GameDataManager.GetDicWaveDbData(levelIndexDbData.levelIdx))
 						{
-							if (dicWaveDbDatum.Value.dropM1 == itemIdx || dicWaveDbDatum.Value.dropM2 == itemIdx || dicWaveDbDatum.Value.dropM3 == itemIdx || dicWaveDbDatum.Value.dropM4 == itemIdx)
+							if (dicWaveDbDatum.Value.dropM1 == _itemIdx || dicWaveDbDatum.Value.dropM2 == _itemIdx || dicWaveDbDatum.Value.dropM3 == _itemIdx || dicWaveDbDatum.Value.dropM4 == _itemIdx)
 							{
-								LevelGameBlock component3 = MasterPoolManager.SpawnObject("Lobby", "Cell_level", trListAnchor).GetComponent<LevelGameBlock>();
+								LevelGameBlock component3 = MasterPoolManager.SpawnObject("Lobby", "Cell_level", _listAnchor).GetComponent<LevelGameBlock>();
 								component3.transform.localScale = Vector3.one;
 								component3.SetData(levelIndexDbData);
 								component3.PlaceStars(GameDataManager.GetLevelStarCount(levelIndexDbData.stage, levelIndexDbData.chapter, levelIndexDbData.level));
@@ -119,7 +120,7 @@ public class ItemSortList : LobbyPopupBase
 		}
 		if (num == 0)
 		{
-			LevelGameStage[] componentsInChildren = trListAnchor.GetComponentsInChildren<LevelGameStage>();
+			LevelGameStage[] componentsInChildren = _listAnchor.GetComponentsInChildren<LevelGameStage>();
 			foreach (LevelGameStage levelStage in componentsInChildren)
 			{
 				MasterPoolManager.ReturnToPool("Lobby", levelStage.transform);
@@ -128,28 +129,28 @@ public class ItemSortList : LobbyPopupBase
 			{
 				if (!dicStageDbDatum.Value.stageLock)
 				{
-					LevelGameStage component4 = MasterPoolManager.SpawnObject("Lobby", "Cell_stage", trListAnchor).GetComponent<LevelGameStage>();
+					LevelGameStage component4 = MasterPoolManager.SpawnObject("Lobby", "Cell_stage", _listAnchor).GetComponent<LevelGameStage>();
 					component4.transform.localScale = Vector3.one;
 					component4.ChangeSetData(dicStageDbDatum.Value.stageIdx);
 					foreach (KeyValuePair<int, ChapterDbData> dicChapterDbDatum in GameDataManager.GetDicChapterDbData(dicStageDbDatum.Value.stageIdx))
 					{
 						foreach (LevelGameDbData levelListDbDatum in GameDataManager.GetLevelListDbData(dicChapterDbDatum.Value.stage, dicChapterDbDatum.Value.chapter))
 						{
-							if (levelListDbDatum.rewardFixItem == itemIdx)
+							if (levelListDbDatum.rewardFixItem == _itemIdx)
 							{
-								LevelGameBlock component5 = MasterPoolManager.SpawnObject("Lobby", "Cell_level", trListAnchor).GetComponent<LevelGameBlock>();
+								LevelGameBlock component5 = MasterPoolManager.SpawnObject("Lobby", "Cell_level", _listAnchor).GetComponent<LevelGameBlock>();
 								component5.transform.localScale = Vector3.one;
 								component5.SetData(levelListDbDatum);
 								component5.PlaceStars(GameDataManager.GetLevelStarCount(levelListDbDatum.stage, levelListDbDatum.chapter, levelListDbDatum.level));
 								return;
 							}
-							if (isWaveItemSort)
+							if (_waveSort)
 							{
 								foreach (KeyValuePair<int, WaveDbData> dicWaveDbDatum2 in GameDataManager.GetDicWaveDbData(levelListDbDatum.levelIdx))
 								{
-									if (dicWaveDbDatum2.Value.dropM1 == itemIdx || dicWaveDbDatum2.Value.dropM2 == itemIdx || dicWaveDbDatum2.Value.dropM3 == itemIdx || dicWaveDbDatum2.Value.dropM4 == itemIdx)
+									if (dicWaveDbDatum2.Value.dropM1 == _itemIdx || dicWaveDbDatum2.Value.dropM2 == _itemIdx || dicWaveDbDatum2.Value.dropM3 == _itemIdx || dicWaveDbDatum2.Value.dropM4 == _itemIdx)
 									{
-										LevelGameBlock component6 = MasterPoolManager.SpawnObject("Lobby", "Cell_level", trListAnchor).GetComponent<LevelGameBlock>();
+										LevelGameBlock component6 = MasterPoolManager.SpawnObject("Lobby", "Cell_level", _listAnchor).GetComponent<LevelGameBlock>();
 										component6.transform.localScale = Vector3.one;
 										component6.SetData(levelListDbDatum);
 										component6.PlaceStars(GameDataManager.GetLevelStarCount(levelListDbDatum.stage, levelListDbDatum.chapter, levelListDbDatum.level));
@@ -163,38 +164,38 @@ public class ItemSortList : LobbyPopupBase
 					MasterPoolManager.ReturnToPool("Lobby", component4.transform);
 				}
 			}
-			DespawnAll();
-			if (GoBackEvent != null)
+			ClearAllLoot();
+			if (OnBackEvent != null)
 			{
-				GoBackEvent();
+				OnBackEvent();
 			}
 		}
 	}
 
-	private void DespawnAll()
+	private void ClearAllLoot()
 	{
-		LevelGameBlock[] componentsInChildren = trListAnchor.GetComponentsInChildren<LevelGameBlock>();
+		LevelGameBlock[] componentsInChildren = _listAnchor.GetComponentsInChildren<LevelGameBlock>();
 		foreach (LevelGameBlock levelCell in componentsInChildren)
 		{
 			MasterPoolManager.ReturnToPool("Lobby", levelCell.transform);
 		}
-		LevelGameStage[] componentsInChildren2 = trListAnchor.GetComponentsInChildren<LevelGameStage>();
+		LevelGameStage[] componentsInChildren2 = _listAnchor.GetComponentsInChildren<LevelGameStage>();
 		foreach (LevelGameStage levelStage in componentsInChildren2)
 		{
 			MasterPoolManager.ReturnToPool("Lobby", levelStage.transform);
 		}
-		if (trTitleItem != null)
+		if (_itemTitle != null)
 		{
-			MasterPoolManager.ReturnToPool("Item", trTitleItem);
-			trTitleItem = null;
+			MasterPoolManager.ReturnToPool("Item", _itemTitle);
+			_itemTitle = null;
 		}
 	}
 
 	public void OnClickGoBack()
 	{
-		if (GoBackEvent != null)
+		if (OnBackEvent != null)
 		{
-			GoBackEvent();
+			OnBackEvent();
 		}
 		if (LobbyManager.HunterLevelHunterInfo != null)
 		{
@@ -209,6 +210,6 @@ public class ItemSortList : LobbyPopupBase
 
 	private void OnDisable()
 	{
-		DespawnAll();
+		ClearAllLoot();
 	}
 }
