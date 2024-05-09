@@ -39,7 +39,7 @@ public class ArenaTicketNone : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void CloseProcessComplete()
+	public override void Complete()
 	{
 	}
 

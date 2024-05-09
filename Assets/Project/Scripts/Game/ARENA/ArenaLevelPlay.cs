@@ -115,7 +115,7 @@ public class ArenaLevelPlay : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void CloseProcessComplete()
+	public override void Complete()
 	{
 		RemoveHunterCard();
 	}

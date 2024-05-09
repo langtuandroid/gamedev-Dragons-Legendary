@@ -134,7 +134,7 @@ public class ArenaLobby : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void CloseProcessComplete()
+	public override void Complete()
 	{
 	}
 

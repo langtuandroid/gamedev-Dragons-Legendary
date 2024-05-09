@@ -75,7 +75,7 @@ public class HunterPromotionUp : LobbyPopupBase
         Construct(_hunterInfo);
     }
 
-    public override void CloseProcessComplete()
+    public override void Complete()
     {
     }
 

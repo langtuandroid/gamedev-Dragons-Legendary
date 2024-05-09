@@ -93,7 +93,7 @@ public class HunterList : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void CloseProcessComplete()
+	public override void Complete()
 	{
 		HeroCard[] componentsInChildren = trHunterContent.GetComponentsInChildren<HeroCard>();
 		foreach (HeroCard hunterCard in componentsInChildren)

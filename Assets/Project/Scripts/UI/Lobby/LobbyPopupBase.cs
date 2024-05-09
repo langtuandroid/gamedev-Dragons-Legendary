@@ -29,11 +29,11 @@ public class LobbyPopupBase : MonoBehaviour
 
 	public virtual void Hide()
 	{
-		CloseProcessComplete();
+		Complete();
 		base.gameObject.SetActive(value: false);
 	}
 
-	public virtual void CloseProcessComplete()
+	public virtual void Complete()
 	{
 	}
 
@@ -55,7 +55,7 @@ public class LobbyPopupBase : MonoBehaviour
 		trLobbyPopup.localPosition = popupPosition;
 		LeanTween.moveLocalX(base.gameObject, startPosX, 0.1f).setEaseOutCubic();
 		yield return new WaitForSeconds(0.1f);
-		CloseProcessComplete();
+		Complete();
 		base.gameObject.SetActive(value: false);
 	}
 

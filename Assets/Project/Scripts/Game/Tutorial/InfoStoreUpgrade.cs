@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InfoStoreUpgrade : MonoBehaviour
 {
-	private FloorItem _firstFloorCopy;
+	private LiftItem _firstFloorCopy;
 
 	public void Open(int _seq)
 	{
@@ -17,7 +17,7 @@ public class InfoStoreUpgrade : MonoBehaviour
 			InfoManager.ReturnCopy();
 			InfoManager.RemoveHand();
 			InfoManager.SetClickDimmed(isClick: false);
-			LobbyManager.FirstFloorItem.ShowDetail();
+			LobbyManager.FirstFloorItem.OpenDetails();
 			InfoManager.HighLightUI(LobbyManager.FloorDetailUpgradeButton);
 			InfoManager.HandAppear(LobbyManager.FloorDetailUpgradeButton, Vector3.zero);
 			LobbyManager.StoreUpgradeEnter = UpgradeEnterEvent;
@@ -49,8 +49,8 @@ public class InfoStoreUpgrade : MonoBehaviour
 		Transform trFirstFloorCopy = InfoManager.ShowCopyHighLight(LobbyManager.FirstFloorItem.transform);
 		trFirstFloorCopy.position = LobbyManager.FirstFloorItem.transform.position;
 		trFirstFloorCopy.localScale = Vector3.one;
-		_firstFloorCopy = trFirstFloorCopy.GetComponent<FloorItem>();
-		_firstFloorCopy.AllButtonLock();
+		_firstFloorCopy = trFirstFloorCopy.GetComponent<LiftItem>();
+		_firstFloorCopy.LockAllUI();
 		InfoManager.HandAppear(trFirstFloorCopy, Vector3.zero);
 		LobbyManager.StoreDetailEnter = StoreEventEnter;
 	}

@@ -129,11 +129,11 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	[SerializeField]
 	private Setting setting;
 
-	[SerializeField]
-	private FloorDetail floorDetail;
+	[FormerlySerializedAs("floorDetail")] [SerializeField]
+	private LiftDetail liftDetail;
 
 	[SerializeField]
-	private FloorUpgrade floorUpgrade;
+	private LiftUpgrade floorUpgrade;
 
 	[SerializeField]
 	private LevelGameInfo userLevelInfo;
@@ -205,7 +205,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	private int openChapterFloorIdx;
 
-	private List<FloorController> listFloorController = new List<FloorController>();
+	private List<LiftController> listFloorController = new List<LiftController>();
 
 	private Action userData_onCallBack;
 
@@ -235,7 +235,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		}
 	}
 
-	public static bool HasFirstFloorItemUpgrade => GameObjectSingleton<LobbyManager>.Inst.listFloorController[0].ListFloorItem[0].HasUpgrade;
+	public static bool HasFirstFloorItemUpgrade => GameObjectSingleton<LobbyManager>.Inst.listFloorController[0].FloorItem[0].IsHasUpgrade;
 
 	public static Vector3 UserArenaTicketPosition => GameObjectSingleton<LobbyManager>.Inst.arenaLobby.UserTicketPosition;
 
@@ -251,25 +251,25 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	public static Transform BattleButton => GameObjectSingleton<LobbyManager>.Inst.bottomUI.BattleButton;
 
-	public static Transform FloorDetailUpgradeButton => GameObjectSingleton<LobbyManager>.Inst.floorDetail.UpgradeButton;
+	public static Transform FloorDetailUpgradeButton => GameObjectSingleton<LobbyManager>.Inst.liftDetail.UpgradeButton;
 
 	public static Transform FloorUpgradeAbility => GameObjectSingleton<LobbyManager>.Inst.floorUpgrade.StoreAbility;
 
 	public static Transform FloorUpgradeRequireItemAnchor => GameObjectSingleton<LobbyManager>.Inst.floorUpgrade.ReauireItemAnchor;
 
-	public static Transform FloorUpgradeConfimButton => GameObjectSingleton<LobbyManager>.Inst.floorUpgrade.UpgradeButton;
+	public static Transform FloorUpgradeConfimButton => GameObjectSingleton<LobbyManager>.Inst.floorUpgrade.UpgradeButtonTransform;
 
 	public static Transform FirstStageCell => GameObjectSingleton<LobbyManager>.Inst.stageSelect.FirstStageCell;
 
-	public static Transform FirstFloorOpenButton => GameObjectSingleton<LobbyManager>.Inst.listFloorController[0].ListFloorItem[0].TrOpenButton;
+	public static Transform FirstFloorOpenButton => GameObjectSingleton<LobbyManager>.Inst.listFloorController[0].FloorItem[0].TrOpenButton;
 
-	public static Transform FirstFloorCollectButton => GameObjectSingleton<LobbyManager>.Inst.listFloorController[0].ListFloorItem[0].TrCollectButton;
+	public static Transform FirstFloorCollectButton => GameObjectSingleton<LobbyManager>.Inst.listFloorController[0].FloorItem[0].TrCollectButton;
 
-	public static FloorItem FirstFloorItem => GameObjectSingleton<LobbyManager>.Inst.listFloorController[0].ListFloorItem[0];
+	public static LiftItem FirstFloorItem => GameObjectSingleton<LobbyManager>.Inst.listFloorController[0].FloorItem[0];
 
-	public static FloorItem SecondFloorItem => GameObjectSingleton<LobbyManager>.Inst.listFloorController[0].ListFloorItem[1];
+	public static LiftItem SecondFloorItem => GameObjectSingleton<LobbyManager>.Inst.listFloorController[0].FloorItem[1];
 
-	public static Vector3 FloorStorePosition => GameObjectSingleton<LobbyManager>.Inst.listFloorController[0].ListFloorItem[0].TrStore.position;
+	public static Vector3 FloorStorePosition => GameObjectSingleton<LobbyManager>.Inst.listFloorController[0].FloorItem[0].Store.position;
 
 	public static LevelGameBlock SecondLevelCell => GameObjectSingleton<LobbyManager>.Inst.levelSelect.SecondLevelCell;
 
@@ -334,12 +334,12 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	public static Transform GetFloorBadge(int castleId, int floorId)
 	{
-		return GameObjectSingleton<LobbyManager>.Inst.listFloorController[castleId].ListFloorItem[floorId].TrBadge;
+		return GameObjectSingleton<LobbyManager>.Inst.listFloorController[castleId].FloorItem[floorId].Badge;
 	}
 
 	public static Transform GetFloorTouchCollect(int castleId, int floorId)
 	{
-		return GameObjectSingleton<LobbyManager>.Inst.listFloorController[castleId].ListFloorItem[floorId].TrTouchCollect;
+		return GameObjectSingleton<LobbyManager>.Inst.listFloorController[castleId].FloorItem[floorId].TouchCollectTransform;
 	}
 
 	public static void CallUserData(Action _onCallBack)
@@ -524,9 +524,9 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	public static void ShowFloorDetail(UserFloorData _userFloorData, StoreProduceDbData _produceData)
 	{
-		if (!GameObjectSingleton<LobbyManager>.Inst.floorDetail.gameObject.activeSelf)
+		if (!GameObjectSingleton<LobbyManager>.Inst.liftDetail.gameObject.activeSelf)
 		{
-			GameObjectSingleton<LobbyManager>.Inst.floorDetail.Show(_userFloorData, _produceData);
+			GameObjectSingleton<LobbyManager>.Inst.liftDetail.WowShow(_userFloorData, _produceData);
 			if (StoreDetailEnter != null)
 			{
 				StoreDetailEnter();
@@ -538,7 +538,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	{
 		if (!GameObjectSingleton<LobbyManager>.Inst.floorUpgrade.gameObject.activeSelf)
 		{
-			GameObjectSingleton<LobbyManager>.Inst.floorUpgrade.Show(storeIdx, storeTier);
+			GameObjectSingleton<LobbyManager>.Inst.floorUpgrade.Openn(storeIdx, storeTier);
 			if (StoreUpgradeEnter != null)
 			{
 				StoreUpgradeEnter();
@@ -662,7 +662,7 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	public static void MoveStore(int castleIdx, int floorIdx)
 	{
 		MoveCastle(castleIdx);
-		GameObjectSingleton<LobbyManager>.Inst.listFloorController[castleIdx].MoveToFloor(floorIdx);
+		GameObjectSingleton<LobbyManager>.Inst.listFloorController[castleIdx].MoveToLift(floorIdx);
 	}
 
 	public static void OnGoBackLevel()
@@ -718,14 +718,14 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		GameObjectSingleton<LobbyManager>.Inst.hunterView.Hide();
 		for (int i = 0; i < GameObjectSingleton<LobbyManager>.Inst.listFloorController.Count; i++)
 		{
-			FloorController floorController = GameObjectSingleton<LobbyManager>.Inst.listFloorController[i];
-			for (int j = 0; j < floorController.ListFloorItem.Count; j++)
+			LiftController floorController = GameObjectSingleton<LobbyManager>.Inst.listFloorController[i];
+			for (int j = 0; j < floorController.FloorItem.Count; j++)
 			{
-				FloorItem floorItem = floorController.ListFloorItem[j];
-				if (floorItem.BadgeIdx == itemIdx)
+				LiftItem floorItem = floorController.FloorItem[j];
+				if (floorItem.BadgeIndex == itemIdx)
 				{
 					GameObjectSingleton<LobbyManager>.Inst.srcollRectFloor.horizontalNormalizedPosition = 1 - i / GameObjectSingleton<LobbyManager>.Inst.listFloorController.Count;
-					floorController.MoveToFloor(j);
+					floorController.MoveToLift(j);
 				}
 			}
 		}
@@ -1027,8 +1027,8 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		hunterLevelUp.GoBackEvent = OnHunterLevelUpGoBackEvent;
 		hunterPromotion.OnBackEvent = OnHunterPromotionGoBackEvent;
 		hunterPromotionUp.OnGoBackEvent = OnHunterPromotionUpGoBackEvent;
-		floorDetail.GoBackEvent = OnFloorDetailGoBackEvent;
-		floorUpgrade.GoBackEvent = OnFloorUpgradeGoBackEvent;
+		liftDetail.OnCloseEvent = OnFloorDetailGoBackEvent;
+		floorUpgrade.OnBackEvent = OnFloorUpgradeGoBackEvent;
 		userLevelInfo.OnGoBackEvent = OnUserLevelInfoGoBackEvent;
 		userEnergyInfo.GoBackEvent = OnUserEnergyInfoGoBackEvent;
 		itemSortList.OnBackEvent = OnItemSortListGoBackEvent;
@@ -1123,11 +1123,11 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		UserFloorStage[] userFloorState = GameInfo.userData.userFloorState;
 		for (int i = 0; i < userFloorState.Length; i++)
 		{
-			FloorController component = MasterPoolManager.SpawnObject("Lobby", "Floor Scroll View2", trFloorStageContent).GetComponent<FloorController>();
-			component.Init(i);
-			FloorController floorController = component;
-			floorController.StartStoreOpen = (Action)Delegate.Combine(floorController.StartStoreOpen, new Action(OnStartStoreOpen));
-			FloorController floorController2 = component;
+			LiftController component = MasterPoolManager.SpawnObject("Lobby", "Floor Scroll View2", trFloorStageContent).GetComponent<LiftController>();
+			component.Construct(i);
+			LiftController floorController = component;
+			floorController.OnStoreOpen = (Action)Delegate.Combine(floorController.OnStoreOpen, new Action(OnStartStoreOpen));
+			LiftController floorController2 = component;
 			floorController2.CollectComplete = (Action)Delegate.Combine(floorController2.CollectComplete, new Action(OnStoreCollectComplete));
 			listFloorController.Add(component);
 		}
@@ -1135,10 +1135,10 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	private void RefreshFloor()
 	{
-		FloorController[] componentsInChildren = trFloorStageContent.GetComponentsInChildren<FloorController>();
-		foreach (FloorController floorController in componentsInChildren)
+		LiftController[] componentsInChildren = trFloorStageContent.GetComponentsInChildren<LiftController>();
+		foreach (LiftController floorController in componentsInChildren)
 		{
-			floorController.Refresh();
+			floorController.ResetEverything();
 		}
 	}
 
@@ -1276,17 +1276,17 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 
 	private void OnFloorDetailGoBackEvent()
 	{
-		floorDetail.Hide();
+		liftDetail.Hide();
 		RefreshFloor();
 	}
 
 	private void OnFloorUpgradeGoBackEvent(bool isForceCollect)
 	{
 		floorUpgrade.Hide();
-		floorDetail.Hide();
+		liftDetail.Hide();
 		if (isForceCollect)
 		{
-			listFloorController[openStageFloorIdx].FloorForceCollect(openChapterFloorIdx);
+			listFloorController[openStageFloorIdx].CollectLift(openChapterFloorIdx);
 		}
 		if (StoreUpgradeComplete != null)
 		{
@@ -1703,15 +1703,15 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		yield return null;
 		for (int i = 0; i < GameObjectSingleton<LobbyManager>.Inst.listFloorController.Count; i++)
 		{
-			FloorController floorController = GameObjectSingleton<LobbyManager>.Inst.listFloorController[i];
-			for (int j = 0; j < floorController.ListFloorItem.Count; j++)
+			LiftController floorController = GameObjectSingleton<LobbyManager>.Inst.listFloorController[i];
+			for (int j = 0; j < floorController.FloorItem.Count; j++)
 			{
-				FloorItem floorItem = floorController.ListFloorItem[j];
-				if (floorItem.UnLock)
+				LiftItem floorItem = floorController.FloorItem[j];
+				if (floorItem.IsLocked)
 				{
 					MoveCastle(i);
-					floorController.MoveToFloor(j);
-					floorItem.ShowUnLockEffect();
+					floorController.MoveToLift(j);
+					floorItem.LockEffectOpen();
 					yield break;
 				}
 			}
@@ -1857,8 +1857,8 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	{
 		for (int i = 0; i < GameObjectSingleton<LobbyManager>.Inst.listFloorController.Count; i++)
 		{
-			FloorController floorController = GameObjectSingleton<LobbyManager>.Inst.listFloorController[i];
-			floorController.ShowStore();
+			LiftController floorController = GameObjectSingleton<LobbyManager>.Inst.listFloorController[i];
+			floorController.OpenStore();
 		}
 	}
 
@@ -1866,8 +1866,8 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 	{
 		for (int i = 0; i < GameObjectSingleton<LobbyManager>.Inst.listFloorController.Count; i++)
 		{
-			FloorController floorController = GameObjectSingleton<LobbyManager>.Inst.listFloorController[i];
-			floorController.HideStore();
+			LiftController floorController = GameObjectSingleton<LobbyManager>.Inst.listFloorController[i];
+			floorController.CloseStore();
 		}
 	}
 
@@ -2051,12 +2051,12 @@ public class LobbyManager : GameObjectSingleton<LobbyManager>
 		LocalTimeCheckManager.OnLocalTimeComplete = (Action<string>)Delegate.Remove(LocalTimeCheckManager.OnLocalTimeComplete, new Action<string>(OnFreeChestComplete));
 		LocalTimeCheckManager.TimeClear("mysteriousChestOpenTime");
 		LocalTimeCheckManager.SaveAndExit("mysteriousChestOpenTime");
-		FloorController[] componentsInChildren = trFloorStageContent.GetComponentsInChildren<FloorController>();
-		foreach (FloorController floorController in componentsInChildren)
+		LiftController[] componentsInChildren = trFloorStageContent.GetComponentsInChildren<LiftController>();
+		foreach (LiftController floorController in componentsInChildren)
 		{
-			FloorController floorController2 = floorController;
-			floorController2.StartStoreOpen = (Action)Delegate.Remove(floorController2.StartStoreOpen, new Action(OnStartStoreOpen));
-			FloorController floorController3 = floorController;
+			LiftController floorController2 = floorController;
+			floorController2.OnStoreOpen = (Action)Delegate.Remove(floorController2.OnStoreOpen, new Action(OnStartStoreOpen));
+			LiftController floorController3 = floorController;
 			floorController3.CollectComplete = (Action)Delegate.Remove(floorController3.CollectComplete, new Action(OnStoreCollectComplete));
 		}
 	}

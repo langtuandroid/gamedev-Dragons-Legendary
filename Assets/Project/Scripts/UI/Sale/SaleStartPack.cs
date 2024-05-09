@@ -57,7 +57,7 @@ public class SaleStartPack : LobbyPopupBase
 		InAppPurchaseManager.OnInAppPurchaseProcessComplete = null;
 	}
 
-	public override void CloseProcessComplete()
+	public override void Complete()
 	{
 	}
 

@@ -28,7 +28,7 @@ public class InfoNewStoreOpen : MonoBehaviour
 		Transform secondFloorItem = InfoManager.ShowCopyHighLight(LobbyManager.SecondFloorItem.transform);
 		secondFloorItem.position = LobbyManager.SecondFloorItem.transform.position;
 		secondFloorItem.localScale = Vector3.one;
-		InfoManager.SortLightSprite(LobbyManager.SecondFloorItem.TrStore);
+		InfoManager.SortLightSprite(LobbyManager.SecondFloorItem.Store);
 	}
 
 	private void StageSelect()

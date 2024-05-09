@@ -109,7 +109,7 @@ public class DeckEdit : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void CloseProcessComplete()
+	public override void Complete()
 	{
 		HeroCard[] componentsInChildren = trOwnHunterContent.GetComponentsInChildren<HeroCard>();
 		foreach (HeroCard hunterCard in componentsInChildren)

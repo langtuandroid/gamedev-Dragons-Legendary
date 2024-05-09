@@ -38,7 +38,7 @@ public class SpeedUpCollect : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void CloseProcessComplete()
+	public override void Complete()
 	{
 	}
 

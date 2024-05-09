@@ -45,7 +45,7 @@ public class StageSelect : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void CloseProcessComplete()
+	public override void Complete()
 	{
 		scrollSnap.ScrollPageSnapEvent = null;
 		StageCell[] componentsInChildren = trContent.GetComponentsInChildren<StageCell>();

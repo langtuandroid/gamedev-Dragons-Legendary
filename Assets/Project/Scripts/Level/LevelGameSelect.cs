@@ -54,7 +54,7 @@ public class LevelGameSelect : LobbyPopupBase
 		base.Hide();
 	}
 
-	public override void CloseProcessComplete()
+	public override void Complete()
 	{
 		ChapterBox[] componentsInChildren = _trContent.GetComponentsInChildren<ChapterBox>();
 		foreach (ChapterBox chapterBox in componentsInChildren)
