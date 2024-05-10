@@ -126898,7 +126898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6afe745fe6512b51c3ad8c4d5bb7655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starIndex: 0
+  _starsIndex: 0
 --- !u!114 &1790013148276543191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135196,31 +135196,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAnim: 0
   goPopup: {fileID: 0}
-  textStageName: {fileID: 1790013148276543918}
-  textChapterLevel: {fileID: 1790013148276543886}
-  textPlayCost: {fileID: 1790013148276543491}
-  textRewardFixCount: {fileID: 1790013148276543595}
-  imageStagePreview: {fileID: 1790013148276543319}
-  trPlayButton: {fileID: 1790013148276543130}
-  trHunterCardParent: {fileID: 1790013148276542705}
-  trRewardItemAnchor: {fileID: 1790013148276542743}
-  trMonsterListAnchor: {fileID: 1790013148276542963}
-  trDeckEditBT: {fileID: 1790013148276543045}
-  trDeckEditLockBT: {fileID: 1790013148276542701}
-  trDeckEditToolTip: {fileID: 1790013148276542664}
-  totalHealth_Text: {fileID: 1790013148276543333}
-  totalAttack_Text: {fileID: 1790013148276543606}
-  totalRecovery_Text: {fileID: 1790013148276543591}
-  leaderSkill_Text: {fileID: 1790013148276543503}
-  totalHealth_current: 0
-  totalAttack_current: 0
-  totalRecovery_current: 0
-  boostDescription: {fileID: 1790013148276543711}
-  listClearStar:
+  _textStageName: {fileID: 1790013148276543918}
+  _textChapterLevel: {fileID: 1790013148276543886}
+  _textPlayCost: {fileID: 1790013148276543491}
+  _textRewardFixCount: {fileID: 1790013148276543595}
+  _imageStagePreview: {fileID: 1790013148276543319}
+  _trPlayButton: {fileID: 1790013148276543130}
+  _trHunterCardParent: {fileID: 1790013148276542705}
+  _trRewardItemAnchor: {fileID: 1790013148276542743}
+  _trMonsterListAnchor: {fileID: 1790013148276542963}
+  _trDeckEditBT: {fileID: 1790013148276543045}
+  _trDeckEditLockBT: {fileID: 1790013148276542701}
+  _trDeckEditToolTip: {fileID: 1790013148276542664}
+  _totalHealthText: {fileID: 1790013148276543333}
+  _totalAttackText: {fileID: 1790013148276543606}
+  _totalRecoveryText: {fileID: 1790013148276543591}
+  _leaderSkillText: {fileID: 1790013148276543503}
+  _levelPlayBoosterDescription: {fileID: 1790013148276543711}
+  _listClearStar:
   - {fileID: 1790013148276541451}
   - {fileID: 1790013148276541645}
   - {fileID: 1790013148276541566}
-  boosterItem: {fileID: 1790013148276543628}
+  _boosterItem: {fileID: 1790013148276543628}
 --- !u!114 &1790013148276543501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135682,7 +135679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6afe745fe6512b51c3ad8c4d5bb7655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starIndex: 2
+  _starsIndex: 2
 --- !u!114 &1790013148276543521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136364,7 +136361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd55f78079da789cc2d15293a9fa8563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listDamageData:
+  _listDamageData:
   - Type: 0
     TextDamage: {fileID: 1790013148276543772}
   - Type: 1
@@ -138460,8 +138457,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61e5744cbc85ba1f9b0cab5702f0101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boosterItemList: {fileID: 1790013148276542792}
-  boosterLock: {fileID: 1790013148276542916}
+  _boosterItemList: {fileID: 1790013148276542792}
+  _boosterLock: {fileID: 1790013148276542916}
 --- !u!114 &1790013148276543629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139431,10 +139428,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a848339481ec5551ba056b431e6175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trItemParent: {fileID: 1790013148276542874}
-  textItemName: {fileID: 1790013148276543368}
-  textItemMultiply: {fileID: 1790013148276543254}
-  textItemAmount: {fileID: 1790013148276543263}
+  _itemParent: {fileID: 1790013148276542874}
+  _textItemName: {fileID: 1790013148276543368}
+  _textItemMultiply: {fileID: 1790013148276543254}
+  _textItemAmount: {fileID: 1790013148276543263}
 --- !u!114 &1790013148276543665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140678,12 +140675,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796953359128aaa8be4b4e4b4abf5e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostIcon1: {fileID: 1790013148276542725}
-  boostIcon2: {fileID: 1790013148276543055}
-  boostIcon3: {fileID: 1790013148276542786}
-  boostExplain1: {fileID: 1790013148276543684}
-  boostExplain2: {fileID: 1790013148276543188}
-  boostExplain3: {fileID: 1790013148276543220}
+  _boostIcon1: {fileID: 1790013148276542725}
+  _boostIcon2: {fileID: 1790013148276543055}
+  _boostIcon3: {fileID: 1790013148276542786}
+  _boostExplain1: {fileID: 1790013148276543684}
+  _boostDescription2: {fileID: 1790013148276543188}
+  boostDescription3: {fileID: 1790013148276543220}
 --- !u!114 &1790013148276543712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140930,7 +140927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6afe745fe6512b51c3ad8c4d5bb7655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starIndex: 1
+  _starsIndex: 1
 --- !u!114 &1790013148276543721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142672,47 +142669,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 471c85ff7aa3dfd2f4602f19001191b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageMatchTimerGauge: {fileID: 1790013148276543795}
-  imageUserHpGauge: {fileID: 1790013148276543787}
-  textUserHp: {fileID: 1790013148276543552}
-  textTurnsState: {fileID: 1790013148276543934}
-  textWaveState: {fileID: 1790013148276543295}
-  textIngameCoin: {fileID: 1790013148276543487}
-  textUserDamage: {fileID: 1790013148276543676}
-  textStar2TurnClear: {fileID: 1790013148276543584}
-  textStar3TurnClear: {fileID: 1790013148276543174}
-  textInGameSpeed: {fileID: 1790013148276543754}
-  rtIngameCoin: {fileID: 1790013148276542869}
-  btnDefaultPlayInfo: {fileID: 1790013148276543422}
-  btnDetailPlayInfo: {fileID: 1790013148276543715}
-  trEffectAnchor: {fileID: 1790013148276542914}
-  trPlayInfo: {fileID: 1790013148276542898}
-  goControlLock: {fileID: 1790013148276541652}
-  goTurnInfo: {fileID: 1790013148276541768}
-  goStar2failureLine: {fileID: 1790013148276541527}
-  goStar3failureLine: {fileID: 1790013148276541795}
-  goPauseButton: {fileID: 1790013148276541665}
-  goSpeedButton: {fileID: 1790013148276541725}
-  goAttributeIcon: {fileID: 1790013148276541438}
-  goGameInfo: {fileID: 1790013148276541548}
-  goForceClear: {fileID: 1790013148276541359}
-  goForceWave: {fileID: 1790013148276541936}
-  goCoinIcon: {fileID: 1790013148276541533}
-  goArenaPointIcon: {fileID: 1790013148276541806}
-  goTextShuffling: {fileID: 1790013148276541663}
-  comboPhrase: {fileID: 1790013148276543176}
-  battleResult: {fileID: 1790013148276543469}
-  battleDefeat: {fileID: 1790013148276543169}
-  battleLose: {fileID: 1790013148276543688}
-  battleReward: {fileID: 1790013148276543924}
-  arenaChestOpen: {fileID: 1790013148276543289}
-  jewelShop: {fileID: 1790013148276543793}
-  jewelShopBuy: {fileID: 1790013148276543781}
-  notEnoughJewelIngame: {fileID: 1790013148276543872}
-  Pause: {fileID: 1790013148276543661}
-  explain_Attribute: {fileID: 1790013148276541788}
-  goEffectWarning: {fileID: 1790013148276541601}
-  arrGoBoostItemIcon:
+  _imageMatchTimerGauge: {fileID: 1790013148276543795}
+  _imageUserHpGauge: {fileID: 1790013148276543787}
+  _textUserHp: {fileID: 1790013148276543552}
+  _textTurnsState: {fileID: 1790013148276543934}
+  _textWaveState: {fileID: 1790013148276543295}
+  _textIngameCoin: {fileID: 1790013148276543487}
+  _textUserDamage: {fileID: 1790013148276543676}
+  _textStar2TurnClear: {fileID: 1790013148276543584}
+  _textStar3TurnClear: {fileID: 1790013148276543174}
+  _textInGameSpeed: {fileID: 1790013148276543754}
+  _rtIngameCoin: {fileID: 1790013148276542869}
+  _btnDefaultPlayInfo: {fileID: 1790013148276543422}
+  _btnDetailPlayInfo: {fileID: 1790013148276543715}
+  _trEffectAnchor: {fileID: 1790013148276542914}
+  _trPlayInfo: {fileID: 1790013148276542898}
+  _goControlLock: {fileID: 1790013148276541652}
+  _goTurnInfo: {fileID: 1790013148276541768}
+  _goStar2failureLine: {fileID: 1790013148276541527}
+  _goStar3failureLine: {fileID: 1790013148276541795}
+  _goPauseButton: {fileID: 1790013148276541665}
+  _goSpeedButton: {fileID: 1790013148276541725}
+  _goAttributeIcon: {fileID: 1790013148276541438}
+  _goGameInfo: {fileID: 1790013148276541548}
+  _goForceClear: {fileID: 1790013148276541359}
+  _goForceWave: {fileID: 1790013148276541936}
+  _goCoinIcon: {fileID: 1790013148276541533}
+  _goArenaPointIcon: {fileID: 1790013148276541806}
+  _goTextShuffling: {fileID: 1790013148276541663}
+  _comboPhrase: {fileID: 1790013148276543176}
+  _battleResult: {fileID: 1790013148276543469}
+  _battleDefeat: {fileID: 1790013148276543169}
+  _battleLose: {fileID: 1790013148276543688}
+  _battleReward: {fileID: 1790013148276543924}
+  _arenaChestOpen: {fileID: 1790013148276543289}
+  _jewelShop: {fileID: 1790013148276543793}
+  _jewelShopBuy: {fileID: 1790013148276543781}
+  _notEnoughJewelIngame: {fileID: 1790013148276543872}
+  _Pause: {fileID: 1790013148276543661}
+  _explainAttribute: {fileID: 1790013148276541788}
+  _warningEffect: {fileID: 1790013148276541601}
+  _arrGoBoostItemIcon:
   - {fileID: 1790013148276541911}
   - {fileID: 1790013148276541477}
   - {fileID: 1790013148276541625}
@@ -143017,9 +143014,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f791cdd4da86db53e6faef96b9bd9388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzleController: {fileID: 1790013148276543649}
-  battleController: {fileID: 1790013148276543567}
-  uiController: {fileID: 1790013148276543789}
+  _puzzleController: {fileID: 1790013148276543649}
+  _battleController: {fileID: 1790013148276543567}
+  _uiController: {fileID: 1790013148276543789}
 --- !u!114 &1790013148276543801
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -133,6 +133,7 @@ public class HeroView : LobbyPopupBase
 	{
 		this._hunterInfo = _hunterInfo;
 		this._isOwn = _isOwn;
+		Debug.Log(_isOwn);
 		if (_hunterCharacter != null)
 		{
 			MasterPoolManager.ReturnToPool("Hunter", _hunterCharacter.transform);

@@ -421,6 +421,7 @@ public static class GameUtil
 		int num = 0;
 		int num2 = 0;
 		GameInfo.userData.huntersUseInfo = null;
+		
 		for (int i = 0; i < GameInfo.userData.userHunterList.Length; i++)
 		{
 			if (GameInfo.userData.userHunterList[i].useYn.Equals("y"))

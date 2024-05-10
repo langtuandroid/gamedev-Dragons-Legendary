@@ -16,7 +16,7 @@ public class HeroCard : MonoBehaviour, IPointerClickHandler, IEventSystemHandler
 	private int _heroSibiling;
 	private bool _isSelectHero;
 	private int _arenaBuff;
-	private bool _isOwn;
+	[SerializeField] private bool _isOwn;
 	
 	[FormerlySerializedAs("hunterCard_type")] [SerializeField]
 	private HerocardType _heroType;
@@ -53,6 +53,7 @@ public class HeroCard : MonoBehaviour, IPointerClickHandler, IEventSystemHandler
 
 	public void Construct(HerocardType _type, HunterInfo _hunterInfo, bool _isOwn, bool _isArena)
 	{
+		Debug.Log("MYLOG " + this._isOwn);
 		this.HunterInfo = _hunterInfo;
 		_heroType = _type;
 		HeroIdx = 0;

@@ -138,9 +138,9 @@ public class LevelGamePlay : LobbyPopupBase
 	private void ResetHunterCards()
 	{
 		DeleteCard();
+		//Debug.Log("HUNTER INFO" + GameInfo.userData.huntersUseInfo.Length);
 		for (int i = 0; i < GameInfo.userData.huntersUseInfo.Length; i++)
 		{
-			Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 			HeroCard component = MasterPoolManager.SpawnObject("Hunter", "HunterCard_" + GameInfo.userData.huntersUseInfo[i].hunterIdx, _trHunterCardParent).GetComponent<HeroCard>();
 			component.Construct(HerocardType.Levelplay, GameDataManager.GetHunterInfo(GameInfo.userData.huntersUseInfo[i].hunterIdx, GameInfo.userData.huntersUseInfo[i].hunterLevel, GameInfo.userData.huntersUseInfo[i].hunterTier), _isOwn: true, _isArena: false);
 			component.HeroIdx = i;

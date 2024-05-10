@@ -131,6 +131,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1108185538766266087, guid: 7c64a8489df33ab47bfa8062df44f1c5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1858373676070210329, guid: 7c64a8489df33ab47bfa8062df44f1c5,
         type: 3}
       propertyPath: iapSettingInfo.AndroidProductInfos.Array.size
@@ -352,7 +357,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1790013148276541357
 GameObject:
   m_ObjectHideFlags: 0

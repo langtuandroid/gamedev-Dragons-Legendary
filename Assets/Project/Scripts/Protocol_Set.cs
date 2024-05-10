@@ -120,7 +120,8 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 		jSONObject2.AddField("sType", GameObjectSingleton<Protocol_Set>.Inst.GetPlatformType());
 		jSONObject2.AddField("sUid", GameInfo.sUid);
 		//jSONObject2.AddField("deviceId", MWPlatformService.GetUniqueDeviceId());
-		jSONObject2.AddField("deviceId",MasterPlatformService.GetUniqueDeviceId() + 1); //TODO MWPlatformService.GetUniqueDeviceId()
+		//jSONObject2.AddField("deviceId","rdijnubid349ghj5hjmvsriu4232u34ign4" + 1); //TODO Comment
+		jSONObject2.AddField("deviceId", MasterPlatformService.GetUniqueDeviceId() + 1); 
 		switch (BuildSet.CurrentPlatformType)
 		{
 			case PlatformType.aos:
@@ -1325,9 +1326,8 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 			{
 				return;
 			}
-
-			string modifiedJson = ModifyData(response.DataAsText);
-			USER_INFO[] array = JsonConvert.DeserializeObject<USER_INFO[]>(modifiedJson); //old response.DataAsText
+			
+			USER_INFO[] array = JsonConvert.DeserializeObject<USER_INFO[]>(response.DataAsText); 
 			if (!CheckServerErrorCode(array[0].errorCode) && !CheckForceUpdate(array[0].force_update))
 			{
 				GameObjectSingleton<Protocol_Set>.Inst.InsertUserData(array[0].result);
@@ -2683,6 +2683,7 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 				GameInfo.userData.userInfo.arenaTicket = array[0].result.userArenaInfo.arenaTicket;
 				GameInfo.userData.userInfo.arenaPoint = array[0].result.userArenaInfo.arenaPoint;
 				GameInfo.userData.userHunterList = array[0].result.userHunterList;
+				
 				if (GameObjectSingleton<Protocol_Set>.Inst.OnCallBack_Arena_Info_Data != null)
 				{
 					GameObjectSingleton<Protocol_Set>.Inst.OnCallBack_Arena_Info_Data(array[0].result);
@@ -3647,11 +3648,17 @@ public class Protocol_Set : GameObjectSingleton<Protocol_Set>
 	{
 		if (_userData.userInfo != null)
 		{
+			
 			GameInfo.userData.userInfo = _userData.userInfo;
 		}
 		if (_userData.userHunterList != null)
 		{
 			GameInfo.userData.userHunterList = _userData.userHunterList;
+			Debug.Log("HUNTER LIST " + _userData.userHunterList.Length);
+		}
+		else
+		{
+			Debug.Log("HUNTER LIST " + 0);
 		}
 		if (_userData.userItemList != null)
 		{
